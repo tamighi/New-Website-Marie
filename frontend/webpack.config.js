@@ -4,11 +4,20 @@ module.exports = {
     entry: {
         main: './src/index.tsx',
     },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
+    resolve: {
+        extensions:['.tsx'],
     },
     module: {
-        rules:[{ test: /\.tsx$/, use: 'ts-loader' }]
+        rules:[{ test: /\.tsx$/, exclude: /node_modules/, use: 'babel-loader' }]
     }
+    output: {
+        path: path.resolve(__dirname, 'build'),
+        filename: 'bundle.js',
+    },
+    mode: 'development',
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'public/index.html'
+        }),
+    ],
 };
