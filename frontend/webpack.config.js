@@ -6,7 +6,7 @@ module.exports = {
         main: './src/index.tsx',
     },
     resolve: {
-        extensions:['.tsx'],
+        extensions:['.tsx', '.js', '.ts'],
     },
     module: {
         rules:[{ test: /\.tsx$/, exclude: /node_modules/, use: 'babel-loader' }]
