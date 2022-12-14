@@ -22,13 +22,12 @@ module.exports = {
         ]
     },
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, '..', 'build'),
         filename: 'bundle.js',
     },
-    mode: 'development',
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'public/index.html'
+            template: 'src/index.html'
         }),
     ],
 };
