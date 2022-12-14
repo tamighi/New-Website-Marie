@@ -5,7 +5,7 @@ export const App = () => {
     return (
         <div className="App">
             Hello World - {process.env.NODE_ENV} - {process.env.name}
-            <img src="cat.png" alt="" width="200" height="300"/>
+            <img src="images/cat.png" alt="" width="200" height="300"/>
         </div>
     )
 }
