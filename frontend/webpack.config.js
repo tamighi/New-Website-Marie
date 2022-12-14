@@ -9,7 +9,17 @@ module.exports = {
         extensions:['.tsx', '.js', '.ts'],
     },
     module: {
-        rules:[{ test: /\.tsx$/, exclude: /node_modules/, use: 'babel-loader' }]
+        rules: [
+            { 
+                test: /\.tsx$/,
+                exclude: /node_modules/,
+                use: 'babel-loader' 
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            }
+        ]
     },
     output: {
         path: path.resolve(__dirname, 'build'),
