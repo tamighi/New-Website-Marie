@@ -32,7 +32,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: 'public' }
+                { from: 'assets' }
             ],
         })
     ],
