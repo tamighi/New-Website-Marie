@@ -1,3 +1,10 @@
 export const FrontRoot = () => {
-  return <div>Hello Front</div>
+  return (
+    <div>
+      <nav>
+        <a href={`contacts/1`}>Your Name</a>
+      </nav>
+      Hello Front
+    </div>
+  )
 }
