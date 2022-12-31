@@ -1,12 +1,22 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { ErrorPage } from "./front/ErrorPage"
+import { AdminRoot } from "./admin/AdminRoot"
+import { ErrorPage } from "./ErrorPage"
 import { FrontRoot } from "./front/FrontRoot"
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <FrontRoot />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <FrontRoot />,
+      },
+      {
+        path: "/admin",
+        element: <AdminRoot />,
+      },
+    ],
   },
 ])
 
