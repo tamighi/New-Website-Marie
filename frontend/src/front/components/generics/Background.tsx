@@ -9,7 +9,6 @@ export const Background = () => {
       }}
     >
       <img src="./backgrounds/autumn.jpg" alt="background" />
-      Background
     </div>
   )
 }

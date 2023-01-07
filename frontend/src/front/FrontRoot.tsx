@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom"
 import { Background } from "./components/generics/Background"
+import "./styles/FrontRoot.css"
 
 export const FrontRoot = () => {
   return (
-    <div>
+    <div className="FrontRoot">
       <Background />
       Front
       <Outlet />
