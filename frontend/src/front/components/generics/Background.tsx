@@ -8,7 +8,18 @@ export const Background = () => {
         position: "fixed",
       }}
     >
-      <img src="./backgrounds/autumn.jpg" alt="background" />
+      <img
+        style={{
+          position: "absolute",
+          top: 0,
+          minHeight: "100%",
+          maxHeight: "100%",
+          minWidth: "100%",
+          maxWidth: "100%",
+        }}
+        src="./backgrounds/autumn.jpg"
+        alt="background"
+      />
     </div>
   )
 }

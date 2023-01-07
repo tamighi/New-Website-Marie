@@ -1,6 +1,6 @@
-@import "./colors.css";
-
 .FrontRoot {
-  color: var(--primary-color);
-  background-color: var(--secondary-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }

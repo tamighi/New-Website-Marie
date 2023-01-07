@@ -5,8 +5,8 @@ import "./styles/FrontRoot.css"
 export const FrontRoot = () => {
   return (
     <div className="FrontRoot">
-      <Background />
       Front
+      <Background />
       <Outlet />
     </div>
   )
