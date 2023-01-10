@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
-import { useDarkTheme, useToggleTheme } from "../../hooks/ThemeContext"
+import { useToggleTheme } from "../../hooks/ThemeContext"
+import { useColors } from "../../hooks/useColors"
 
 import "../../styles/Appbar.css"
 import "../../styles/colors.css"
@@ -17,19 +18,16 @@ const rightButtons = [
 
 export const Appbar = () => {
   const toggleTheme = useToggleTheme()
-  const darkTheme = useDarkTheme()
+  const colors = useColors()
 
-  if (!toggleTheme) {
-    return null
-  }
   return (
     <div
       className="Appbar"
       style={{
-        backgroundColor: darkTheme ? "var(--dark-color)" : "var(--light-color)",
+        backgroundColor: colors.primaryColor,
       }}
     >
-      <button onClick={() => toggleTheme()}>Toggle</button>
+      <button onClick={toggleTheme || undefined}>Toggle</button>
 
       <ul>
         {rightButtons.map((button) => (
@@ -38,7 +36,7 @@ export const Appbar = () => {
               className="Link"
               to={button.to}
               style={{
-                color: darkTheme ? "#16368D" : "#A51E1E",
+                color: colors.secondaryColor,
               }}
             >
               {button.name}

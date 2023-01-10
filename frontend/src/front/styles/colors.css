@@ -1,6 +1,6 @@
 :root {
   --light-color: rgba(255, 127, 80, 0.7);
   --dark-color: rgba(0, 0, 128, 0.5);
-  --light-secondary-color: rgba(255, 127, 80, 0.7);
-  --dark-secondary-color: rgba(0, 0, 128, 0.5);
+  --light-secondary-color: #A51E1E;
+  --dark-secondary-color: #16368D;
 }
