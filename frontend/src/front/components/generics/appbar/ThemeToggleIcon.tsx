@@ -8,7 +8,7 @@ export const ThemeToggleIcon = () => {
 
   return (
     <IconButton
-      name={darkTheme ? "moon" : "sun"}
+      name={darkTheme ? "sun" : "moon"}
       onClick={toggleTheme || undefined}
     />
   )
