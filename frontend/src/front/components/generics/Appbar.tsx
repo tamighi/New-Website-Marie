@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom"
 
-import { Icon } from "../custom/Icon"
-
 import { useToggleTheme } from "../../hooks/ThemeContext"
 import { useColors } from "../../hooks/useColors"
 
 import "../../styles/Appbar.css"
 import "../../styles/colors.css"
 
-const rightButtons = [
+const links = [
   {
     name: "home",
     to: "",
@@ -31,9 +29,8 @@ export const Appbar = () => {
       }}
     >
       <button onClick={toggleTheme || undefined}>Toggle</button>
-      <Icon name="moon" />
       <ul>
-        {rightButtons.map((button) => (
+        {links.map((button) => (
           <li key={button.name}>
             <Link
               className="Link"
