@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 
-import { Appbar } from "./components/generics/Appbar"
+import { Appbar } from "./components/generics/appbar/Appbar"
 import { Background } from "./components/generics/Background"
 
 import "./styles/FrontRoot.css"

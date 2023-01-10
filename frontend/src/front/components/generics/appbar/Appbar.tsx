@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom"
 
-import { Icon } from "../custom/Icon"
+import { ThemeToggleIcon } from "./ThemeToggleIcon"
 
-import { useToggleTheme } from "../../hooks/ThemeContext"
-import { useColors } from "../../hooks/useColors"
+import { useColors } from "../../../hooks/useColors"
 
-import "../../styles/Appbar.css"
-import "../../styles/colors.css"
+import "../../../styles/Appbar.css"
+import "../../../styles/colors.css"
 
 const rightButtons = [
   {
@@ -20,7 +19,6 @@ const rightButtons = [
 ]
 
 export const Appbar = () => {
-  const toggleTheme = useToggleTheme()
   const colors = useColors()
 
   return (
@@ -30,8 +28,7 @@ export const Appbar = () => {
         backgroundColor: colors.primaryColor,
       }}
     >
-      <button onClick={toggleTheme || undefined}>Toggle</button>
-      <Icon name="moon" />
+    <ThemeToggleIcon />
       <ul>
         {rightButtons.map((button) => (
           <li key={button.name}>
