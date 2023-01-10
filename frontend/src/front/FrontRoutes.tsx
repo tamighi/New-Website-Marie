@@ -1,8 +1,6 @@
 import { FrontRoot } from "./FrontRoot"
 import { HomePage } from "./components/pages/homePage/HomePage"
 
-import "./styles/FrontRoot.css"
-
 const frontRouter = {
   path: "/",
   element: <FrontRoot />,

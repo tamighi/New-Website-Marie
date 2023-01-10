@@ -9,3 +9,18 @@
   left: 0;
   right: 0;
 }
+
+.Appbar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Appbar li {
+  margin-right: 20px;
+}
+
+.Appbar .Link {
+    text-decoration: none;
+}
