@@ -34,7 +34,13 @@ export const Appbar = () => {
       <ul>
         {rightButtons.map((button) => (
           <li key={button.name}>
-            <Link className="Link" to={button.to}>
+            <Link
+              className="Link"
+              to={button.to}
+              style={{
+                color: darkTheme ? "#16368D" : "#A51E1E",
+              }}
+            >
               {button.name}
             </Link>
           </li>
