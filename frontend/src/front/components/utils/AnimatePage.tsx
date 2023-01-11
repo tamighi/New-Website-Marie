@@ -8,11 +8,9 @@ export const AnimatePage = ({ children }: { children: React.ReactNode }) => {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentChildren(children)
-      console.log("children changed")
-      console.log(children)
     }, 1000)
     return () => clearTimeout(timer)
-  }, [location, children])
+  }, [children])
 
-  return <div>{currentChildren}</div>
+  return <>{currentChildren}</>
 }
