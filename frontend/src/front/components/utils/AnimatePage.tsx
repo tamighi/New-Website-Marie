@@ -1,16 +1,21 @@
 import React from "react"
-import { useLocation } from "react-router-dom"
 
 export const AnimatePage = ({ children }: { children: React.ReactNode }) => {
   const [currentChildren, setCurrentChildren] = React.useState(children)
-  const location = useLocation()
+  const [opacity, setOpacity] = React.useState(0)
 
   React.useEffect(() => {
+    setOpacity(0)
     const timer = setTimeout(() => {
       setCurrentChildren(children)
-    }, 1000)
+      setOpacity(1)
+    }, 600)
     return () => clearTimeout(timer)
   }, [children])
 
-  return <>{currentChildren}</>
+  return (
+    <div style={{ opacity: opacity, transition: "opacity 0.6s ease-in-out" }}>
+      {currentChildren}
+    </div>
+  )
 }
