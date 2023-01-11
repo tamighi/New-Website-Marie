@@ -6,14 +6,14 @@ import { HomePage } from "./components/pages/homePage/HomePage"
 import { AnimatePage } from "./components/utils/AnimatePage"
 import { useColors } from "./hooks/useColors"
 
-import "./styles/FrontRoot.css"
+import "./styles/FrontApp.css"
 
-export const FrontPage = () => {
+export const FrontApp = () => {
   const location = useLocation()
   const colors = useColors()
 
   return (
-    <div className="FrontRoot" style={{ color: colors.textColor }}>
+    <div className="FrontApp" style={{ color: colors.textColor }}>
       <Appbar />
       <Background />
       <AnimatePage>
