@@ -5,9 +5,7 @@
   height: 60px;
   width: 100%;
   position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
+  transition: background .6s ease-in-out;
 }
 
 .Appbar ul {

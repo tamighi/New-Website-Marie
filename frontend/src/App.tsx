@@ -1,14 +1,15 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import frontRouter from "./front/FrontRoutes"
-import adminRouter from "./admin/AdminRoutes"
-import { ThemeProvider } from "./front/hooks/ThemeContext"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
-const router = createBrowserRouter([frontRouter, adminRouter])
+import { FrontRoot } from "./front/FrontRoot"
+import { AdminRoot } from "./admin/AdminRoot"
 
 export const App = () => {
   return (
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={<FrontRoot />} />
+        <Route path="/admin/*" element={<AdminRoot />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
