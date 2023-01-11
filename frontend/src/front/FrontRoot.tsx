@@ -4,6 +4,7 @@ import { Appbar } from "./components/generics/appbar/Appbar"
 import { Background } from "./components/generics/Background"
 import { HomePage } from "./components/pages/homePage/HomePage"
 import { AnimatePage } from "./components/utils/AnimatePage"
+
 import { ThemeProvider } from "./hooks/ThemeContext"
 
 import "./styles/FrontRoot.css"

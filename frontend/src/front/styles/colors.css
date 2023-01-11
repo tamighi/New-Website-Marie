@@ -3,4 +3,6 @@
   --dark-color: rgba(0, 0, 128, 0.5);
   --light-secondary-color: #A51E1E;
   --dark-secondary-color: #16368D;
+  --light-text-color: black;
+  --dark-text-color: white;
 }

@@ -4,10 +4,15 @@ import { useDarkTheme } from "./ThemeContext"
 export const useColors = () => {
   const darkTheme = useDarkTheme()
 
-  return {
-    primaryColor: darkTheme ? "var(--dark-color)" : "var(--light-color)",
-    secondaryColor: darkTheme
-      ? "var(--dark-secondary-color)"
-      : "var(--light-secondary-color)",
-  }
+  return darkTheme
+    ? {
+        primaryColor: "var(--dark-color)",
+        secondaryColor: "var(--light-secondary-color)",
+        textColor: "var(--dark-secondary-color)",
+      }
+    : {
+        primaryColor: "var(--light-color)",
+        secondaryColor: "var(--light-secondary-color)",
+        textColor: "var(--light-secondary-color)",
+      }
 }
