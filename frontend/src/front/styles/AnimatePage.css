@@ -1,0 +1,11 @@
+.AnimatePage {
+    transition: opacity 0.6s ease-in-out;
+}
+
+.onLeave {
+    opacity: 0
+}
+
+.onEnter {
+    opacity: 0
+}

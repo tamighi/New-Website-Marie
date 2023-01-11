@@ -1,20 +1,31 @@
 import React from "react"
 
+import { useLocation } from "react-router-dom"
+
+import "../../styles/AnimatePage.css"
+
 export const AnimatePage = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation()
   const [currentChildren, setCurrentChildren] = React.useState(children)
-  const [opacity, setOpacity] = React.useState(0)
+  const [previousLocation, setPreviousLocation] = React.useState(
+    location.pathname
+  )
+  const [leave, setLeave] = React.useState(true)
 
   React.useEffect(() => {
-    setOpacity(0)
+    if (previousLocation !== location.pathname) {
+      setLeave(true)
+      setPreviousLocation(location.pathname)
+    }
     const timer = setTimeout(() => {
       setCurrentChildren(children)
-      setOpacity(1)
+      setLeave(false)
     }, 600)
     return () => clearTimeout(timer)
-  }, [children])
+  }, [children, previousLocation, location])
 
   return (
-    <div style={{ opacity: opacity, transition: "opacity 0.6s ease-in-out" }}>
+    <div className={`AnimatePage ${leave ? "onLeave" : ""}`}>
       {currentChildren}
     </div>
   )

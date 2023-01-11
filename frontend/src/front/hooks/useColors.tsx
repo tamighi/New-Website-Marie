@@ -7,12 +7,12 @@ export const useColors = () => {
   return darkTheme
     ? {
         primaryColor: "var(--dark-color)",
-        secondaryColor: "var(--light-secondary-color)",
-        textColor: "var(--dark-secondary-color)",
+        secondaryColor: "var(--dark-secondary-color)",
+        textColor: "var(--dark-text-color)",
       }
     : {
         primaryColor: "var(--light-color)",
         secondaryColor: "var(--light-secondary-color)",
-        textColor: "var(--light-secondary-color)",
+        textColor: "var(--light-text-color)",
       }
 }
