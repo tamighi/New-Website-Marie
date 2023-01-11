@@ -28,17 +28,12 @@ export const Appbar = () => {
         backgroundColor: colors.primaryColor,
       }}
     >
-    <ThemeToggleIcon />
+      <ThemeToggleIcon />
+      <div className="Logo">Marie Somville</div>
       <ul>
         {rightButtons.map((button) => (
           <li key={button.name}>
-            <Link
-              className="Link"
-              to={button.to}
-              style={{
-                color: colors.secondaryColor,
-              }}
-            >
+            <Link className="Link" to={button.to}>
               {button.name}
             </Link>
           </li>
