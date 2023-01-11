@@ -5,7 +5,6 @@
   padding-left: 16px;
   padding-right: 16px;
   position: sticky;
-  transition: background 0.6s ease-in-out;
 }
 
 .Appbar .Link {
