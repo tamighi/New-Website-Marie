@@ -1,30 +1,28 @@
 import React from "react"
-import IconButton from "./IconButton"
-
-import "../../styles/Drawer.css"
 import { useColors } from "../../hooks/useColors"
 import { useClickOutside } from "../../hooks/useClickOutside"
 
-const Drawer = ({ children }: { children: React.ReactNode }) => {
-  const [open, setOpen] = React.useState(false)
-  const colors = useColors()
-  const onClick = () => {
-    setOpen(!open)
-  }
+import "../../styles/Drawer.css"
 
-  const ref = useClickOutside(() => setOpen(false))
+interface DrawerProps {
+  children: React.ReactNode
+  open: boolean
+  onClose: () => void
+}
+
+const Drawer = ({ children, open, onClose }: DrawerProps) => {
+  const colors = useColors()
+
+  const ref = useClickOutside(() => onClose())
 
   return (
-    <>
-      <IconButton name="menu" onClick={onClick} />
-      <div
-        className={`Drawer${open ? "" : " Hidden"}`}
-        style={{ backgroundColor: colors.primaryColor }}
-        ref={ref}
-      >
-        {children}
-      </div>
-    </>
+    <div
+      className={`Drawer${open ? "" : " Hidden"}`}
+      style={{ backgroundColor: colors.primaryColor }}
+      ref={ref}
+    >
+      {children}
+    </div>
   )
 }
 

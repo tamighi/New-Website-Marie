@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom"
 
 import Card from "../../custom/Card"
-import Drawer from "../../custom/Drawer"
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
+import { MobileDrawer } from "./MobileDrawer"
 
 import "../../../styles/Appbar.css"
 import "../../../styles/colors.css"
 
-const rightButtons = [
+const navItems = [
   {
-    name: "home",
+    name: "Home",
     to: "",
   },
   {
-    name: "contact",
+    name: "Contact",
     to: "contact",
   },
 ]
@@ -22,13 +22,11 @@ export const Appbar = () => {
   return (
     <Card style={{ marginBottom: "20px" }}>
       <div className="Appbar">
-        <div>
-          <Drawer>Drawer</Drawer>
-        </div>
+        <MobileDrawer navItems={navItems} />
         <ThemeToggleIcon />
         <div className="Logo">Marie Somville</div>
         <ul className="LinkList">
-          {rightButtons.map((button) => (
+          {navItems.map((button) => (
             <li key={button.name}>
               <Link className="Link" to={button.to}>
                 {button.name}
