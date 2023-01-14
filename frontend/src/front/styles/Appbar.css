@@ -14,7 +14,7 @@
   padding: 0;
 }
 
-@media (width <= 600px) {
+@media only screen and (max-width: 600px) {
   .LinkList {
     display: none;
   }
@@ -38,22 +38,4 @@
   text-align: center;
   font-family: cursive;
   font-size: 200%;
-}
-
-@media (width > 600px) {
-  .MobileAppbar {
-  }
-}
-
-.DrawerLinkList {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-}
-
-.DrawerLink {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  margin-top: 20px;
 }

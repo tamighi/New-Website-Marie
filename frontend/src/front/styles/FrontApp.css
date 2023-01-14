@@ -5,3 +5,7 @@
   position: relative;
   font-family: 'Roboto', sans-serif;
 }
+
+.FrontApp button, input {
+    font-family: inherit;
+}

@@ -17,7 +17,7 @@ export const FrontApp = () => {
       <Appbar />
       <Background />
       <AnimatePage>
-        <Routes location={location} key={location.pathname}>
+        <Routes location={location}>
           <Route path="" element={<HomePage />} />
           <Route path="contact" element={<div>HomeContact</div>} />
         </Routes>

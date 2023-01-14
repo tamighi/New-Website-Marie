@@ -4,10 +4,10 @@
   left: 0;
   height: 100vh;
   width: 180px;
-  padding: 20px;
   transition: left ease-in-out 0.3s;
+  opacity: .85;
 }
 
 .Hidden {
-    left: -220px;
+    left: -180px;
 }

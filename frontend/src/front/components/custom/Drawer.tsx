@@ -18,7 +18,7 @@ const Drawer = ({ children, open, onClose }: DrawerProps) => {
   return (
     <div
       className={`Drawer${open ? "" : " Hidden"}`}
-      style={{ backgroundColor: colors.primaryColor }}
+      style={{ backgroundColor: colors.secondaryColor }}
       ref={ref}
     >
       {children}

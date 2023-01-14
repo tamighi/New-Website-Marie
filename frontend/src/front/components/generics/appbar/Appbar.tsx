@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 import Card from "../../custom/Card"
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
-import { MobileDrawer } from "./MobileDrawer"
+import { AppbarDrawer } from "./AppbarDrawer"
 
 import "../../../styles/Appbar.css"
 import "../../../styles/colors.css"
@@ -22,7 +22,7 @@ export const Appbar = () => {
   return (
     <Card style={{ marginBottom: "20px" }}>
       <div className="Appbar">
-        <MobileDrawer navItems={navItems} />
+        <AppbarDrawer navItems={navItems} />
         <ThemeToggleIcon />
         <div className="Logo">Marie Somville</div>
         <ul className="LinkList">
