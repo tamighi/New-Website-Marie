@@ -1,11 +1,13 @@
+import { AnimatedPage } from "../../utils/AnimatedPage"
+
 export const HomePage = () => {
 
   return (
-    <div>
+    <AnimatedPage>
       <div>Home</div>
       <div>Home</div>
       <div>Home</div>
       <div>Home</div>
-    </div>
+    </AnimatedPage>
   )
 }
