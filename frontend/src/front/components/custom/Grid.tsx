@@ -3,7 +3,7 @@ import React from "react"
 import "../../styles/Grid.css"
 
 interface GridProps {
-  children: React.ReactNode
+  children?: React.ReactNode
   container?: boolean
   small?: number
   large?: number
@@ -23,7 +23,7 @@ const Grid = ({
     classNames.push(`large-${large}`)
   }
 
-  return <div className={classNames.join(" ")}>{children}</div>
+  return <div className={classNames.join(" ")}>{children || ""}</div>
 }
 
 export default Grid
