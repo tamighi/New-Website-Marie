@@ -5,13 +5,13 @@ export const HomeImage = () => {
   return (
     <img
       src={"./images/cat.png"}
-      height="100%"
-      width="100%"
       alt=""
       style={{
+        width: "100%",
         transition: "opacity 1s, transform 1s",
         opacity: mounted ? 1 : 0,
         transform: mounted ? "" : `translateX(-3em)`,
+        flexShrink: 0
       }}
     />
   )

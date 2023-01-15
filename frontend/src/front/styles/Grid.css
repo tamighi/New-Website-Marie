@@ -9,7 +9,7 @@
   grid-column: span 1;
 }
 
-@media (min-width: 640px) {
+@media only screen and (max-width: 600px) {
   .small-1 {
     grid-column: span 1;
   }
@@ -48,7 +48,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 600px) {
   .large-1 {
     grid-column: span 1;
   }

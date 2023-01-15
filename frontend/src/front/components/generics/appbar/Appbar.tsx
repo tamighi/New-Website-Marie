@@ -20,8 +20,16 @@ const navItems = [
 
 export const Appbar = () => {
   return (
-    <div className="Appbar">
-      <Card>
+    <div style={{ padding: "48px" }}>
+      <Card
+        style={{
+          position: "fixed",
+          zIndex: 1100,
+          top: 0,
+          right: 0,
+          width: "100%",
+        }}
+      >
         <div className="Navbar">
           <AppbarDrawer navItems={navItems} />
           <ThemeToggleIcon />
