@@ -1,0 +1,13 @@
+.GridContainer {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+}
+
+.GridItem-1 {
+  grid-column: span 1;
+}
+
+.GridItem-2 {
+  grid-column: span 2;
+}
