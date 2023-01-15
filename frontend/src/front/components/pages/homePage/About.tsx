@@ -12,7 +12,7 @@ export const About = () => {
         transform: mounted ? "" : `translateX(-3em)`,
       }}
     >
-      <Card style={{ padding: "16px" }}>
+      <Card>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
         fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
         aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis
