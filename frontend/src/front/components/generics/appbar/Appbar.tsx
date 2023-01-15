@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 
-import Card from "../../custom/Card"
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
 import { AppbarDrawer } from "./AppbarDrawer"
+import Paper from "../../custom/Paper"
 
 import "../../../styles/Appbar.css"
 import "../../../styles/colors.css"
@@ -13,15 +13,23 @@ const navItems = [
     to: "",
   },
   {
+    name: "Services",
+    to: "services",
+  },
+  {
     name: "Contact",
     to: "contact",
+  },
+  {
+    name: "Livre d'or",
+    to: "livredor",
   },
 ]
 
 export const Appbar = () => {
   return (
     <div style={{ padding: "48px" }}>
-      <Card
+      <Paper
         style={{
           position: "fixed",
           zIndex: 1100,
@@ -44,7 +52,7 @@ export const Appbar = () => {
             ))}
           </ul>
         </div>
-      </Card>
+      </Paper>
     </div>
   )
 }
