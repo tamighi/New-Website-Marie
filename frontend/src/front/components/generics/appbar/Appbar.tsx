@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
 import { AppbarDrawer } from "./AppbarDrawer"
@@ -10,23 +10,24 @@ import "../../../styles/colors.css"
 const navItems = [
   {
     name: "Home",
-    to: "",
+    to: "/",
   },
   {
     name: "Services",
-    to: "services",
+    to: "/services",
   },
   {
     name: "Contact",
-    to: "contact",
+    to: "/contact",
   },
   {
     name: "Livre d'or",
-    to: "livredor",
+    to: "/livredor",
   },
 ]
 
 export const Appbar = () => {
+  const location = useLocation()
   return (
     <div style={{ padding: "48px" }}>
       <Paper
@@ -45,6 +46,15 @@ export const Appbar = () => {
           <ul className="LinkList">
             {navItems.map((button) => (
               <li key={button.name}>
+                <img
+                  alt=""
+                  src={"./images/feather.png"}
+                  style={{
+                    height: "64px",
+                    visibility:
+                      button.to === location.pathname ? "visible" : "hidden",
+                  }}
+                ></img>
                 <Link className="Link" to={button.to}>
                   {button.name}
                 </Link>

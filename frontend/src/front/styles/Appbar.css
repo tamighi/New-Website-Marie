@@ -8,8 +8,8 @@
 }
 
 .Navbar {
-  min-height: 56px;
   display: flex;
+  height: 76px;
   align-items: center;
   padding-left: 16px;
   padding-right: 16px;
@@ -30,12 +30,15 @@
   }
 }
 
+.LinkList li {
+  display: flex;
+  align-items: center;
+}
+
 .Link {
-  display: block;
   text-decoration: none;
   font-weight: 700;
   color: inherit;
-  margin: 20px;
 }
 
 .Link:hover {
