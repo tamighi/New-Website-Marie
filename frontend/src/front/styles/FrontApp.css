@@ -3,9 +3,11 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  letter-spacing: 0.00938em;
 }
 
-.FrontApp button, input {
-    font-family: inherit;
+.FrontApp button,
+input {
+  font-family: inherit;
 }
