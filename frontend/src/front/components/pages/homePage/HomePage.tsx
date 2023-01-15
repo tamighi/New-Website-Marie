@@ -1,16 +1,17 @@
 import Grid from "../../custom/Grid"
 import { AnimatedPage } from "../../utils/AnimatedPage"
+import { About } from "./About"
 import { HomeImage } from "./HomeImage"
 
 export const HomePage = () => {
   return (
     <AnimatedPage>
       <Grid container>
-        <Grid xs={2}>
+        <Grid small={12} large={6}>
           <HomeImage />
         </Grid>
-        <Grid>
-          <HomeImage />
+        <Grid small={12} large={6}>
+          <About />
         </Grid>
       </Grid>
     </AnimatedPage>

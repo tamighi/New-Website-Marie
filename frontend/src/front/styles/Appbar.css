@@ -1,10 +1,18 @@
 .Appbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: auto;
+  height: 72px;
+  width: 100%;
+}
+
+.Navbar {
   display: flex;
   align-items: center;
   padding-left: 16px;
   padding-right: 16px;
-  position: sticky;
-  height: 76px;
+  position: relative;
   color: white;
 }
 

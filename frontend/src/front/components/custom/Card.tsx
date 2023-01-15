@@ -5,10 +5,10 @@ import "../../styles/Card.css"
 
 interface CardProps {
   children: React.ReactNode
-  style: React.CSSProperties
+  style?: React.CSSProperties
 }
 
-const Card = ({ children, style }: CardProps) => {
+const Card = ({ children, style = {} }: CardProps) => {
   const colors = useColors()
   return (
     <div

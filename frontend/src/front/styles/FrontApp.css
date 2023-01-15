@@ -5,6 +5,10 @@
   position: relative;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   letter-spacing: 0.00938em;
+  font-weight: 400;
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
 }
 
 .FrontApp button,

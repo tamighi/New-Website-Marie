@@ -20,21 +20,23 @@ const navItems = [
 
 export const Appbar = () => {
   return (
-    <Card style={{ marginBottom: "20px" }}>
-      <div className="Appbar">
-        <AppbarDrawer navItems={navItems} />
-        <ThemeToggleIcon />
-        <div className="Logo">Marie Somville</div>
-        <ul className="LinkList">
-          {navItems.map((button) => (
-            <li key={button.name}>
-              <Link className="Link" to={button.to}>
-                {button.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Card>
+    <div className="Appbar">
+      <Card>
+        <div className="Navbar">
+          <AppbarDrawer navItems={navItems} />
+          <ThemeToggleIcon />
+          <div className="Logo">Marie Somville</div>
+          <ul className="LinkList">
+            {navItems.map((button) => (
+              <li key={button.name}>
+                <Link className="Link" to={button.to}>
+                  {button.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Card>
+    </div>
   )
 }

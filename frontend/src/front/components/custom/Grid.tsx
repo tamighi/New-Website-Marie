@@ -5,24 +5,25 @@ import "../../styles/Grid.css"
 interface GridProps {
   children: React.ReactNode
   container?: boolean
-  xs?: number
-  md?: number
+  small?: number
+  large?: number
 }
 
-const Grid = ({ children, container = false, xs = 1, md = xs }: GridProps) => {
-  let GridStyle = {}
-  if (!container) {
-    GridStyle = {
-      gridColumn: `span ${xs}`,
-    }
-  }
-  console.log(GridStyle)
+const Grid = ({
+  children,
+  container = false,
+  small = 1,
+  large = small,
+}: GridProps) => {
 
-  return (
-    <div className={container ? "GridContainer" : "GridItem"} style={GridStyle}>
-      {children}
-    </div>
-  )
+  const classNames = [container ? "GridContainer" : "GridItem"]
+
+  if (!container) {
+    classNames.push(`small-${small}`)
+    classNames.push(`large-${large}`)
+  }
+
+  return <div className={classNames.join(" ")}>{children}</div>
 }
 
 export default Grid
