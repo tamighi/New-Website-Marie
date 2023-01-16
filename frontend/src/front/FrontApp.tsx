@@ -11,7 +11,7 @@ import { ReviewPage } from "./components/pages/reviewPage/ReviewPage"
 import { ServicePage } from "./components/pages/servicePage/ServicePage"
 import useColors from "./hooks/useColors"
 
-import "./styles/FrontApp.css"
+import "./FrontApp.css"
 
 export const FrontApp = () => {
   const location = useLocation()

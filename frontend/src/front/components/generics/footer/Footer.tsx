@@ -1,5 +1,5 @@
 import Divider from "../../../../lib/components/divider/Divider"
-import "../../../styles/Footer.css"
+import "./Footer.css"
 
 export const Footer = () => {
   return (

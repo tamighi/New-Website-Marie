@@ -4,7 +4,7 @@ import { ThemeToggleIcon } from "./ThemeToggleIcon"
 import { AppbarDrawer } from "./AppbarDrawer"
 import Paper from "../../../../lib/components/paper/Paper"
 
-import "../../../styles/Appbar.css"
+import "./Appbar.css"
 import useColors from "../../../hooks/useColors"
 
 const navItems = [
