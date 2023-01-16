@@ -1,4 +1,4 @@
-import { BasePage } from "../../generics/BasePage"
+import { BasePage } from "../../generics/basePage/BasePage"
 import Card from "../../../../lib/components/card/Card"
 
 import useColors from "../../../hooks/useColors"

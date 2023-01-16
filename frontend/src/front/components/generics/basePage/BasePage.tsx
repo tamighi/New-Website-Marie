@@ -1,9 +1,9 @@
 import React from "react"
 
-import Grid from "../../../lib/components/grid/Grid"
-import { AnimatedPage } from "../utils/AnimatedPage"
+import Grid from "../../../../lib/components/grid/Grid"
+import { AnimatedPage } from "../../utils/AnimatedPage"
 
-import "../../styles/Page.css"
+import "../../../styles/Page.css"
 
 export const BasePage = ({ children }: { children: React.ReactNode }) => {
   return (

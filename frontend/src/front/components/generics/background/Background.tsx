@@ -1,6 +1,6 @@
-import { useDarkTheme } from "../../hooks/ThemeContext"
+import { useDarkTheme } from "../../../hooks/ThemeContext"
 
-import "../../styles/Background.css"
+import "./Background.css"
 
 export const Background = () => {
   const darkTheme = useDarkTheme()
