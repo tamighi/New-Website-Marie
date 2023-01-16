@@ -1,5 +1,5 @@
 .Card {
-  transition: background 0.6s ease-in-out;
   border-radius: 4px;
   padding: 16px;
+  background-color: white;
 }

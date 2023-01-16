@@ -12,6 +12,7 @@ import { ServicePage } from "./components/pages/servicePage/ServicePage"
 import useColors from "./hooks/useColors"
 
 import "./FrontApp.css"
+import { ErrorPage } from "./ErrorPage"
 
 export const FrontApp = () => {
   const location = useLocation()
@@ -28,6 +29,7 @@ export const FrontApp = () => {
           <Route path="services" element={<ServicePage />} />
           <Route path="livredor" element={<GoldenBookPage />} />
           <Route path="avis" element={<ReviewPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </AnimatePresence>
       <Footer />

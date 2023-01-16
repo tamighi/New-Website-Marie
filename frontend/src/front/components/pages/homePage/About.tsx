@@ -1,11 +1,8 @@
-import Card from "../../../../lib/components/card/Card"
-
-import useColors from "../../../hooks/useColors"
 import useOnMount from "../../../hooks/useOnMount"
+import Card from "../../shared/Card"
 
 export const About = () => {
   const mounted = useOnMount()
-  const colors = useColors()
   return (
     <div
       style={{
@@ -15,7 +12,7 @@ export const About = () => {
         transform: mounted ? "" : `translateX(-3em)`,
       }}
     >
-      <Card style={{ backgroundColor: colors.primaryColor }}>
+      <Card>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
         fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
         aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis

@@ -1,11 +1,10 @@
 import React from "react"
 
-import Drawer from "../../../../lib/components/drawer/Drawer"
 import IconButton from "../../../../lib/components/iconButton/IconButton"
 import Divider from "../../../../lib/components/divider/Divider"
+import Drawer from "../../shared/Drawer"
 
 import { useNavigate } from "react-router-dom"
-import useColors from "../../../hooks/useColors"
 
 import "./AppbarDrawer.css"
 
@@ -16,7 +15,6 @@ interface AppbarDrawerProps {
 export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
   const [open, setOpen] = React.useState(false)
   const navigate = useNavigate()
-  const colors = useColors()
 
   const onClick = (to: string) => {
     setOpen(false)
@@ -26,11 +24,7 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
   return (
     <div className="MobileAppbar">
       <IconButton name="menu" onClick={() => setOpen(!open)} />
-      <Drawer
-        open={open}
-        onClose={() => setOpen(false)}
-        style={{ backgroundColor: colors.secondaryColor }}
-      >
+      <Drawer open={open} onClose={() => setOpen(false)}>
         <ul className="DrawerLinkList">
           <li>
             Menu
