@@ -11,7 +11,7 @@ export const HomeImage = () => {
         transition: "opacity 1s, transform 1s",
         opacity: mounted ? 1 : 0,
         transform: mounted ? "" : `translateX(-3em)`,
-        flexShrink: 0
+        flexShrink: 0,
       }}
     />
   )

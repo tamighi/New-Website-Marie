@@ -1,10 +1,10 @@
 import React from "react"
 
-import Icon from "./Icon"
+import Icon from "../icon/Icon"
 
-import { useDarkTheme } from "../../hooks/ThemeContext"
+import { useDarkTheme } from "../../../front/hooks/ThemeContext"
 
-import "../../styles/IconButton.css"
+import "./IconButton.css"
 
 interface IconButtonProps {
   name: string

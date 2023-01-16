@@ -1,6 +1,6 @@
 import React from "react"
 
-import "../../styles/Grid.css"
+import "./Grid.css"
 
 interface GridProps {
   children?: React.ReactNode
@@ -15,7 +15,6 @@ const Grid = ({
   small = 1,
   large = small,
 }: GridProps) => {
-
   const classNames = [container ? "GridContainer" : "GridItem"]
 
   if (!container) {

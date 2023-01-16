@@ -1,7 +1,7 @@
 import "../styles/colors.css"
 import { useDarkTheme } from "./ThemeContext"
 
-export const useColors = () => {
+const useColors = () => {
   const darkTheme = useDarkTheme()
 
   return darkTheme
@@ -16,3 +16,6 @@ export const useColors = () => {
         textColor: "var(--light-text-color)",
       }
 }
+
+export default useColors
+

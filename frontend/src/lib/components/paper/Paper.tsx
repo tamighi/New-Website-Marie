@@ -1,7 +1,6 @@
 import React from "react"
-import { useColors } from "../../hooks/useColors"
 
-import "../../styles/Paper.css"
+import "./Paper.css"
 
 interface PaperProps {
   children: React.ReactNode
@@ -9,12 +8,8 @@ interface PaperProps {
 }
 
 const Paper = ({ children, style = {} }: PaperProps) => {
-  const colors = useColors()
   return (
-    <div
-      className="Paper"
-      style={{ backgroundColor: colors.primaryColor, ...style }}
-    >
+    <div className="Paper" style={style}>
       {children}
     </div>
   )

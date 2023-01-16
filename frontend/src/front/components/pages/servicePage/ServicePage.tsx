@@ -1,13 +1,16 @@
-import Card from "../../custom/Card"
 import { BasePage } from "../../generics/BasePage"
+import Card from "../../../../lib/components/card/Card"
+
+import useColors from "../../../hooks/useColors"
 
 import "../../../styles/Page.css"
 import "../../../styles/Typography.css"
 
 export const ServicePage = () => {
+  const colors = useColors()
   return (
     <BasePage>
-      <Card>
+      <Card style={{ backgroundColor: colors.primaryColor }}>
         <div className="Title">Les services proposés ...</div>
       </Card>
     </BasePage>

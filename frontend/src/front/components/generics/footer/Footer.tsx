@@ -1,4 +1,4 @@
-import Divider from "../../custom/Divider"
+import Divider from "../../../../lib/components/divider/Divider"
 import "../../../styles/Footer.css"
 
 export const Footer = () => {

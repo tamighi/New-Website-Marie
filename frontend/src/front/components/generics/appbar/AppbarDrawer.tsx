@@ -1,11 +1,12 @@
 import React from "react"
 
-import Drawer from "../../custom/Drawer"
-import IconButton from "../../custom/IconButton"
-import Divider from "../../custom/Divider"
+import Drawer from "../../../../lib/components/drawer/Drawer"
+import IconButton from "../../../../lib/components/iconButton/IconButton"
+import Divider from "../../../../lib/components/divider/Divider"
 
 import "../../../styles/AppbarDrawer.css"
 import { useNavigate } from "react-router-dom"
+import useColors from "../../../hooks/useColors"
 
 interface AppbarDrawerProps {
   navItems: { name: string; to: string }[]
@@ -14,6 +15,7 @@ interface AppbarDrawerProps {
 export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
   const [open, setOpen] = React.useState(false)
   const navigate = useNavigate()
+  const colors = useColors()
 
   const onClick = (to: string) => {
     setOpen(false)
@@ -21,25 +23,23 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
   }
 
   return (
-    <>
-      <div className="MobileAppbar">
-        <IconButton name="menu" onClick={() => setOpen(!open)} />
-        <Drawer open={open} onClose={() => setOpen(false)}>
-          <ul className="DrawerLinkList">
-            <li>
-              Menu
-              <Divider />
+    <div className="MobileAppbar">
+      <IconButton name="menu" onClick={() => setOpen(!open)} />
+      <Drawer open={open} onClose={() => setOpen(false)}>
+        <ul className="DrawerLinkList">
+          <li>
+            Menu
+            <Divider />
+          </li>
+          {navItems.map((item, id) => (
+            <li key={id}>
+              <button className="DrawerLink" onClick={() => onClick(item.to)}>
+                {item.name}
+              </button>
             </li>
-            {navItems.map((item, id) => (
-              <li key={id}>
-                <button className="DrawerLink" onClick={() => onClick(item.to)}>
-                  {item.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </Drawer>
-      </div>
-    </>
+          ))}
+        </ul>
+      </Drawer>
+    </div>
   )
 }

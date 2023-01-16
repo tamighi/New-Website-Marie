@@ -1,4 +1,4 @@
-import IconButton from "../../custom/IconButton"
+import IconButton from "../../../../lib/components/iconButton/IconButton"
 
 import { useDarkTheme, useToggleTheme } from "../../../hooks/ThemeContext"
 
