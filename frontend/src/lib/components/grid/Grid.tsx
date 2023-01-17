@@ -1,20 +1,16 @@
-import React from "react"
+import { PropType } from "../props"
 
 import "./Grid.css"
 
-interface GridProps {
-  children?: React.ReactNode
+interface GridProps extends PropType {
   container?: boolean
   small?: number
   large?: number
 }
 
-const Grid = ({
-  children,
-  container = false,
-  small = 1,
-  large = small,
-}: GridProps) => {
+const Grid = (props: GridProps) => {
+  const { style, children, className, container, small, large } = props
+
   const classNames = [container ? "GridContainer" : "GridItem"]
 
   if (!container) {
@@ -22,7 +18,15 @@ const Grid = ({
     classNames.push(`large-${large}`)
   }
 
-  return <div className={classNames.join(" ")}>{children || ""}</div>
+  if (className) {
+    classNames.push(className)
+  }
+
+  return (
+    <div className={classNames.join(" ")} style={style}>
+      {children || ""}
+    </div>
+  )
 }
 
 export default Grid

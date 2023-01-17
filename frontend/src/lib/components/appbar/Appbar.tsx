@@ -1,16 +1,15 @@
-import React from "react"
 import Paper from "../paper/Paper"
+import { PropType } from "../props"
 
 import "./Appbar.css"
 
-interface AppbarProps {
-  children: React.ReactNode
-  style?: React.CSSProperties
-}
+const Appbar = (props: PropType) => {
+  const { style, children, className } = props
 
-const Appbar = ({ children, style = {} }: AppbarProps) => {
+  const classNames = "Appbar " + (className || "")
+
   return (
-    <Paper style={style} className="Appbar">
+    <Paper style={style} className={classNames}>
       <div className="Navbar">{children}</div>
     </Paper>
   )

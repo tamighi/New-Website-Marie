@@ -4,6 +4,7 @@ import { ThemeToggleIcon } from "./ThemeToggleIcon"
 
 import { useToggleSideBar } from "../../../hooks/SideBarContext"
 import useColors from "../../../../lib/hooks/hooks/useColors"
+import Icon from "../../../../lib/components/icon/Icon"
 
 export const Appbar = () => {
   const colors = useColors()
@@ -11,7 +12,9 @@ export const Appbar = () => {
 
   return (
     <LibAppbar style={{ backgroundColor: colors.primaryColor }}>
-      <IconButton name="menu" onClick={toggleSideBar || undefined} />
+      <IconButton onClick={toggleSideBar || undefined}>
+        <Icon name="menu" />
+      </IconButton>
       <div style={{ flexGrow: 1, textAlign: "center" }}>Appbar</div>
       <ThemeToggleIcon />
     </LibAppbar>

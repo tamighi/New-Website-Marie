@@ -1,20 +1,25 @@
-import React from "react"
 import { useClickOutside } from "../../../front/hooks/useClickOutside"
+import { PropType } from "../props"
 
 import "./Drawer.css"
 
-interface DrawerProps {
-  children: React.ReactNode
+interface DrawerProps extends PropType {
   open: boolean
   onClose: () => void
-  style?: React.CSSProperties
 }
 
-const Drawer = ({ children, open, onClose, style = {} }: DrawerProps) => {
+const Drawer = (props: DrawerProps) => {
+  const { style, children, className, open, onClose } = props
+
+  const classNames = "Drawer " + (className || "")
   const ref = useClickOutside(() => onClose())
 
   return (
-    <div className={`Drawer${open ? "" : " Hidden"}`} style={style} ref={ref}>
+    <div
+      className={`${classNames}${open ? "" : " Hidden"}`}
+      style={style}
+      ref={ref}
+    >
       {children}
     </div>
   )

@@ -1,6 +1,7 @@
 import React from "react"
 
 import IconButton from "../../../../lib/components/iconButton/IconButton"
+import Icon from "../../../../lib/components/icon/Icon"
 import Divider from "../../../../lib/components/divider/Divider"
 import Drawer from "../../shared/Drawer"
 
@@ -23,7 +24,9 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
 
   return (
     <div className="MobileAppbar">
-      <IconButton name="menu" onClick={() => setOpen(!open)} />
+      <IconButton onClick={() => setOpen(!open)}>
+        <Icon name="menu" />
+      </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <ul className="DrawerLinkList">
           <li>

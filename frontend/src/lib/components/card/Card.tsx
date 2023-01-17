@@ -1,14 +1,13 @@
-import React from "react"
 import "./Card.css"
+import { PropType } from "../props"
 
-interface CardProps {
-  children: React.ReactNode
-  style?: React.CSSProperties
-}
+const Card = (props: PropType) => {
+  const { style, children, className } = props
 
-const Card = ({ children, style = {} }: CardProps) => {
+  const classNames = "Card " + (className || "")
+
   return (
-    <div className="Card" style={style}>
+    <div className={classNames} style={style}>
       {children}
     </div>
   )

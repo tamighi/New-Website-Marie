@@ -1,3 +1,4 @@
+import Icon from "../../../../lib/components/icon/Icon"
 import IconButton from "../../../../lib/components/iconButton/IconButton"
 import {
   useDarkTheme,
@@ -9,9 +10,8 @@ export const ThemeToggleIcon = () => {
   const darkTheme = useDarkTheme()
 
   return (
-    <IconButton
-      name={darkTheme ? "sun" : "moon"}
-      onClick={toggleTheme || undefined}
-    />
+    <IconButton onClick={toggleTheme || undefined}>
+      <Icon name={darkTheme ? "moon" : "sun"} />
+    </IconButton>
   )
 }

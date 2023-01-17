@@ -1,16 +1,11 @@
-import React from "react"
+import { PropType } from "../props"
 
 import "./Paper.css"
 
-interface PaperProps {
-  children: React.ReactNode
-  style?: React.CSSProperties
-  className?: string
-}
+const Paper = (props: PropType) => {
+  const { style, children, className } = props
 
-const Paper = ({ children, style = {}, className }: PaperProps) => {
-
-  const classNames = "Paper" + className ? " " + className : ""
+  const classNames = "Paper " + (className || "")
 
   return (
     <div className={classNames} style={style}>

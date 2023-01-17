@@ -1,16 +1,19 @@
-import Icon from "../icon/Icon"
+import { PropType } from "../props"
 
 import "./IconButton.css"
 
-interface IconButtonProps {
-  name: string
+interface IconButtonProps extends PropType {
   onClick: (() => void) | undefined
 }
 
 const IconButton = (props: IconButtonProps) => {
+  const { style, children, className, onClick } = props
+
+  const classNames = "IconButton " + (className || "")
+
   return (
-    <button className="IconButton" onClick={props.onClick}>
-      <Icon name={props.name} />
+    <button className={classNames} style={style} onClick={onClick}>
+      {children}
     </button>
   )
 }
