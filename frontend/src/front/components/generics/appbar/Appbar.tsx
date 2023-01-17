@@ -2,10 +2,11 @@ import { Link, useLocation } from "react-router-dom"
 
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
 import { AppbarDrawer } from "./AppbarDrawer"
-import Paper from "../../../../lib/components/paper/Paper"
+import LibAppbar from "../../../../lib/components/appbar/Appbar"
+
+import useColors from "../../../hooks/useColors"
 
 import "./Appbar.css"
-import useColors from "../../../hooks/useColors"
 
 const navItems = [
   {
@@ -31,13 +32,9 @@ export const Appbar = () => {
   const colors = useColors()
   return (
     <div style={{ padding: "48px" }}>
-      <Paper
+      <LibAppbar
         style={{
-          position: "fixed",
-          zIndex: 1100,
-          top: 0,
-          right: 0,
-          width: "100%",
+          transition: "background .6s ease-in-out",
           backgroundColor: colors.primaryColor,
         }}
       >
@@ -64,7 +61,7 @@ export const Appbar = () => {
             ))}
           </ul>
         </div>
-      </Paper>
+      </LibAppbar>
     </div>
   )
 }
