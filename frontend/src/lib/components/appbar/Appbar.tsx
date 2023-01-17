@@ -16,7 +16,7 @@ const Appbar = ({ children, style = {} }: AppbarProps) => {
       }}
       className="Appbar"
     >
-      {children}
+      <div className="Navbar">{children}</div>
     </Paper>
   )
 }

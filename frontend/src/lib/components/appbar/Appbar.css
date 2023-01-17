@@ -5,3 +5,12 @@
   right: 0;
   width: 100%;
 }
+
+.Navbar {
+  display: flex;
+  height: 76px;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+}

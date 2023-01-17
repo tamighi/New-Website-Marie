@@ -36,31 +36,30 @@ export const Appbar = () => {
         style={{
           transition: "background .6s ease-in-out",
           backgroundColor: colors.primaryColor,
+          color: "white",
         }}
       >
-        <div className="Navbar">
-          <AppbarDrawer navItems={navItems} />
-          <ThemeToggleIcon />
-          <div className="Logo">Marie Somville</div>
-          <ul className="LinkList">
-            {navItems.map((button) => (
-              <li key={button.name}>
-                <img
-                  alt=""
-                  src={"./images/feather.png"}
-                  style={{
-                    height: "64px",
-                    visibility:
-                      button.to === location.pathname ? "visible" : "hidden",
-                  }}
-                ></img>
-                <Link className="Link" to={button.to}>
-                  {button.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <AppbarDrawer navItems={navItems} />
+        <ThemeToggleIcon />
+        <div className="Logo">Marie Somville</div>
+        <ul className="LinkList">
+          {navItems.map((button) => (
+            <li key={button.name}>
+              <img
+                alt=""
+                src={"./images/feather.png"}
+                style={{
+                  height: "64px",
+                  visibility:
+                    button.to === location.pathname ? "visible" : "hidden",
+                }}
+              ></img>
+              <Link className="Link" to={button.to}>
+                {button.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </LibAppbar>
     </div>
   )
