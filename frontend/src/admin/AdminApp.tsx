@@ -3,12 +3,15 @@ import { Appbar } from "./components/generics/appbar/Appbar"
 
 import "./AdminApp.css"
 import { Sidebar } from "./components/generics/sidebar/Sidebar"
+import { SideBarProvider } from "./hooks/SideBarContext"
 
 export const AdminApp = () => {
   return (
     <div className="AdminApp">
-      <Appbar />
-      <Sidebar />
+      <SideBarProvider>
+        <Appbar />
+        <Sidebar />
+      </SideBarProvider>
       Admin
       <Routes>
         <Route path="" element={<div>HomeAdmin</div>} />
