@@ -10,12 +10,7 @@ interface AppbarProps {
 
 const Appbar = ({ children, style = {} }: AppbarProps) => {
   return (
-    <Paper
-      style={{
-        ...style,
-      }}
-      className="Appbar"
-    >
+    <Paper style={style} className="Appbar">
       <div className="Navbar">{children}</div>
     </Paper>
   )

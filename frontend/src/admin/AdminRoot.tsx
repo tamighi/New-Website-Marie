@@ -1,13 +1,5 @@
-import { Route, Routes } from "react-router-dom"
+import { AdminApp } from "./AdminApp"
 
 export const AdminRoot = () => {
-  return (
-    <div>
-      Admin
-      <Routes>
-        <Route path="" element={<div>HomeAdmin</div>} />
-        <Route path="contact" element={<div>AdminContact</div>} />
-      </Routes>
-    </div>
-  )
+  return <AdminApp />
 }
