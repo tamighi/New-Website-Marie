@@ -1,5 +1,5 @@
+import { ThemeProvider } from "../lib/hooks/contexts/ThemeContext"
 import { FrontApp } from "./FrontApp"
-import { ThemeProvider } from "./hooks/ThemeContext"
 
 export const FrontRoot = () => {
   return (

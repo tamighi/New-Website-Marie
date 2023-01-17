@@ -1,6 +1,6 @@
 import React from "react"
 import LibDrawer from "../../../lib/components/drawer/Drawer"
-import useColors from "../../hooks/useColors"
+import useColors from "../../../lib/hooks/hooks/useColors"
 
 interface DrawerProps {
   children: React.ReactNode

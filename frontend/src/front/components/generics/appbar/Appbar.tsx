@@ -4,7 +4,7 @@ import { ThemeToggleIcon } from "./ThemeToggleIcon"
 import { AppbarDrawer } from "./AppbarDrawer"
 import LibAppbar from "../../../../lib/components/appbar/Appbar"
 
-import useColors from "../../../hooks/useColors"
+import useColors from "../../../../lib/hooks/hooks/useColors"
 
 import "./Appbar.css"
 

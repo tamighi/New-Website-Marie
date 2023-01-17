@@ -1,8 +1,4 @@
-import React from "react"
-
 import Icon from "../icon/Icon"
-
-import { useDarkTheme } from "../../../front/hooks/ThemeContext"
 
 import "./IconButton.css"
 
@@ -12,23 +8,8 @@ interface IconButtonProps {
 }
 
 const IconButton = (props: IconButtonProps) => {
-  const darkTheme = useDarkTheme()
-  const [hover, setHover] = React.useState(false)
-
-  const hoverStyle = {
-    backgroundColor: darkTheme
-      ? "rgba(255, 255, 255, 0.2)"
-      : "rgba(0, 0, 0, 0.2)",
-  }
-
   return (
-    <button
-      className="IconButton"
-      onClick={props.onClick}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      style={hover ? hoverStyle : {}}
-    >
+    <button className="IconButton" onClick={props.onClick}>
       <Icon name={props.name} />
     </button>
   )

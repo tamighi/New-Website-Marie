@@ -9,10 +9,11 @@ import { GoldenBookPage } from "./components/pages/goldenBookPage/GoldenBookPage
 import { HomePage } from "./components/pages/homePage/HomePage"
 import { ReviewPage } from "./components/pages/reviewPage/ReviewPage"
 import { ServicePage } from "./components/pages/servicePage/ServicePage"
-import useColors from "./hooks/useColors"
+import { ErrorPage } from "./ErrorPage"
+
+import useColors from "../lib/hooks/hooks/useColors"
 
 import "./FrontApp.css"
-import { ErrorPage } from "./ErrorPage"
 
 export const FrontApp = () => {
   const location = useLocation()

@@ -1,5 +1,5 @@
+import { ThemeProvider } from "../lib/hooks/contexts/ThemeContext"
 import { AdminApp } from "./AdminApp"
-import { ThemeProvider } from "./hooks/ThemeContext"
 
 export const AdminRoot = () => {
   return (

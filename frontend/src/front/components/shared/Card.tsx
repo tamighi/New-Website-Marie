@@ -1,7 +1,7 @@
 import React from "react"
 
 import LibCard from "../../../lib/components/card/Card"
-import useColors from "../../hooks/useColors"
+import useColors from "../../../lib/hooks/hooks/useColors"
 
 const Card = ({ children }: { children: React.ReactNode }) => {
   const colors = useColors()

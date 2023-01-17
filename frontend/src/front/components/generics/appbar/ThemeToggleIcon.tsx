@@ -1,6 +1,8 @@
 import IconButton from "../../../../lib/components/iconButton/IconButton"
-
-import { useDarkTheme, useToggleTheme } from "../../../hooks/ThemeContext"
+import {
+  useDarkTheme,
+  useToggleTheme,
+} from "../../../../lib/hooks/contexts/ThemeContext"
 
 export const ThemeToggleIcon = () => {
   const toggleTheme = useToggleTheme()

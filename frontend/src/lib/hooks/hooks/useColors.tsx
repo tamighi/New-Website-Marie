@@ -1,5 +1,5 @@
-import "../styles/colors.css"
-import { useDarkTheme } from "./ThemeContext"
+import { useDarkTheme } from "../contexts/ThemeContext"
+import "../../styles/colors.css"
 
 const useColors = () => {
   const darkTheme = useDarkTheme()

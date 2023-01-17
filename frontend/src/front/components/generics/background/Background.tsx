@@ -1,5 +1,4 @@
-import { useDarkTheme } from "../../../hooks/ThemeContext"
-
+import { useDarkTheme } from "../../../../lib/hooks/contexts/ThemeContext"
 import "./Background.css"
 
 export const Background = () => {

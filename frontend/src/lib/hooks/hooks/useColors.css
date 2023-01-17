@@ -1,5 +1,4 @@
 import { useDarkTheme } from "./ThemeContext"
-import "../styles/colors.css"
 
 const useColors = () => {
   const darkTheme = useDarkTheme()
@@ -18,3 +17,4 @@ const useColors = () => {
 }
 
 export default useColors
+

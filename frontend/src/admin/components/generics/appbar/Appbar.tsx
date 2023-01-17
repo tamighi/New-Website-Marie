@@ -2,8 +2,8 @@ import LibAppbar from "../../../../lib/components/appbar/Appbar"
 import IconButton from "../../../../lib/components/iconButton/IconButton"
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
 
-import useColors from "../../../hooks/useColors"
 import { useToggleSideBar } from "../../../hooks/SideBarContext"
+import useColors from "../../../../lib/hooks/hooks/useColors"
 
 export const Appbar = () => {
   const colors = useColors()
