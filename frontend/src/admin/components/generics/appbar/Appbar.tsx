@@ -1,5 +1,3 @@
-import React from "react"
-
 import LibAppbar from "../../../../lib/components/appbar/Appbar"
 import IconButton from "../../../../lib/components/iconButton/IconButton"
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
@@ -13,9 +11,9 @@ export const Appbar = () => {
 
   return (
     <LibAppbar style={{ backgroundColor: colors.primaryColor }}>
-      <ThemeToggleIcon />
       <IconButton name="menu" onClick={toggleSideBar || undefined} />
-      Appbar
+      <div style={{ flexGrow: 1, textAlign: "center" }}>Appbar</div>
+      <ThemeToggleIcon />
     </LibAppbar>
   )
 }
