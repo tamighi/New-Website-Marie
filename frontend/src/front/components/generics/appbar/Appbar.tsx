@@ -4,8 +4,6 @@ import { AppbarDrawer } from "./AppbarDrawer"
 import LibAppbar from "../../../../lib/components/appbar/Appbar"
 import ThemeToggleIcon from "../../../../lib/components/ThemeToggleIcon"
 
-import useColors from "../../../../lib/hooks/hooks/useColors"
-
 import "./Appbar.css"
 
 const navItems = [
@@ -29,13 +27,11 @@ const navItems = [
 
 export const Appbar = () => {
   const location = useLocation()
-  const colors = useColors()
   return (
     <div style={{ padding: "48px" }}>
       <LibAppbar
         style={{
           transition: "background .6s ease-in-out",
-          backgroundColor: colors.primaryColor,
           color: "white",
         }}
       >
