@@ -1,5 +1,6 @@
-import useOnMount from "../../../hooks/useOnMount"
 import Card from "../../shared/Card"
+
+import useOnMount from "../../../../lib/hooks/hooks/useOnMount"
 
 export const About = () => {
   const mounted = useOnMount()

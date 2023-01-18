@@ -1,4 +1,4 @@
-import { useClickOutside } from "../../../front/hooks/useClickOutside"
+import useClickOutside from "../../hooks/hooks/useClickOutside"
 import useColors from "../../hooks/hooks/useColors"
 import { PropType } from "../props"
 
