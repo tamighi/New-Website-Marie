@@ -4,15 +4,19 @@ import { FrontRoot } from "./front/FrontRoot"
 import { AdminRoot } from "./admin/AdminRoot"
 import { ThemeProvider } from "./lib/hooks/contexts/ThemeContext"
 
+import "./App.css"
+
 export const App = () => {
   return (
-    <BrowserRouter>
-      <ThemeProvider>
-        <Routes>
-          <Route path="*" element={<FrontRoot />} />
-          <Route path="/admin/*" element={<AdminRoot />} />
-        </Routes>
-      </ThemeProvider>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <ThemeProvider>
+          <Routes>
+            <Route path="*" element={<FrontRoot />} />
+            <Route path="/admin/*" element={<AdminRoot />} />
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
+    </div>
   )
 }

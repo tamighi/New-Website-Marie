@@ -24,10 +24,6 @@
 .DrawerLink {
   height: 100%;
   width: 100%;
-  color: inherit;
-  text-decoration: none;
-  background-color: transparent;
-  border: none;
 }
 
 .DrawerLink:hover {
