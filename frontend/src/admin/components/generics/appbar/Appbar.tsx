@@ -3,12 +3,14 @@ import Icon from "../../../../lib/components/icon/Icon"
 import IconButton from "../../../../lib/components/iconButton/IconButton"
 import ThemeToggleIcon from "../../../../lib/components/iconButton/ThemeToggleIcon"
 
-import { useToggleSideBar } from "../../../hooks/SideBarContext"
 import useColors from "../../../../lib/hooks/hooks/useColors"
 
-export const Appbar = () => {
+interface AppbarProps {
+  toggleSideBar: () => void
+}
+
+export const Appbar = ({ toggleSideBar }: AppbarProps) => {
   const colors = useColors()
-  const toggleSideBar = useToggleSideBar()
 
   return (
     <LibAppbar style={{ backgroundColor: colors.primaryColor }}>

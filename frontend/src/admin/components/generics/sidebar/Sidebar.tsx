@@ -1,10 +1,11 @@
 import Drawer from "../../../../lib/components/drawer/Drawer"
-import { useOpenSideBar, useToggleSideBar } from "../../../hooks/SideBarContext"
 
-export const Sidebar = () => {
-  const open = useOpenSideBar()
-  const toggleSideBar = useToggleSideBar()
+interface SidebarProps {
+  open: boolean
+  toggleSideBar: () => void
+}
 
+export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
   const onClose = () => {
     if (open && toggleSideBar) {
       toggleSideBar()

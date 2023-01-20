@@ -1,17 +1,12 @@
 import { Route, Routes } from "react-router-dom"
-import { Appbar } from "./components/generics/appbar/Appbar"
+import { NavigationBars } from "./components/generics/NavigationBars"
 
 import "./AdminApp.css"
-import { Sidebar } from "./components/generics/sidebar/Sidebar"
-import { SideBarProvider } from "./hooks/SideBarContext"
 
 export const AdminApp = () => {
   return (
     <div className="AdminApp">
-      <SideBarProvider>
-        <Appbar />
-        <Sidebar />
-      </SideBarProvider>
+    <NavigationBars />
       Admin
       <Routes>
         <Route path="" element={<div>HomeAdmin</div>} />
