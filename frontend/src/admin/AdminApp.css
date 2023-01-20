@@ -1,5 +1,6 @@
 .AdminApp {
   display: flex;
   flex-direction: column;
+  transition: background .6s ease-in-out;
   min-height: 100vh;
 }

@@ -7,7 +7,6 @@ const Card = ({ children }: { children: React.ReactNode }) => {
   return (
     <LibCard
       style={{
-        transition: "background 0.6s ease-in-out",
       }}
     >
       {children}

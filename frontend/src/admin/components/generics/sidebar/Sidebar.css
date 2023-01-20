@@ -5,5 +5,11 @@
 }
 
 .Sidebar {
-  background-color: black;
+  margin-right: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  .Sidebar {
+    display: none;
+  }
 }

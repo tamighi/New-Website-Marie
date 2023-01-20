@@ -11,3 +11,7 @@ button {
   text-decoration: none;
   background-color: transparent;
 }
+
+ul {
+  list-style: none;
+}

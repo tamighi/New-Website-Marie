@@ -13,7 +13,7 @@ const Drawer = (props: DrawerProps) => {
   const { style, children, className, open, onClose } = props
 
   const classNames = "Drawer " + (className || "")
-  const ref = useClickOutside(() => onClose())
+  const ref = useClickOutside(onClose)
   const colors = useColors()
 
   return (
