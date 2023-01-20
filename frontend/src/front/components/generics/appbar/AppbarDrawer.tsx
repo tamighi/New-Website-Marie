@@ -5,7 +5,7 @@ import Icon from "../../../../lib/components/icon/Icon"
 import Drawer from "../../../../lib/components/drawer/Drawer"
 import Divider from "../../../../lib/components/divider/Divider"
 
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 import "./AppbarDrawer.css"
 
@@ -16,6 +16,7 @@ interface AppbarDrawerProps {
 export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
   const [open, setOpen] = React.useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
 
   const onClick = (to: string) => {
     setOpen(false)
@@ -33,10 +34,19 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
             Menu
             <Divider />
           </li>
-          {navItems.map((item, id) => (
+          {navItems.map((button, id) => (
             <li key={id}>
-              <button className="DrawerLink" onClick={() => onClick(item.to)}>
-                {item.name}
+              <button onClick={() => onClick(button.to)} className="DrawerLink">
+                {button.name}
+                <img
+                  alt=""
+                  src={"./images/feather.png"}
+                  style={{
+                    height: "64px",
+                    visibility:
+                      button.to === location.pathname ? "visible" : "hidden",
+                  }}
+                ></img>
               </button>
             </li>
           ))}

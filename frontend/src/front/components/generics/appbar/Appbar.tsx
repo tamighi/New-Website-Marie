@@ -39,8 +39,8 @@ export const Appbar = () => {
         <ThemeToggleIcon />
         <div className="Logo">Marie Somville</div>
         <ul className="LinkList">
-          {navItems.map((button) => (
-            <li key={button.name}>
+          {navItems.map((button, id) => (
+            <li key={id}>
               <img
                 alt=""
                 src={"./images/feather.png"}

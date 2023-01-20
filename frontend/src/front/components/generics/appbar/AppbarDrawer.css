@@ -17,13 +17,14 @@
 
 .DrawerLinkList li {
   height: 80px;
-  display: block;
   width: 100%;
 }
 
 .DrawerLink {
-  height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .DrawerLink:hover {
