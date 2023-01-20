@@ -2,9 +2,4 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  letter-spacing: 0.00938em;
-  font-weight: 400;
-  font-size: 18px;
-  align-items: center;
-  justify-content: center;
 }

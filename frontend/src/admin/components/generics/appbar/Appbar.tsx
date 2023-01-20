@@ -13,12 +13,14 @@ export const Appbar = ({ toggleSideBar }: AppbarProps) => {
   const colors = useColors()
 
   return (
-    <LibAppbar style={{ backgroundColor: colors.primaryColor }}>
-      <IconButton onClick={toggleSideBar || undefined}>
-        <Icon name="menu" />
-      </IconButton>
-      <div style={{ flexGrow: 1, textAlign: "center" }}>Appbar</div>
-      <ThemeToggleIcon />
-    </LibAppbar>
+    <div style={{ padding: "48px" }}>
+      <LibAppbar style={{ backgroundColor: colors.primaryColor }}>
+        <IconButton onClick={toggleSideBar || undefined}>
+          <Icon name="menu" />
+        </IconButton>
+        <div style={{ flexGrow: 1, textAlign: "center" }}>Appbar</div>
+        <ThemeToggleIcon />
+      </LibAppbar>
+    </div>
   )
 }
