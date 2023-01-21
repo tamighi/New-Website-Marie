@@ -1,5 +1,5 @@
 export interface PropType {
-  children: React.ReactNode
+  children?: React.ReactNode
   style?: React.CSSProperties
   className?: string
 }
