@@ -16,7 +16,7 @@ const Icon = (props: IconProps) => {
     <img
       className={classNames}
       style={style}
-      src={`icons/${name}.svg`}
+      src={`/icons/${name}.svg`}
       alt=""
     />
   )
