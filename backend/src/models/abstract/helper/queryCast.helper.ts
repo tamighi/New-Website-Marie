@@ -11,7 +11,7 @@ export function parseSort(param: string): any {
 }
 
 export function parseFilter(param: string): any {
-  const filter = {}
+  const filter: { [key: string]: any } = {}
 
   Object.entries(JSON.parse(param)).forEach(
     ([key, value]: [key: string, value: any]) => {
@@ -20,7 +20,7 @@ export function parseFilter(param: string): any {
         value = In(value)
       }
       if (idx !== -1) {
-        const subFilter = {}
+        const subFilter: { [key: string]: any } = {}
         subFilter[key.substring(idx + 1)] = value
         key = key.substring(0, idx)
         value = subFilter
