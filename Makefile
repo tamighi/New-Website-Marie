@@ -1,7 +1,10 @@
 all:
 
+frontend:
+	npm run --prefix ./frontend/ start
+
 backend: start_db
-	cd backend && npm run start:dev
+	npm run --prefix ./backend/ start
 
 db: docker_context
 	docker run -h db --name postgres --env-file .env -p 5432:5432 -d postgres
@@ -14,3 +17,5 @@ stop_db: docker_context
 
 docker_context:
 	docker context use desktop-linux
+
+.PHONY: all frontend backend
