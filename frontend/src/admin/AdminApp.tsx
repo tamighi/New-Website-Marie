@@ -6,7 +6,7 @@ import { Sidebar } from "./components/generics/sidebar/Sidebar"
 
 import useColors from "../lib/hooks/hooks/useColors"
 
-import { ServicesPage } from "./components/pages/serviceCategories/ServicesPage"
+import { ServicesPage } from "./components/pages/services/ServicesPage"
 
 import "./AdminApp.css"
 
