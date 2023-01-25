@@ -5,7 +5,7 @@ import "./Sidebar.css"
 
 const pages = [
   { name: "Dashboard", to: "/admin" },
-  { name: "Contact", to: "/admin/contact" },
+  { name: "Services", to: "/admin/services" },
 ]
 
 interface SidebarProps {
