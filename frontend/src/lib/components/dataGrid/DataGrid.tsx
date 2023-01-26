@@ -1,5 +1,7 @@
 import { Column, useTable } from "react-table"
 
+import "./DataGrid.css"
+
 interface DataGridProps {
   data: object[]
   columns: Column<object>[]

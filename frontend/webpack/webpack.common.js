@@ -9,7 +9,7 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".js", ".ts"],
     alias: {
-      "@lib": path.resolve(__dirname, "src/lib"),
+      "@lib": path.resolve(__dirname, "..", "src/lib"),
     },
   },
   module: {

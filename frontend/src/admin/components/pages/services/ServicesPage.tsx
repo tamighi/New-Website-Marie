@@ -1,4 +1,4 @@
-import DataGrid from "../../../../lib/components/dataGrid/DataGrid"
+import DataGrid from "@lib/components/dataGrid/DataGrid"
 
 const data = [
   { name: "Alfred", age: 30 },
@@ -16,6 +16,5 @@ const columns: ColumnType[] = [
 ]
 
 export const ServicesPage = () => {
-
   return <DataGrid data={data} columns={columns} />
 }
