@@ -5,7 +5,7 @@ interface DataGridProps {
   columns: Column<object>[]
 }
 
-export const DataGrid = ({ data, columns }: DataGridProps) => {
+const DataGrid = ({ data, columns }: DataGridProps) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data })
 
@@ -67,3 +67,5 @@ export const DataGrid = ({ data, columns }: DataGridProps) => {
     </table>
   )
 }
+
+export default DataGrid

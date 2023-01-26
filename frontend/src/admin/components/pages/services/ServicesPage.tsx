@@ -1,4 +1,4 @@
-import { DataGrid } from "../../../../lib/components/dataGrid/DataGrid"
+import DataGrid from "../../../../lib/components/dataGrid/DataGrid"
 
 const data = [
   { name: "Alfred", age: 30 },
