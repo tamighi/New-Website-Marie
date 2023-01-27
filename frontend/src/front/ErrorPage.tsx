@@ -1,4 +1,4 @@
-import Card from "./components/shared/Card"
+import Card from "@lib/components/card/Card"
 
 export const ErrorPage = () => {
   return (

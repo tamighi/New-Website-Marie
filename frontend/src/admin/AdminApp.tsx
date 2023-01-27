@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom"
 import { Appbar } from "./components/generics/appbar/Appbar"
 import { Sidebar } from "./components/generics/sidebar/Sidebar"
 
-import useColors from "../lib/hooks/hooks/useColors"
+import useColors from "@lib/hooks/hooks/useColors"
 
 import { ServicesPage } from "./components/pages/services/ServicesPage"
 

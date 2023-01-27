@@ -1,6 +1,6 @@
 import React from "react"
 
-import Grid from "../../../../lib/components/grid/Grid"
+import Grid from "@lib/components/grid/Grid"
 import { AnimatedPage } from "../../utils/AnimatedPage"
 
 import "../../../styles/Page.css"

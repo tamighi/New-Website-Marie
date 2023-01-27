@@ -11,7 +11,7 @@ import { ReviewPage } from "./components/pages/reviewPage/ReviewPage"
 import { ServicePage } from "./components/pages/servicePage/ServicePage"
 import { ErrorPage } from "./ErrorPage"
 
-import useColors from "../lib/hooks/hooks/useColors"
+import useColors from "@lib/hooks/hooks/useColors"
 
 import "./FrontApp.css"
 
