@@ -1,23 +1,57 @@
-import { fetchUtils } from "react-admin"
-import { stringify } from "query-string"
-
 const apiUrl = "http://192.168.1.50:8000"
-const httpClient = fetchUtils.fetchJson
 
-interface QueryParams {
-  pagination: {
-    page: number
-    perPage: number
-  }
-  sort: {
-    field: string
-    order: string
-  }
-  filter: object
+interface GetListParams<T> {
+  pagination: { page: number; perPage: number }
+  sort: { field: string; order: "ASC" | "DESC" }
+  filter: T
+}
+
+interface GetOneParams {
+  id: number
+}
+
+interface GetManyParams {
+  ids: number[]
+}
+
+interface GetManyReferenceParams<T> {
+  pagination: { page: number; perPage: number }
+  sort: { field: string; order: "ASC" | "DESC" }
+  filter: T
+  target: string
+  id: number | string
+}
+
+interface UpdateParams<T> {
+  id: number
+  data: T
+}
+
+interface UpdateManyParams<T> {
+  ids: number[]
+  data: T
+}
+
+interface CreateParams<T> {
+  data: T
+}
+
+interface DeleteParams {
+  id: number
+}
+
+interface DeleteManyParams {
+  ids: number[]
+}
+
+const httpClient = async (url: string, requestInit?: RequestInit) => {
+  return fetch(url, requestInit).then((resp) => {
+    resp.ok ? resp.json : null
+  })
 }
 
 export const dataProvider = {
-  getList: async (resource: string, params: QueryParams) => {
+  getList: async <T,>(resource: string, params: GetListParams<T>) => {
     const { page, perPage } = params.pagination
     const { field, order } = params.sort
 
@@ -26,30 +60,29 @@ export const dataProvider = {
       range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
       filter: JSON.stringify(params.filter),
     }
-    const url = `${apiUrl}/${resource}?${stringify(query)}`
+    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`
 
-    return httpClient(url).then(({ headers, json }) => ({
-      data: json.data,
-      total: json.count,
-    }))
+    return httpClient(url)
   },
 
-  getOne: async (resource: string, params: any) =>
-    httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
-      data: json.data,
-    })),
+  getOne: async (resource: string, params: GetOneParams) => {
+    const url = `${apiUrl}/${resource}/${params.id}`
+    return httpClient(url)
+  },
 
-  getMany: async (resource: string, params: any) => {
+  getMany: async (resource: string, params: GetManyParams) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     }
 
-    const url = `${apiUrl}/${resource}?${stringify(query)}`
-
-    return httpClient(url).then(({ json }) => ({ data: json.data }))
+    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`
+    return httpClient(url)
   },
 
-  getManyReference: async (resource: string, params: any) => {
+  getManyReference: async <T,>(
+    resource: string,
+    params: GetManyReferenceParams<T>
+  ) => {
     const { page, perPage } = params.pagination
     const { field, order } = params.sort
     const query = {
@@ -60,49 +93,46 @@ export const dataProvider = {
         [params.target]: params.id,
       }),
     }
-    const url = `${apiUrl}/${resource}?${stringify(query)}`
+    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`
 
-    return httpClient(url).then(({ headers, json }) => ({
-      data: json.data,
-      total: json.count,
-    }))
+    return httpClient(url)
   },
 
-  update: async (resource: string, params: any) =>
-    httpClient(`${apiUrl}/${resource}/${params.id}`, {
-      method: "PUT",
-      body: JSON.stringify(params.data),
-    }).then(({ json }) => ({ data: json.data })),
+  update: async <T,>(resource: string, params: UpdateParams<T>) => {
+    const url = `${apiUrl}/${resource}/${params.id}`
+    return httpClient(url, { method: "PUT", body: JSON.stringify(params.data) })
+  },
 
-  updateMany: async (resource: string, params: any) => {
+  updateMany: async <T,>(resource: string, params: UpdateManyParams<T>) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     }
-    return httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
-      method: "PUT",
-      body: JSON.stringify(params.data),
-    }).then(({ json }) => ({ data: json.data }))
+    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`
+    return httpClient(url, { method: "PUT", body: JSON.stringify(params.data) })
   },
 
-  create: async (resource: string, params: any) =>
-    httpClient(`${apiUrl}/${resource}`, {
+  create: async <T,>(resource: string, params: CreateParams<T>) => {
+    const url = `${apiUrl}/${resource}`
+    return httpClient(url, {
       method: "POST",
       body: JSON.stringify(params.data),
-    }).then(({ json }) => ({
-      data: { ...params.data, id: json.data.id },
-    })),
+    })
+  },
 
-  delete: (resource: string, params: any) =>
-    httpClient(`${apiUrl}/${resource}/${params.id}`, {
+  delete: (resource: string, params: DeleteParams) => {
+    const url = `${apiUrl}/${resource}/${params.id}`
+    return httpClient(url, {
       method: "DELETE",
-    }).then(({ json }) => ({ data: json.data })),
+    })
+  },
 
-  deleteMany: async (resource: string, params: any) => {
+  deleteMany: async (resource: string, params: DeleteManyParams) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     }
-    return httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
+    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`
+    return httpClient(url, {
       method: "DELETE",
-    }).then(({ json }) => ({ data: json.data }))
+    })
   },
 }
