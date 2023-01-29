@@ -44,8 +44,28 @@ interface DeleteManyParams {
   ids: number[]
 }
 
-const httpClient = async (url: string, requestInit?: RequestInit) => {
-  return fetch(url, requestInit).then((resp) => {
+export const createHeadersFromOptions = (options: RequestInit): Headers => {
+  const requestHeaders = (options.headers ||
+    new Headers({
+      Accept: "application/json",
+    })) as Headers
+  if (
+    !requestHeaders.has("Content-Type") &&
+    !(options && (!options.method || options.method === "GET")) &&
+    !(options && options.body && options.body instanceof FormData)
+  ) {
+    requestHeaders.set("Content-Type", "application/json")
+  }
+
+  return requestHeaders
+}
+
+const httpClient = async (url: string, options: RequestInit = {}) => {
+  const headers = createHeadersFromOptions(options)
+  return fetch(url, {
+    ...options,
+    headers: headers,
+  }).then((resp) => {
     resp.ok ? resp.json : null
   })
 }

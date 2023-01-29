@@ -1,5 +1,12 @@
 import DataGrid from "@lib/components/dataGrid/DataGrid"
 
+import { dataProvider } from "../../../api/dataProvider"
+
+interface ServiceCategoriesDto {
+  name: string
+  description: string
+}
+
 const data = [
   { name: "Alfred", age: 30 },
   { name: "Bob", age: 40 },
@@ -16,5 +23,18 @@ const columns: ColumnType[] = [
 ]
 
 export const ServicesPage = () => {
-  return <DataGrid data={data} columns={columns} />
+  const onClick = () => {
+    dataProvider.create<ServiceCategoriesDto>("serviceCategories", {
+      data: {
+        name: "test",
+        description: "description test",
+      },
+    })
+  }
+  return (
+    <>
+      <button onClick={onClick}>Test</button>
+      <DataGrid data={data} columns={columns} />
+    </>
+  )
 }
