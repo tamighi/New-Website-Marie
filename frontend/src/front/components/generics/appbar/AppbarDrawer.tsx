@@ -1,9 +1,9 @@
 import React from "react"
 
-import IconButton from "../../../../lib/components/iconButton/IconButton"
-import Icon from "../../../../lib/components/icon/Icon"
-import Drawer from "../../../../lib/components/drawer/Drawer"
-import Divider from "../../../../lib/components/divider/Divider"
+import IconButton from "@lib/components/iconButton/IconButton"
+import Icon from "@lib/components/icon/Icon"
+import Drawer from "@lib/components/drawer/Drawer"
+import Divider from "@lib/components/divider/Divider"
 
 import { useLocation, useNavigate } from "react-router-dom"
 

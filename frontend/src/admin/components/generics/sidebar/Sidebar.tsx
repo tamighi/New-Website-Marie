@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
-import Drawer from "../../../../lib/components/drawer/Drawer"
+import Drawer from "@lib/components/drawer/Drawer"
 
 import "./Sidebar.css"
 
 const pages = [
   { name: "Dashboard", to: "/admin" },
-  { name: "Contact", to: "/admin/contact" },
+  { name: "Services", to: "/admin/services" },
 ]
 
 interface SidebarProps {

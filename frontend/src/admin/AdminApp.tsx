@@ -1,10 +1,14 @@
+import React from "react"
 import { Route, Routes } from "react-router-dom"
+
 import { Appbar } from "./components/generics/appbar/Appbar"
 import { Sidebar } from "./components/generics/sidebar/Sidebar"
 
+import useColors from "@lib/hooks/hooks/useColors"
+
+import { ServicesPage } from "./components/pages/services/ServicesPage"
+
 import "./AdminApp.css"
-import React from "react"
-import useColors from "../lib/hooks/hooks/useColors"
 
 export const AdminApp = () => {
   const colors = useColors()
@@ -25,7 +29,7 @@ export const AdminApp = () => {
         <Sidebar open={openSidebar} toggleSideBar={toggleOpen} />
         <Routes>
           <Route path="" element={<div>HomeAdmin</div>} />
-          <Route path="contact" element={<div>AdminContact</div>} />
+          <Route path="services" element={<ServicesPage />} />
         </Routes>
       </div>
     </div>
