@@ -1,21 +1,24 @@
 import { useDarkTheme } from "../contexts/ThemeContext"
 import "../../styles/colors.css"
+import React from "react"
 
 const useColors = () => {
   const darkTheme = useDarkTheme()
 
-  return darkTheme
-    ? {
-        primaryColor: "var(--dark-color)",
-        secondaryColor: "var(--dark-secondary-color)",
-        textColor: "var(--dark-text-color)",
-      }
-    : {
-        primaryColor: "var(--light-color)",
-        secondaryColor: "var(--light-secondary-color)",
-        textColor: "var(--light-text-color)",
-      }
+  React.useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--primary-color",
+      darkTheme ? "var(--dark-primary-color)" : "var(--light-primary-color)"
+    )
+    document.documentElement.style.setProperty(
+      "--secondary-color",
+      darkTheme ? "var(--dark-secondary-color)" : "var(--light-secondary-color)"
+    )
+    document.documentElement.style.setProperty(
+      "--text-color",
+      darkTheme ? "var(--dark-text-color)" : "var(--light-text-color)"
+    )
+  }, [darkTheme])
 }
 
 export default useColors
-

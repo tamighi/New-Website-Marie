@@ -1,5 +1,4 @@
 import useClickOutside from "../../hooks/hooks/useClickOutside"
-import useColors from "../../hooks/hooks/useColors"
 import { PropType } from "../props"
 
 import "./Drawer.css"
@@ -14,12 +13,11 @@ const Drawer = (props: DrawerProps) => {
 
   const classNames = "Drawer " + (className || "")
   const ref = useClickOutside(onClose)
-  const colors = useColors()
 
   return (
     <div
       className={`${classNames}${open ? "" : " Hidden"}`}
-      style={{ ...style, ...{ backgroundColor: colors.secondaryColor } }}
+      style={{ ...style, ...{ backgroundColor: "var(--secondary-color)" } }}
       ref={ref}
     >
       {children}

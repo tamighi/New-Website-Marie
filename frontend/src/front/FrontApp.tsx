@@ -17,10 +17,10 @@ import "./FrontApp.css"
 
 export const FrontApp = () => {
   const location = useLocation()
-  const colors = useColors()
+  useColors()
 
   return (
-    <div className="FrontApp" style={{ color: colors.textColor }}>
+    <div className="FrontApp" style={{ color: "var(--text-color)" }}>
       <Appbar />
       <Background />
       <AnimatePresence mode="wait">
