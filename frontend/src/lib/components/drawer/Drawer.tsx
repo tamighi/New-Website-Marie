@@ -17,7 +17,7 @@ const Drawer = (props: DrawerProps) => {
   return (
     <div
       className={`${classNames}${open ? "" : " Hidden"}`}
-      style={{ ...style, ...{ backgroundColor: "var(--secondary-color)" } }}
+      style={style}
       ref={ref}
     >
       {children}

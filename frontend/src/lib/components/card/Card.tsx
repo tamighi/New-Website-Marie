@@ -7,10 +7,7 @@ const Card = (props: PropType) => {
   const classNames = "Card " + (className || "")
 
   return (
-    <div
-      className={classNames}
-      style={{ ...style, backgroundColor: "var(--primary-color)" }}
-    >
+    <div className={classNames} style={style}>
       {children}
     </div>
   )

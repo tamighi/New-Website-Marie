@@ -1,5 +1,4 @@
 import { useDarkTheme } from "../contexts/ThemeContext"
-import "../../styles/colors.css"
 import React from "react"
 
 const useColors = () => {
