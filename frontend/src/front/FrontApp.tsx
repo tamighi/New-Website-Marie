@@ -17,10 +17,18 @@ import "./FrontApp.css"
 
 export const FrontApp = () => {
   const location = useLocation()
-  const colors = useColors()
+
+  useColors({
+    lightPrimaryColor: "rgba(255, 127, 80, 0.7)",
+    darkPrimaryColor: "rgba(0, 0, 128, 0.5)",
+    lightSecondaryColor: "#a51e1e",
+    darkSecondaryColor: "#16368d",
+    lightTextColor: "black",
+    darkTextColor: "white",
+  })
 
   return (
-    <div className="FrontApp" style={{ color: colors.textColor }}>
+    <div className="FrontApp" style={{ color: "var(--text-color)" }}>
       <Appbar />
       <Background />
       <AnimatePresence mode="wait">
