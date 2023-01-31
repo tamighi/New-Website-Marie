@@ -11,7 +11,7 @@ export const Appbar = ({ toggleSideBar }: AppbarProps) => {
 
   return (
     <div style={{ padding: "48px" }}>
-      <LibAppbar style={{ backgroundColor: "var(--primary-color)" }}>
+      <LibAppbar>
         <IconButton onClick={toggleSideBar || undefined}>
           <Icon name="menu" />
         </IconButton>

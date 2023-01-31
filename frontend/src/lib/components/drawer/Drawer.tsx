@@ -1,3 +1,4 @@
+import React from "react"
 import useClickOutside from "../../hooks/hooks/useClickOutside"
 import { PropType } from "../props"
 
@@ -14,13 +15,22 @@ const Drawer = (props: DrawerProps) => {
   const classNames = "Drawer " + (className || "")
   const ref = useClickOutside(onClose)
 
+  const [visible, setVisible] = React.useState(open)
+
+  React.useEffect(() => {
+    setVisible(open)
+  }, [open])
+
   return (
-    <div
-      className={`${classNames}${open ? "" : " Hidden"}`}
-      style={style}
-      ref={ref}
-    >
-      {children}
+    <div className={`Container${open ? "" : " Hidden"}`}>
+      <div className={`Background${visible ? "" : " HiddenBackground"}`}/>
+      <div
+        className={`${classNames}${visible ? "" : " HiddenDrawer"}`}
+        style={style}
+        ref={ref}
+      >
+        {children}
+      </div>
     </div>
   )
 }
