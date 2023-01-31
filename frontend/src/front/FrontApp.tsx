@@ -28,7 +28,7 @@ export const FrontApp = () => {
   })
 
   return (
-    <div className="FrontApp" style={{ color: "var(--text-color)" }}>
+    <div className="FrontApp">
       <Appbar />
       <Background />
       <AnimatePresence mode="wait">
