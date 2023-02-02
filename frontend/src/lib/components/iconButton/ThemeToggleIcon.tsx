@@ -7,7 +7,7 @@ import useToggleTheme from "@lib/hooks/useToggleTheme"
 const ThemeToggleIcon = () => {
   const toggleTheme = useToggleTheme()
   const theme = useTheme()
-  const darkMode = theme?.palette?.darkMode
+  const darkMode = theme?.palette.darkMode
 
   return (
     <IconButton onClick={toggleTheme || undefined}>
