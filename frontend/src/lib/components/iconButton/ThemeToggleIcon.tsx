@@ -1,14 +1,15 @@
-import { useDarkTheme, useToggleTheme } from "../../hooks/contexts/ThemeContext"
+import { useTheme, useToggleTheme } from "../../hooks/contexts/ThemeContext"
 import Icon from "../icon/Icon"
 import IconButton from "./IconButton"
 
 const ThemeToggleIcon = () => {
   const toggleTheme = useToggleTheme()
-  const darkTheme = useDarkTheme()
+  const theme = useTheme()
+  const darkMode = theme.palette?.darkMode
 
   return (
     <IconButton onClick={toggleTheme || undefined}>
-      <Icon name={darkTheme ? "sun" : "moon"} />
+      <Icon name={darkMode ? "sun" : "moon"} />
     </IconButton>
   )
 }
