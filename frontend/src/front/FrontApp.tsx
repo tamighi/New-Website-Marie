@@ -11,25 +11,25 @@ import { ReviewPage } from "./components/pages/reviewPage/ReviewPage"
 import { ServicePage } from "./components/pages/servicePage/ServicePage"
 import { ErrorPage } from "./ErrorPage"
 
-import { createTheme } from "@lib/hooks/contexts/ThemeContext"
+//import { createTheme } from "@lib/hooks/contexts/ThemeContext"
 
 import "./FrontApp.css"
 
 export const FrontApp = () => {
   const location = useLocation()
 
-  createTheme({
-    palette: {
-      primary: {
-        light: "rgba(255, 127, 80, 0.7)",
-        dark: "rgba(0, 0, 128, 0.5)",
-      },
-      secondary: {
-        light: "#a51e1e",
-        dark: "#16368d",
-      },
-    },
-  })
+  //createTheme({
+  //palette: {
+  //primary: {
+  //light: "rgba(255, 127, 80, 0.7)",
+  //dark: "rgba(0, 0, 128, 0.5)",
+  //},
+  //secondary: {
+  //light: "#a51e1e",
+  //dark: "#16368d",
+  //},
+  //},
+  //})
 
   return (
     <div className="FrontApp">

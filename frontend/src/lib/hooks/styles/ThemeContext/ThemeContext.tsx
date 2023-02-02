@@ -1,5 +1,7 @@
 import React from "react"
 
+import ThemeContext from "@lib/contexts/ThemeContext"
+
 type DeepPartial<T> = T extends object
   ? {
       [P in keyof T]?: DeepPartial<T[P]>
@@ -50,16 +52,6 @@ export const createTheme = (createdTheme: DeepPartial<Theme>) => {
   }
 }
 
-const ToggleThemeContext = React.createContext<(() => void) | null>(null)
-const ThemeContext = React.createContext<Theme>(baseTheme)
-
-export const useToggleTheme = () => {
-  return React.useContext(ToggleThemeContext)
-}
-
-export const useTheme = () => {
-  return React.useContext(ThemeContext) || baseTheme
-}
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = React.useState<Theme>({
@@ -77,7 +69,6 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       palette: { ...theme.palette, darkMode: !theme.palette?.darkMode },
     })
   }
-
   return (
     <ThemeContext.Provider value={theme}>
       <ToggleThemeContext.Provider value={toggleTheme}>

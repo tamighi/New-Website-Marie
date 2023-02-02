@@ -1,5 +1,7 @@
 import React from "react"
-import useClickOutside from "../../hooks/hooks/useClickOutside"
+
+import useClickOutside from "@lib/hooks/useClickOutside"
+
 import { PropType } from "../props"
 
 import "./Drawer.css"

@@ -1,6 +1,6 @@
 import Card from "@lib/components/card/Card"
 
-import useOnMount from "@lib/hooks/hooks/useOnMount"
+import useOnMount from "@lib/hooks/useOnMount"
 
 export const About = () => {
   const mounted = useOnMount()

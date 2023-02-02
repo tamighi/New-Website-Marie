@@ -1,9 +1,10 @@
-import { useTheme } from "@lib/hooks/contexts/ThemeContext"
+import useTheme from "@lib/hooks/useTheme"
+
 import "./Background.css"
 
 export const Background = () => {
   const theme = useTheme()
-  const darkMode = theme.palette?.darkMode
+  const darkMode = theme?.palette?.darkMode
 
   return (
     <div className="Background">
