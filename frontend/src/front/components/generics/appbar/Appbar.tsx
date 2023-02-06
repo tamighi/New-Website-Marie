@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom"
 
 import { AppbarDrawer } from "./AppbarDrawer"
+import ThemeToggleIcon from "./ThemeToggleIcon"
 import LibAppbar from "@lib/components/appbar/Appbar"
-import ThemeToggleIcon from "@lib/components/iconButton/ThemeToggleIcon"
 
 import "./Appbar.css"
 

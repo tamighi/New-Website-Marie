@@ -1,3 +1,4 @@
+import ThemeProvider from "@lib/providers/ThemeProvider"
 import { AnimatePresence } from "framer-motion"
 import { Route, Routes, useLocation } from "react-router-dom"
 
@@ -33,19 +34,21 @@ export const FrontApp = () => {
 
   return (
     <div className="FrontApp">
-      <Appbar />
-      <Background />
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="" element={<HomePage />} />
-          <Route path="contact" element={<ContactPage />} />
-          <Route path="services" element={<ServicePage />} />
-          <Route path="livredor" element={<GoldenBookPage />} />
-          <Route path="avis" element={<ReviewPage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </AnimatePresence>
-      <Footer />
+      <ThemeProvider>
+        <Appbar />
+        <Background />
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="" element={<HomePage />} />
+            <Route path="contact" element={<ContactPage />} />
+            <Route path="services" element={<ServicePage />} />
+            <Route path="livredor" element={<GoldenBookPage />} />
+            <Route path="avis" element={<ReviewPage />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </AnimatePresence>
+        <Footer />
+      </ThemeProvider>
     </div>
   )
 }

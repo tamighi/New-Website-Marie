@@ -1,31 +1,18 @@
 import React from "react"
 
 import ThemeContext from "@lib/contexts/ThemeContext"
-import ToggleThemeContext from "@lib/contexts/ToggleThemeContext"
 
 import Theme from "@lib/types/Theme"
+import baseTheme from "@lib/constants/baseTheme"
 
 const ThemeProvider = ({
   children,
-  theme,
+  theme = baseTheme,
 }: {
   children: React.ReactNode
-  theme: Theme
+  theme?: Theme
 }) => {
-  const toggleTheme = () => {
-    localStorage.setItem("dark", theme ? "light" : "dark")
-    theme = {
-      ...theme,
-      palette: { ...theme.palette, darkMode: !theme.palette?.darkMode },
-    }
-  }
-  return (
-    <ThemeContext.Provider value={theme}>
-      <ToggleThemeContext.Provider value={toggleTheme}>
-        {children}
-      </ToggleThemeContext.Provider>
-    </ThemeContext.Provider>
-  )
+  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
 }
 
 export default ThemeProvider

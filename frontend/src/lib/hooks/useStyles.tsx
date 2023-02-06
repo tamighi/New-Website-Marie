@@ -4,7 +4,7 @@ import useTheme from "./useTheme"
 
 import Theme from "@lib/types/Theme"
 
-import baseTheme from "@lib/constants/baseTheme.constants"
+import baseTheme from "@lib/constants/baseTheme"
 
 const useStyles = () => {
   const providedTheme = useTheme()
