@@ -1,8 +1,7 @@
-import { PropType } from "../props"
-
+import { Props } from "@lib/types"
 import "./IconButton.css"
 
-interface IconButtonProps extends PropType {
+interface IconButtonProps extends Props {
   onClick: (() => void) | undefined
 }
 

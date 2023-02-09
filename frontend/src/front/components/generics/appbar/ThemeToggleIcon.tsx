@@ -1,9 +1,9 @@
-import Icon from "@lib/components/icon/Icon"
-import IconButton from "@lib/components/iconButton/IconButton"
-import useTheme from "@lib/hooks/useTheme"
+import { Icon, IconButton } from "@lib/components"
+import { useTheme } from "@lib/hooks"
+
 import { useToggleTheme } from "../../../providers/ThemeContext/ThemeContext"
 
-const ThemeToggleIcon = () => {
+export const ThemeToggleIcon = () => {
   const toggleTheme = useToggleTheme()
   const theme = useTheme()
   const darkMode = theme?.palette.darkMode
@@ -14,5 +14,3 @@ const ThemeToggleIcon = () => {
     </IconButton>
   )
 }
-
-export default ThemeToggleIcon

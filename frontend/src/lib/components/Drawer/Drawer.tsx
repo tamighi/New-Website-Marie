@@ -1,12 +1,11 @@
 import React from "react"
 
-import useClickOutside from "@lib/hooks/useClickOutside"
-
-import { PropType } from "../props"
+import { Props } from "@lib/types"
+import { useClickOutside } from "@lib/hooks"
 
 import "./Drawer.css"
 
-interface DrawerProps extends PropType {
+interface DrawerProps extends Props {
   open: boolean
   onClose: () => void
 }

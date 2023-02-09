@@ -1,8 +1,8 @@
-import { PropType } from "../props"
+import { Props } from "@lib/types"
 
 import "./Grid.css"
 
-interface GridProps extends PropType {
+interface GridProps extends Props {
   container?: boolean
   small?: number
   large?: number

@@ -1,13 +1,10 @@
-import LibAppbar from "@lib/components/appbar/Appbar"
-import Icon from "@lib/components/icon/Icon"
-import IconButton from "@lib/components/iconButton/IconButton"
+import { Appbar as LibAppbar, Icon, IconButton } from "@lib/components"
 
 interface AppbarProps {
   toggleSideBar: () => void
 }
 
 export const Appbar = ({ toggleSideBar }: AppbarProps) => {
-
   return (
     <div style={{ padding: "48px" }}>
       <LibAppbar>
@@ -15,7 +12,6 @@ export const Appbar = ({ toggleSideBar }: AppbarProps) => {
           <Icon name="menu" />
         </IconButton>
         <div style={{ flexGrow: 1, textAlign: "center" }}>Appbar</div>
-        //<ThemeToggleIcon />
       </LibAppbar>
     </div>
   )

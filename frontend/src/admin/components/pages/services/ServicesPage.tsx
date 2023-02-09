@@ -1,5 +1,4 @@
-import DataGrid from "@lib/components/dataGrid/DataGrid"
-
+import { DataGrid } from "@lib/components"
 import { dataProvider } from "../../../api/dataProvider"
 
 interface ServiceCategoriesDto {
