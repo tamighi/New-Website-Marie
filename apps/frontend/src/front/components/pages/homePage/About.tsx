@@ -1,16 +1,13 @@
 import { Card } from "@lib/components"
 
-import { useOnMount } from "@lib/hooks"
+import "../../../styles/Animation.css"
 
 export const About = () => {
-  const mounted = useOnMount()
   return (
     <div
+      className="slideInLeft"
       style={{
-        transition: "opacity 1s, transform 1s",
-        transitionDelay: "0.5s",
-        opacity: mounted ? 1 : 0,
-        transform: mounted ? "" : `translateX(-3em)`,
+        animationDelay: "0.5s",
       }}
     >
       <Card>
