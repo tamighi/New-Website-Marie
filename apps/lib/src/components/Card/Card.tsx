@@ -1,5 +1,5 @@
-import useStyles from "@lib/hooks/useStyles"
-import Props from "@lib/types/Props"
+import { useStyles } from "@hooks"
+import { Props } from "@types"
 import "./Card.css"
 
 const Card = (props: Props) => {

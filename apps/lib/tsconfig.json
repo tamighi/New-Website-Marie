@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@components": ["src/components"],
+      "@contexts": ["src/contexts"],
+      "@providers": ["src/providers"],
+      "@hooks": ["src/hooks"],
+      "@types": ["src/types"],
+      "@constants": ["src/constants"],
+      "@tests/*": ["src/tests/*"]
+    }
+  },
+  "include": ["src"]
+}
