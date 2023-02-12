@@ -1,10 +1,10 @@
 import { FrontApp } from "./FrontApp"
-import { ThemeProvider } from "./providers/ThemeContext/ThemeContext"
+import { MyThemeProvider } from "./providers/ThemeContext/ThemeContext"
 
 export const FrontRoot = () => {
   return (
-    <ThemeProvider>
+    <MyThemeProvider>
       <FrontApp />
-    </ThemeProvider>
+    </MyThemeProvider>
   )
 }

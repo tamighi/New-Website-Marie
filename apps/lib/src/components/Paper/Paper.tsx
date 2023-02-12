@@ -1,8 +1,8 @@
-import { PropType } from "../props"
+import { Props } from "../../types"
 
 import "./Paper.css"
 
-const Paper = (props: PropType) => {
+const Paper = (props: Props) => {
   const { style, children, className } = props
 
   const classNames = "Paper " + (className || "")

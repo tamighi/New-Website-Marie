@@ -1,5 +1,5 @@
 import { BasePage } from "../../generics/basePage/BasePage"
-import { Card } from "@lib/components"
+import { Card } from "lib"
 
 import "../../../styles/Page.css"
 import "../../../styles/Typography.css"

@@ -1,4 +1,4 @@
-import { Card, Grid } from "@components"
+import { Card, Grid } from "../../components"
 
 export const TestPage1 = () => {
   return (

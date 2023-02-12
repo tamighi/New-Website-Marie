@@ -1,4 +1,4 @@
-import { Props } from "@types"
+import { Props } from "../../types"
 
 import "./Grid.css"
 

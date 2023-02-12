@@ -1,4 +1,4 @@
-import { Drawer } from "@lib/components"
+import { Drawer } from "lib"
 import { Link } from "react-router-dom"
 
 import "./Sidebar.css"

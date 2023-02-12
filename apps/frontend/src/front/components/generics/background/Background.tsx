@@ -1,4 +1,4 @@
-import useTheme from "@lib/hooks/useTheme"
+import { useTheme } from "lib"
 
 import "./Background.css"
 

@@ -1,4 +1,4 @@
-import { Card } from "@lib/components"
+import { Card } from "lib"
 
 import "../../../styles/Animation.css"
 

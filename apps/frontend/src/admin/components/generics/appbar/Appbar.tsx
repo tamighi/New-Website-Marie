@@ -1,4 +1,4 @@
-import { Appbar as LibAppbar, Icon, IconButton } from "@lib/components"
+import { Appbar as LibAppbar, Icon, IconButton } from "lib"
 
 interface AppbarProps {
   toggleSideBar: () => void

@@ -1,4 +1,4 @@
-import { Grid } from "@lib/components"
+import { Grid } from "lib"
 import { AnimatedPage } from "../../utils/AnimatedPage"
 import { About } from "./About"
 import { HomeImage } from "./HomeImage"

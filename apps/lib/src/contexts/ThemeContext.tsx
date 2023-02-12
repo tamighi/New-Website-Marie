@@ -1,6 +1,6 @@
 import React from "react"
 
-import Theme from "@lib/types/Theme"
+import { Theme } from "../types"
 
 const ThemeContext = React.createContext<Theme | null>(null)
 

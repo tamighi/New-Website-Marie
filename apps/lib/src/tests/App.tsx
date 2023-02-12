@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Appbar } from "@components"
-import { TestPage1 } from "@tests/components/TestPage1"
+import { Appbar } from "../components"
+import { TestPage1 } from "./components/TestPage1"
 
 export const App = () => {
   return (

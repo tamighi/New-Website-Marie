@@ -1,4 +1,4 @@
-import { Divider } from "@lib/components"
+import { Divider } from "lib"
 import "./Footer.css"
 
 export const Footer = () => {

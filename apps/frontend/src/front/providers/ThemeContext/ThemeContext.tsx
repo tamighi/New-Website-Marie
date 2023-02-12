@@ -1,8 +1,6 @@
 import React from "react"
 
-import LibThemeProvider from "@lib/providers/ThemeProvider"
-
-import Theme from "@lib/types/Theme"
+import { Theme, ThemeProvider } from "lib"
 
 const ToggleThemeContext = React.createContext<(() => void) | null>(null)
 
@@ -10,7 +8,11 @@ export const useToggleTheme = () => {
   return React.useContext(ToggleThemeContext)
 }
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+export const MyThemeProvider = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
   const [darkMode, setDarkMode] = React.useState(
     localStorage.getItem("dark") === "light" ? false : true
   )
@@ -39,10 +41,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <LibThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <ToggleThemeContext.Provider value={toggleTheme}>
         {children}
       </ToggleThemeContext.Provider>
-    </LibThemeProvider>
+    </ThemeProvider>
   )
 }

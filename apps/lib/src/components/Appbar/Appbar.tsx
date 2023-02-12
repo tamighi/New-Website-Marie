@@ -1,7 +1,7 @@
-import { useStyles } from "@hooks"
-import { Props } from "@types"
+import { Paper } from ".."
+import { useStyles } from "../../hooks"
+import { Props } from "../../types"
 
-import Paper from "../Paper/Paper"
 import "./Appbar.css"
 
 type AppbarProps = Props

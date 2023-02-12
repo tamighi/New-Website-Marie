@@ -1,8 +1,11 @@
-import { useStyles } from "@hooks"
-import { Props } from "@types"
+import { useStyles } from "../../hooks"
+import { Props } from "../../types"
+
 import "./Card.css"
 
-const Card = (props: Props) => {
+type CardProps = Props
+
+const Card = (props: CardProps) => {
   const { style, children, className } = props
 
   const classNames = "Card " + (className || "")

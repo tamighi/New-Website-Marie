@@ -1,9 +1,9 @@
-interface Palette {
+export interface Palette {
   light: string
   dark: string
 }
 
-interface Theme {
+export interface Theme {
   palette: {
     darkMode: boolean
     primary: Palette
@@ -11,5 +11,3 @@ interface Theme {
     text: Palette
   }
 }
-
-export default Theme

@@ -12,8 +12,6 @@ import { ServicePage } from "./components/pages/servicePage/ServicePage"
 import { ErrorPage } from "./ErrorPage"
 
 
-//import { createTheme } from "@lib/hooks/contexts/ThemeContext"
-
 import "./FrontApp.css"
 
 export const FrontApp = () => {

@@ -1,4 +1,4 @@
-import Theme from "@lib/types/Theme"
+import { Theme } from "../types"
 
 const baseTheme: Theme = {
   palette: {

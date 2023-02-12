@@ -1,7 +1,7 @@
 import React from "react"
 
-import { useClickOutside } from "@hooks"
-import { Props } from "@types"
+import { useClickOutside } from "../../hooks"
+import { Props } from "../../types"
 
 import "./Drawer.css"
 

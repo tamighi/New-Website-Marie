@@ -1,5 +1,4 @@
-import { Icon, IconButton } from "@lib/components"
-import { useTheme } from "@lib/hooks"
+import { Icon, IconButton, useTheme } from "lib"
 
 import { useToggleTheme } from "../../../providers/ThemeContext/ThemeContext"
 

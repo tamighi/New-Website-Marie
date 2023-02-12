@@ -5,22 +5,13 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 module.exports = {
   resolve: {
     extensions: [".tsx", ".js", ".ts"],
-    alias: {
-      "@components": path.resolve(__dirname, "..", "src/components"),
-      "@contexts": path.resolve(__dirname, "..", "src/contexts"),
-      "@providers": path.resolve(__dirname, "..", "src/providers"),
-      "@hooks": path.resolve(__dirname, "..", "src/hooks"),
-      "@types": path.resolve(__dirname, "..", "src/types"),
-      "@constants": path.resolve(__dirname, "..", "src/constants"),
-      "@tests": path.resolve(__dirname, "..", "src/tests"),
-    },
   },
   module: {
     rules: [
       {
-        test: /\.tsx$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: "babel-loader",
+        use: ["ts-loader"],
       },
       {
         test: /\.css$/,
@@ -30,7 +21,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "..", "build"),
-    filename: "bundle.js",
+    filename: "index.js",
     publicPath: "/",
   },
   devServer: {

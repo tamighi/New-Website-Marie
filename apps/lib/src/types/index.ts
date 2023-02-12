@@ -1,3 +1,2 @@
-export { default as Props } from "./Props"
-
-export { default as Theme } from "./Theme"
+export * from "./Props"
+export * from "./Theme"

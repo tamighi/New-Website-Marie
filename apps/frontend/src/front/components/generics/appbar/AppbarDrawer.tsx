@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Divider, Drawer, Icon, IconButton } from "@lib/components";
+import { Divider, Drawer, Icon, IconButton } from "lib"
 
 import { useLocation, useNavigate } from "react-router-dom"
 

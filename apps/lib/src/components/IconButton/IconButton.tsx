@@ -1,4 +1,4 @@
-import { Props } from "@lib/types"
+import { Props } from "../../types"
 import "./IconButton.css"
 
 interface IconButtonProps extends Props {

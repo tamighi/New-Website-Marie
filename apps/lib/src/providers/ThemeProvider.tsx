@@ -1,7 +1,7 @@
 import React from "react"
 
-import { ThemeContext } from "@contexts"
-import { Theme } from "@types"
+import { ThemeContext } from "../contexts"
+import { Theme } from "../types"
 
 const ThemeProvider = ({
   children,
