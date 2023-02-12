@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 module.exports = {
   resolve: {
-    extensions: [".tsx", ".js", ".ts"],
+    extensions: [".tsx", ".ts"],
   },
   module: {
     rules: [
@@ -21,7 +21,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "..", "build"),
-    filename: "index.js",
+    filename: "bundle.js",
     publicPath: "/",
   },
   devServer: {
