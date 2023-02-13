@@ -1,8 +1,8 @@
-const webpack = require("webpack")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: {
-    main: "./src/tests/index.tsx",
+    main: "./src/dev/index.tsx",
   },
   mode: "development",
   devServer: {
@@ -10,4 +10,9 @@ module.exports = {
     open: true,
   },
   devtool: "cheap-module-source-map",
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "src/dev/index.html",
+    }),
+  ],
 }

@@ -1,17 +1,16 @@
 const path = require("path")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 module.exports = {
   resolve: {
-    extensions: [".tsx", ".ts"],
+    extensions: [".tsx", ".ts", ".js"],
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: ["ts-loader"],
+        use: ["babel-loader"]
       },
       {
         test: /\.css$/,
@@ -21,16 +20,13 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "..", "build"),
-    filename: "bundle.js",
-    publicPath: "/",
+    filename: "index.js",
+    libraryTarget: "umd",
   },
   devServer: {
     historyApiFallback: true,
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "src/index.html",
-    }),
     new CopyWebpackPlugin({
       patterns: [{ from: "assets" }],
     }),
