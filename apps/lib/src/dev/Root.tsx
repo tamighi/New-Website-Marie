@@ -1,5 +1,10 @@
 import { App } from "./App"
+import { MyThemeProvider } from "./providers/MyThemeProvider"
 
 export const Root = () => {
-  return <App />
+  return (
+    <MyThemeProvider>
+      <App />
+    </MyThemeProvider>
+  )
 }

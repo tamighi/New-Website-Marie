@@ -4,4 +4,8 @@ module.exports = {
   },
   mode: "production",
   devtool: "source-map",
+  externals: {
+    react: "commonjs react",
+    "react-dom": "commonjs react-dom",
+  },
 }
