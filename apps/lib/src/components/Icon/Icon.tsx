@@ -1,9 +1,8 @@
-import React from "react"
+import { DefaultProps } from ".."
+
 import "./Icon.css"
 
-export interface IconProps {
-  style?: React.CSSProperties
-  className?: string
+export interface IconProps extends DefaultProps {
   src: string
 }
 

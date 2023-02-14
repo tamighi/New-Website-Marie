@@ -1,8 +1,10 @@
-import { Props } from "../../types"
+import { DefaultProps } from ".."
 
 import "./Paper.css"
 
-const Paper = (props: Props) => {
+export type PaperProps = DefaultProps
+
+const Paper = (props: DefaultProps) => {
   const { style, children, className } = props
 
   const classNames = "Paper " + (className || "")

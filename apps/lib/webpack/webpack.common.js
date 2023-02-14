@@ -13,11 +13,11 @@ module.exports = {
         use: ["babel-loader", "ts-loader"],
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.svg$/i,
+        test: /\.svg$/,
         type: "asset",
       },
     ],

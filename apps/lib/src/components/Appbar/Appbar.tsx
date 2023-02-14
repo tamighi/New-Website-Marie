@@ -1,10 +1,9 @@
-import { Paper } from ".."
+import { Paper, DefaultProps } from ".."
 import { useStyles } from "../../hooks"
-import { Props } from "../../types"
 
 import "./Appbar.css"
 
-type AppbarProps = Props
+export type AppbarProps = DefaultProps
 
 const Appbar = (props: AppbarProps) => {
   const { style, children, className } = props

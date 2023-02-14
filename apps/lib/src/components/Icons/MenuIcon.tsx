@@ -1,7 +1,8 @@
-import { Icon, IconProps } from ".."
+import { Icon } from ".."
+import { SvgIconProps } from "."
 import iconPath from "assets/icons/menu.svg"
 
-const MenuIcon = (props: IconProps) => {
+const MenuIcon = (props: SvgIconProps) => {
   return <Icon {...props} src={iconPath} />
 }
 

@@ -1,8 +1,8 @@
 import React from "react"
 
 import { useTheme } from "../hooks"
-import { Theme } from "../types"
 import { baseTheme } from "../constants"
+import { Theme } from "../contexts/ThemeContext"
 
 const useStyles = () => {
   const providedTheme = useTheme()

@@ -2,7 +2,7 @@ import { Column, useTable } from "react-table"
 
 import "./DataGrid.css"
 
-interface DataGridProps {
+export interface DataGridProps {
   data: object[]
   columns: Column<object>[]
 }

@@ -1,1 +1,2 @@
-export { default } from "./Appbar"
+export { default as Appbar } from "./Appbar"
+export * from "./Appbar"

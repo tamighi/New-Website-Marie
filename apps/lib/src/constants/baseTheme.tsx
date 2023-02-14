@@ -1,4 +1,4 @@
-import { Theme } from "../types"
+import { Theme } from "../contexts/ThemeContext"
 
 const baseTheme: Theme = {
   palette: {
