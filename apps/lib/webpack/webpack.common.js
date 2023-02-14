@@ -1,34 +1,25 @@
-const path = require("path")
-const CopyWebpackPlugin = require("copy-webpack-plugin")
-
 module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      assets: "/assets",
+    },
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: ["babel-loader", "ts-loader"],
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.svg$/i,
+        type: "asset",
       },
     ],
   },
-  output: {
-    path: path.resolve(__dirname, "..", "build"),
-    filename: "index.js",
-    libraryTarget: "commonjs2",
-  },
-  devServer: {
-    historyApiFallback: true,
-  },
-  plugins: [
-    new CopyWebpackPlugin({
-      patterns: [{ from: "assets" }],
-    }),
-  ],
 }

@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Appbar } from "../components"
+import { TestAppbar } from "./components/TestAppbar"
 import { TestPage1 } from "./components/TestPage1"
 
 export const App = () => {
   return (
     <div className="App">
       <div style={{ padding: "48px" }}>
-        <Appbar />
+        <TestAppbar />
       </div>
       <BrowserRouter>
         <Routes>

@@ -1,4 +1,4 @@
-import { Icon, IconButton, useTheme } from "lib"
+import { IconButton, MoonIcon, SunIcon, useTheme } from "lib"
 
 import { useToggleTheme } from "../../../providers/ThemeContext/ThemeContext"
 
@@ -9,7 +9,7 @@ export const ThemeToggleIcon = () => {
 
   return (
     <IconButton onClick={toggleTheme || undefined}>
-      <Icon name={darkMode ? "sun" : "moon"} />
+      {darkMode ? <SunIcon /> : <MoonIcon />}
     </IconButton>
   )
 }
