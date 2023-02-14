@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Divider, Drawer, Icon, IconButton } from "lib"
+import { Divider, Drawer, IconButton, MenuIcon } from "lib"
 
 import { useLocation, useNavigate } from "react-router-dom"
 
@@ -23,7 +23,7 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
   return (
     <div className="MobileAppbar">
       <IconButton onClick={() => setOpen(!open)}>
-        <Icon name="menu" />
+        <MenuIcon />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <ul className="DrawerLinkList">

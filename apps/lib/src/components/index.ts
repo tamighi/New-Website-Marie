@@ -10,7 +10,9 @@ export { default as Drawer } from "./Drawer"
 
 export { default as Grid } from "./Grid"
 
-export { default as Icon } from "./Icon"
+export * from "./Icon"
+
+export * from "./Icons"
 
 export { default as IconButton } from "./IconButton"
 

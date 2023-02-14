@@ -15,8 +15,8 @@
     "jsx": "react-jsx",
     "declaration": true,
     "sourceMap": true,
-    "baseUrl": "src",
-    "outDir": "build"
+    "outDir": "build",
+    "baseUrl": "."
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/custom.d.ts"]
 }

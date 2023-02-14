@@ -1,25 +1,18 @@
 import React from "react"
 import "./Icon.css"
 
-interface IconProps {
+export interface IconProps {
   style?: React.CSSProperties
   className?: string
-  name: string
+  src: string
 }
 
 const Icon = (props: IconProps) => {
-  const { style, className, name } = props
+  const { style, className, src } = props
 
   const classNames = "Icon " + (className || "")
 
-  return (
-    <img
-      className={classNames}
-      style={style}
-      src={`/icons/${name}.svg`}
-      alt=""
-    />
-  )
+  return <img className={classNames} style={style} src={src} alt="" />
 }
 
 export default Icon

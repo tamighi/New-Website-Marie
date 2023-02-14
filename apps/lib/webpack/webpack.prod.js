@@ -1,11 +1,18 @@
+const path = require("path")
+
 module.exports = {
-  entry: {
-    main: "./src/index.ts",
+  entry: "./src/index.ts",
+  output: {
+    path: path.resolve(__dirname, "..", "build"),
+    filename: "bundle.js",
+    library: {
+      type: "umd",
+    },
   },
   mode: "production",
   devtool: "source-map",
   externals: {
-    react: "commonjs react",
-    "react-dom": "commonjs react-dom",
+    react: "react",
+    "react-dom": "react-dom",
   },
 }
