@@ -5,9 +5,7 @@ import { TestPage1 } from "./components/TestPage1"
 export const App = () => {
   return (
     <div className="App">
-      <div style={{ padding: "48px" }}>
-        <TestAppbar />
-      </div>
+      <TestAppbar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<TestPage1 />} />
