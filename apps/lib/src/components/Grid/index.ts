@@ -1,2 +1,2 @@
-export { default as Grid } from "./Grid"
+export { default as ResponsiveGrid } from "./Grid"
 export * from "./Grid"

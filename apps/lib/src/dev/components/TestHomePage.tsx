@@ -1,18 +1,18 @@
-import { Card, Grid, Paper } from "../../components"
+import { Card, ResponsiveGrid, Paper } from "../../components"
 
 import "../styles/Page.css"
 
 export const TestHomePage = () => {
   return (
     <div className="Page">
-      <Grid container style={{ gap: "16px", padding: "32px" }}>
-        <Grid large={6}>
+      <ResponsiveGrid container style={{ gap: "16px", padding: "32px" }}>
+        <ResponsiveGrid large={6}>
           <Card>
             I'm a Card ! Lorem ipsum dolor sit amet, qui minim labore
             adipisicing minim sint cillum sint consectetur cupidatat.
           </Card>
-        </Grid>
-        <Grid large={6}>
+        </ResponsiveGrid>
+        <ResponsiveGrid large={6}>
           <Paper>
             I'm a Paper ! <br />
             Lorem ipsum dolor sit amet, officia excepteur ex fugiat
@@ -27,8 +27,8 @@ export const TestHomePage = () => {
             ex non excepteur duis sunt velit enim. Voluptate laboris sint
             cupidatat ullamco ut ea consectetur et est culpa et culpa duis.r
           </Paper>
-        </Grid>
-      </Grid>
+        </ResponsiveGrid>
+      </ResponsiveGrid>
     </div>
   )
 }
