@@ -20,6 +20,10 @@ const Drawer = (props: DrawerProps) => {
     ...style,
   }
 
+  styles.transition = styles.transition
+    ? styles.transition + ", transform 225ms ease"
+    : "transform 225ms ease"
+
   const ref = useClickOutside(onClose)
   const [visible, setVisible] = React.useState(open)
 

@@ -15,7 +15,7 @@ const useStyles = (
       ? theme.palette.secondary
       : theme.palette.background
 
-  const styles: React.CSSProperties = darkMode
+  const colors: React.CSSProperties = darkMode
     ? {
         backgroundColor: color.dark,
         color: theme.palette.text.dark,
@@ -24,6 +24,11 @@ const useStyles = (
         backgroundColor: color.light,
         color: theme.palette.text.light,
       }
+
+  const styles: React.CSSProperties = {
+    ...colors,
+    transition: theme.transition,
+  }
 
   return styles
 }

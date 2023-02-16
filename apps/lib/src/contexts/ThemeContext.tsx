@@ -15,6 +15,7 @@ export interface Palette {
 
 export interface Theme {
   palette: Palette
+  transition: string
 }
 
 const ThemeContext = React.createContext<Theme | null>(null)

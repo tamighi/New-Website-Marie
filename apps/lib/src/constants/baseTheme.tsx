@@ -20,6 +20,7 @@ const baseTheme: Theme = {
       dark: "#202121",
     },
   },
+  transition: "none"
 } as const
 
 export default baseTheme

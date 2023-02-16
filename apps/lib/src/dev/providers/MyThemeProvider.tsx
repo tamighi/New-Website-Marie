@@ -22,7 +22,10 @@ export const MyThemeProvider = ({
     setDarkMode(!darkMode)
   }
 
-  const theme = createTheme({ palette: { darkMode: darkMode } })
+  const theme = createTheme({
+    palette: { darkMode: darkMode },
+    transition: "all .6s ease",
+  })
 
   return (
     <ThemeProvider theme={theme}>

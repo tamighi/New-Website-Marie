@@ -1,3 +1,4 @@
+import { useStyles } from "../../hooks"
 import { DefaultProps } from ".."
 
 import "./Paper.css"
@@ -9,8 +10,13 @@ const Paper = (props: DefaultProps) => {
 
   const classNames = "Paper " + (className || "")
 
+  const styles = {
+    ...useStyles("background"),
+    ...style,
+  }
+
   return (
-    <div className={classNames} style={style}>
+    <div className={classNames} style={styles}>
       {children}
     </div>
   )

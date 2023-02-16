@@ -35,6 +35,7 @@ const createPalette = (userPalette: DeepPartial<Palette> | undefined) => {
 export const createTheme = (userTheme: DeepPartial<Theme>): Theme => {
   const theme = {
     palette: createPalette(userTheme.palette),
+    transition: userTheme.transition || baseTheme.transition
   }
   return theme
 }

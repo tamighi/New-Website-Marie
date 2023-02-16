@@ -15,7 +15,6 @@
   height: 100vh;
   min-width: 180px;
   transform: none;
-  transition: transform 225ms ease;
   z-index: 1100;
   display: flex;
   flex-direction: column;
