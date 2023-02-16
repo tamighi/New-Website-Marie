@@ -11,7 +11,7 @@ const Card = (props: CardProps) => {
   const classNames = "Card " + (className || "")
 
   const styles = {
-    ...useStyles(),
+    ...useStyles("background"),
     ...style,
   }
 

@@ -1,31 +1,31 @@
-.Container {
+.DrawerContainer {
   position: fixed;
   inset: 0px;
   z-index: 1200;
 }
 
-.Hidden {
+.HiddenContainer {
   visibility: hidden;
 }
 
 .Drawer {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
+  min-width: 180px;
   transform: none;
-  transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transition: transform 225ms ease;
   z-index: 1100;
-  background-color: var(--secondary-color, #fff);
 }
 
 .HiddenDrawer {
-  transform: translateX(-180px);
+  transform: translateX(-100%);
 }
 
 .Background {
   opacity: 1;
-  transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 225ms ease;
   position: fixed;
   inset: 0px;
   background-color: rgba(0, 0, 0, 0.5);

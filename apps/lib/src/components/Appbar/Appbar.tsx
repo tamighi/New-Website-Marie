@@ -11,7 +11,7 @@ const Appbar = (props: AppbarProps) => {
   const classNames = "Appbar " + (className || "")
 
   const styles = {
-    ...useStyles(),
+    ...useStyles("primary"),
     ...style,
   }
 
