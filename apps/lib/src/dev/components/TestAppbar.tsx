@@ -1,5 +1,5 @@
 import React from "react"
-import { Appbar, Drawer, IconButton } from "../../components"
+import { Appbar, Divider, Drawer, IconButton } from "../../components"
 import { MenuIcon } from "../../components"
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
 
@@ -12,6 +12,7 @@ export const TestAppbar = () => {
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
         Hello World
+        <Divider />
       </Drawer>
       <div style={{ flexGrow: 1 }} />
       <ThemeToggleIcon />

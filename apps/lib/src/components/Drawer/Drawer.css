@@ -17,6 +17,9 @@
   transform: none;
   transition: transform 225ms ease;
   z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .HiddenDrawer {
