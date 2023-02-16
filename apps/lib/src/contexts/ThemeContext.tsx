@@ -1,17 +1,20 @@
 import React from "react"
 
-export interface Palette {
+export interface Color {
   light: string
   dark: string
 }
 
+export interface Palette {
+  darkMode: boolean
+  primary: Color
+  secondary: Color
+  background: Color
+  text: Color
+}
+
 export interface Theme {
-  palette: {
-    darkMode: boolean
-    primary: Palette
-    secondary: Palette
-    text: Palette
-  }
+  palette: Palette
 }
 
 const ThemeContext = React.createContext<Theme | null>(null)

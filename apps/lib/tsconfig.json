@@ -19,5 +19,4 @@
     "baseUrl": "."
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/custom.d.ts"],
-  "exclude": ["src/dev"]
 }

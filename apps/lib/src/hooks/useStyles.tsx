@@ -1,13 +1,9 @@
 import React from "react"
 
 import { useTheme } from "../hooks"
-import { baseTheme } from "../constants"
-import { Theme } from "../contexts/ThemeContext"
 
 const useStyles = () => {
-  const providedTheme = useTheme()
-
-  const theme: Theme = providedTheme || baseTheme
+  const theme = useTheme()
 
   const darkMode = theme.palette.darkMode
 
