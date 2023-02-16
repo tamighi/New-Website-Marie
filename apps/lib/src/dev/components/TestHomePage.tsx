@@ -8,8 +8,9 @@ export const TestHomePage = () => {
       <ResponsiveGrid container style={{ gap: "16px", padding: "32px" }}>
         <ResponsiveGrid large={6}>
           <Card>
-            I'm a Card ! Lorem ipsum dolor sit amet, qui minim labore
-            adipisicing minim sint cillum sint consectetur cupidatat.
+            I'm a Card !<br />
+            Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+            cillum sint consectetur cupidatat.
           </Card>
         </ResponsiveGrid>
         <ResponsiveGrid large={6}>

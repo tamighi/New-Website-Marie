@@ -1,4 +1,5 @@
 import { Column, useTable } from "react-table"
+import { useStyles } from "../../hooks"
 
 import "./DataGrid.css"
 
@@ -10,6 +11,14 @@ export interface DataGridProps {
 const DataGrid = ({ data, columns }: DataGridProps) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data })
+
+  const style = useStyles("background")
+  const styles = {
+    ...style,
+    ":nth-child(even)": {
+      backgroundColor: "black",
+    },
+  }
 
   return (
     // apply the table props

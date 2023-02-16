@@ -1,10 +1,19 @@
 import React from "react"
-import { Appbar, Divider, Drawer, IconButton } from "../../components"
-import { MenuIcon } from "../../components"
+import { Link } from "react-router-dom"
+import {
+  Appbar,
+  Divider,
+  Drawer,
+  HomeIcon,
+  IconButton,
+  MenuIcon,
+  TableChartIcon,
+} from "../../components"
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
 
 export const TestAppbar = () => {
   const [open, setOpen] = React.useState(false)
+
   return (
     <Appbar>
       <IconButton onClick={() => setOpen(true)}>
@@ -15,6 +24,12 @@ export const TestAppbar = () => {
         <Divider />
       </Drawer>
       <div style={{ flexGrow: 1 }} />
+      <Link to="/dataGrid">
+        <TableChartIcon />
+      </Link>
+      <Link to="/">
+        <HomeIcon />
+      </Link>
       <ThemeToggleIcon />
     </Appbar>
   )
