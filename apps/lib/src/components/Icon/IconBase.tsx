@@ -2,12 +2,10 @@ import { DefaultProps } from ".."
 
 import "./IconBase.css"
 
-export interface IconProps extends Omit<DefaultProps, "children"> {
-  path: string
-}
+export type IconProps = DefaultProps
 
 const IconBase = (props: IconProps) => {
-  const { style, className, path } = props
+  const { style, className, children } = props
 
   const classNames = "IconBase " + (className || "")
 
@@ -18,7 +16,7 @@ const IconBase = (props: IconProps) => {
       className={classNames}
       style={style}
     >
-      <path d={path} />
+      {children}
     </svg>
   )
 }
