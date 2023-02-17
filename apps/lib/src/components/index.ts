@@ -12,8 +12,6 @@ export * from "./Grid"
 
 export * from "./Icon"
 
-export * from "./Icons"
-
 export * from "./IconButton"
 
 export * from "./Paper"

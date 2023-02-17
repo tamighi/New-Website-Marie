@@ -6,14 +6,14 @@ export const TestHomePage = () => {
   return (
     <div className="Page">
       <ResponsiveGrid container style={{ gap: "16px", padding: "32px" }}>
-        <ResponsiveGrid large={6}>
+        <ResponsiveGrid large={6} small={12}>
           <Card>
             I'm a Card !<br />
             Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
             cillum sint consectetur cupidatat.
           </Card>
         </ResponsiveGrid>
-        <ResponsiveGrid large={6}>
+        <ResponsiveGrid large={6} small={12}>
           <Paper>
             I'm a Paper ! <br />
             Lorem ipsum dolor sit amet, officia excepteur ex fugiat

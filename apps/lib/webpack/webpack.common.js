@@ -1,9 +1,6 @@
 module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
-    alias: {
-      assets: "/assets",
-    },
   },
   module: {
     rules: [
