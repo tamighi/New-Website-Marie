@@ -1,4 +1,4 @@
-import { Grid } from "lib"
+import { ResponsiveGrid as Grid } from "lib"
 import { AnimatedPage } from "../../utils/AnimatedPage"
 import { About } from "./About"
 import { HomeImage } from "./HomeImage"

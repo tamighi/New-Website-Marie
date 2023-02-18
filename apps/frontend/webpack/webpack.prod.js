@@ -1,11 +1,9 @@
-const webpack = require("webpack")
-
 module.exports = {
   mode: "production",
+  output: {
+    path: path.resolve(__dirname, "..", "build"),
+    filename: "bundle.js",
+    publicPath: "/",
+  },
   devtool: "source-map",
-  plugins: [
-    new webpack.DefinePlugin({
-      "process.env.name": JSON.stringify("Codevolution"),
-    }),
-  ],
 }

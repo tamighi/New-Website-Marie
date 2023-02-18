@@ -22,12 +22,15 @@
 
 .DrawerLink {
   width: 100%;
+  cursor: pointer;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
 .DrawerLink:hover {
-  cursor: pointer;
-  background: black;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1)
+  );
 }

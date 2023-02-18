@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 
-import { Appbar as LibAppbar } from "lib"
+import { Appbar as LibAppbar, Navbar } from "lib"
 
 import { AppbarDrawer } from "./AppbarDrawer"
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
@@ -29,33 +29,30 @@ const navItems = [
 export const Appbar = () => {
   const location = useLocation()
   return (
-    <LibAppbar
-      style={{
-        transition: "background .6s ease-in-out",
-        color: "white",
-      }}
-    >
-      <AppbarDrawer navItems={navItems} />
-      <ThemeToggleIcon />
-      <div className="Logo">Marie Somville</div>
-      <ul className="LinkList">
-        {navItems.map((button, id) => (
-          <li key={id}>
-            <img
-              alt=""
-              src={"./images/feather.png"}
-              style={{
-                height: "64px",
-                visibility:
-                  button.to === location.pathname ? "visible" : "hidden",
-              }}
-            ></img>
-            <Link className="Link" to={button.to}>
-              {button.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <LibAppbar>
+      <Navbar>
+        <AppbarDrawer navItems={navItems} />
+        <ThemeToggleIcon />
+        <div className="Logo">Marie Somville</div>
+        <ul className="LinkList">
+          {navItems.map((button, id) => (
+            <li key={id}>
+              <img
+                alt=""
+                src={"./images/feather.png"}
+                style={{
+                  height: "64px",
+                  transform: button.to === location.pathname ? "" : "translateY(-70px)",
+                  transition: "transform .2s ease"
+                }}
+              ></img>
+              <Link className="Link" to={button.to}>
+                {button.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Navbar>
     </LibAppbar>
   )
 }
