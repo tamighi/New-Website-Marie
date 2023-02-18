@@ -42,8 +42,8 @@ export const Appbar = () => {
                 src={"./images/feather.png"}
                 style={{
                   height: "64px",
-                  visibility:
-                    button.to === location.pathname ? "visible" : "hidden",
+                  transform: button.to === location.pathname ? "" : "translateY(-70px)",
+                  transition: "transform .2s ease"
                 }}
               ></img>
               <Link className="Link" to={button.to}>
