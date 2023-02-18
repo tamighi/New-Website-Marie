@@ -1,6 +1,6 @@
 import React from "react"
 
-import { ThemeProvider } from "lib"
+import { createTheme, ThemeProvider } from "lib"
 
 const ToggleThemeContext = React.createContext<(() => void) | null>(null)
 
@@ -22,23 +22,24 @@ export const MyThemeProvider = ({
     setDarkMode(!darkMode)
   }
 
-  const theme = {
+  const theme = createTheme({
     palette: {
       darkMode: darkMode,
-      primary: {
-        light: "rgba(255, 127, 80, 0.7)",
-        dark: "rgba(0, 0, 128, 0.5)",
+      light: {
+        primary: "rgba(255, 127, 80, 0.7)",
+        secondary: "#a51e1e",
+        background: "rgba(255, 127, 80, 0.7)",
+        text: "black",
       },
-      secondary: {
-        light: "#a51e1e",
-        dark: "#16368d",
-      },
-      text: {
-        light: "black",
-        dark: "white",
+      dark: {
+        primary: "rgba(0, 0, 128, 0.5)",
+        secondary: "#16368d",
+        background: "rgba(0, 0, 128, 0.5)",
+        text: "white",
       },
     },
-  }
+    transition: "all 0.6s ease"
+  })
 
   return (
     <ThemeProvider theme={theme}>

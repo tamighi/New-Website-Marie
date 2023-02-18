@@ -1,5 +1,5 @@
 import { DefaultProps } from ".."
-import "./Grid.css"
+import "./ResponsiveGrid.css"
 
 export interface ResponsiveGridProps extends DefaultProps {
   container?: boolean

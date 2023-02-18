@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Grid } from "lib"
+import { ResponsiveGrid as Grid } from "lib"
 import { AnimatedPage } from "../../utils/AnimatedPage"
 
 import "../../../styles/Page.css"

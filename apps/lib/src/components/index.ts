@@ -10,7 +10,7 @@ export * from "./Divider"
 
 export * from "./Drawer"
 
-export * from "./Grid"
+export * from "./ResponsiveGrid"
 
 export * from "./Icon"
 
