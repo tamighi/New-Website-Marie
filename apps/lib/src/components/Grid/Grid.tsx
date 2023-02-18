@@ -1,14 +1,13 @@
-import { Props } from "../../types"
-
+import { DefaultProps } from ".."
 import "./Grid.css"
 
-interface GridProps extends Props {
+export interface ResponsiveGridProps extends DefaultProps {
   container?: boolean
   small?: number
   large?: number
 }
 
-const Grid = (props: GridProps) => {
+const ResponsiveGrid = (props: ResponsiveGridProps) => {
   const { style, children, className, container, small, large } = props
 
   const classNames = [container ? "GridContainer" : "GridItem"]
@@ -29,4 +28,4 @@ const Grid = (props: GridProps) => {
   )
 }
 
-export default Grid
+export default ResponsiveGrid

@@ -1,9 +1,9 @@
 import { useStyles } from "../../hooks"
-import { Props } from "../../types"
+import { DefaultProps } from ".."
 
 import "./Card.css"
 
-type CardProps = Props
+export type CardProps = DefaultProps
 
 const Card = (props: CardProps) => {
   const { style, children, className } = props
@@ -11,7 +11,7 @@ const Card = (props: CardProps) => {
   const classNames = "Card " + (className || "")
 
   const styles = {
-    ...useStyles(),
+    ...useStyles("background"),
     ...style,
   }
 

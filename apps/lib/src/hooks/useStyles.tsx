@@ -1,25 +1,30 @@
 import React from "react"
 
 import { useTheme } from "../hooks"
-import { Theme } from "../types"
-import { baseTheme } from "../constants"
 
-const useStyles = () => {
-  const providedTheme = useTheme()
+const useStyles = (type: "background" | "primary" | "secondary") => {
+  const theme = useTheme()
 
-  const theme: Theme = providedTheme || baseTheme
+  const palette = theme.palette.darkMode
+    ? theme.palette.dark
+    : theme.palette.light
 
-  const darkMode = theme.palette.darkMode
+  const backgroundColor =
+    type === "primary"
+      ? palette.primary
+      : type === "secondary"
+      ? palette.secondary
+      : palette.background
 
-  const styles: React.CSSProperties = darkMode
-    ? {
-        backgroundColor: theme.palette.primary.dark,
-        color: theme.palette.text.dark,
-      }
-    : {
-        backgroundColor: theme.palette.primary.light,
-        color: theme.palette.text.light,
-      }
+  const colors: React.CSSProperties = {
+    backgroundColor: backgroundColor,
+    color: palette.text,
+  }
+
+  const styles: React.CSSProperties = {
+    ...colors,
+    transition: theme.transition,
+  }
 
   return styles
 }

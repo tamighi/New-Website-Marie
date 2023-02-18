@@ -1,11 +1,10 @@
 import React from "react"
 
-import { ThemeContext } from "../contexts"
-import { Theme } from "../types"
+import { Theme, ThemeContext } from "../contexts"
 
 const ThemeProvider = ({
   children,
-  theme
+  theme,
 }: {
   children: React.ReactNode
   theme: Theme

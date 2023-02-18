@@ -1,19 +1,21 @@
-export { default as Appbar } from "./Appbar"
+export * from "./Appbar"
 
-export { default as Card } from "./Card"
+export * from "./Navbar"
 
-export { default as DataGrid } from "./DataGrid"
+export * from "./Card"
 
-export { default as Divider } from "./Divider"
+export * from "./DataGrid"
 
-export { default as Drawer } from "./Drawer"
+export * from "./Divider"
 
-export { default as Grid } from "./Grid"
+export * from "./Drawer"
+
+export * from "./Grid"
 
 export * from "./Icon"
 
-export * from "./Icons"
+export * from "./IconButton"
 
-export { default as IconButton } from "./IconButton"
+export * from "./Paper"
 
-export { default as Paper } from "./Paper"
+export * from "./styles"

@@ -1,7 +1,7 @@
-import { Props } from "../../types"
+import { DefaultProps } from "../styles"
 import "./IconButton.css"
 
-interface IconButtonProps extends Props {
+interface IconButtonProps extends DefaultProps {
   onClick: (() => void) | undefined
 }
 

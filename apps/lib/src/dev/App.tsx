@@ -1,16 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { TestAppbar } from "./components/TestAppbar"
-import { TestPage1 } from "./components/TestPage1"
+import { TestHomePage } from "./components/TestHomePage"
+import { TestDataGrid } from "./components/TestDataGrid"
+
+import { useStyles } from "../hooks"
+
+import "./App.css"
 
 export const App = () => {
+  const style = useStyles("background")
+
   return (
-    <div className="App">
-      <div style={{ padding: "48px" }}>
-        <TestAppbar />
-      </div>
+    <div className="App" style={style}>
       <BrowserRouter>
+      <TestAppbar />
         <Routes>
-          <Route path="/" element={<TestPage1 />} />
+          <Route path="/" element={<TestHomePage />} />
+          <Route path="/dataGrid" element={<TestDataGrid />} />
         </Routes>
       </BrowserRouter>
     </div>

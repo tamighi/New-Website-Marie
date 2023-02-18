@@ -1,14 +1,22 @@
-import { Props } from "../../types"
+import { useStyles } from "../../hooks"
+import { DefaultProps } from ".."
 
 import "./Paper.css"
 
-const Paper = (props: Props) => {
+export type PaperProps = DefaultProps
+
+const Paper = (props: DefaultProps) => {
   const { style, children, className } = props
 
   const classNames = "Paper " + (className || "")
 
+  const styles = {
+    ...useStyles("background"),
+    ...style,
+  }
+
   return (
-    <div className={classNames} style={style}>
+    <div className={classNames} style={styles}>
       {children}
     </div>
   )

@@ -1,11 +1,11 @@
 import React from "react"
 
-import { useClickOutside } from "../../hooks"
-import { Props } from "../../types"
+import { useClickOutside, useStyles } from "../../hooks"
+import { DefaultProps } from ".."
 
 import "./Drawer.css"
 
-interface DrawerProps extends Props {
+export interface DrawerProps extends DefaultProps {
   open: boolean
   onClose: () => void
 }
@@ -14,20 +14,37 @@ const Drawer = (props: DrawerProps) => {
   const { style, children, className, open, onClose } = props
 
   const classNames = "Drawer " + (className || "")
-  const ref = useClickOutside(onClose)
 
+  const styles = {
+    ...useStyles("background"),
+    ...style,
+  }
+
+  styles.transition = styles.transition
+    ? styles.transition + ", transform 225ms ease"
+    : "transform 225ms ease"
+
+  const ref = useClickOutside(onClose)
   const [visible, setVisible] = React.useState(open)
 
   React.useEffect(() => {
-    setVisible(open)
+    if (open) {
+      setVisible(open)
+    }
+    const timer = setTimeout(() => {
+      if (!open) {
+        setVisible(open)
+      }
+    }, 225)
+    return () => clearTimeout(timer)
   }, [open])
 
   return (
-    <div className={`Container${open ? "" : " Hidden"}`}>
-      <div className={`Background${visible ? "" : " HiddenBackground"}`}/>
+    <div className={`DrawerContainer${visible ? "" : " HiddenContainer"}`}>
+      <div className={`Background${open ? "" : " HiddenBackground"}`} />
       <div
-        className={`${classNames}${visible ? "" : " HiddenDrawer"}`}
-        style={style}
+        className={`${classNames}${open ? "" : " HiddenDrawer"}`}
+        style={styles}
         ref={ref}
       >
         {children}

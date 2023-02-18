@@ -1,8 +1,9 @@
 import { Column, useTable } from "react-table"
+import { useTheme } from "../../hooks"
 
 import "./DataGrid.css"
 
-interface DataGridProps {
+export interface DataGridProps {
   data: object[]
   columns: Column<object>[]
 }
@@ -11,60 +12,62 @@ const DataGrid = ({ data, columns }: DataGridProps) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data })
 
-  return (
-    // apply the table props
+  const theme = useTheme()
 
-    <table {...getTableProps()}>
+  const themeColors = theme.palette.darkMode
+    ? theme.palette.dark
+    : theme.palette.light
+
+  return (
+    <table {...getTableProps()} style={{ color: themeColors.text }}>
       <thead>
-        {
-          // Loop over the header rows
-          headerGroups.map((headerGroup) => (
-            // Apply the header row props
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {
-                // Loop over the headers in each row
-                headerGroup.headers.map((column) => (
-                  // Apply the header cell props
-                  <th {...column.getHeaderProps()}>
-                    {
-                      // Render the header
-                      column.render("Header")
-                    }
+        {headerGroups.map((headerGroup) => {
+          const { key, ...headerGroupProps } = headerGroup.getHeaderGroupProps()
+          return (
+            <tr
+              key={key}
+              {...headerGroupProps}
+              style={{ backgroundColor: themeColors.primary }}
+            >
+              {headerGroup.headers.map((column) => {
+                const { key, ...headerProps } = column.getHeaderProps()
+                return (
+                  <th key={key} {...headerProps}>
+                    {column.render("Header")}
                   </th>
-                ))
-              }
+                )
+              })}
             </tr>
-          ))
-        }
+          )
+        })}
       </thead>
-      {/* Apply the table body props */}
       <tbody {...getTableBodyProps()}>
-        {
-          // Loop over the table rows
-          rows.map((row) => {
-            // Prepare the row for display
-            prepareRow(row)
-            return (
-              // Apply the row props
-              <tr {...row.getRowProps()}>
-                {
-                  // Loop over the rows cells
-                  row.cells.map((cell) => {
-                    // Apply the cell props
-                    return (
-                      <td {...cell.getCellProps()}>
-                        {
-                          // Render the cell contents
-                          cell.render("Cell")
-                        }
-                      </td>
-                    )
-                  })
-                }
-              </tr>
-            )
-          })
-        }
+        {rows.map((row, index) => {
+          prepareRow(row)
+          const { key, ...rowProps } = row.getRowProps()
+          return (
+            <tr
+              key={key}
+              {...rowProps}
+              style={{
+                backgroundImage:
+                  index % 2 === 0
+                    ? ""
+                    : "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))",
+                backgroundColor: themeColors.background,
+              }}
+            >
+              {row.cells.map((cell) => {
+                const { key, ...cellProps } = cell.getCellProps()
+                return (
+                  <td key={key} {...cellProps}>
+                    {cell.render("Cell")}
+                  </td>
+                )
+              })}
+            </tr>
+          )
+        })}
       </tbody>
     </table>
   )
