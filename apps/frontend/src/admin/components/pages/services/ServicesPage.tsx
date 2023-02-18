@@ -31,9 +31,8 @@ export const ServicesPage = () => {
     })
   }
   return (
-    <>
-      <button onClick={onClick}>Test</button>
+    <div style={{ flexGrow: 1 }}>
       <DataGrid data={data} columns={columns} />
-    </>
+    </div>
   )
 }

@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 import { Appbar as LibAppbar, Navbar } from "lib"
 
@@ -28,13 +28,15 @@ const navItems = [
 
 export const Appbar = () => {
   const location = useLocation()
+  const navigation = useNavigate()
+
   return (
     <LibAppbar>
       <Navbar>
         <AppbarDrawer navItems={navItems} />
         <ThemeToggleIcon />
         <div className="Logo">Marie Somville</div>
-        <ul className="LinkList">
+        <ul>
           {navItems.map((button, id) => (
             <li key={id}>
               <img
@@ -46,9 +48,9 @@ export const Appbar = () => {
                   transition: "transform .2s ease"
                 }}
               ></img>
-              <Link className="Link" to={button.to}>
+              <button onClick={() => navigation(button.to)}>
                 {button.name}
-              </Link>
+              </button>
             </li>
           ))}
         </ul>

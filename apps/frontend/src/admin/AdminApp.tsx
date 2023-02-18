@@ -17,13 +17,13 @@ export const AdminApp = () => {
   return (
     <div className="AdminApp">
       <Appbar toggleSideBar={toggleOpen} />
-      <div style={{ display: "flex" }}>
+      <main className="AdminMain">
         <Sidebar open={openSidebar} toggleSideBar={toggleOpen} />
         <Routes>
           <Route path="" element={<div>HomeAdmin</div>} />
           <Route path="services" element={<ServicesPage />} />
         </Routes>
-      </div>
+      </main>
     </div>
   )
 }
