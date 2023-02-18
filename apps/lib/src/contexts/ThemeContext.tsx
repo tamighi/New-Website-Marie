@@ -1,16 +1,16 @@
 import React from "react"
 
-export interface Color {
-  light: string
-  dark: string
+export interface Colors {
+  primary: string
+  secondary: string
+  background: string
+  text: string
 }
 
 export interface Palette {
   darkMode: boolean
-  primary: Color
-  secondary: Color
-  background: Color
-  text: Color
+  dark: Colors
+  light: Colors
 }
 
 export interface Theme {

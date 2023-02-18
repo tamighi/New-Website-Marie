@@ -1,5 +1,7 @@
 export * from "./Appbar"
 
+export * from "./Navbar"
+
 export * from "./Card"
 
 export * from "./DataGrid"

@@ -18,7 +18,7 @@ const columns: ColumnType[] = [
 
 export const TestDataGrid = () => {
   return (
-    <div className="Page">
+    <div className="Page" style={{ margin: "20px" }}>
       <DataGrid data={data} columns={columns} />
     </div>
   )

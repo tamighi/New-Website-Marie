@@ -17,7 +17,7 @@ const Appbar = (props: AppbarProps) => {
 
   return (
     <Paper style={styles} className={classNames}>
-      <div className="Navbar">{children}</div>
+     {children}
     </Paper>
   )
 }

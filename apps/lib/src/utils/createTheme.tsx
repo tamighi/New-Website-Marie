@@ -1,14 +1,18 @@
 import { baseTheme } from "../constants"
-import { Color, Palette, Theme } from "../contexts"
+import { Colors, Palette, Theme } from "../contexts"
 
 type DeepPartial<T> = T extends object
   ? { [Key in keyof T]?: DeepPartial<T[Key]> }
   : T | undefined
 
-const createColor = (userColor: DeepPartial<Color>, baseColor: Color) => {
+const createColor = (userColor: DeepPartial<Colors>, baseColor: Colors) => {
   return {
-    light: userColor.light ? userColor.light : baseColor.light,
-    dark: userColor.dark ? userColor.dark : baseColor.dark,
+    primary: userColor.primary ? userColor.primary : baseColor.primary,
+    secondary: userColor.secondary ? userColor.secondary : baseColor.secondary,
+    background: userColor.background
+      ? userColor.background
+      : baseColor.background,
+    text: userColor.text ? userColor.text : baseColor.text,
   }
 }
 
@@ -17,17 +21,11 @@ const createPalette = (userPalette: DeepPartial<Palette> | undefined) => {
   if (userPalette?.darkMode !== undefined) {
     palette.darkMode = userPalette.darkMode
   }
-  if (userPalette?.primary) {
-    palette.primary = createColor(userPalette.primary, palette.primary)
+  if (userPalette?.light) {
+    palette.light = createColor(userPalette.light, palette.light)
   }
-  if (userPalette?.secondary) {
-    palette.secondary = createColor(userPalette.secondary, palette.secondary)
-  }
-  if (userPalette?.background) {
-    palette.background = createColor(userPalette.background, palette.background)
-  }
-  if (userPalette?.text) {
-    palette.text = createColor(userPalette.text, palette.text)
+  if (userPalette?.dark) {
+    palette.dark = createColor(userPalette.dark, palette.dark)
   }
   return palette
 }
@@ -35,7 +33,7 @@ const createPalette = (userPalette: DeepPartial<Palette> | undefined) => {
 export const createTheme = (userTheme: DeepPartial<Theme>): Theme => {
   const theme = {
     palette: createPalette(userTheme.palette),
-    transition: userTheme.transition || baseTheme.transition
+    transition: userTheme.transition || baseTheme.transition,
   }
   return theme
 }
