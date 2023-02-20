@@ -1,7 +1,7 @@
 import { Drawer } from "lib"
 import { Link } from "react-router-dom"
 
-import "./Sidebar.css"
+import styles from "./Sidebar.css"
 
 const pages = [
   { name: "Dashboard", to: "/admin" },
@@ -21,7 +21,7 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
   }
 
   return (
-    <div className="Sidebar">
+    <div className={styles.Sidebar}>
       <ul>
         {pages.map((page, index) => (
           <li key={index}>
@@ -29,7 +29,11 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
           </li>
         ))}
       </ul>
-      <Drawer open={open || false} onClose={onClose} className="MobileSidebar">
+      <Drawer
+        open={open || false}
+        onClose={onClose}
+        className={styles.MobileSidebar}
+      >
         Drawer
       </Drawer>
     </div>

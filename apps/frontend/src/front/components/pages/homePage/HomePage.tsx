@@ -3,11 +3,11 @@ import { AnimatedPage } from "../../utils/AnimatedPage"
 import { About } from "./About"
 import { HomeImage } from "./HomeImage"
 
-import "../../../styles/Page.css"
+import styles from "../../../styles/Page.css"
 
 export const HomePage = () => {
   return (
-    <div className="Page">
+    <div className={styles.Page}>
       <AnimatedPage>
         <Grid container>
           <Grid small={12} large={6}>

@@ -1,9 +1,9 @@
 import { Divider } from "lib"
-import "./Footer.css"
+import styles from "./Footer.css"
 
 export const Footer = () => {
   return (
-    <div className="Footer">
+    <div className={styles.Footer}>
       <Divider />
       Footer
     </div>

@@ -1,11 +1,11 @@
 import cat from "assets/images/cat.png"
 
-import "../../../styles/Animation.css"
+import styles from "../../../styles/Animation.css"
 
 export const HomeImage = () => {
   return (
     <img
-      className="slideInLeft"
+      className={styles.slideInLeft}
       src={cat}
       alt=""
       style={{

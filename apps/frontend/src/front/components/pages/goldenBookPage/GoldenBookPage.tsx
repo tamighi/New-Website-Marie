@@ -1,3 +1,5 @@
+import { BasePage } from "front/components/generics/basePage/BasePage"
+
 export const GoldenBookPage = () => {
-  return <div>GoldenBookPage</div>
+  return <BasePage>GoldenBookPage</BasePage>
 }

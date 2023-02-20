@@ -3,11 +3,11 @@ import React from "react"
 import { ResponsiveGrid as Grid } from "lib"
 import { AnimatedPage } from "../../utils/AnimatedPage"
 
-import "../../../styles/Page.css"
+import styles from "../../../styles/Page.css"
 
 export const BasePage = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="Page">
+    <div className={styles.Page}>
       <AnimatedPage>
         <Grid container>
           <Grid large={3} />

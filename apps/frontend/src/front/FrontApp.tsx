@@ -12,13 +12,13 @@ import { ServicePage } from "./components/pages/servicePage/ServicePage"
 import { ErrorPage } from "./ErrorPage"
 
 
-import "./FrontApp.css"
+import styles from "./FrontApp.css"
 
 export const FrontApp = () => {
   const location = useLocation()
 
   return (
-    <div className="FrontApp">
+    <div className={styles.FrontApp}>
       <Appbar />
       <Background />
       <AnimatePresence mode="wait">

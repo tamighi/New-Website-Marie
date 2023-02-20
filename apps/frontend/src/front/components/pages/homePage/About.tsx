@@ -1,11 +1,11 @@
 import { Card } from "lib"
 
-import "../../../styles/Animation.css"
+import styles from "../../../styles/Animation.css"
 
 export const About = () => {
   return (
     <div
-      className="slideInLeft"
+      className={styles.slideInLeft}
       style={{
         animationDelay: "0.5s",
       }}

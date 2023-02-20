@@ -1,9 +1,5 @@
-import { AnimatedPage } from "../../../components/utils/AnimatedPage"
+import { BasePage } from "front/components/generics/basePage/BasePage"
 
 export const ContactPage = () => {
-  return (
-    <AnimatedPage>
-      <div>ContactFront</div>
-    </AnimatedPage>
-  )
+  return <BasePage>Contact</BasePage>
 }
