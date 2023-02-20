@@ -4,6 +4,8 @@ import { Divider, Drawer, IconButton, MenuIcon } from "lib"
 
 import { useLocation, useNavigate } from "react-router-dom"
 
+import feather from "assets/images/feather.png"
+
 import "./AppbarDrawer.css"
 
 interface AppbarDrawerProps {
@@ -37,7 +39,7 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
                 {button.name}
                 <img
                   alt=""
-                  src={"./images/feather.png"}
+                  src={feather}
                   style={{
                     height: "64px",
                     visibility:

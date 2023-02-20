@@ -5,6 +5,8 @@ import { Appbar as LibAppbar, Navbar } from "lib"
 import { AppbarDrawer } from "./AppbarDrawer"
 import { ThemeToggleIcon } from "./ThemeToggleIcon"
 
+import feather from "assets/images/feather.png"
+
 import "./Appbar.css"
 
 const navItems = [
@@ -41,7 +43,7 @@ export const Appbar = () => {
             <li key={id}>
               <img
                 alt=""
-                src={"./images/feather.png"}
+                src={feather}
                 style={{
                   height: "64px",
                   transform: button.to === location.pathname ? "" : "translateY(-70px)",
