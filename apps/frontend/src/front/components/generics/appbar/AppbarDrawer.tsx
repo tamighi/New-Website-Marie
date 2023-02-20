@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 
 import feather from "assets/images/feather.png"
 
-import "./AppbarDrawer.css"
+import styles from "./AppbarDrawer.css"
 
 interface AppbarDrawerProps {
   navItems: { name: string; to: string }[]
@@ -23,12 +23,12 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
   }
 
   return (
-    <div className="MobileAppbar">
+    <div className={styles.MobileAppbar}>
       <IconButton onClick={() => setOpen(!open)}>
         <MenuIcon />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
-        <ul className="DrawerLinkList">
+        <ul className={styles.DrawerLinkList}>
           <li>
             Menu
             <Divider />

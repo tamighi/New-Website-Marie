@@ -20,7 +20,7 @@
   width: 100%;
 }
 
-.DrawerLink {
+.DrawerLinkList button {
   width: 100%;
   cursor: pointer;
   display: flex;
@@ -28,7 +28,7 @@
   align-items: center;
 }
 
-.DrawerLink:hover {
+.DrawerLinkList button:hover {
   background-image: linear-gradient(
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.1)

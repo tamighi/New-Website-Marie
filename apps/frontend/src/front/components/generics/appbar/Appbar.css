@@ -1,23 +1,23 @@
-ul {
+.LinkList {
   display: flex;
 }
 
 @media only screen and (max-width: 600px) {
-  ul {
+  .LinkList {
     display: none;
   }
 }
 
-li {
+.LinkList li {
   display: flex;
   align-items: center;
 }
 
-button {
+.LinkList button {
   font-weight: 700;
 }
 
-button:hover {
+.LinkList button:hover {
   color: #3c52b2;
   transform: scale(1.2);
 }

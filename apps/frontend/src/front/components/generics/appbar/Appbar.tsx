@@ -7,7 +7,7 @@ import { ThemeToggleIcon } from "./ThemeToggleIcon"
 
 import feather from "assets/images/feather.png"
 
-import "./Appbar.css"
+import styles from "./Appbar.css"
 
 const navItems = [
   {
@@ -37,8 +37,8 @@ export const Appbar = () => {
       <Navbar>
         <AppbarDrawer navItems={navItems} />
         <ThemeToggleIcon />
-        <div className="Logo">Marie Somville</div>
-        <ul>
+        <div className={styles.Logo}>Marie Somville</div>
+        <ul className={styles.LinkList}>
           {navItems.map((button, id) => (
             <li key={id}>
               <img
