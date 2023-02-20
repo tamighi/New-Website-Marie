@@ -2,23 +2,8 @@
   font-weight: 400;
 }
 
-.App,
-button {
+.App {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   letter-spacing: 0.00938em;
   font-size: 18px;
-}
-
-button {
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  text-decoration: none;
-  background-color: transparent;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
 }

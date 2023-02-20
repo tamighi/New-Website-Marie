@@ -4,6 +4,7 @@ import { FrontRoot } from "./front/FrontRoot"
 import { AdminRoot } from "./admin/AdminRoot"
 
 import styles from "./App.css"
+import "./Global.css"
 
 export const App = () => {
   return (
