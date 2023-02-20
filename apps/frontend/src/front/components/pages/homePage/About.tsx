@@ -1,6 +1,6 @@
 import { Card } from "lib"
 
-import styles from "../../../styles/Animation.css"
+import styles from "./SlideInLeft.css"
 
 export const About = () => {
   return (

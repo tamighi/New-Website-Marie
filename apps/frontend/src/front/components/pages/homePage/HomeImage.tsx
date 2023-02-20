@@ -1,6 +1,6 @@
 import cat from "assets/images/cat.png"
 
-import styles from "../../../styles/Animation.css"
+import styles from "./SlideInLeft.css"
 
 export const HomeImage = () => {
   return (
