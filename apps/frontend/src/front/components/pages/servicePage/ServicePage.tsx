@@ -1,12 +1,12 @@
-import { BasePage } from "../../generics/basePage/BasePage"
+import { CenteredPage } from "front/components/generics/basePage/CenteredPage"
 import { Card } from "lib"
 
 export const ServicePage = () => {
   return (
-    <BasePage>
+    <CenteredPage>
       <Card>
         <h2>Les services proposés ...</h2>
       </Card>
-    </BasePage>
+    </CenteredPage>
   )
 }
