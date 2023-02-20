@@ -1,7 +1,7 @@
-import { Appbar as LibAppbar, MenuIcon, IconButton, Navbar } from "lib"
+import { Appbar as LibAppbar, MenuIcon, IconButton, Navbar } from "lib";
 
 interface AppbarProps {
-  toggleSideBar: () => void
+  toggleSideBar: () => void;
 }
 
 export const Appbar = ({ toggleSideBar }: AppbarProps) => {
@@ -14,5 +14,5 @@ export const Appbar = ({ toggleSideBar }: AppbarProps) => {
         <div style={{ flexGrow: 1, textAlign: "center" }}>Appbar</div>
       </Navbar>
     </LibAppbar>
-  )
-}
+  );
+};

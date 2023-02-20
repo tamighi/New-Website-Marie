@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
-import { ResponsiveGrid as Grid } from "lib"
-import { BasePage } from "./BasePage"
+import { ResponsiveGrid as Grid } from "lib";
+import { BasePage } from "./BasePage";
 
 export const CenteredPage = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -14,5 +14,5 @@ export const CenteredPage = ({ children }: { children: React.ReactNode }) => {
         <Grid large={3} />
       </Grid>
     </BasePage>
-  )
-}
+  );
+};

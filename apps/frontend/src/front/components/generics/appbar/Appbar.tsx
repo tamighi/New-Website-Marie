@@ -1,13 +1,13 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom";
 
-import { Appbar as LibAppbar, Navbar } from "lib"
+import { Appbar as LibAppbar, Navbar } from "lib";
 
-import { AppbarDrawer } from "./AppbarDrawer"
-import { ThemeToggleIcon } from "./ThemeToggleIcon"
+import { AppbarDrawer } from "./AppbarDrawer";
+import { ThemeToggleIcon } from "./ThemeToggleIcon";
 
-import feather from "assets/images/feather.png"
+import feather from "assets/images/feather.png";
 
-import styles from "./Appbar.css"
+import styles from "./Appbar.css";
 
 const navItems = [
   {
@@ -26,11 +26,11 @@ const navItems = [
     name: "Livre d'or",
     to: "/livredor",
   },
-]
+];
 
 export const Appbar = () => {
-  const location = useLocation()
-  const navigation = useNavigate()
+  const location = useLocation();
+  const navigation = useNavigate();
 
   return (
     <LibAppbar>
@@ -46,8 +46,9 @@ export const Appbar = () => {
                 src={feather}
                 style={{
                   height: "64px",
-                  transform: button.to === location.pathname ? "" : "translateY(-70px)",
-                  transition: "transform .2s ease"
+                  transform:
+                    button.to === location.pathname ? "" : "translateY(-70px)",
+                  transition: "transform .2s ease",
                 }}
               ></img>
               <button onClick={() => navigation(button.to)}>
@@ -58,5 +59,5 @@ export const Appbar = () => {
         </ul>
       </Navbar>
     </LibAppbar>
-  )
-}
+  );
+};

@@ -1,24 +1,24 @@
-import { Drawer } from "lib"
-import { Link } from "react-router-dom"
+import { Drawer } from "lib";
+import { Link } from "react-router-dom";
 
-import styles from "./Sidebar.css"
+import styles from "./Sidebar.css";
 
 const pages = [
   { name: "Dashboard", to: "/admin" },
   { name: "Services", to: "/admin/services" },
-]
+];
 
 interface SidebarProps {
-  open: boolean
-  toggleSideBar: () => void
+  open: boolean;
+  toggleSideBar: () => void;
 }
 
 export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
   const onClose = () => {
     if (open && toggleSideBar) {
-      toggleSideBar()
+      toggleSideBar();
     }
-  }
+  };
 
   return (
     <div className={styles.Sidebar}>
@@ -37,5 +37,5 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
         Drawer
       </Drawer>
     </div>
-  )
-}
+  );
+};

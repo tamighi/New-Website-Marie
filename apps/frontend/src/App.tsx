@@ -1,10 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { FrontRoot } from "./front/FrontRoot"
-import { AdminRoot } from "./admin/AdminRoot"
+import { FrontRoot } from "./front/FrontRoot";
+import { AdminRoot } from "./admin/AdminRoot";
 
-import styles from "./App.css"
-import "./Global.css"
+import styles from "./App.css";
+import "./Global.css";
 
 export const App = () => {
   return (
@@ -16,5 +16,5 @@ export const App = () => {
         </Routes>
       </BrowserRouter>
     </div>
-  )
-}
+  );
+};

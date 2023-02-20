@@ -1,5 +1,5 @@
-import { CenteredPage } from "front/components/generics/basePage/CenteredPage"
+import { CenteredPage } from "front/components/generics/basePage/CenteredPage";
 
 export const ReviewPage = () => {
-  return <CenteredPage>ReviewPage</CenteredPage>
-}
+  return <CenteredPage>ReviewPage</CenteredPage>;
+};

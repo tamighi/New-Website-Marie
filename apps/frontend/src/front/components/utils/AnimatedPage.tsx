@@ -1,12 +1,12 @@
-import React from "react"
+import React from "react";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const animations = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   exit: { opacity: 0 },
-}
+};
 
 export const AnimatedPage = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -19,5 +19,5 @@ export const AnimatedPage = ({ children }: { children: React.ReactNode }) => {
     >
       {children}
     </motion.div>
-  )
-}
+  );
+};

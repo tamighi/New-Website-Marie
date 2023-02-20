@@ -1,6 +1,6 @@
-import { Card } from "lib"
+import { Card } from "lib";
 
-import styles from "./SlideInLeft.css"
+import styles from "./SlideInLeft.css";
 
 export const About = () => {
   return (
@@ -32,5 +32,5 @@ export const About = () => {
         modi!
       </Card>
     </div>
-  )
-}
+  );
+};

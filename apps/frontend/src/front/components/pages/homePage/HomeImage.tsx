@@ -1,6 +1,6 @@
-import cat from "assets/images/cat.png"
+import cat from "assets/images/cat.png";
 
-import styles from "./SlideInLeft.css"
+import styles from "./SlideInLeft.css";
 
 export const HomeImage = () => {
   return (
@@ -12,5 +12,5 @@ export const HomeImage = () => {
         width: "100%",
       }}
     />
-  )
-}
+  );
+};

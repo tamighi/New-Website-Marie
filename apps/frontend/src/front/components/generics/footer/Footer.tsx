@@ -1,5 +1,5 @@
-import { Divider } from "lib"
-import styles from "./Footer.css"
+import { Divider } from "lib";
+import styles from "./Footer.css";
 
 export const Footer = () => {
   return (
@@ -7,5 +7,5 @@ export const Footer = () => {
       <Divider />
       Footer
     </div>
-  )
-}
+  );
+};

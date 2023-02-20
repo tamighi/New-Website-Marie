@@ -1,7 +1,7 @@
-import { BasePage } from "front/components/generics/basePage/BasePage"
-import { ResponsiveGrid as Grid } from "lib"
-import { About } from "./About"
-import { HomeImage } from "./HomeImage"
+import { BasePage } from "front/components/generics/basePage/BasePage";
+import { ResponsiveGrid as Grid } from "lib";
+import { About } from "./About";
+import { HomeImage } from "./HomeImage";
 
 export const HomePage = () => {
   return (
@@ -15,5 +15,5 @@ export const HomePage = () => {
         </Grid>
       </Grid>
     </BasePage>
-  )
-}
+  );
+};

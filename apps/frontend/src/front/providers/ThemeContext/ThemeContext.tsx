@@ -1,26 +1,26 @@
-import React from "react"
+import React from "react";
 
-import { createTheme, ThemeProvider } from "lib"
+import { createTheme, ThemeProvider } from "lib";
 
-const ToggleThemeContext = React.createContext<(() => void) | null>(null)
+const ToggleThemeContext = React.createContext<(() => void) | null>(null);
 
 export const useToggleTheme = () => {
-  return React.useContext(ToggleThemeContext)
-}
+  return React.useContext(ToggleThemeContext);
+};
 
 export const MyThemeProvider = ({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) => {
   const [darkMode, setDarkMode] = React.useState(
     localStorage.getItem("dark") === "light" ? false : true
-  )
+  );
 
   const toggleTheme = () => {
-    localStorage.setItem("dark", darkMode ? "light" : "dark")
-    setDarkMode(!darkMode)
-  }
+    localStorage.setItem("dark", darkMode ? "light" : "dark");
+    setDarkMode(!darkMode);
+  };
 
   const theme = createTheme({
     palette: {
@@ -38,8 +38,8 @@ export const MyThemeProvider = ({
         text: "white",
       },
     },
-    transition: "all 0.6s ease"
-  })
+    transition: "all 0.6s ease",
+  });
 
   return (
     <ThemeProvider theme={theme}>
@@ -47,5 +47,5 @@ export const MyThemeProvider = ({
         {children}
       </ToggleThemeContext.Provider>
     </ThemeProvider>
-  )
-}
+  );
+};
