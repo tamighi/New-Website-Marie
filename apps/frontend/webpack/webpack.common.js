@@ -1,15 +1,9 @@
-const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 module.exports = {
   entry: {
     main: "./src/index.tsx",
-  },
-  output: {
-    path: path.resolve(__dirname, "..", "build"),
-    filename: "bundle.js",
-    publicPath: "/",
   },
   resolve: {
     extensions: [".tsx", ".js", ".ts"],
