@@ -1,4 +1,5 @@
 import { useTheme } from "lib"
+import winter from "../../../../../assets/backgrounds/winter.jpg"
 
 import "./Background.css"
 
@@ -8,11 +9,7 @@ export const Background = () => {
 
   return (
     <div className="Background">
-      <img
-        src={"./backgrounds/winter.jpg"}
-        alt=""
-        style={{ opacity: darkMode ? 1 : 0 }}
-      />
+      <img src={winter} alt="" style={{ opacity: darkMode ? 1 : 0 }} />
       <img
         src={"./backgrounds/autumn.jpg"}
         alt=""
