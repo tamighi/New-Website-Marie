@@ -1,9 +1,19 @@
 .Sidebar {
-  margin-right: 50px;
+  transition: width 0.5s ease;
 }
 
 @media only screen and (max-width: 600px) {
   .Sidebar {
     display: none;
   }
+}
+
+.Sidebar button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.Sidebar li:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3));
 }

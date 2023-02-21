@@ -1,0 +1,5 @@
+.BasePage {
+  padding: 46px;
+  padding-top: 0;
+  flex-grow: 1;
+}

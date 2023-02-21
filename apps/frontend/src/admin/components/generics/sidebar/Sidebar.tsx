@@ -1,5 +1,6 @@
-import { Drawer, HomeIcon, IconButton, TableChartIcon } from "lib";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Drawer, HomeIcon, TableChartIcon } from "lib";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./Sidebar.css";
 
@@ -14,6 +15,8 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
+  const isSmall = false;
+
   const navigate = useNavigate();
   const onClose = () => {
     if (open && toggleSideBar) {
@@ -21,18 +24,28 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
     }
   };
 
-  const isSmall = false;
+  const [visibleTitles, setVisibleTitles] = React.useState(open);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisibleTitles(open);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [open]);
 
   return (
     <>
-      <div className={styles.Sidebar}>
+      <div
+        className={styles.Sidebar}
+        style={{ width: `${open ? "150px" : "45px"}` }}
+      >
         <ul>
           {pages.map((page, index) => (
             <li key={index}>
-              <IconButton onClick={() => navigate(page.to)}>
+              <button onClick={() => navigate(page.to)}>
                 {page.logo}
-                {open && page.name}
-              </IconButton>
+                {(visibleTitles? open : visibleTitles) && page.name}
+              </button>
             </li>
           ))}
         </ul>
@@ -43,7 +56,7 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
             Drawer
             {pages.map((page, index) => (
               <li key={index}>
-                <Link to={page.to}>{page.name}</Link>
+                <button onClick={() => navigate(page.to)}>{page.name}</button>
               </li>
             ))}
           </ul>

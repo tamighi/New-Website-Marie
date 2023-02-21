@@ -1,5 +1,6 @@
 import { DataGrid } from "lib";
 import { dataProvider } from "../../../api/dataProvider";
+import { BasePage } from "../BasePage";
 
 interface ServiceCategoriesDto {
   name: string;
@@ -31,8 +32,8 @@ export const ServicesPage = () => {
     });
   };
   return (
-    <div style={{ flexGrow: 1 }}>
+    <BasePage>
       <DataGrid data={data} columns={columns} />
-    </div>
+    </BasePage>
   );
 };
