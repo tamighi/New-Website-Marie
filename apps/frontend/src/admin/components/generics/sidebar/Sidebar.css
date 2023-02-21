@@ -1,5 +1,6 @@
 .Sidebar {
   transition: width 0.5s ease;
+  width: auto;
 }
 
 @media only screen and (max-width: 600px) {
@@ -12,6 +13,9 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 10px;
 }
 
 .Sidebar li:hover {
