@@ -14,7 +14,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
-  const isSmall = false;
+  const isSmall = true;
 
   const navigate = useNavigate();
   const onClose = () => {
@@ -42,12 +42,19 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
         </ul>
       </div>
       {isSmall && (
-        <Drawer open={open || false} onClose={onClose}>
+        <Drawer
+          open={open || false}
+          onClose={onClose}
+          className={styles.Drawer}
+        >
           <ul>
-            Drawer
             {pages.map((page, index) => (
               <li key={index}>
-                <button onClick={() => navigate(page.to)}>{page.name}</button>
+                <button onClick={() => navigate(page.to)}>
+                  {page.logo}
+                  {page.name}
+                </button>
+                {page.divider && <Divider />}
               </li>
             ))}
           </ul>
