@@ -1,5 +1,5 @@
 .Sidebar {
-  transition: width 0.5s ease;
+  transition: min-width 0.5s ease;
   width: auto;
 }
 
