@@ -1,9 +1,3 @@
-@media (min-width: 600px) {
-  .MobileSidebar {
-    display: none;
-  }
-}
-
 .Sidebar {
   margin-right: 50px;
 }

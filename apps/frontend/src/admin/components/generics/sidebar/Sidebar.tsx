@@ -1,11 +1,11 @@
-import { Drawer } from "lib";
-import { Link } from "react-router-dom";
+import { Drawer, HomeIcon, IconButton, TableChartIcon } from "lib";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./Sidebar.css";
 
 const pages = [
-  { name: "Dashboard", to: "/admin" },
-  { name: "Services", to: "/admin/services" },
+  { name: "Dashboard", to: "/admin", logo: <HomeIcon /> },
+  { name: "Services", to: "/admin/services", logo: <TableChartIcon /> },
 ];
 
 interface SidebarProps {
@@ -14,11 +14,14 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
+  const navigate = useNavigate();
   const onClose = () => {
     if (open && toggleSideBar) {
       toggleSideBar();
     }
   };
+
+  const isSmall = false;
 
   return (
     <>
@@ -26,12 +29,15 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
         <ul>
           {pages.map((page, index) => (
             <li key={index}>
-              <Link to={page.to}>{page.name}</Link>
+              <IconButton onClick={() => navigate(page.to)}>
+                {page.logo}
+                {open && page.name}
+              </IconButton>
             </li>
           ))}
         </ul>
       </div>
-      <div className={styles.MobileSidebar}>
+      {isSmall && (
         <Drawer open={open || false} onClose={onClose}>
           <ul>
             Drawer
@@ -42,7 +48,7 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
             ))}
           </ul>
         </Drawer>
-      </div>
+      )}
     </>
   );
 };
