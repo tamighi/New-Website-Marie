@@ -1,7 +1,7 @@
 import { Column, useTable } from "react-table";
 import { useTheme } from "../../hooks";
 
-import "./DataGrid.css";
+import CSSClasses from "./DataGrid.css";
 
 export interface DataGridProps {
   data: object[];
@@ -19,7 +19,11 @@ const DataGrid = ({ data, columns }: DataGridProps) => {
     : theme.palette.light;
 
   return (
-    <table {...getTableProps()} style={{ color: themeColors.text }}>
+    <table
+      {...getTableProps()}
+      style={{ color: themeColors.text }}
+      className={CSSClasses.DataGrid}
+    >
       <thead>
         {headerGroups.map((headerGroup) => {
           const { key, ...headerGroupProps } =

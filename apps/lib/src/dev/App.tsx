@@ -5,13 +5,13 @@ import { TestDataGrid } from "./components/TestDataGrid";
 
 import { useStyles } from "../hooks";
 
-import "./App.css";
+import styles from "./App.css";
 
 export const App = () => {
   const style = useStyles("background");
 
   return (
-    <div className="App" style={style}>
+    <div className={styles.App} style={style}>
       <BrowserRouter>
         <TestAppbar />
         <Routes>

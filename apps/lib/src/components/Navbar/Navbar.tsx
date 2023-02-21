@@ -1,13 +1,13 @@
 import { DefaultProps } from "..";
 
-import "./Navbar.css";
+import CSSClasses from "./Navbar.css";
 
 export type NavbarProps = DefaultProps;
 
 const Navbar = (props: NavbarProps) => {
   const { style, children, className } = props;
 
-  const classNames = "Navbar " + (className || "");
+  const classNames = `${CSSClasses.Navbar} ` + (className || "");
 
   return (
     <nav className={classNames} style={style}>

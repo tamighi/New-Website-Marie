@@ -1,4 +1,4 @@
-table {
+.DataGrid {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -6,13 +6,13 @@ table {
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
-table td,
-table th {
+.DataGrid td,
+th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-table th {
+.DataGrid th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;

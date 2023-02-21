@@ -1,13 +1,13 @@
 import { DefaultProps } from "..";
 
-import "./IconBase.css";
+import CSSClasses from "./IconBase.css";
 
 export type IconProps = DefaultProps;
 
 const IconBase = (props: IconProps) => {
   const { style, className, children } = props;
 
-  const classNames = "IconBase " + (className || "");
+  const classNames = `${CSSClasses.IconBase} ` + (className || "");
 
   return (
     <svg

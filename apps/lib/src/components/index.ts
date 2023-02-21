@@ -18,4 +18,4 @@ export * from "./IconButton";
 
 export * from "./Paper";
 
-export * from "./styles";
+export * from "./types";

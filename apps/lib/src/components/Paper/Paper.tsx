@@ -1,14 +1,14 @@
 import { useStyles } from "../../hooks";
 import { DefaultProps } from "..";
 
-import "./Paper.css";
+import CSSClasses from "./Paper.css";
 
 export type PaperProps = DefaultProps;
 
 const Paper = (props: DefaultProps) => {
   const { style, children, className } = props;
 
-  const classNames = "Paper " + (className || "");
+  const classNames = `${CSSClasses.Paper} ` + (className || "");
 
   const styles = {
     ...useStyles("background"),

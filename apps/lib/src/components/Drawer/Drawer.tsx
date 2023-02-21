@@ -3,7 +3,7 @@ import React from "react";
 import { useClickOutside, useStyles } from "../../hooks";
 import { DefaultProps } from "..";
 
-import "./Drawer.css";
+import CSSClasses from "./Drawer.css";
 
 export interface DrawerProps extends DefaultProps {
   open: boolean;
@@ -13,7 +13,7 @@ export interface DrawerProps extends DefaultProps {
 const Drawer = (props: DrawerProps) => {
   const { style, children, className, open, onClose } = props;
 
-  const classNames = "Drawer " + (className || "");
+  const classNames = `${CSSClasses.Drawer} ` + (className || "");
 
   const styles = {
     ...useStyles("background"),
@@ -40,10 +40,18 @@ const Drawer = (props: DrawerProps) => {
   }, [open]);
 
   return (
-    <div className={`DrawerContainer${visible ? "" : " HiddenContainer"}`}>
-      <div className={`Background${open ? "" : " HiddenBackground"}`} />
+    <div
+      className={`${CSSClasses.DrawerContainer} ${
+        visible ? "" : CSSClasses.HiddenContainer
+      }`}
+    >
       <div
-        className={`${classNames}${open ? "" : " HiddenDrawer"}`}
+        className={`${CSSClasses.Background} ${
+          open ? "" : CSSClasses.HiddenBackground
+        }`}
+      />
+      <div
+        className={`${classNames} ${open ? "" : CSSClasses.HiddenDrawer}`}
         style={styles}
         ref={ref}
       >
