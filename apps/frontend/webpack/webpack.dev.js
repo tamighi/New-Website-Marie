@@ -1,4 +1,4 @@
-const path = require("path")
+const path = require("path");
 
 module.exports = {
   mode: "development",
@@ -12,4 +12,23 @@ module.exports = {
     hot: "only",
     historyApiFallback: true,
   },
-}
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                mode: "local",
+                localIdentName: "[name]__[local]__[hash:base64:5]",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+};

@@ -1,4 +1,4 @@
-import { Theme } from "../contexts/ThemeContext"
+import { Theme } from "../contexts/ThemeContext";
 
 const baseTheme: Theme = {
   palette: {
@@ -17,6 +17,6 @@ const baseTheme: Theme = {
     },
   },
   transition: "",
-} as const
+} as const;
 
-export default baseTheme
+export default baseTheme;

@@ -1,28 +1,29 @@
-import { Column, useTable } from "react-table"
-import { useTheme } from "../../hooks"
+import { Column, useTable } from "react-table";
+import { useTheme } from "../../hooks";
 
-import "./DataGrid.css"
+import "./DataGrid.css";
 
 export interface DataGridProps {
-  data: object[]
-  columns: Column<object>[]
+  data: object[];
+  columns: Column<object>[];
 }
 
 const DataGrid = ({ data, columns }: DataGridProps) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data })
+    useTable({ columns, data });
 
-  const theme = useTheme()
+  const theme = useTheme();
 
   const themeColors = theme.palette.darkMode
     ? theme.palette.dark
-    : theme.palette.light
+    : theme.palette.light;
 
   return (
     <table {...getTableProps()} style={{ color: themeColors.text }}>
       <thead>
         {headerGroups.map((headerGroup) => {
-          const { key, ...headerGroupProps } = headerGroup.getHeaderGroupProps()
+          const { key, ...headerGroupProps } =
+            headerGroup.getHeaderGroupProps();
           return (
             <tr
               key={key}
@@ -30,21 +31,21 @@ const DataGrid = ({ data, columns }: DataGridProps) => {
               style={{ backgroundColor: themeColors.primary }}
             >
               {headerGroup.headers.map((column) => {
-                const { key, ...headerProps } = column.getHeaderProps()
+                const { key, ...headerProps } = column.getHeaderProps();
                 return (
                   <th key={key} {...headerProps}>
                     {column.render("Header")}
                   </th>
-                )
+                );
               })}
             </tr>
-          )
+          );
         })}
       </thead>
       <tbody {...getTableBodyProps()}>
         {rows.map((row, index) => {
-          prepareRow(row)
-          const { key, ...rowProps } = row.getRowProps()
+          prepareRow(row);
+          const { key, ...rowProps } = row.getRowProps();
           return (
             <tr
               key={key}
@@ -58,19 +59,19 @@ const DataGrid = ({ data, columns }: DataGridProps) => {
               }}
             >
               {row.cells.map((cell) => {
-                const { key, ...cellProps } = cell.getCellProps()
+                const { key, ...cellProps } = cell.getCellProps();
                 return (
                   <td key={key} {...cellProps}>
                     {cell.render("Cell")}
                   </td>
-                )
+                );
               })}
             </tr>
-          )
+          );
         })}
       </tbody>
     </table>
-  )
-}
+  );
+};
 
-export default DataGrid
+export default DataGrid;

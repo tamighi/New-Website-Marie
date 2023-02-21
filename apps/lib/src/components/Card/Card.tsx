@@ -1,25 +1,25 @@
-import { useStyles } from "../../hooks"
-import { DefaultProps } from ".."
+import { useStyles } from "../../hooks";
+import { DefaultProps } from "..";
 
-import "./Card.css"
+import "./Card.css";
 
-export type CardProps = DefaultProps
+export type CardProps = DefaultProps;
 
 const Card = (props: CardProps) => {
-  const { style, children, className } = props
+  const { style, children, className } = props;
 
-  const classNames = "Card " + (className || "")
+  const classNames = "Card " + (className || "");
 
   const styles = {
     ...useStyles("background"),
     ...style,
-  }
+  };
 
   return (
     <div className={classNames} style={styles}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

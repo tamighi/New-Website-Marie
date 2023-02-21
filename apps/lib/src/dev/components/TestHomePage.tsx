@@ -1,6 +1,6 @@
-import { Card, ResponsiveGrid, Paper } from "../../components"
+import { Card, ResponsiveGrid, Paper } from "../../components";
 
-import "../styles/Page.css"
+import "../styles/Page.css";
 
 export const TestHomePage = () => {
   return (
@@ -31,5 +31,5 @@ export const TestHomePage = () => {
         </ResponsiveGrid>
       </ResponsiveGrid>
     </div>
-  )
-}
+  );
+};
