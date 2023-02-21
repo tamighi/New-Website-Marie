@@ -46,9 +46,8 @@ export const Appbar = () => {
                 src={feather}
                 style={{
                   height: "64px",
-                  transform:
-                    button.to === location.pathname ? "" : "translateY(-70px)",
-                  transition: "transform .2s ease",
+                  visibility:
+                    button.to === location.pathname ? undefined : "hidden",
                 }}
               ></img>
               <button onClick={() => navigation(button.to)}>

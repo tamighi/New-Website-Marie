@@ -21,21 +21,28 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
   };
 
   return (
-    <div className={styles.Sidebar}>
-      <ul>
-        {pages.map((page, index) => (
-          <li key={index}>
-            <Link to={page.to}>{page.name}</Link>
-          </li>
-        ))}
-      </ul>
-      <Drawer
-        open={open || false}
-        onClose={onClose}
-        className={styles.MobileSidebar}
-      >
-        Drawer
-      </Drawer>
-    </div>
+    <>
+      <div className={styles.Sidebar}>
+        <ul>
+          {pages.map((page, index) => (
+            <li key={index}>
+              <Link to={page.to}>{page.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={styles.MobileSidebar}>
+        <Drawer open={open || false} onClose={onClose}>
+          <ul>
+            Drawer
+            {pages.map((page, index) => (
+              <li key={index}>
+                <Link to={page.to}>{page.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </Drawer>
+      </div>
+    </>
   );
 };
