@@ -1,13 +1,14 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { FrontRoot } from "./front/FrontRoot"
-import { AdminRoot } from "./admin/AdminRoot"
+import { FrontRoot } from "./front/FrontRoot";
+import { AdminRoot } from "./admin/AdminRoot";
 
-import "./App.css"
+import styles from "./App.css";
+import "./Global.css";
 
 export const App = () => {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <BrowserRouter>
         <Routes>
           <Route path="*" element={<FrontRoot />} />
@@ -15,5 +16,5 @@ export const App = () => {
         </Routes>
       </BrowserRouter>
     </div>
-  )
-}
+  );
+};

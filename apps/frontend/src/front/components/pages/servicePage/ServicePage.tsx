@@ -1,15 +1,12 @@
-import { BasePage } from "../../generics/basePage/BasePage"
-import { Card } from "lib"
-
-import "../../../styles/Page.css"
-import "../../../styles/Typography.css"
+import { CenteredPage } from "front/components/generics/basePage/CenteredPage";
+import { Card } from "lib";
 
 export const ServicePage = () => {
   return (
-    <BasePage>
+    <CenteredPage>
       <Card>
-        <div className="Title">Les services proposés ...</div>
+        <h2>Les services proposés ...</h2>
       </Card>
-    </BasePage>
-  )
-}
+    </CenteredPage>
+  );
+};

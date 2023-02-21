@@ -1,23 +1,17 @@
-import { useTheme } from "lib"
+import { useTheme } from "lib";
+import winter from "assets/backgrounds/winter.jpg";
+import autumn from "assets/backgrounds/autumn.jpg";
 
-import "./Background.css"
+import styles from "./Background.css";
 
 export const Background = () => {
-  const theme = useTheme()
-  const darkMode = theme?.palette?.darkMode
+  const theme = useTheme();
+  const darkMode = theme?.palette?.darkMode;
 
   return (
-    <div className="Background">
-      <img
-        src={"./backgrounds/winter.jpg"}
-        alt=""
-        style={{ opacity: darkMode ? 1 : 0 }}
-      />
-      <img
-        src={"./backgrounds/autumn.jpg"}
-        alt=""
-        style={{ opacity: darkMode ? 0 : 1 }}
-      />
+    <div className={styles.Background}>
+      <img src={winter} alt="" style={{ opacity: darkMode ? 1 : 0 }} />
+      <img src={autumn} alt="" style={{ opacity: darkMode ? 0 : 1 }} />
     </div>
-  )
-}
+  );
+};

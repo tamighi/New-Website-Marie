@@ -1,8 +1,5 @@
 .LinkList {
   display: flex;
-
-  margin: 0;
-  padding: 0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -16,13 +13,11 @@
   align-items: center;
 }
 
-.Link {
-  text-decoration: none;
+.LinkList button {
   font-weight: 700;
-  color: inherit;
 }
 
-.Link:hover {
+.LinkList button:hover {
   color: #3c52b2;
   transform: scale(1.2);
 }

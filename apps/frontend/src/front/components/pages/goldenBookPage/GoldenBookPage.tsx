@@ -1,3 +1,5 @@
+import { CenteredPage } from "front/components/generics/basePage/CenteredPage";
+
 export const GoldenBookPage = () => {
-  return <div>GoldenBookPage</div>
-}
+  return <CenteredPage>GoldenBookPage</CenteredPage>;
+};

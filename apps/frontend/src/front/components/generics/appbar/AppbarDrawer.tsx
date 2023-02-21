@@ -1,32 +1,34 @@
-import React from "react"
+import React from "react";
 
-import { Divider, Drawer, IconButton, MenuIcon } from "lib"
+import { Divider, Drawer, IconButton, MenuIcon } from "lib";
 
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom";
 
-import "./AppbarDrawer.css"
+import feather from "assets/images/feather.png";
+
+import styles from "./AppbarDrawer.css";
 
 interface AppbarDrawerProps {
-  navItems: { name: string; to: string }[]
+  navItems: { name: string; to: string }[];
 }
 
 export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
-  const [open, setOpen] = React.useState(false)
-  const navigate = useNavigate()
-  const location = useLocation()
+  const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const onClick = (to: string) => {
-    setOpen(false)
-    navigate(to)
-  }
+    setOpen(false);
+    navigate(to);
+  };
 
   return (
-    <div className="MobileAppbar">
+    <div className={styles.MobileAppbar}>
       <IconButton onClick={() => setOpen(!open)}>
         <MenuIcon />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
-        <ul className="DrawerLinkList">
+        <ul className={styles.DrawerLinkList}>
           <li>
             Menu
             <Divider />
@@ -37,7 +39,7 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
                 {button.name}
                 <img
                   alt=""
-                  src={"./images/feather.png"}
+                  src={feather}
                   style={{
                     height: "64px",
                     visibility:
@@ -50,5 +52,5 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
         </ul>
       </Drawer>
     </div>
-  )
-}
+  );
+};

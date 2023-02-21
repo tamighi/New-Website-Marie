@@ -1,29 +1,29 @@
-import React from "react"
-import { Route, Routes } from "react-router-dom"
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 
-import { Appbar } from "./components/generics/appbar/Appbar"
-import { Sidebar } from "./components/generics/sidebar/Sidebar"
+import { Appbar } from "./components/generics/appbar/Appbar";
+import { Sidebar } from "./components/generics/sidebar/Sidebar";
 
-import { ServicesPage } from "./components/pages/services/ServicesPage"
+import { ServicesPage } from "./components/pages/services/ServicesPage";
 
-import "./AdminApp.css"
+import styles from "./AdminApp.css";
 
 export const AdminApp = () => {
-  const [openSidebar, setOpenSidebar] = React.useState(false)
+  const [openSidebar, setOpenSidebar] = React.useState(false);
 
   const toggleOpen = () => {
-    setOpenSidebar(!openSidebar)
-  }
+    setOpenSidebar(!openSidebar);
+  };
   return (
-    <div className="AdminApp">
+    <div className={styles.AdminApp}>
       <Appbar toggleSideBar={toggleOpen} />
-      <div style={{ display: "flex" }}>
+      <main className={styles.AdminMain}>
         <Sidebar open={openSidebar} toggleSideBar={toggleOpen} />
         <Routes>
           <Route path="" element={<div>HomeAdmin</div>} />
           <Route path="services" element={<ServicesPage />} />
         </Routes>
-      </div>
+      </main>
     </div>
-  )
-}
+  );
+};

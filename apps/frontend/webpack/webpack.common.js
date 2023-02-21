@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const CopyWebpackPlugin = require("copy-webpack-plugin")
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -7,6 +7,7 @@ module.exports = {
   },
   resolve: {
     extensions: [".tsx", ".js", ".ts"],
+    modules: [path.resolve(__dirname, "..", "src"), "node_modules"],
   },
   module: {
     rules: [
@@ -16,8 +17,8 @@ module.exports = {
         use: "ts-loader",
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        test: /\.(png|jpg)$/,
+        type: "asset/resource",
       },
     ],
   },
@@ -25,8 +26,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "src/index.html",
     }),
-    new CopyWebpackPlugin({
-      patterns: [{ from: "assets" }],
-    }),
   ],
-}
+};

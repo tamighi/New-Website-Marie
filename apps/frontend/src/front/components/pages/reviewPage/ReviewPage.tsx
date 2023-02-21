@@ -1,3 +1,5 @@
+import { CenteredPage } from "front/components/generics/basePage/CenteredPage";
+
 export const ReviewPage = () => {
-  return <div>ReviewPage</div>
-}
+  return <CenteredPage>ReviewPage</CenteredPage>;
+};

@@ -1,39 +1,41 @@
-import { Drawer } from "lib"
-import { Link } from "react-router-dom"
+import { Drawer } from "lib";
+import { Link } from "react-router-dom";
 
-import "./Sidebar.css"
+import styles from "./Sidebar.css";
 
 const pages = [
   { name: "Dashboard", to: "/admin" },
   { name: "Services", to: "/admin/services" },
-]
+];
 
 interface SidebarProps {
-  open: boolean
-  toggleSideBar: () => void
+  open: boolean;
+  toggleSideBar: () => void;
 }
 
 export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
   const onClose = () => {
     if (open && toggleSideBar) {
-      toggleSideBar()
+      toggleSideBar();
     }
-  }
+  };
 
   return (
-    <>
-      <div className="Sidebar">
-        <ul>
-          {pages.map((page, index) => (
-            <li key={index}>
-              <Link to={page.to}>{page.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <Drawer open={open || false} onClose={onClose} className="MobileSidebar">
+    <div className={styles.Sidebar}>
+      <ul>
+        {pages.map((page, index) => (
+          <li key={index}>
+            <Link to={page.to}>{page.name}</Link>
+          </li>
+        ))}
+      </ul>
+      <Drawer
+        open={open || false}
+        onClose={onClose}
+        className={styles.MobileSidebar}
+      >
         Drawer
       </Drawer>
-    </>
-  )
-}
+    </div>
+  );
+};
