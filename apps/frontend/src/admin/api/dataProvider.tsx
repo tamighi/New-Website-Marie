@@ -44,7 +44,7 @@ interface DeleteManyParams {
   ids: number[];
 }
 
-export const createHeadersFromOptions = (options: RequestInit): Headers => {
+const createHeadersFromOptions = (options: RequestInit): Headers => {
   const requestHeaders = (options.headers ||
     new Headers({
       Accept: "application/json",
@@ -71,7 +71,10 @@ const httpClient = async (url: string, options: RequestInit = {}) => {
 };
 
 export const dataProvider = {
-  getList: async <T,>(resource: string, params: GetListParams<T>) => {
+  getList: async <T extends object>(
+    resource: string,
+    params: GetListParams<T>
+  ) => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
 
@@ -99,7 +102,7 @@ export const dataProvider = {
     return httpClient(url);
   },
 
-  getManyReference: async <T,>(
+  getManyReference: async <T extends object>(
     resource: string,
     params: GetManyReferenceParams<T>
   ) => {
@@ -118,7 +121,10 @@ export const dataProvider = {
     return httpClient(url);
   },
 
-  update: async <T,>(resource: string, params: UpdateParams<T>) => {
+  update: async <T extends object>(
+    resource: string,
+    params: UpdateParams<T>
+  ) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     return httpClient(url, {
       method: "PUT",
@@ -126,7 +132,10 @@ export const dataProvider = {
     });
   },
 
-  updateMany: async <T,>(resource: string, params: UpdateManyParams<T>) => {
+  updateMany: async <T extends object>(
+    resource: string,
+    params: UpdateManyParams<T>
+  ) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
@@ -137,7 +146,10 @@ export const dataProvider = {
     });
   },
 
-  create: async <T,>(resource: string, params: CreateParams<T>) => {
+  create: async <T extends object>(
+    resource: string,
+    params: CreateParams<T>
+  ) => {
     const url = `${apiUrl}/${resource}`;
     return httpClient(url, {
       method: "POST",
