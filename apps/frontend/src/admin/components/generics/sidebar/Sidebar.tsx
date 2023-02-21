@@ -1,4 +1,4 @@
-import { Divider, Drawer, HomeIcon, TableChartIcon } from "lib";
+import { Divider, Drawer, HomeIcon, TableChartIcon, useMediaQuery } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Sidebar.css";
@@ -14,7 +14,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
-  const isSmall = true;
+  const isSmall = useMediaQuery("only screen and (max-width: 600px)");
 
   const navigate = useNavigate();
   const onClose = () => {
