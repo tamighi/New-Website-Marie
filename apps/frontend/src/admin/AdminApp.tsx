@@ -7,6 +7,7 @@ import { Sidebar } from "./components/generics/sidebar/Sidebar";
 import { ServicesPage } from "./components/pages/services/ServicesPage";
 
 import styles from "./AdminApp.css";
+import { Dashboard } from "./components/pages/dashboard/Dashboard";
 
 export const AdminApp = () => {
   const [openSidebar, setOpenSidebar] = React.useState(false);
@@ -20,7 +21,7 @@ export const AdminApp = () => {
       <main className={styles.AdminMain}>
         <Sidebar open={openSidebar} toggleSideBar={toggleOpen} />
         <Routes>
-          <Route path="" element={<div>HomeAdmin</div>} />
+          <Route path="" element={<Dashboard />} />
           <Route path="services" element={<ServicesPage />} />
         </Routes>
       </main>
