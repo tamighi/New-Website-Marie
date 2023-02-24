@@ -20,7 +20,7 @@ type SelectDataProps =
 
 export type DataGridProps<T extends object> = DataProps<T> & SelectDataProps;
 
-const DataGrid = <T extends object>({
+const DataGrid = <T extends { id: number }>({
   data,
   columns,
   selection = false,
@@ -62,8 +62,7 @@ const DataGrid = <T extends object>({
 
   React.useEffect(() => {
     if (setSelected) {
-      console.log(selectedFlatRows);
-      setSelected(selectedFlatRows.map((row) => row.id));
+      setSelected(selectedFlatRows.map((row) => row.values.id));
     }
   }, [selectedFlatRows, setSelected]);
 
