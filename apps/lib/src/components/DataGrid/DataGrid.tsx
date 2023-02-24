@@ -1,9 +1,10 @@
 import React from "react";
 import { Column, useTable, useRowSelect, Hooks } from "react-table";
+import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
+
 import { useTheme } from "../../hooks";
 
 import CSSClasses from "./DataGrid.css";
-import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
 
 interface DataProps {
   data: object[];
@@ -13,11 +14,11 @@ interface DataProps {
 type SelectDataProps =
   | {
       selection: true;
-      setSelected: () => void;
+      setSelected: React.Dispatch<React.SetStateAction<string[]>>;
     }
   | { selection?: false; setSelected?: undefined };
 
-type DataGridProps = DataProps & SelectDataProps;
+export type DataGridProps = DataProps & SelectDataProps;
 
 const DataGrid = ({
   data,
@@ -58,6 +59,12 @@ const DataGrid = ({
     prepareRow,
     selectedFlatRows,
   } = useTable({ columns: _columns, data: _data }, ...plugins);
+
+  React.useEffect(() => {
+    if (setSelected) {
+      setSelected(selectedFlatRows.map((row) => row.id));
+    }
+  }, [selectedFlatRows, setSelected]);
 
   const theme = useTheme();
 

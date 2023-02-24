@@ -1,3 +1,4 @@
+import React from "react";
 import { DataGrid } from "../../components";
 import "../styles/Page.css";
 
@@ -17,9 +18,15 @@ const columns: ColumnType[] = [
 ];
 
 export const TestDataGrid = () => {
+  const [selectedRows, setSelectedRows] = React.useState<string[]>([]);
   return (
     <div className="Page" style={{ margin: "20px" }}>
-      <DataGrid data={data} columns={columns} />
+      <DataGrid
+        data={data}
+        columns={columns}
+        selection
+        setSelected={setSelectedRows}
+      />
     </div>
   );
 };
