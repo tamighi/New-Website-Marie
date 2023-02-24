@@ -1,20 +1,23 @@
 import React from "react";
+import { Column } from "react-table";
 import { DataGrid } from "../../components";
 import "../styles/Page.css";
 
-const data = [
-  { name: "Alfred", age: 30 },
-  { name: "Bob", age: 40 },
+interface Data {
+  name: string;
+  age: number;
+  id: number;
+}
+
+const data: Data[] = [
+  { name: "Alfred", age: 30, id: 1 },
+  { name: "Bob", age: 40, id: 2 },
 ];
 
-type ColumnType = {
-  Header: string;
-  accessor: "name" | "age";
-};
-
-const columns: ColumnType[] = [
+const columns: Column<Data>[] = [
   { Header: "Name", accessor: "name" },
   { Header: "Age", accessor: "age" },
+  { Header: "Id", accessor: "id" },
 ];
 
 export const TestDataGrid = () => {

@@ -62,6 +62,7 @@ const DataGrid = <T extends object>({
 
   React.useEffect(() => {
     if (setSelected) {
+      console.log(selectedFlatRows);
       setSelected(selectedFlatRows.map((row) => row.id));
     }
   }, [selectedFlatRows, setSelected]);
