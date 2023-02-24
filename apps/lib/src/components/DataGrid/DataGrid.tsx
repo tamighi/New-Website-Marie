@@ -5,19 +5,34 @@ import { useTheme } from "../../hooks";
 import CSSClasses from "./DataGrid.css";
 import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
 
-export interface DataGridProps {
+interface DataProps {
   data: object[];
   columns: Column<object>[];
-  selection?: boolean;
 }
 
-const DataGrid = ({ data, columns, selection = false }: DataGridProps) => {
+type SelectDataProps =
+  | {
+      selection: true;
+      setSelected: () => void;
+    }
+  | { selection?: false; setSelected?: undefined };
+
+type DataGridProps = DataProps & SelectDataProps;
+
+const DataGrid = ({
+  data,
+  columns,
+  selection = false,
+  setSelected,
+}: DataGridProps) => {
   const _columns = React.useMemo(() => columns, [columns]);
   const _data = React.useMemo(() => data, [data]);
 
-  const parameters = [
-    useRowSelect,
-    (hooks: Hooks<object>) => {
+  const plugins = [];
+
+  if (selection) {
+    plugins.push(useRowSelect);
+    plugins.push((hooks: Hooks<object>) => {
       hooks.visibleColumns.push((columns) => {
         return [
           {
@@ -32,8 +47,8 @@ const DataGrid = ({ data, columns, selection = false }: DataGridProps) => {
           ...columns,
         ];
       });
-    },
-  ];
+    });
+  }
 
   const {
     getTableProps,
@@ -42,7 +57,7 @@ const DataGrid = ({ data, columns, selection = false }: DataGridProps) => {
     rows,
     prepareRow,
     selectedFlatRows,
-  } = useTable({ columns: _columns, data: _data }, ...parameters);
+  } = useTable({ columns: _columns, data: _data }, ...plugins);
 
   const theme = useTheme();
 
