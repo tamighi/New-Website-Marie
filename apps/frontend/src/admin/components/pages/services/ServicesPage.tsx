@@ -3,6 +3,7 @@ import { DataGrid } from "lib";
 import { BasePage } from "../BasePage";
 
 interface ServiceCategoriesDto {
+  id: string;
   name: string;
   description: string;
 }
@@ -21,6 +22,7 @@ const dummyData = [
 ];
 
 const columns = [
+  { Header: "Id", accessor: "id" },
   { Header: "Name", accessor: "name" },
   { Header: "Description", accessor: "description" },
 ];
@@ -30,7 +32,7 @@ export const ServicesPage = () => {
 
   return (
     <BasePage>
-      <DataGrid data={data || dummyData} columns={columns} />
+      <DataGrid data={data?.data || dummyData} columns={columns} />
     </BasePage>
   );
 };

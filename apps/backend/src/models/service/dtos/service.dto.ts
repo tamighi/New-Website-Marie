@@ -1,4 +1,4 @@
-export class ServiceCategoryDto {
+export class ServiceDto {
   id: number;
   name: string;
   description: string;

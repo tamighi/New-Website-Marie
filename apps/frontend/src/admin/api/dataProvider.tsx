@@ -66,7 +66,7 @@ const httpClient = async (url: string, options: RequestInit = {}) => {
     ...options,
     headers: headers,
   }).then((resp) => {
-    resp.ok ? resp.json : null;
+    return resp.ok ? resp.json() : null;
   });
 };
 
