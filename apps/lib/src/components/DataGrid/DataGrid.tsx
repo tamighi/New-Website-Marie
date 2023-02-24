@@ -1,5 +1,5 @@
 import React from "react";
-import { Column, useTable, useRowSelect } from "react-table";
+import { Column, useTable, useRowSelect, Hooks } from "react-table";
 import { useTheme } from "../../hooks";
 
 import CSSClasses from "./DataGrid.css";
@@ -8,11 +8,32 @@ import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
 export interface DataGridProps {
   data: object[];
   columns: Column<object>[];
+  selection?: boolean;
 }
 
-const DataGrid = ({ data, columns }: DataGridProps) => {
+const DataGrid = ({ data, columns, selection = false }: DataGridProps) => {
   const _columns = React.useMemo(() => columns, [columns]);
   const _data = React.useMemo(() => data, [data]);
+
+  const parameters = [
+    useRowSelect,
+    (hooks: Hooks<object>) => {
+      hooks.visibleColumns.push((columns) => {
+        return [
+          {
+            id: "selection",
+            Header: ({ getToggleAllRowsSelectedProps }) => (
+              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+            ),
+            Cell: ({ row }) => (
+              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+            ),
+          },
+          ...columns,
+        ];
+      });
+    },
+  ];
 
   const {
     getTableProps,
@@ -21,22 +42,7 @@ const DataGrid = ({ data, columns }: DataGridProps) => {
     rows,
     prepareRow,
     selectedFlatRows,
-  } = useTable({ columns: _columns, data: _data }, useRowSelect, (hooks) => {
-    hooks.visibleColumns.push((columns) => {
-      return [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-          ),
-          Cell: ({ row }) => (
-            <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-          ),
-        },
-        ...columns
-      ];
-    });
-  });
+  } = useTable({ columns: _columns, data: _data }, ...parameters);
 
   const theme = useTheme();
 
@@ -47,7 +53,7 @@ const DataGrid = ({ data, columns }: DataGridProps) => {
   return (
     <table
       {...getTableProps()}
-      style={{ color: themeColors.text }}
+      style={{ color: themeColors.text, transition: theme.transition }}
       className={CSSClasses.DataGrid}
     >
       <thead>
@@ -58,7 +64,10 @@ const DataGrid = ({ data, columns }: DataGridProps) => {
             <tr
               key={key}
               {...headerGroupProps}
-              style={{ backgroundColor: themeColors.primary }}
+              style={{
+                backgroundColor: themeColors.primary,
+                transition: theme.transition,
+              }}
             >
               {headerGroup.headers.map((column) => {
                 const { key, ...headerProps } = column.getHeaderProps();
@@ -86,6 +95,7 @@ const DataGrid = ({ data, columns }: DataGridProps) => {
                     ? ""
                     : "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))",
                 backgroundColor: themeColors.background,
+                transition: theme.transition,
               }}
             >
               {row.cells.map((cell) => {
