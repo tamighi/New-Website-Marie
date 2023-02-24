@@ -1,14 +1,14 @@
 import React from "react";
-import { Column, useTable, useRowSelect, Hooks } from "react-table";
+import { Column, useTable, useRowSelect, Hooks, CellProps } from "react-table";
 import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
 
 import { useTheme } from "../../hooks";
 
 import CSSClasses from "./DataGrid.css";
 
-interface DataProps {
-  data: object[];
-  columns: Column<object>[];
+interface DataProps<T extends object> {
+  data: T[];
+  columns: Column<T>[];
 }
 
 type SelectDataProps =
@@ -18,14 +18,14 @@ type SelectDataProps =
     }
   | { selection?: false; setSelected?: undefined };
 
-export type DataGridProps = DataProps & SelectDataProps;
+export type DataGridProps<T extends object> = DataProps<T> & SelectDataProps;
 
-const DataGrid = ({
+const DataGrid = <T extends object>({
   data,
   columns,
   selection = false,
   setSelected,
-}: DataGridProps) => {
+}: DataGridProps<T>) => {
   const _columns = React.useMemo(() => columns, [columns]);
   const _data = React.useMemo(() => data, [data]);
 
@@ -33,7 +33,7 @@ const DataGrid = ({
 
   if (selection) {
     plugins.push(useRowSelect);
-    plugins.push((hooks: Hooks<object>) => {
+    plugins.push((hooks: Hooks<T>) => {
       hooks.visibleColumns.push((columns) => {
         return [
           {
@@ -41,7 +41,7 @@ const DataGrid = ({
             Header: ({ getToggleAllRowsSelectedProps }) => (
               <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
             ),
-            Cell: ({ row }) => (
+            Cell: ({ row }: CellProps<T>) => (
               <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
             ),
           },
