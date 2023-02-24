@@ -20,12 +20,7 @@ const dummyData = [
   },
 ];
 
-type ColumnType = {
-  Header: string;
-  accessor: "name" | "description";
-};
-
-const columns: ColumnType[] = [
+const columns = [
   { Header: "Name", accessor: "name" },
   { Header: "Description", accessor: "description" },
 ];

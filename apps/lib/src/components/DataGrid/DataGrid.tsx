@@ -1,7 +1,9 @@
-import { Column, useTable } from "react-table";
+import React from "react";
+import { Column, useTable, useRowSelect } from "react-table";
 import { useTheme } from "../../hooks";
 
 import CSSClasses from "./DataGrid.css";
+import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
 
 export interface DataGridProps {
   data: object[];
@@ -9,8 +11,32 @@ export interface DataGridProps {
 }
 
 const DataGrid = ({ data, columns }: DataGridProps) => {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+  const _columns = React.useMemo(() => columns, [columns]);
+  const _data = React.useMemo(() => data, [data]);
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    selectedFlatRows,
+  } = useTable({ columns: _columns, data: _data }, useRowSelect, (hooks) => {
+    hooks.visibleColumns.push((columns) => {
+      return [
+        {
+          id: "selection",
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+          ),
+          Cell: ({ row }) => (
+            <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+          ),
+        },
+        ...columns
+      ];
+    });
+  });
 
   const theme = useTheme();
 
