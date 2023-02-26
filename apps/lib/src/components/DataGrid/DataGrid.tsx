@@ -20,7 +20,7 @@ type SelectDataProps =
 
 export type DataGridProps<T extends object> = DataProps<T> & SelectDataProps;
 
-const DataGrid = <T extends { id: number }>({
+const DataGrid = <T extends { id: number | string }>({
   data,
   columns,
   selection = false,

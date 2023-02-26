@@ -27,7 +27,10 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
     <>
       <div
         className={styles.Sidebar}
-        style={{ minWidth: `${open ? "200px" : "55px"}` }}
+        style={{
+          maxWidth: `${open ? "200px" : "55px"}`,
+          minWidth: `${open? "200px" : "55px"}`,
+        }}
       >
         <ul>
           {pages.map((page, index) => (
