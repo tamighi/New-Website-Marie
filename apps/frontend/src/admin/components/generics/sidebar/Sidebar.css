@@ -1,6 +1,15 @@
 .Sidebar {
   transition: max-width 0.5s ease, min-width 0.5s ease;
-  width: auto;
+}
+
+.Open {
+  max-width: 200px;
+  min-width: 200px;
+}
+
+.Close {
+  min-width: 50px;
+  max-width: 50px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -9,7 +18,8 @@
   }
 }
 
-.Sidebar button, .Drawer button {
+.Sidebar button,
+.Drawer button {
   display: flex;
   align-items: center;
   gap: 6px;
