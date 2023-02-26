@@ -1,5 +1,7 @@
 .BasePage {
-  padding-right: 46px;
-  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 46px;
+  margin-left: 10px;
   flex-grow: 1;
 }

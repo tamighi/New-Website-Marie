@@ -3,11 +3,11 @@ import { Route, Routes } from "react-router-dom";
 
 import { Appbar } from "./components/generics/appbar/Appbar";
 import { Sidebar } from "./components/generics/sidebar/Sidebar";
+import { Dashboard } from "./components/pages/dashboard/Dashboard";
 
-import { ServicesPage } from "./components/pages/services/ServicesPage";
+import { ServiceCreate, ServicesPage } from "./components/pages/services";
 
 import styles from "./AdminApp.css";
-import { Dashboard } from "./components/pages/dashboard/Dashboard";
 
 export const AdminApp = () => {
   const [openSidebar, setOpenSidebar] = React.useState(false);
@@ -23,6 +23,7 @@ export const AdminApp = () => {
         <Routes>
           <Route path="" element={<Dashboard />} />
           <Route path="services" element={<ServicesPage />} />
+          <Route path="services/create" element={<ServiceCreate />} />
         </Routes>
       </main>
     </div>

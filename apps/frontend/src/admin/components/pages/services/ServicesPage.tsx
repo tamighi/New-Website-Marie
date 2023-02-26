@@ -4,6 +4,7 @@ import { useData } from "admin/hooks/useData";
 import { DataGrid } from "lib";
 import { BasePage } from "../BasePage";
 import { Column } from "react-table";
+import { useNavigate } from "react-router-dom";
 
 interface ServiceDto {
   id: string;
@@ -19,6 +20,7 @@ const columns: Column<ServiceDto>[] = [
 
 export const ServicesPage = () => {
   const { data } = useData<ServiceDto>("service");
+  const navigate = useNavigate();
 
   const [selected, setSelected] = React.useState<string[]>([]);
 
@@ -27,6 +29,12 @@ export const ServicesPage = () => {
   }
   return (
     <BasePage>
+      <button
+        style={{ alignSelf: "flex-end" }}
+        onClick={() => navigate("create")}
+      >
+        +
+      </button>
       <DataGrid
         data={data?.data}
         columns={columns}
