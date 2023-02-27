@@ -8,6 +8,7 @@ import { BasePage } from "../BasePage";
 import { useData } from "admin/hooks/useData";
 
 import { ServiceDto } from "./Services";
+import { dataProvider } from "admin/api/dataProvider";
 
 const columns: Column<ServiceDto>[] = [
   { Header: "Id", accessor: "id" },
@@ -21,8 +22,19 @@ export const ServicesPage = () => {
 
   const [selected, setSelected] = React.useState<string[]>([]);
 
+  const onDeleteClick = async () => {
+    dataProvider.deleteMany("service", {
+      ids: selected,
+    });
+  };
+
   return (
     <BasePage>
+      {selected.length !== 0 && (
+        <button style={{ alignSelf: "flex-end" }} onClick={onDeleteClick}>
+          x
+        </button>
+      )}
       <button
         style={{ alignSelf: "flex-end" }}
         onClick={() => navigate("create")}

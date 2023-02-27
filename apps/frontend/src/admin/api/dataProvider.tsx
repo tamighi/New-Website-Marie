@@ -1,3 +1,5 @@
+import query_string from "query-string";
+
 const apiUrl = "http://192.168.1.50:8000";
 
 interface GetListParams<T> {
@@ -37,11 +39,11 @@ interface CreateParams<T> {
 }
 
 interface DeleteParams {
-  id: number;
+  id: number | string;
 }
 
 interface DeleteManyParams {
-  ids: number[];
+  ids: number[] | string[];
 }
 
 const createHeadersFromOptions = (options: RequestInit): Headers => {
@@ -83,7 +85,7 @@ export const dataProvider = {
       range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
       filter: JSON.stringify(params.filter),
     };
-    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     return httpClient(url);
   },
@@ -98,7 +100,7 @@ export const dataProvider = {
       filter: JSON.stringify({ id: params.ids }),
     };
 
-    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     return httpClient(url);
   },
 
@@ -116,7 +118,7 @@ export const dataProvider = {
         [params.target]: params.id,
       }),
     };
-    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     return httpClient(url);
   },
@@ -139,7 +141,7 @@ export const dataProvider = {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
-    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     return httpClient(url, {
       method: "PUT",
       body: JSON.stringify(params.data),
@@ -168,7 +170,7 @@ export const dataProvider = {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
-    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     return httpClient(url, {
       method: "DELETE",
     });
