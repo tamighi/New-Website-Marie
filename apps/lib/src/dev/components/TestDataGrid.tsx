@@ -11,7 +11,7 @@ interface Data {
 
 const data: Data[] = [
   { name: "Alfred", age: 30, id: 1 },
-  { name: "Bob", age: 40, id: 2 },
+  { name: "Bob", age: 40, id: 3 },
 ];
 
 const columns: Column<Data>[] = [
@@ -22,6 +22,11 @@ const columns: Column<Data>[] = [
 
 export const TestDataGrid = () => {
   const [selectedRows, setSelectedRows] = React.useState<string[]>([]);
+
+  const onRowClick = (id: string) => {
+    console.log(id);
+  };
+
   return (
     <div className="Page" style={{ margin: "20px" }}>
       <DataGrid
@@ -29,6 +34,8 @@ export const TestDataGrid = () => {
         columns={columns}
         selection
         setSelected={setSelectedRows}
+        clickable
+        onRowClick={onRowClick}
       />
     </div>
   );

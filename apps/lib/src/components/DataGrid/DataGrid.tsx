@@ -18,13 +18,24 @@ type SelectDataProps =
     }
   | { selection?: false; setSelected?: undefined };
 
-export type DataGridProps<T extends object> = DataProps<T> & SelectDataProps;
+type RowClickDataProps =
+  | {
+      clickable: true;
+      onRowClick: (id: string) => void;
+    }
+  | { clickable?: false; onRowClick?: undefined };
+
+export type DataGridProps<T extends object> = DataProps<T> &
+  SelectDataProps &
+  RowClickDataProps;
 
 const DataGrid = <T extends { id: number | string }>({
   data,
   columns,
   selection = false,
   setSelected,
+  clickable = false,
+  onRowClick,
 }: DataGridProps<T>) => {
   const _columns = React.useMemo(() => columns, [columns]);
   const _data = React.useMemo(() => data, [data]);
@@ -104,21 +115,20 @@ const DataGrid = <T extends { id: number | string }>({
         })}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row, index) => {
+        {rows.map((row) => {
           prepareRow(row);
           const { key, ...rowProps } = row.getRowProps();
           return (
             <tr
               key={key}
+              className={clickable ? CSSClasses.Clickable : ""}
               {...rowProps}
               style={{
-                backgroundImage:
-                  index % 2 === 0
-                    ? ""
-                    : "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))",
+                cursor: clickable ? "pointer" : "initial",
                 backgroundColor: themeColors.background,
                 transition: theme.transition,
               }}
+              onClick={onRowClick ? () => onRowClick(row.values.id) : undefined}
             >
               {row.cells.map((cell) => {
                 const { key, ...cellProps } = cell.getCellProps();
