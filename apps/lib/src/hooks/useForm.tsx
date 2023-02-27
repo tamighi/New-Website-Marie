@@ -1,42 +1,50 @@
-import React from "react";
+import React, { RefObject } from "react";
 
-interface InputRegister {
+interface InputProps {
   name: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  ref: RefObject<HTMLInputElement>;
 }
 
-interface InputMap {
-  [key: string]: InputRegister;
+interface TypeMap<T> {
+  [key: string]: T;
 }
 
 export const useForm = () => {
-  const [inputs, setInputs] = React.useState<InputMap>({});
+  const [inputRefs, setInputRefs] = React.useState<
+    TypeMap<RefObject<HTMLInputElement>>
+  >({});
 
-  const setInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setInputs((prevInputs) => ({
-      ...prevInputs,
-      [name]: { ...prevInputs[name], value: value },
-    }));
+  const register = React.useCallback(
+    (name: string) => {
+      let ref = inputRefs[name];
+      if (!ref) {
+        ref = React.createRef<HTMLInputElement>();
+        setInputRefs((prevInputRefs) => ({ ...prevInputRefs, [name]: ref }));
+      }
+
+      const inputProps: InputProps = {
+        name: name,
+        ref: ref,
+      };
+
+      return inputProps;
+    },
+    [inputRefs]
+  );
+
+  const handleSubmit = <T,>(onSubmit: (data: T) => void) => {
+    return (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const data = Object.entries(inputRefs).reduce(
+        (result, [name, ref]) => ({
+          ...result,
+          [name]: ref.current?.value || "",
+        }),
+        {} as T
+      );
+      onSubmit(data);
+    };
   };
 
-  const register = (name: string) => {
-    if (inputs[name]) {
-      return inputs[name];
-    }
-
-    const inputProps = { name: name, value: "", onChange: setInputValue };
-
-    setInputs((prevInputs) => ({ ...prevInputs, [name]: inputProps }));
-
-    return inputProps;
-  };
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(inputs);
-    event.preventDefault();
-  };
-
-  return { register, onSubmit };
+  return { register, handleSubmit };
 };
