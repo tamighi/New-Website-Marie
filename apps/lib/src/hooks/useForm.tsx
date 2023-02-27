@@ -2,27 +2,27 @@ import React, { RefObject } from "react";
 
 type InputElements = HTMLInputElement & HTMLTextAreaElement;
 
-interface InputProps {
-  name: string;
+interface InputProps<T> {
+  name: keyof T;
   ref: RefObject<InputElements>;
 }
 
-type PartialMapTRefs<T> = {
+type PartialMapToRefs<T> = {
   [K in keyof T]?: RefObject<InputElements>;
 };
 
 export const useForm = <T,>() => {
-  const [inputRefs, setInputRefs] = React.useState<PartialMapTRefs<T>>({});
+  const [inputRefs, setInputRefs] = React.useState<PartialMapToRefs<T>>({});
 
   const register = React.useCallback(
-    (name: keyof T & string) => {
+    (name: keyof T) => {
       let ref = inputRefs[name];
       if (!ref) {
         ref = React.createRef<InputElements>();
         setInputRefs((prevInputRefs) => ({ ...prevInputRefs, [name]: ref }));
       }
 
-      const inputProps: InputProps = {
+      const inputProps: InputProps<T> = {
         name: name,
         ref: ref,
       };
@@ -36,13 +36,10 @@ export const useForm = <T,>() => {
     return (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
-      if (!inputRefs) {
-        return;
-      }
       const data = Object.keys(inputRefs).reduce(
-        (result, name) => ({
+        (result, key) => ({
           ...result,
-          [name]: inputRefs[name as keyof T]?.current?.value || "",
+          [key]: inputRefs[key as keyof T]?.current?.value || "",
         }),
         {} as T
       );
