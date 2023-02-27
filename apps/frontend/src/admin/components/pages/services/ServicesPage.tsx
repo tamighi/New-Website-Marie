@@ -1,38 +1,54 @@
+import React from "react";
+
+import { Column } from "react-table";
+import { useNavigate } from "react-router-dom";
 import { DataGrid } from "lib";
-import { dataProvider } from "../../../api/dataProvider";
 
-interface ServiceCategoriesDto {
-  name: string;
-  description: string;
-}
+import { BasePage } from "../BasePage";
+import { useData } from "admin/hooks/useData";
 
-const data = [
-  { name: "Alfred", age: 30 },
-  { name: "Bob", age: 40 },
-];
+import { ServiceDto } from "./Services";
+import { dataProvider } from "admin/api/dataProvider";
 
-type ColumnType = {
-  Header: string;
-  accessor: "name" | "age";
-};
-
-const columns: ColumnType[] = [
+const columns: Column<ServiceDto>[] = [
+  { Header: "Id", accessor: "id" },
   { Header: "Name", accessor: "name" },
-  { Header: "Age", accessor: "age" },
+  { Header: "Description", accessor: "description" },
 ];
 
 export const ServicesPage = () => {
-  const onClick = () => {
-    dataProvider.create<ServiceCategoriesDto>("serviceCategories", {
-      data: {
-        name: "test",
-        description: "description test",
-      },
+  const { data } = useData<ServiceDto>("service");
+  const navigate = useNavigate();
+
+  const [selected, setSelected] = React.useState<string[]>([]);
+
+  const onDeleteClick = async () => {
+    dataProvider.deleteMany("service", {
+      ids: selected,
     });
   };
+
   return (
-    <div style={{ flexGrow: 1 }}>
-      <DataGrid data={data} columns={columns} />
-    </div>
+    <BasePage>
+      {selected.length !== 0 && (
+        <button style={{ alignSelf: "flex-end" }} onClick={onDeleteClick}>
+          x
+        </button>
+      )}
+      <button
+        style={{ alignSelf: "flex-end" }}
+        onClick={() => navigate("create")}
+      >
+        +
+      </button>
+      {data?.data && (
+        <DataGrid
+          data={data?.data}
+          columns={columns}
+          selection
+          setSelected={setSelected}
+        />
+      )}
+    </BasePage>
   );
 };

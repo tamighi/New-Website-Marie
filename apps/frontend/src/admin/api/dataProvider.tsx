@@ -1,3 +1,5 @@
+import query_string from "query-string";
+
 const apiUrl = "http://192.168.1.50:8000";
 
 interface GetListParams<T> {
@@ -37,14 +39,14 @@ interface CreateParams<T> {
 }
 
 interface DeleteParams {
-  id: number;
+  id: number | string;
 }
 
 interface DeleteManyParams {
-  ids: number[];
+  ids: number[] | string[];
 }
 
-export const createHeadersFromOptions = (options: RequestInit): Headers => {
+const createHeadersFromOptions = (options: RequestInit): Headers => {
   const requestHeaders = (options.headers ||
     new Headers({
       Accept: "application/json",
@@ -66,12 +68,15 @@ const httpClient = async (url: string, options: RequestInit = {}) => {
     ...options,
     headers: headers,
   }).then((resp) => {
-    resp.ok ? resp.json : null;
+    return resp.ok ? resp.json() : null;
   });
 };
 
 export const dataProvider = {
-  getList: async <T,>(resource: string, params: GetListParams<T>) => {
+  getList: async <T extends object>(
+    resource: string,
+    params: GetListParams<T>
+  ) => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
 
@@ -80,7 +85,7 @@ export const dataProvider = {
       range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
       filter: JSON.stringify(params.filter),
     };
-    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     return httpClient(url);
   },
@@ -95,11 +100,11 @@ export const dataProvider = {
       filter: JSON.stringify({ id: params.ids }),
     };
 
-    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     return httpClient(url);
   },
 
-  getManyReference: async <T,>(
+  getManyReference: async <T extends object>(
     resource: string,
     params: GetManyReferenceParams<T>
   ) => {
@@ -113,12 +118,15 @@ export const dataProvider = {
         [params.target]: params.id,
       }),
     };
-    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     return httpClient(url);
   },
 
-  update: async <T,>(resource: string, params: UpdateParams<T>) => {
+  update: async <T extends object>(
+    resource: string,
+    params: UpdateParams<T>
+  ) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     return httpClient(url, {
       method: "PUT",
@@ -126,18 +134,24 @@ export const dataProvider = {
     });
   },
 
-  updateMany: async <T,>(resource: string, params: UpdateManyParams<T>) => {
+  updateMany: async <T extends object>(
+    resource: string,
+    params: UpdateManyParams<T>
+  ) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
-    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     return httpClient(url, {
       method: "PUT",
       body: JSON.stringify(params.data),
     });
   },
 
-  create: async <T,>(resource: string, params: CreateParams<T>) => {
+  create: async <T extends object>(
+    resource: string,
+    params: CreateParams<T>
+  ) => {
     const url = `${apiUrl}/${resource}`;
     return httpClient(url, {
       method: "POST",
@@ -156,7 +170,7 @@ export const dataProvider = {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
-    const url = `${apiUrl}/${resource}?${JSON.stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     return httpClient(url, {
       method: "DELETE",
     });

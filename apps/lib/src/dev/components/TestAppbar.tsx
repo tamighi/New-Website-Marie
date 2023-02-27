@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Appbar,
+  CommentIcon,
   Divider,
   Drawer,
   HomeIcon,
@@ -11,6 +12,21 @@ import {
   TableChartIcon,
 } from "../../components";
 import { ThemeToggleIcon } from "./ThemeToggleIcon";
+
+const links = [
+  {
+    icon: <HomeIcon />,
+    to: "/",
+  },
+  {
+    icon: <TableChartIcon />,
+    to: "/dataGrid",
+  },
+  {
+    icon: <CommentIcon />,
+    to: "/form",
+  },
+];
 
 export const TestAppbar = () => {
   const [open, setOpen] = React.useState(false);
@@ -28,12 +44,17 @@ export const TestAppbar = () => {
         </Drawer>
         <ThemeToggleIcon />
         <div style={{ flexGrow: 1 }} />
-        <IconButton onClick={() => navigate("/")}>
-          <HomeIcon />
-        </IconButton>
-        <IconButton onClick={() => navigate("/dataGrid")}>
-          <TableChartIcon />
-        </IconButton>
+        <ul style={{ display: "flex" }}>
+          {links.map((link, index) => {
+            return (
+              <li key={index}>
+                <IconButton onClick={() => navigate(link.to)}>
+                  {link.icon}
+                </IconButton>
+              </li>
+            );
+          })}
+        </ul>
       </Navbar>
     </Appbar>
   );

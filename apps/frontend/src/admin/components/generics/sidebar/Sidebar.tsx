@@ -1,11 +1,11 @@
-import { Drawer } from "lib";
-import { Link } from "react-router-dom";
+import { Divider, Drawer, HomeIcon, TableChartIcon, useMediaQuery } from "lib";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./Sidebar.css";
 
 const pages = [
-  { name: "Dashboard", to: "/admin" },
-  { name: "Services", to: "/admin/services" },
+  { name: "Dashboard", to: "/admin", logo: <HomeIcon />, divider: true },
+  { name: "Services", to: "/admin/services", logo: <TableChartIcon /> },
 ];
 
 interface SidebarProps {
@@ -14,6 +14,9 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
+  const isSmall = useMediaQuery("only screen and (max-width: 600px)");
+
+  const navigate = useNavigate();
   const onClose = () => {
     if (open && toggleSideBar) {
       toggleSideBar();
@@ -21,21 +24,39 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
   };
 
   return (
-    <div className={styles.Sidebar}>
-      <ul>
-        {pages.map((page, index) => (
-          <li key={index}>
-            <Link to={page.to}>{page.name}</Link>
-          </li>
-        ))}
-      </ul>
-      <Drawer
-        open={open || false}
-        onClose={onClose}
-        className={styles.MobileSidebar}
-      >
-        Drawer
-      </Drawer>
-    </div>
+    <>
+      <div className={`${styles.Sidebar} ${open ? styles.Open : styles.Close}`}>
+        <ul>
+          {pages.map((page, index) => (
+            <li key={index}>
+              <button onClick={() => navigate(page.to)}>
+                {page.logo}
+                {open && page.name}
+              </button>
+              {page.divider && <Divider />}
+            </li>
+          ))}
+        </ul>
+      </div>
+      {isSmall && (
+        <Drawer
+          open={open || false}
+          onClose={onClose}
+          className={styles.Drawer}
+        >
+          <ul>
+            {pages.map((page, index) => (
+              <li key={index}>
+                <button onClick={() => navigate(page.to)}>
+                  {page.logo}
+                  {page.name}
+                </button>
+                {page.divider && <Divider />}
+              </li>
+            ))}
+          </ul>
+        </Drawer>
+      )}
+    </>
   );
 };

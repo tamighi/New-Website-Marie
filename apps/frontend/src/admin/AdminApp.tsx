@@ -3,8 +3,9 @@ import { Route, Routes } from "react-router-dom";
 
 import { Appbar } from "./components/generics/appbar/Appbar";
 import { Sidebar } from "./components/generics/sidebar/Sidebar";
+import { Dashboard } from "./components/pages/dashboard/Dashboard";
 
-import { ServicesPage } from "./components/pages/services/ServicesPage";
+import { ServiceCreate, ServicesPage } from "./components/pages/services";
 
 import styles from "./AdminApp.css";
 
@@ -20,8 +21,9 @@ export const AdminApp = () => {
       <main className={styles.AdminMain}>
         <Sidebar open={openSidebar} toggleSideBar={toggleOpen} />
         <Routes>
-          <Route path="" element={<div>HomeAdmin</div>} />
+          <Route path="" element={<Dashboard />} />
           <Route path="services" element={<ServicesPage />} />
+          <Route path="services/create" element={<ServiceCreate />} />
         </Routes>
       </main>
     </div>
