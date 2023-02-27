@@ -1,6 +1,6 @@
 import React, { RefObject } from "react";
 
-type InputElements = HTMLInputElement & HTMLTextAreaElement;
+type InputElements = HTMLInputElement & HTMLTextAreaElement & HTMLSelectElement;
 
 interface InputProps<T> {
   name: keyof T;
@@ -11,7 +11,7 @@ type PartialMapToRefs<T> = {
   [K in keyof T]?: RefObject<InputElements>;
 };
 
-export const useForm = <T,>() => {
+const useForm = <T,>() => {
   const [inputRefs, setInputRefs] = React.useState<PartialMapToRefs<T>>({});
 
   const register = React.useCallback(
@@ -49,3 +49,5 @@ export const useForm = <T,>() => {
 
   return { register, handleSubmit };
 };
+
+export default useForm;
