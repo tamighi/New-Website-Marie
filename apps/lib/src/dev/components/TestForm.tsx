@@ -6,16 +6,16 @@ interface Dto {
 }
 
 export const TestForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<Dto>();
 
-  const onSubmit = <Dto,>(data: Dto) => {
+  const onSubmit = (data: Dto) => {
     console.log(data);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input {...register("test")} placeholder="Test input" />
-      <input {...register("test2")} placeholder="Test input 2" />
+      <textarea {...register("test2")} placeholder="Test input 2" />
       <input type="submit" />
     </form>
   );

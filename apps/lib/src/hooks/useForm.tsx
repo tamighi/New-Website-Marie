@@ -1,24 +1,24 @@
 import React, { RefObject } from "react";
 
+type InputElements = HTMLInputElement & HTMLTextAreaElement;
+
 interface InputProps {
   name: string;
-  ref: RefObject<HTMLInputElement>;
+  ref: RefObject<InputElements>;
 }
 
-interface TypeMap<T> {
-  [key: string]: T;
-}
+type PartialMapTRefs<T> = {
+  [K in keyof T]?: RefObject<InputElements>;
+};
 
-export const useForm = () => {
-  const [inputRefs, setInputRefs] = React.useState<
-    TypeMap<RefObject<HTMLInputElement>>
-  >({});
+export const useForm = <T,>() => {
+  const [inputRefs, setInputRefs] = React.useState<PartialMapTRefs<T>>({});
 
   const register = React.useCallback(
-    (name: string) => {
+    (name: keyof T & string) => {
       let ref = inputRefs[name];
       if (!ref) {
-        ref = React.createRef<HTMLInputElement>();
+        ref = React.createRef<InputElements>();
         setInputRefs((prevInputRefs) => ({ ...prevInputRefs, [name]: ref }));
       }
 
@@ -32,13 +32,17 @@ export const useForm = () => {
     [inputRefs]
   );
 
-  const handleSubmit = <T,>(onSubmit: (data: T) => void) => {
+  const handleSubmit = (onSubmit: (data: T) => void) => {
     return (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      const data = Object.entries(inputRefs).reduce(
-        (result, [name, ref]) => ({
+
+      if (!inputRefs) {
+        return;
+      }
+      const data = Object.keys(inputRefs).reduce(
+        (result, name) => ({
           ...result,
-          [name]: ref.current?.value || "",
+          [name]: inputRefs[name as keyof T]?.current?.value || "",
         }),
         {} as T
       );
