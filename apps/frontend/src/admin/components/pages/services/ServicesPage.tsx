@@ -1,16 +1,13 @@
 import React from "react";
 
-import { useData } from "admin/hooks/useData";
-import { DataGrid } from "lib";
-import { BasePage } from "../BasePage";
 import { Column } from "react-table";
 import { useNavigate } from "react-router-dom";
+import { DataGrid } from "lib";
 
-interface ServiceDto {
-  id: string;
-  name: string;
-  description: string;
-}
+import { BasePage } from "../BasePage";
+import { useData } from "admin/hooks/useData";
+
+import { ServiceDto } from "./Services";
 
 const columns: Column<ServiceDto>[] = [
   { Header: "Id", accessor: "id" },
@@ -24,9 +21,6 @@ export const ServicesPage = () => {
 
   const [selected, setSelected] = React.useState<string[]>([]);
 
-  if (!data?.data) {
-    return null;
-  }
   return (
     <BasePage>
       <button
@@ -35,12 +29,14 @@ export const ServicesPage = () => {
       >
         +
       </button>
-      <DataGrid
-        data={data?.data}
-        columns={columns}
-        selection
-        setSelected={setSelected}
-      />
+      {data?.data && (
+        <DataGrid
+          data={data?.data}
+          columns={columns}
+          selection
+          setSelected={setSelected}
+        />
+      )}
     </BasePage>
   );
 };
