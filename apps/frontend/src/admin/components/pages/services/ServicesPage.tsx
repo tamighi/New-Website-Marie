@@ -2,13 +2,15 @@ import React from "react";
 
 import { Column } from "react-table";
 import { useNavigate } from "react-router-dom";
-import { DataGrid } from "lib";
+import { Card, DataGrid } from "lib";
 
 import { BasePage } from "../BasePage";
 import { useData } from "admin/hooks/useData";
 
 import { ServiceDto } from "./Services";
 import { dataProvider } from "admin/api/dataProvider";
+
+import styles from "./Datagrid.css";
 
 const columns: Column<ServiceDto>[] = [
   { Header: "Id", accessor: "id" },
@@ -30,11 +32,16 @@ export const ServicesPage = () => {
 
   return (
     <BasePage>
-      {selected.length !== 0 && (
+      <Card
+        className={`${styles.SelectedCard} ${
+          selected.length !== 0 ? styles.Open : styles.Close
+        }`}
+      >
+        {selected.length} {selected.length > 1 ? "items" : "item"} selected
         <button style={{ alignSelf: "flex-end" }} onClick={onDeleteClick}>
           x
         </button>
-      )}
+      </Card>
       <button
         style={{ alignSelf: "flex-end" }}
         onClick={() => navigate("create")}

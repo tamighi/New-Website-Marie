@@ -1,0 +1,12 @@
+.SelectedCard {
+  position: absolute;
+  transition: transform 0.3s;
+}
+
+.Open {
+  transform: scale(1);
+}
+
+.Close {
+  transform: scale(0);
+}
