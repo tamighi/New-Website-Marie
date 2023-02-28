@@ -1,6 +1,10 @@
 .SelectedCard {
+  display: flex;
+  transition: transform 0.4s;
+  align-items: center;
   position: absolute;
-  transition: transform 0.3s;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .Open {

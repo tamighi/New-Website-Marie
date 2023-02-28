@@ -2,7 +2,7 @@ import React from "react";
 
 import { Column } from "react-table";
 import { useNavigate } from "react-router-dom";
-import { Card, DataGrid } from "lib";
+import { Card, DataGrid, DeleteIcon, IconButton } from "lib";
 
 import { BasePage } from "../BasePage";
 import { useData } from "admin/hooks/useData";
@@ -37,13 +37,15 @@ export const ServicesPage = () => {
           selected.length !== 0 ? styles.Open : styles.Close
         }`}
       >
-        {selected.length} {selected.length > 1 ? "items" : "item"} selected
-        <button style={{ alignSelf: "flex-end" }} onClick={onDeleteClick}>
-          x
-        </button>
+        <p style={{ paddingRight: "48px" }}>
+          {selected.length} {selected.length > 1 ? "items" : "item"} selected
+        </p>
+        <IconButton onClick={onDeleteClick}>
+          <DeleteIcon />
+        </IconButton>
       </Card>
       <button
-        style={{ alignSelf: "flex-end" }}
+        style={{ alignSelf: "flex-end", minHeight: "54px" }}
         onClick={() => navigate("create")}
       >
         +

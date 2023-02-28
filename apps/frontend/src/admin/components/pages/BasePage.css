@@ -1,5 +1,6 @@
 .BasePage {
   display: flex;
+  position: relative;
   flex-direction: column;
   margin-right: 46px;
   margin-left: 10px;
