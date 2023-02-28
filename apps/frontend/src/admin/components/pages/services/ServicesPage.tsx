@@ -2,7 +2,7 @@ import React from "react";
 
 import { Column } from "react-table";
 import { useNavigate } from "react-router-dom";
-import { Card, DataGrid, DeleteIcon, IconButton } from "lib";
+import { Card, DataGrid, DeleteIcon, IconButton, Navbar } from "lib";
 
 import { BasePage } from "../BasePage";
 import { useData } from "admin/hooks/useData";
@@ -44,12 +44,9 @@ export const ServicesPage = () => {
           <DeleteIcon />
         </IconButton>
       </Card>
-      <button
-        style={{ alignSelf: "flex-end", minHeight: "54px" }}
-        onClick={() => navigate("create")}
-      >
-        +
-      </button>
+      <Navbar style={{ justifyContent: "flex-end" }}>
+        <button onClick={() => navigate("create")}>+</button>
+      </Navbar>
       {data?.data && (
         <DataGrid
           data={data?.data}
