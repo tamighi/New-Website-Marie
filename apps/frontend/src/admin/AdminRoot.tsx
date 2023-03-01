@@ -1,6 +1,6 @@
+import { ModalProvider } from "lib";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AdminApp } from "./AdminApp";
-import { ModalProvider } from "./contexts/ModalProvider";
 
 export const AdminRoot = () => {
   const queryClient = new QueryClient({

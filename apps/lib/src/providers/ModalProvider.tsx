@@ -2,7 +2,7 @@ import React from "react";
 
 import { Modal } from "../components/Modal";
 
-interface IModalState {
+export interface IModalState {
   open: boolean;
   content: string;
   okCallback?: () => void;
@@ -52,11 +52,13 @@ const ModalProvider = ({ children }: { children: React.ReactNode }) => {
     content: "",
   });
 
+  const closeModal = () => setModalState({ open: false, content: "" });
+
   return (
     <ModalContext.Provider
       value={{ modalState: modalState, setModalState: setModalState }}
     >
-      <Modal />
+      <Modal modalState={modalState} closeModal={closeModal} />
       {children}
     </ModalContext.Provider>
   );

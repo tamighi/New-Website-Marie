@@ -2,40 +2,40 @@ import React from "react";
 
 import { Column } from "react-table";
 import { useNavigate } from "react-router-dom";
-import { Card, DataGrid, DeleteIcon, IconButton, Navbar } from "lib";
+import { Card, DataGrid, DeleteIcon, IconButton, Navbar, useModal } from "lib";
 
 import { BasePage } from "../BasePage";
-import { useData } from "admin/hooks/useData";
+import { useGetData } from "admin/hooks/useData";
 
 import { ServiceDto } from "./Services";
 import { dataProvider } from "admin/api/dataProvider";
 
 import styles from "./Datagrid.css";
-import { useModal } from "admin/contexts/ModalProvider";
 
 const columns: Column<ServiceDto>[] = [
-  { Header: "Id", accessor: "id" },
   { Header: "Name", accessor: "name" },
   { Header: "Description", accessor: "description" },
 ];
 
 export const ServicesPage = () => {
-  const { data } = useData<ServiceDto>("service");
-  const navigate = useNavigate();
-  const modal = useModal();
 
+  const { data } = useGetData<ServiceDto>("service");
   const [selected, setSelected] = React.useState<string[]>([]);
 
+  const navigate = useNavigate();
+  const { showModal } = useModal();
+
   const onDeleteClick = async () => {
-    if (!modal) {
+    if (!showModal) {
       return;
     }
-    modal.setModalState({ open: true, content: "Delete ?" });
-    /*
-    dataProvider.deleteMany("service", {
-      ids: selected,
+    showModal({
+      content: "Delete ?",
+      okCallback: () =>
+        dataProvider.deleteMany("service", {
+          ids: selected,
+        }),
     });
-    */
   };
 
   return (
@@ -55,14 +55,12 @@ export const ServicesPage = () => {
       <Navbar style={{ justifyContent: "flex-end" }}>
         <button onClick={() => navigate("create")}>+</button>
       </Navbar>
-      {data?.data && (
-        <DataGrid
-          data={data?.data}
-          columns={columns}
-          selection
-          setSelected={setSelected}
-        />
-      )}
+      <DataGrid
+        data={data?.data || []}
+        columns={columns}
+        selection
+        setSelected={setSelected}
+      />
     </BasePage>
   );
 };

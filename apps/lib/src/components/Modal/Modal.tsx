@@ -1,15 +1,15 @@
 import { Card, Divider } from "..";
-import { useModal } from "../../providers";
+import { IModalState } from "../../providers";
 import BlurryBackground from "../utils/BlurryBackground";
 
 import styles from "./Modal.css";
 
-const Modal = () => {
-  const { modalState, closeModal } = useModal();
+interface ModalProps {
+  modalState: IModalState;
+  closeModal: () => void;
+}
 
-  if (!modalState) {
-    return null;
-  }
+const Modal = ({ modalState, closeModal }: ModalProps) => {
   const onOkClick = () => {
     modalState.okCallback?.();
     closeModal();
@@ -25,7 +25,7 @@ const Modal = () => {
       {modalState.open && (
         <Card className={styles.Modal}>
           <p>{modalState.content}</p>
-          <Divider style={{ marginBottom: "10px" }}/>
+          <Divider style={{ marginBottom: "10px" }} />
           <div className={styles.Buttons}>
             <button onClick={onOkClick}>Ok</button>
             <button onClick={onCancelClick}>Cancel</button>
