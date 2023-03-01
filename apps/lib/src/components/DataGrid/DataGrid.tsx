@@ -2,7 +2,7 @@ import React from "react";
 import { Column, useTable, useRowSelect, Hooks, CellProps } from "react-table";
 import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
 
-import { useTheme } from "../../hooks";
+import { useTheme } from "../../providers";
 
 import CSSClasses from "./DataGrid.css";
 

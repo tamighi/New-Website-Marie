@@ -1,6 +1,5 @@
 import React from "react";
-
-import { useTheme } from "../hooks";
+import { useTheme } from "../providers";
 
 const useStyles = (type: "background" | "primary" | "secondary") => {
   const theme = useTheme();
