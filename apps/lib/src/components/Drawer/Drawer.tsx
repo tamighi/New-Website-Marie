@@ -1,4 +1,4 @@
-import React from "react";
+import BlurryBackground from "../utils/BlurryBackground";
 
 import { useStyles } from "../../hooks";
 import { DefaultProps } from "..";
@@ -24,39 +24,15 @@ const Drawer = (props: DrawerProps) => {
     ? styles.transition + ", transform 225ms ease"
     : "transform 225ms ease";
 
-  const [visible, setVisible] = React.useState(open);
-
-  React.useEffect(() => {
-    if (open) {
-      setVisible(open);
-    }
-    const timer = setTimeout(() => {
-      if (!open) {
-        setVisible(open);
-      }
-    }, 225);
-    return () => clearTimeout(timer);
-  }, [open]);
-
   return (
-    <div
-      className={`${CSSClasses.DrawerContainer} ${
-        visible ? "" : CSSClasses.HiddenContainer
-      }`}
-      onClick={onClose}
-    >
-      <div
-        className={`${CSSClasses.Background} ${
-          open ? "" : CSSClasses.HiddenBackground
-        }`}
-      />
+    <BlurryBackground onClick={onClose} visible={open}>
       <div
         className={`${classNames} ${open ? "" : CSSClasses.HiddenDrawer}`}
         style={styles}
       >
         {children}
       </div>
-    </div>
+    </BlurryBackground>
   );
 };
 

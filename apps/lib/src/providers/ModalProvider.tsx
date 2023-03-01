@@ -14,17 +14,6 @@ interface IModalContext {
   setModalState: React.Dispatch<React.SetStateAction<IModalState>>;
 }
 
-const initialModalValues: IModalState = {
-  open: false,
-  content: "",
-  okCallback: () => {
-    return;
-  },
-  closeCallback: () => {
-    return;
-  },
-};
-
 const ModalContext = React.createContext<IModalContext | null>(null);
 
 export const useModal = () => {
@@ -47,7 +36,7 @@ export const useModal = () => {
   };
 
   const closeModal = () => {
-    setModalState(initialModalValues);
+    setModalState({ open: false, content: "" });
   };
 
   return {
@@ -58,8 +47,10 @@ export const useModal = () => {
 };
 
 const ModalProvider = ({ children }: { children: React.ReactNode }) => {
-  const [modalState, setModalState] =
-    React.useState<IModalState>(initialModalValues);
+  const [modalState, setModalState] = React.useState<IModalState>({
+    open: false,
+    content: "",
+  });
 
   return (
     <ModalContext.Provider
