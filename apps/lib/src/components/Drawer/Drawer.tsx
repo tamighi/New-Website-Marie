@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useClickOutside, useStyles } from "../../hooks";
+import { useStyles } from "../../hooks";
 import { DefaultProps } from "..";
 
 import CSSClasses from "./Drawer.css";
@@ -24,7 +24,6 @@ const Drawer = (props: DrawerProps) => {
     ? styles.transition + ", transform 225ms ease"
     : "transform 225ms ease";
 
-  const ref = useClickOutside(onClose);
   const [visible, setVisible] = React.useState(open);
 
   React.useEffect(() => {
@@ -44,6 +43,7 @@ const Drawer = (props: DrawerProps) => {
       className={`${CSSClasses.DrawerContainer} ${
         visible ? "" : CSSClasses.HiddenContainer
       }`}
+      onClick={onClose}
     >
       <div
         className={`${CSSClasses.Background} ${
@@ -53,7 +53,6 @@ const Drawer = (props: DrawerProps) => {
       <div
         className={`${classNames} ${open ? "" : CSSClasses.HiddenDrawer}`}
         style={styles}
-        ref={ref}
       >
         {children}
       </div>
