@@ -52,13 +52,14 @@ const ModalProvider = ({ children }: { children: React.ReactNode }) => {
     content: "",
   });
 
-  const closeModal = () => setModalState({ open: false, content: "" });
-
   return (
     <ModalContext.Provider
       value={{ modalState: modalState, setModalState: setModalState }}
     >
-      <Modal modalState={modalState} closeModal={closeModal} />
+      <Modal
+        modalState={modalState}
+        closeModal={() => setModalState({ open: false, content: "" })}
+      />
       {children}
     </ModalContext.Provider>
   );

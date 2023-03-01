@@ -7,7 +7,7 @@ import { TestForm } from "./components/TestForm";
 import { useStyles } from "../hooks";
 
 import styles from "./App.css";
-import "./Global.css"
+import "./Global.css";
 
 export const App = () => {
   const style = useStyles("background");

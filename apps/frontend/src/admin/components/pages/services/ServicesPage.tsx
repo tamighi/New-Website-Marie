@@ -18,9 +18,10 @@ const columns: Column<ServiceDto>[] = [
 ];
 
 export const ServicesPage = () => {
-
   const { data } = useGetData<ServiceDto>("service");
   const [selected, setSelected] = React.useState<string[]>([]);
+
+  const _data = React.useMemo(() => (data ? data : { data: [] }), [data]);
 
   const navigate = useNavigate();
   const { showModal } = useModal();
@@ -56,7 +57,7 @@ export const ServicesPage = () => {
         <button onClick={() => navigate("create")}>+</button>
       </Navbar>
       <DataGrid
-        data={data?.data || []}
+        data={_data?.data}
         columns={columns}
         selection
         setSelected={setSelected}

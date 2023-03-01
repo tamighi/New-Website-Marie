@@ -4,12 +4,13 @@ import BlurryBackground from "../utils/BlurryBackground";
 
 import styles from "./Modal.css";
 
-interface ModalProps {
+const Modal = ({
+  modalState,
+  closeModal,
+}: {
   modalState: IModalState;
   closeModal: () => void;
-}
-
-const Modal = ({ modalState, closeModal }: ModalProps) => {
+}) => {
   const onOkClick = () => {
     modalState.okCallback?.();
     closeModal();

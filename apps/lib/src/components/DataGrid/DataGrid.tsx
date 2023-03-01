@@ -37,9 +37,6 @@ const DataGrid = <T extends { id: number | string }>({
   clickable = false,
   onRowClick,
 }: DataGridProps<T>) => {
-  const _columns = React.useMemo(() => columns, [columns]);
-  const _data = React.useMemo(() => data, [data]);
-
   const plugins = [];
 
   if (selection) {
@@ -69,7 +66,7 @@ const DataGrid = <T extends { id: number | string }>({
     rows,
     prepareRow,
     selectedFlatRows,
-  } = useTable({ columns: _columns, data: _data }, ...plugins);
+  } = useTable({ columns: columns, data: data }, ...plugins);
 
   React.useEffect(() => {
     if (setSelected) {
