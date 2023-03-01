@@ -1,5 +1,6 @@
 import { Card } from "..";
 import { useModal } from "../../providers";
+import BlurryBackground from "../utils/BlurryBackground";
 
 import styles from "./Modal.css";
 
@@ -20,8 +21,8 @@ const Modal = () => {
   };
 
   return (
-    <>
-      {modalState?.open && (
+    <BlurryBackground onClick={closeModal} visible={modalState.open}>
+      {modalState.open && (
         <Card className={styles.Modal}>
           Modal <br />
           {modalState.content}
@@ -29,7 +30,7 @@ const Modal = () => {
           <button onClick={onCancelClick}>Cancel</button>
         </Card>
       )}
-    </>
+    </BlurryBackground>
   );
 };
 
