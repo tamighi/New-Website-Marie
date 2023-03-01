@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AdminApp } from "./AdminApp";
+import { ModalProvider } from "./contexts/ModalProvider";
 
 export const AdminRoot = () => {
   const queryClient = new QueryClient({
@@ -14,7 +15,9 @@ export const AdminRoot = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AdminApp />
+      <ModalProvider>
+        <AdminApp />
+      </ModalProvider>
     </QueryClientProvider>
   );
 };

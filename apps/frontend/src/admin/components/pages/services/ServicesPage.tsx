@@ -11,6 +11,7 @@ import { ServiceDto } from "./Services";
 import { dataProvider } from "admin/api/dataProvider";
 
 import styles from "./Datagrid.css";
+import { useModal } from "admin/contexts/ModalProvider";
 
 const columns: Column<ServiceDto>[] = [
   { Header: "Id", accessor: "id" },
@@ -21,13 +22,20 @@ const columns: Column<ServiceDto>[] = [
 export const ServicesPage = () => {
   const { data } = useData<ServiceDto>("service");
   const navigate = useNavigate();
+  const modal = useModal();
 
   const [selected, setSelected] = React.useState<string[]>([]);
 
   const onDeleteClick = async () => {
+    if (!modal) {
+      return;
+    }
+    modal.setModalState({ open: true, content: "Delete ?" });
+    /*
     dataProvider.deleteMany("service", {
       ids: selected,
     });
+    */
   };
 
   return (
