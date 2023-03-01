@@ -1,4 +1,4 @@
-import { Theme } from "../contexts/ThemeContext";
+import { Theme } from "../providers";
 
 const baseTheme: Theme = {
   palette: {

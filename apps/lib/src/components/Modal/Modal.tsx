@@ -1,4 +1,4 @@
-import { Card } from "..";
+import { Card, Divider } from "..";
 import { useModal } from "../../providers";
 import BlurryBackground from "../utils/BlurryBackground";
 
@@ -24,10 +24,12 @@ const Modal = () => {
     <BlurryBackground onClick={closeModal} visible={modalState.open}>
       {modalState.open && (
         <Card className={styles.Modal}>
-          Modal <br />
-          {modalState.content}
-          <button onClick={onOkClick}>Ok</button>
-          <button onClick={onCancelClick}>Cancel</button>
+          <p>{modalState.content}</p>
+          <Divider style={{ marginBottom: "10px" }}/>
+          <div className={styles.Buttons}>
+            <button onClick={onOkClick}>Ok</button>
+            <button onClick={onCancelClick}>Cancel</button>
+          </div>
         </Card>
       )}
     </BlurryBackground>

@@ -13,7 +13,7 @@ export const TestForm = () => {
 
   const onSubmit = (data: Dto) => {
     console.log(data);
-    showModal?.({ content: "Test" });
+    showModal?.({ content: "Delete user ?" });
   };
 
   return (
