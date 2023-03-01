@@ -11,8 +11,7 @@ export const ServiceCreate = () => {
   const { register, handleSubmit } = useForm<CreateServiceDto>();
 
   const onSubmit = async (data: CreateServiceDto) => {
-    const resp = dataProvider.create("service", { data });
-    console.log(await resp);
+    dataProvider.create("service", { data });
   };
   return (
     <BasePage>

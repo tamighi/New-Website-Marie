@@ -11,31 +11,36 @@ import { ServiceDto } from "./Services";
 import { dataProvider } from "admin/api/dataProvider";
 
 import styles from "./Datagrid.css";
+import { useQueryClient } from "react-query";
 
 const columns: Column<ServiceDto>[] = [
+  { Header: "Id", accessor: "id" },
   { Header: "Name", accessor: "name" },
   { Header: "Description", accessor: "description" },
 ];
 
 export const ServicesPage = () => {
-  const { data } = useGetData<ServiceDto>("service");
   const [selected, setSelected] = React.useState<string[]>([]);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
+  const { data } = useGetData<ServiceDto>("service");
   const _data = React.useMemo(() => (data ? data : { data: [] }), [data]);
 
-  const navigate = useNavigate();
-  const { showModal } = useModal();
 
+  const { showModal } = useModal();
   const onDeleteClick = async () => {
     if (!showModal) {
       return;
     }
     showModal({
       content: "Delete ?",
-      okCallback: () =>
-        dataProvider.deleteMany("service", {
+      okCallback: async () => {
+        await dataProvider.deleteMany("service", {
           ids: selected,
-        }),
+        });
+        queryClient.invalidateQueries("service");
+      },
     });
   };
 
