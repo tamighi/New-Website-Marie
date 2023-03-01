@@ -1,4 +1,5 @@
 import { useForm } from "../../hooks";
+import { useModal } from "../../providers";
 
 interface Dto {
   test: string;
@@ -8,9 +9,11 @@ interface Dto {
 
 export const TestForm = () => {
   const { register, handleSubmit } = useForm<Dto>();
+  const { showModal } = useModal();
 
   const onSubmit = (data: Dto) => {
     console.log(data);
+    showModal?.({ content: "Test" });
   };
 
   return (
