@@ -2,7 +2,15 @@ import React from "react";
 
 import { Column } from "react-table";
 import { useNavigate } from "react-router-dom";
-import { Card, DataGrid, DeleteIcon, IconButton, Navbar, useModal } from "lib";
+import {
+  AddIcon,
+  Card,
+  DataGrid,
+  DeleteIcon,
+  IconButton,
+  Navbar,
+  useModal,
+} from "lib";
 
 import { BasePage } from "../BasePage";
 import { useGetData } from "admin/hooks/useData";
@@ -26,7 +34,6 @@ export const ServicesPage = () => {
 
   const { data } = useGetData<ServiceDto>("service");
   const _data = React.useMemo(() => (data ? data : { data: [] }), [data]);
-
 
   const { showModal } = useModal();
   const onDeleteClick = async () => {
@@ -59,7 +66,9 @@ export const ServicesPage = () => {
         </IconButton>
       </Card>
       <Navbar style={{ justifyContent: "flex-end" }}>
-        <button onClick={() => navigate("create")}>+</button>
+        <IconButton onClick={() => navigate("create")}>
+          <AddIcon />
+        </IconButton>
       </Navbar>
       <DataGrid
         data={_data?.data}
