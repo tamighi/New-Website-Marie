@@ -13,7 +13,7 @@ const IconBase = (props: IconProps) => {
   const classNames = `${CSSClasses.IconBase} ` + (className || "");
   const _style = useStyles("primary");
 
-  const color = style?.color || _style.color
+  const color = style?.color || _style.color;
 
   return (
     <svg

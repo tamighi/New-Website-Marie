@@ -1,7 +1,7 @@
 import { HomeIcon } from "lib";
 import { Appbar as LibAppbar, MenuIcon, IconButton, Navbar } from "lib";
 
-import styles from "./Appbar.css"
+import styles from "./Appbar.css";
 
 interface AppbarProps {
   toggleSideBar: () => void;

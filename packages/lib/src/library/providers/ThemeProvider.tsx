@@ -26,7 +26,6 @@ export const useTheme = () => {
   return React.useContext(ThemeContext) || baseTheme;
 };
 
-
 const ThemeProvider = ({
   children,
   theme,
