@@ -8,12 +8,13 @@ interface Dto {
 }
 
 export const TestForm = () => {
-  const { register, handleSubmit } = useForm<Dto>();
+  const { register, handleSubmit, reset } = useForm<Dto>();
   const { showDialog } = useDialog();
 
   const onSubmit = (data: Dto) => {
     console.log(data);
     showDialog?.({ content: "Delete user ?" });
+    reset();
   };
 
   return (

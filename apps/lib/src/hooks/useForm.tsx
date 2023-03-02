@@ -32,6 +32,15 @@ const useForm = <T,>() => {
     [inputRefs]
   );
 
+  const reset = () => {
+    for (const k in inputRefs) {
+      const ref = inputRefs[k]?.current;
+      if (ref) {
+        ref.value = "";
+      }
+    }
+  };
+
   const handleSubmit = (onSubmit: (data: T) => void) => {
     return (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -47,7 +56,7 @@ const useForm = <T,>() => {
     };
   };
 
-  return { register, handleSubmit };
+  return { register, handleSubmit, reset };
 };
 
 export default useForm;
