@@ -1,6 +1,7 @@
-import { ModalProvider } from "lib";
+import { DialogProvider } from "lib";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AdminApp } from "./AdminApp";
+import { Alert } from "./components/generics/alert/Alert";
 
 export const AdminRoot = () => {
   const queryClient = new QueryClient({
@@ -15,9 +16,9 @@ export const AdminRoot = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ModalProvider>
+      <DialogProvider Component={Alert}>
         <AdminApp />
-      </ModalProvider>
+      </DialogProvider>
     </QueryClientProvider>
   );
 };

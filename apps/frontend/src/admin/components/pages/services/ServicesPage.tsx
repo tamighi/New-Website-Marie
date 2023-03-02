@@ -9,7 +9,7 @@ import {
   DeleteIcon,
   IconButton,
   Navbar,
-  useModal,
+  useDialog,
 } from "lib";
 
 import { BasePage } from "../BasePage";
@@ -35,19 +35,21 @@ export const ServicesPage = () => {
   const { data } = useGetData<ServiceDto>("service");
   const _data = React.useMemo(() => (data ? data : { data: [] }), [data]);
 
-  const { showModal } = useModal();
+  const { showDialog } = useDialog();
   const onDeleteClick = async () => {
-    if (!showModal) {
+    if (!showDialog) {
       return;
     }
-    showModal({
+    showDialog({
       content: "Delete ?",
+      /*
       okCallback: async () => {
         await dataProvider.deleteMany("service", {
           ids: selected,
         });
         queryClient.invalidateQueries("service");
       },
+        */
     });
   };
 

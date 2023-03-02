@@ -29,7 +29,7 @@ export const useDialog = () => {
   };
 
   const closeDialog = () => {
-    setDialogState({ open: false });
+    setDialogState((prevState) => ({ ...prevState, open: false }));
   };
 
   return {
@@ -59,7 +59,9 @@ const DialogProvider = ({
     >
       <Component
         dialogState={dialogState}
-        closeDialog={() => setDialogState({ open: false })}
+        closeDialog={() =>
+          setDialogState((prevState) => ({ ...prevState, open: false }))
+        }
       />
       {children}
     </DialogContext.Provider>
