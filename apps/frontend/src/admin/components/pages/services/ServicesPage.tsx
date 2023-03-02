@@ -37,13 +37,10 @@ export const ServicesPage = () => {
 
   const { showDialog } = useDialog();
   const onDeleteClick = async () => {
-    if (!showDialog) {
-      return;
-    }
     await dataProvider.deleteMany("service", {
       ids: selected,
     });
-    showDialog({ content: `${selected.length} item(s) deleted` });
+    showDialog?.({ content: `${selected.length} item(s) deleted` });
     queryClient.invalidateQueries("service");
   };
 
@@ -71,6 +68,8 @@ export const ServicesPage = () => {
         columns={columns}
         selection
         setSelected={setSelected}
+        clickable
+        onRowClick={(id: string) => navigate(`${id}`)}
       />
     </BasePage>
   );

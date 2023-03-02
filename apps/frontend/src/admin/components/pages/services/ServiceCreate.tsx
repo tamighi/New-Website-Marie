@@ -19,6 +19,7 @@ export const ServiceCreate = () => {
     queryClient.invalidateQueries("service");
     reset()
   };
+
   return (
     <BasePage>
       Creer un service

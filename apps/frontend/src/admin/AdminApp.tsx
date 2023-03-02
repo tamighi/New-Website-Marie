@@ -8,6 +8,7 @@ import { Dashboard } from "./components/pages/dashboard/Dashboard";
 import { ServiceCreate, ServicesPage } from "./components/pages/services";
 
 import styles from "./AdminApp.css";
+import { ServiceEdit } from "./components/pages/services/ServiceEdit";
 
 export const AdminApp = () => {
   const [openSidebar, setOpenSidebar] = React.useState(false);
@@ -23,6 +24,7 @@ export const AdminApp = () => {
         <Routes>
           <Route path="" element={<Dashboard />} />
           <Route path="services" element={<ServicesPage />} />
+          <Route path="services/:id" element={<ServiceEdit />} />
           <Route path="services/create" element={<ServiceCreate />} />
         </Routes>
       </main>
