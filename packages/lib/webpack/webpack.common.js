@@ -11,7 +11,6 @@ module.exports = {
     library: {
       type: "umd",
     },
-    publicPath: "/",
   },
   module: {
     rules: [
