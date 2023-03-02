@@ -12,3 +12,10 @@ export const useGetData = <T extends object>(ressource: string) => {
 
   return data;
 };
+
+export const useGetOne = <T extends object>(ressource: string, id: string) => {
+  const data = useQuery<{ data: T }>([ressource, id], () =>
+    dataProvider.getOne(ressource, { id: id })
+  );
+  return data;
+};

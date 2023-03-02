@@ -17,7 +17,7 @@ export const ServiceCreate = () => {
     await dataProvider.create("service", { data });
     showDialog?.({ content: "Item created !" });
     queryClient.invalidateQueries("service");
-    reset()
+    reset();
   };
 
   return (

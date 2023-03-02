@@ -9,7 +9,7 @@ interface GetListParams<T> {
 }
 
 interface GetOneParams {
-  id: number;
+  id: string;
 }
 
 interface GetManyParams {

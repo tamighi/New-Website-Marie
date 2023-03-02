@@ -1,7 +1,13 @@
+import { useGetOne } from "admin/hooks/useData";
 import { useParams } from "react-router-dom";
 
 export const ServiceEdit = () => {
-  const params = useParams();
-  console.log(params.id)
-  return <div>ServiceEdit {params.id}</div>;
+  const { id } = useParams<"id">() as { id: string };
+
+  const { data } = useGetOne("service", id);
+
+  if (!data) {
+    return null;
+  }
+  return <div>ServiceEdit {id}</div>;
 };
