@@ -38,10 +38,15 @@ export const IndeterminateCheckbox = React.forwardRef<
 
     return (
       <>
-        <input type="checkbox" ref={resolvedRef} {...rest} />
+        <input
+          type="checkbox"
+          ref={resolvedRef}
+          onClick={(e) => e.stopPropagation()}
+          {...rest}
+        />
       </>
     );
   }
 );
 
-IndeterminateCheckbox.displayName = "IndeterminateCheckbox"
+IndeterminateCheckbox.displayName = "IndeterminateCheckbox";
