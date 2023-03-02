@@ -1,4 +1,4 @@
-import { useForm } from "lib";
+import { useDialog, useForm } from "lib";
 
 import { TextArea } from "admin/components/inputs/TextAreaInput";
 import { TextInput } from "admin/components/inputs/TextInput";
@@ -9,9 +9,11 @@ import { CreateServiceDto } from "./Services";
 
 export const ServiceCreate = () => {
   const { register, handleSubmit } = useForm<CreateServiceDto>();
+  const { showDialog } = useDialog();
 
   const onSubmit = async (data: CreateServiceDto) => {
     dataProvider.create("service", { data });
+    showDialog?.({ content: "Item created !" });
   };
   return (
     <BasePage>
