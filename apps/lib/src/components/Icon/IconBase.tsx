@@ -1,13 +1,17 @@
 import { DefaultProps } from "..";
+import { useStyles } from "../../hooks";
 
 import CSSClasses from "./IconBase.css";
 
-export type IconProps = DefaultProps;
+export interface IconProps extends DefaultProps {
+  coloredPath: string;
+}
 
 const IconBase = (props: IconProps) => {
-  const { style, className, children } = props;
+  const { style, className, children, coloredPath } = props;
 
   const classNames = `${CSSClasses.IconBase} ` + (className || "");
+  const styles = useStyles("primary");
 
   return (
     <svg
@@ -16,6 +20,7 @@ const IconBase = (props: IconProps) => {
       className={classNames}
       style={style}
     >
+      <path d={coloredPath} fill={styles.color} />
       {children}
     </svg>
   );
