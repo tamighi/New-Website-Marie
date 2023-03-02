@@ -6,14 +6,17 @@ import { BasePage } from "../BasePage";
 
 import { dataProvider } from "admin/api/dataProvider";
 import { CreateServiceDto } from "./Services";
+import { useQueryClient } from "react-query";
 
 export const ServiceCreate = () => {
   const { register, handleSubmit } = useForm<CreateServiceDto>();
   const { showDialog } = useDialog();
+  const queryClient = useQueryClient();
 
   const onSubmit = async (data: CreateServiceDto) => {
-    dataProvider.create("service", { data });
+    await dataProvider.create("service", { data });
     showDialog?.({ content: "Item created !" });
+    queryClient.invalidateQueries("service");
   };
   return (
     <BasePage>

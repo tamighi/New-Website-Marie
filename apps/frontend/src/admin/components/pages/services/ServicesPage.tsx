@@ -40,10 +40,10 @@ export const ServicesPage = () => {
     if (!showDialog) {
       return;
     }
-    showDialog({ content: `${selected.length} item(s) deleted` });
     await dataProvider.deleteMany("service", {
       ids: selected,
     });
+    showDialog({ content: `${selected.length} item(s) deleted` });
     queryClient.invalidateQueries("service");
   };
 
