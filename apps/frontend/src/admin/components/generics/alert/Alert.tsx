@@ -14,7 +14,7 @@ export const Alert = ({
       if (dialogState.open) {
         closeDialog();
       }
-    }, 1000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, [dialogState, closeDialog]);
 
