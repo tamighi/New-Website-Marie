@@ -41,7 +41,7 @@ const useForm = <T,>() => {
     }
   };
 
-  const handleSubmit = (onSubmit: (data: T) => void) => {
+  const handleSubmit = (onSubmit: (data: Partial<T>) => void) => {
     return (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
@@ -50,7 +50,7 @@ const useForm = <T,>() => {
           ...result,
           [key]: inputRefs[key as keyof T]?.current?.value || "",
         }),
-        {} as T
+        {}
       );
       onSubmit(data);
     };

@@ -11,10 +11,9 @@ export const TestForm = () => {
   const { register, handleSubmit, reset } = useForm<Dto>();
   const { showDialog } = useDialog();
 
-  const onSubmit = (data: Dto) => {
+  const onSubmit = (data: Partial<Dto>) => {
     console.log(data);
-    showDialog?.({ content: "Delete user ?" });
-    reset();
+    showDialog?.({ content: "Create user ?", okCallback: reset });
   };
 
   return (
