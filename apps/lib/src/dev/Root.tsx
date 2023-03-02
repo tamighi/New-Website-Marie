@@ -1,13 +1,13 @@
-import { ModalProvider } from "../providers";
 import { App } from "./App";
+import DialogProvider from "../providers/DialogProvider";
 import { MyThemeProvider } from "./providers/MyThemeProvider";
 
 export const Root = () => {
   return (
-    <ModalProvider>
+    <DialogProvider>
       <MyThemeProvider>
         <App />
       </MyThemeProvider>
-    </ModalProvider>
+    </DialogProvider>
   );
 };

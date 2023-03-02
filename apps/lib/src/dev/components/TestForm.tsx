@@ -1,5 +1,5 @@
 import { useForm } from "../../hooks";
-import { useModal } from "../../providers";
+import { useDialog } from "../../providers";
 
 interface Dto {
   test: string;
@@ -9,11 +9,11 @@ interface Dto {
 
 export const TestForm = () => {
   const { register, handleSubmit } = useForm<Dto>();
-  const { showModal } = useModal();
+  const { showDialog } = useDialog();
 
   const onSubmit = (data: Dto) => {
     console.log(data);
-    showModal?.({ content: "Delete user ?" });
+    showDialog?.({ content: "Delete user ?" });
   };
 
   return (
