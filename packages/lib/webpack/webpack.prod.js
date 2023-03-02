@@ -1,5 +1,5 @@
 module.exports = {
-  entry: "./src/index.ts",
+  entry: "./src/library/index.ts",
   mode: "production",
   externals: {
     react: "react",

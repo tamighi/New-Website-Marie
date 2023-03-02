@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "main": "build/bundle.js",
-  "types": "build/index.d.ts",
+  "types": "build/library/index.d.ts",
   "scripts": {
     "start": "webpack serve --config webpack/webpack.config.js --env env=dev",
     "build": "webpack --config webpack/webpack.config.js --env env=prod",
