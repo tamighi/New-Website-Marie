@@ -15,7 +15,7 @@ import {
 import { BasePage } from "../BasePage";
 import { useGetData } from "admin/hooks/useData";
 
-import { ServiceDto } from "./Services";
+import { ServiceDto } from "./services";
 import { dataProvider } from "admin/api/dataProvider";
 
 import styles from "./Datagrid.css";

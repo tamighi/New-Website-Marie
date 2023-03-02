@@ -13,7 +13,7 @@ interface GetOneParams {
 }
 
 interface GetManyParams {
-  ids: number[];
+  ids: string[];
 }
 
 interface GetManyReferenceParams<T> {
@@ -21,16 +21,16 @@ interface GetManyReferenceParams<T> {
   sort: { field: string; order: "ASC" | "DESC" };
   filter: T;
   target: string;
-  id: number | string;
+  id: string;
 }
 
 interface UpdateParams<T> {
-  id: number;
+  id: string;
   data: T;
 }
 
 interface UpdateManyParams<T> {
-  ids: number[];
+  ids: string[];
   data: T;
 }
 
@@ -39,11 +39,11 @@ interface CreateParams<T> {
 }
 
 interface DeleteParams {
-  id: number | string;
+  id: string;
 }
 
 interface DeleteManyParams {
-  ids: number[] | string[];
+  ids: string[];
 }
 
 const createHeadersFromOptions = (options: RequestInit): Headers => {
