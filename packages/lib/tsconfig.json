@@ -14,7 +14,8 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "declaration": true,
-    "outDir": "build"
+    "outDir": "build",
+    "baseUrl": "./src/"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

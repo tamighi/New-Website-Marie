@@ -10,7 +10,7 @@ import {
   MenuIcon,
   Navbar,
   TableChartIcon,
-} from "../../components";
+} from "library";
 import { ThemeToggleIcon } from "./ThemeToggleIcon";
 
 const links = [

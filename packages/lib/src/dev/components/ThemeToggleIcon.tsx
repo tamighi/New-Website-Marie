@@ -1,5 +1,5 @@
-import { IconButton, MoonIcon, SunIcon } from "../../components";
-import { useTheme } from "../../providers";
+import { IconButton, MoonIcon, SunIcon } from "library";
+import { useTheme } from "../../library/providers";
 import { useToggleTheme } from "../providers/MyThemeProvider";
 
 export const ThemeToggleIcon = () => {

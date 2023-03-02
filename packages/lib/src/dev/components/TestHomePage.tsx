@@ -1,4 +1,4 @@
-import { Card, ResponsiveGrid, Paper } from "../../components";
+import { Card, ResponsiveGrid, Paper } from "library";
 
 import "../styles/Page.css";
 

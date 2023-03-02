@@ -4,7 +4,7 @@ import { TestHomePage } from "./components/TestHomePage";
 import { TestDataGrid } from "./components/TestDataGrid";
 import { TestForm } from "./components/TestForm";
 
-import { useStyles } from "../hooks";
+import { useStyles } from "library";
 
 import styles from "./App.css";
 import "./Global.css";

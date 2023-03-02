@@ -1,6 +1,6 @@
 import React from "react";
-import { ThemeProvider } from "../../providers";
-import { createTheme } from "../../utils";
+import { ThemeProvider } from "library";
+import { createTheme } from "library";
 
 const ToggleThemeContext = React.createContext<(() => void) | null>(null);
 

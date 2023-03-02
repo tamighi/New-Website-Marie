@@ -1,6 +1,6 @@
+import { DataGrid } from "library";
 import React from "react";
 import { Column } from "react-table";
-import { DataGrid } from "../../components";
 import "../styles/Page.css";
 
 interface Data {

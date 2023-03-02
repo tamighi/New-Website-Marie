@@ -1,5 +1,5 @@
-import { useForm } from "../../hooks";
-import { useDialog } from "../../providers";
+import { useForm } from "library";
+import { useDialog } from "../../library/providers";
 
 interface Dto {
   test: string;
