@@ -2,7 +2,7 @@ import { useDialog, useForm } from "lib";
 
 import { TextArea } from "admin/components/inputs/TextAreaInput";
 import { TextInput } from "admin/components/inputs/TextInput";
-import { BasePage } from "../BasePage";
+import { BasePage } from "../core";
 
 import { dataProvider } from "admin/api/dataProvider";
 import { CreateServiceDto } from "./services";

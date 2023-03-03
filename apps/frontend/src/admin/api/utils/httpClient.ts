@@ -26,7 +26,7 @@ export const httpClient = async (
     .then((resp) => {
       if (resp.ok) {
         if (resp.status === 200) {
-          return resp.json;
+          return resp.json();
         }
         return { status: resp.status };
       }

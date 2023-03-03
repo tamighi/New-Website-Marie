@@ -1,5 +1,5 @@
 import { ResponsiveGrid } from "lib";
-import { BasePage } from "../BasePage";
+import { BasePage } from "../core";
 
 export const Dashboard = () => {
   return (
