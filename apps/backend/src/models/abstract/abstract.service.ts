@@ -28,15 +28,15 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
     return { data: data.map((x) => this.entityToDto(x)), count: count };
   }
 
-  async getOneById(id: { id: number }): Promise<DTO> {
+  async getOneById(id: { id: number }): Promise<{ data: DTO }> {
     const data: T = await this.repository.findOne({
       where: id as FindOptionsWhere<T>,
     });
 
-    return this.entityToDto(data);
+    return { data: this.entityToDto(data) };
   }
 
-  async updateOne(id: { id: number }, body: DTO): Promise<DTO> {
+  async updateOne(id: { id: number }, body: DTO): Promise<{ data: DTO }> {
     const updateBody = body as QueryDeepPartialEntity<T>;
 
     await this.repository.update(id.id, updateBody);
@@ -44,26 +44,26 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
       where: id as FindOptionsWhere<T>,
     });
 
-    return this.entityToDto(data);
+    return { data: this.entityToDto(data) };
   }
 
-  async updateMany(body: DTO[], query: QueryDto) {
+  async updateMany(body: DTO[], query: QueryDto): Promise<{ data: DTO[] }> {
     const updateBody = body as QueryDeepPartialEntity<T>;
 
     await this.repository.update(query.filter.id, updateBody);
     const data: T[] = await this.repository.find({
       where: query.filter,
     });
-    return data.map((x) => this.entityToDto(x));
+    return { data: data.map((x) => this.entityToDto(x)) };
   }
 
   async create(body: DTO) {
     const updateBody = body as DeepPartial<T>;
 
     const newData: T[] | T = this.repository.create(updateBody);
-    const saved = this.repository.save(newData);
+    const saved = await this.repository.save(newData);
 
-    return saved;
+    return { data: this.entityToDto(saved) };
   }
 
   async deleteOne(id: { id: number }): Promise<DeleteResult> {
