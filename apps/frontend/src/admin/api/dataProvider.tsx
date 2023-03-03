@@ -1,11 +1,12 @@
 import query_string from "query-string";
+import { hasCount, hasDataArray, hasDataObject, httpClient } from "./utils";
 
 const apiUrl = "http://192.168.1.50:8000";
 
-interface GetListParams<T> {
+interface GetListParams {
   pagination: { page: number; perPage: number };
   sort: { field: string; order: "ASC" | "DESC" };
-  filter: T;
+  filter: object;
 }
 
 interface GetOneParams {
@@ -16,26 +17,26 @@ interface GetManyParams {
   ids: string[];
 }
 
-interface GetManyReferenceParams<T> {
+interface GetManyReferenceParams {
   pagination: { page: number; perPage: number };
   sort: { field: string; order: "ASC" | "DESC" };
-  filter: T;
+  filter: object;
   target: string;
   id: string;
 }
 
-interface UpdateParams<T> {
+interface UpdateParams {
   id: string;
-  data: T;
+  data: object;
 }
 
-interface UpdateManyParams<T> {
+interface UpdateManyParams {
   ids: string[];
-  data: T;
+  data: object;
 }
 
-interface CreateParams<T> {
-  data: T;
+interface CreateParams {
+  data: object;
 }
 
 interface DeleteParams {
@@ -46,37 +47,8 @@ interface DeleteManyParams {
   ids: string[];
 }
 
-const createHeadersFromOptions = (options: RequestInit): Headers => {
-  const requestHeaders = (options.headers ||
-    new Headers({
-      Accept: "application/json",
-    })) as Headers;
-  if (
-    !requestHeaders.has("Content-Type") &&
-    !(options && (!options.method || options.method === "GET")) &&
-    !(options && options.body && options.body instanceof FormData)
-  ) {
-    requestHeaders.set("Content-Type", "application/json");
-  }
-
-  return requestHeaders;
-};
-
-const httpClient = async (url: string, options: RequestInit = {}) => {
-  const headers = createHeadersFromOptions(options);
-  return fetch(url, {
-    ...options,
-    headers: headers,
-  }).then((resp) => {
-    return resp.ok ? resp.json() : null;
-  });
-};
-
 export const dataProvider = {
-  getList: async <T extends object>(
-    resource: string,
-    params: GetListParams<T>
-  ) => {
+  getList: async (resource: string, params: GetListParams) => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
 
@@ -87,12 +59,20 @@ export const dataProvider = {
     };
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
-    return httpClient(url);
+    const resp = await httpClient(url);
+    if (hasCount(resp) && hasDataArray(resp)) {
+      return resp;
+    }
+    return null;
   },
 
   getOne: async (resource: string, params: GetOneParams) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
-    return httpClient(url);
+    const resp = await httpClient(url);
+    if (hasDataObject(resp)) {
+      return resp;
+    }
+    return null;
   },
 
   getMany: async (resource: string, params: GetManyParams) => {
@@ -101,12 +81,16 @@ export const dataProvider = {
     };
 
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
-    return httpClient(url);
+    const resp = await httpClient(url);
+    if (hasCount(resp) && hasDataArray(resp)) {
+      return resp;
+    }
+    return null;
   },
 
-  getManyReference: async <T extends object>(
+  getManyReference: async (
     resource: string,
-    params: GetManyReferenceParams<T>
+    params: GetManyReferenceParams
   ) => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
@@ -119,44 +103,47 @@ export const dataProvider = {
       }),
     };
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
-
-    return httpClient(url);
+    const resp = await httpClient(url);
+    if (hasCount(resp) && hasDataArray(resp)) {
+      return resp;
+    }
+    return null;
   },
 
-  update: async <T extends object>(
-    resource: string,
-    params: UpdateParams<T>
-  ) => {
+  update: async (resource: string, params: UpdateParams) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
-    return httpClient(url, {
+    const resp = await httpClient(url, {
       method: "PUT",
       body: JSON.stringify(params.data),
     });
+    if (hasDataObject(resp)) {
+      return resp;
+    }
   },
 
-  updateMany: async <T extends object>(
-    resource: string,
-    params: UpdateManyParams<T>
-  ) => {
+  updateMany: async (resource: string, params: UpdateManyParams) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
-    return httpClient(url, {
+    const resp = await httpClient(url, {
       method: "PUT",
       body: JSON.stringify(params.data),
     });
+    if (hasDataArray(resp)) {
+      return resp;
+    }
   },
 
-  create: async <T extends object>(
-    resource: string,
-    params: CreateParams<T>
-  ) => {
+  create: async (resource: string, params: CreateParams) => {
     const url = `${apiUrl}/${resource}`;
-    return httpClient(url, {
+    const resp = await httpClient(url, {
       method: "POST",
       body: JSON.stringify(params.data),
     });
+    if (hasDataObject(resp)) {
+      return resp;
+    }
   },
 
   delete: (resource: string, params: DeleteParams) => {
