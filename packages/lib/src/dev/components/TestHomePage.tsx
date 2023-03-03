@@ -1,10 +1,9 @@
 import { Card, ResponsiveGrid, Paper } from "library";
-
-import "../styles/Page.css";
+import styles from "../styles/Page.css";
 
 export const TestHomePage = () => {
   return (
-    <div className="Page">
+    <div className={styles.Page}>
       <ResponsiveGrid container style={{ gap: "16px", padding: "32px" }}>
         <ResponsiveGrid large={6} small={12}>
           <Card>

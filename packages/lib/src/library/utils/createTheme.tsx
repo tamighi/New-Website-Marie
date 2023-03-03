@@ -7,12 +7,8 @@ type DeepPartial<T> = T extends object
 
 const createColor = (userColor: DeepPartial<Colors>, baseColor: Colors) => {
   return {
-    primary: userColor.primary ? userColor.primary : baseColor.primary,
-    secondary: userColor.secondary ? userColor.secondary : baseColor.secondary,
-    background: userColor.background
-      ? userColor.background
-      : baseColor.background,
-    text: userColor.text ? userColor.text : baseColor.text,
+    ...baseColor,
+    ...userColor,
   };
 };
 

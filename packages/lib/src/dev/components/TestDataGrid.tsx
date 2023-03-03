@@ -1,7 +1,7 @@
 import { DataGrid } from "library";
 import React from "react";
 import { Column } from "react-table";
-import "../styles/Page.css";
+import styles from "../styles/Page.css";
 
 interface Data {
   name: string;
@@ -28,7 +28,7 @@ export const TestDataGrid = () => {
   };
 
   return (
-    <div className="Page" style={{ margin: "20px" }}>
+    <div className={styles.Page} style={{ margin: "20px" }}>
       <DataGrid
         data={data}
         columns={columns}

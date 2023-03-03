@@ -1,5 +1,6 @@
 import { useForm } from "library";
 import { useDialog } from "../../library/providers";
+import styles from "../styles/Page.css";
 
 interface Dto {
   test: string;
@@ -17,15 +18,17 @@ export const TestForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("test")} placeholder="Test input" />
-      <textarea {...register("test2")} placeholder="Test input 2" />
-      <select {...register("gender")}>
-        <option value="female">female</option>
-        <option value="male">male</option>
-        <option value="other">other</option>
-      </select>
-      <input type="submit" />
-    </form>
+    <div className={styles.Page}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input {...register("test")} placeholder="Test input" />
+        <textarea {...register("test2")} placeholder="Test input 2" />
+        <select {...register("gender")}>
+          <option value="female">female</option>
+          <option value="male">male</option>
+          <option value="other">other</option>
+        </select>
+        <input type="submit" />
+      </form>
+    </div>
   );
 };
