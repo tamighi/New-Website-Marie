@@ -1,14 +1,6 @@
 import React from "react";
-import { BasePage } from "..";
-import {
-  AddIcon,
-  Card,
-  DataGrid,
-  DeleteIcon,
-  IconButton,
-  Navbar,
-  useDialog,
-} from "lib";
+import { BasePage, Toolbar } from "..";
+import { Card, DataGrid, DeleteIcon, IconButton, useDialog } from "lib";
 
 import { useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -16,8 +8,7 @@ import { useGetData } from "admin/hooks/useData";
 import { dataProvider } from "admin/api/dataProvider";
 
 import { Column } from "react-table";
-
-import styles from "./DatagridLayout.css";
+import { SelectedOptions } from "../SelectedOptions/SelectedOptions";
 
 export const DataGridLayout = <T extends { id: number }>({
   ressource,
@@ -36,11 +27,11 @@ export const DataGridLayout = <T extends { id: number }>({
 
   const { showDialog } = useDialog();
   const onDeleteClick = async () => {
-    await dataProvider.deleteMany("service", {
+    await dataProvider.deleteMany(ressource, {
       ids: selected.map((value) => value.id),
     });
     showDialog?.({ content: `${selected.length} item(s) deleted` });
-    queryClient.invalidateQueries("service");
+    queryClient.invalidateQueries(ressource);
   };
 
   const memoizedData = React.useMemo(() => data, [data]);
@@ -50,23 +41,12 @@ export const DataGridLayout = <T extends { id: number }>({
 
   return (
     <BasePage>
-      <Card
-        className={`${styles.SelectedCard} ${
-          selected.length !== 0 ? styles.Open : styles.Close
-        }`}
-      >
-        <p style={{ paddingRight: "48px" }}>
-          {selected.length} item(s) selected
-        </p>
+      <Toolbar />
+      <SelectedOptions selected={selected}>
         <IconButton onClick={onDeleteClick}>
           <DeleteIcon />
         </IconButton>
-      </Card>
-      <Navbar style={{ justifyContent: "flex-end" }}>
-        <IconButton onClick={() => navigate("create")}>
-          <AddIcon />
-        </IconButton>
-      </Navbar>
+      </SelectedOptions>
       {memoizedData && isTArray(memoizedData.data) && (
         <DataGrid
           data={memoizedData.data}
