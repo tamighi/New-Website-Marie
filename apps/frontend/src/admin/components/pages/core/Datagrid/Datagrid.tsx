@@ -19,28 +19,29 @@ import { Column } from "react-table";
 
 import styles from "./Datagrid.css";
 
-export const DataGridLayout = <T extends { id: string | number }>({
+export const DataGridLayout = <T extends { id: string }>({
   ressource,
   columns,
 }: {
   ressource: string;
   columns: Column<T>[];
 }) => {
-  const [selected, setSelected] = React.useState<string[]>([]);
+  const [selected, setSelected] = React.useState<T[]>([]);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data } = useGetData(ressource);
-  const _data = React.useMemo(() => data, [data]);
+  const { data } = useGetData<T>(ressource);
 
   const { showDialog } = useDialog();
   const onDeleteClick = async () => {
     await dataProvider.deleteMany("service", {
-      ids: selected,
+      ids: selected.map((value) => value.id),
     });
     showDialog?.({ content: `${selected.length} item(s) deleted` });
     queryClient.invalidateQueries("service");
   };
+
+  const memoizedData = React.useMemo(() => data, [data]);
 
   return (
     <BasePage>
@@ -61,14 +62,14 @@ export const DataGridLayout = <T extends { id: string | number }>({
           <AddIcon />
         </IconButton>
       </Navbar>
-      {_data && (
+      {memoizedData && (
         <DataGrid
-          data={_data?.data as T[]}
+          data={memoizedData.data}
           columns={columns}
           selection
           setSelected={setSelected}
           clickable
-          onRowClick={(id: string) => navigate(`${id}`)}
+          onRowClick={(value: T) => navigate(`${value.id}`)}
         />
       )}
     </BasePage>

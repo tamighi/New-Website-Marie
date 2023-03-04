@@ -38,7 +38,6 @@ const DataGrid = <T extends object>({
   onRowClick,
 }: DataGridProps<T>) => {
   const plugins = [];
-
   if (selection) {
     plugins.push(useRowSelect);
     plugins.push((hooks: Hooks<T>) => {

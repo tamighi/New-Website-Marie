@@ -48,7 +48,10 @@ interface DeleteManyParams {
 }
 
 export const dataProvider = {
-  getList: async (resource: string, params: GetListParams) => {
+  getList: async <T,>(
+    resource: string,
+    params: GetListParams
+  ): Promise<{ data: T[]; count: number } | null> => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
 
@@ -61,16 +64,19 @@ export const dataProvider = {
 
     const resp = await httpClient(url);
     if (hasCount(resp) && hasDataArray(resp)) {
-      return resp;
+      return resp as { data: T[]; count: number };
     }
     return null;
   },
 
-  getOne: async (resource: string, params: GetOneParams) => {
+  getOne: async <T,>(
+    resource: string,
+    params: GetOneParams
+  ): Promise<{ data: T } | null> => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url);
     if (hasDataObject(resp)) {
-      return resp;
+      return resp as { data: T };
     }
     return null;
   },
