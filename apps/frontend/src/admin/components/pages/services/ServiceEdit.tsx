@@ -18,7 +18,7 @@ export const ServiceEdit = () => {
   const { id } = useParams<"id">() as { id: string };
   const { data } = useGetOne("service", parseInt(id));
 
-  const onSubmit = async (submitData: Partial<CreateServiceDto>) => {
+  const onSubmit = async (submitData: CreateServiceDto) => {
     await dataProvider.update("service", {
       id: parseInt(id),
       data: submitData,
@@ -36,11 +36,13 @@ export const ServiceEdit = () => {
       <TextInput
         {...register("name")}
         defaultValue={memoizedData.name}
+        placeholder="name"
         autoFocus
       />
       <TextArea
         {...register("description")}
         defaultValue={memoizedData.description}
+        placeholder="description"
       />
       <input type="submit" />
     </form>
