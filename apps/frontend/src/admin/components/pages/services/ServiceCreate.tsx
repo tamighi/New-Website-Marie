@@ -4,19 +4,17 @@ import { TextArea } from "admin/components/inputs/TextAreaInput";
 import { TextInput } from "admin/components/inputs/TextInput";
 import { BasePage } from "../core";
 
-import { dataProvider } from "admin/api/dataProvider";
 import { CreateServiceDto } from ".";
-import { useQueryClient } from "react-query";
+import { useCreate } from "admin/hooks/useData";
 
 export const ServiceCreate = () => {
   const { register, handleSubmit, reset } = useForm<CreateServiceDto>();
-  const { showDialog } = useDialog();
-  const queryClient = useQueryClient();
 
+  const create = useCreate("service");
+  const { showDialog } = useDialog();
   const onSubmit = async (data: Partial<CreateServiceDto>) => {
-    await dataProvider.create("service", { data });
+    await create(data);
     showDialog?.({ content: "Item created !" });
-    queryClient.invalidateQueries("service");
     reset();
   };
 

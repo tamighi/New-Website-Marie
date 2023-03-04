@@ -26,7 +26,6 @@ export const TestDataGrid = () => {
   const onRowClick = (data: Data) => {
     console.log(data);
   };
-  console.log(selectedRows)
 
   return (
     <div className={styles.Page} style={{ margin: "20px" }}>
