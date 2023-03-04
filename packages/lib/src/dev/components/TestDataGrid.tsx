@@ -4,9 +4,9 @@ import { Column } from "react-table";
 import styles from "../styles/Page.css";
 
 interface Data {
-  name: string;
-  age: number;
-  id: number;
+  name?: string;
+  age?: number;
+  id?: number;
 }
 
 const data: Data[] = [
@@ -21,11 +21,12 @@ const columns: Column<Data>[] = [
 ];
 
 export const TestDataGrid = () => {
-  const [selectedRows, setSelectedRows] = React.useState<string[]>([]);
+  const [selectedRows, setSelectedRows] = React.useState<Data[]>([]);
 
-  const onRowClick = (id: string) => {
-    console.log(id);
+  const onRowClick = (data: Data) => {
+    console.log(data);
   };
+  console.log(selectedRows)
 
   return (
     <div className={styles.Page} style={{ margin: "20px" }}>

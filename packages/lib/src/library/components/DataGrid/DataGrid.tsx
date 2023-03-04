@@ -11,25 +11,25 @@ interface DataProps<T extends object> {
   columns: Column<T>[];
 }
 
-type SelectDataProps =
+type SelectDataProps<T> =
   | {
       selection: true;
-      setSelected: React.Dispatch<React.SetStateAction<string[]>>;
+      setSelected: React.Dispatch<React.SetStateAction<T[]>>;
     }
   | { selection?: false; setSelected?: undefined };
 
-type RowClickDataProps =
+type RowClickDataProps<T> =
   | {
       clickable: true;
-      onRowClick: (id: string) => void;
+      onRowClick: (data: T) => void;
     }
   | { clickable?: false; onRowClick?: undefined };
 
 export type DataGridProps<T extends object> = DataProps<T> &
-  SelectDataProps &
-  RowClickDataProps;
+  SelectDataProps<T> &
+  RowClickDataProps<T>;
 
-const DataGrid = <T extends { id: number | string }>({
+const DataGrid = <T extends object>({
   data,
   columns,
   selection = false,
@@ -70,7 +70,7 @@ const DataGrid = <T extends { id: number | string }>({
 
   React.useEffect(() => {
     if (setSelected) {
-      setSelected(selectedFlatRows.map((row) => row.values.id));
+      setSelected(selectedFlatRows.map((row) => row.original));
     }
   }, [selectedFlatRows, setSelected]);
 
@@ -119,13 +119,12 @@ const DataGrid = <T extends { id: number | string }>({
             <tr
               key={key}
               className={clickable ? CSSClasses.Clickable : ""}
-              {...rowProps}
               style={{
-                cursor: clickable ? "pointer" : "initial",
                 backgroundColor: themeColors.background,
                 transition: theme.transition,
               }}
               onClick={onRowClick ? () => onRowClick(row.values.id) : undefined}
+              {...rowProps}
             >
               {row.cells.map((cell) => {
                 const { key, ...cellProps } = cell.getCellProps();
