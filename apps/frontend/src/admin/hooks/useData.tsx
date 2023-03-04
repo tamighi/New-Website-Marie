@@ -40,6 +40,26 @@ export const useDeleteMany = (ressource: string) => {
   return deleteMany;
 };
 
+export const useUpdateOne = <T extends object>(
+  ressource: string,
+  id: number
+) => {
+  const queryClient = useQueryClient();
+
+  const updateOne = React.useCallback(
+    async (data: T) => {
+      await dataProvider.update(ressource, {
+        id,
+        data,
+      });
+      queryClient.invalidateQueries(ressource);
+    },
+    [queryClient, ressource, id]
+  );
+
+  return updateOne;
+};
+
 export const useCreate = <T extends object>(ressource: string) => {
   const queryClient = useQueryClient();
 
