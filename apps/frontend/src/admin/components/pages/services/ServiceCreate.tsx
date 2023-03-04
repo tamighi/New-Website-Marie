@@ -10,9 +10,10 @@ import { useCreate } from "admin/hooks/useData";
 export const ServiceCreate = () => {
   const { register, handleSubmit, reset } = useForm<CreateServiceDto>();
 
-  const create = useCreate("service");
+  const create = useCreate<CreateServiceDto>("service");
   const { showDialog } = useDialog();
-  const onSubmit = async (data: Partial<CreateServiceDto>) => {
+
+  const onSubmit = async (data: CreateServiceDto) => {
     await create(data);
     showDialog?.({ content: "Item created !" });
     reset();
@@ -20,7 +21,7 @@ export const ServiceCreate = () => {
 
   return (
     <BasePage>
-      Creer un service
+      <h3>Creer un service</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextInput {...register("name")} placeholder="Nom" autoFocus />
         <TextArea

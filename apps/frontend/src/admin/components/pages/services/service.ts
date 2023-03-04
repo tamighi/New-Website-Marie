@@ -7,8 +7,8 @@ export interface ServiceDto {
 }
 
 export interface CreateServiceDto {
-  name: string;
-  description: string;
+  name?: string;
+  description?: string;
 }
 
 const serviceDto: ServiceDto = {
