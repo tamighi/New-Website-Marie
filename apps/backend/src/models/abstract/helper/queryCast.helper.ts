@@ -10,22 +10,21 @@ export function parseSort(param: string): object {
   return Object.fromEntries([lst]);
 }
 
-export function parseFilter(param: string): { [key: string]: any } {
-  const filter: { [key: string]: any } = {};
+export function parseFilter(param: string) {
+  const filter: Record<string, unknown> = {};
 
   Object.entries(JSON.parse(param)).forEach(
-    ([key, value]: [key: string, value: any]) => {
+    ([key, value]: [key: string, value: unknown]) => {
       const idx = key.indexOf("_");
       if (isArray(value)) {
         value = In(value);
       }
       if (idx !== -1) {
-        const subFilter: { [key: string]: any } = {};
+        const subFilter: { [key: string]: unknown } = {};
         subFilter[key.substring(idx + 1)] = value;
         key = key.substring(0, idx);
         value = subFilter;
       }
-
       filter[key] = value;
     }
   );

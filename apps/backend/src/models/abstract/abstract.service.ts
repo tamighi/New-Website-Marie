@@ -50,7 +50,10 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
   async updateMany(body: DTO[], query: QueryDto): Promise<{ data: DTO[] }> {
     const updateBody = body as QueryDeepPartialEntity<T>;
 
-    await this.repository.update(query.filter?.id, updateBody);
+    await this.repository.update(
+      query.filter?.id as FindOptionsWhere<T>,
+      updateBody
+    );
     const data: T[] = await this.repository.find({
       where: query.filter as FindOptionsWhere<T>,
     });

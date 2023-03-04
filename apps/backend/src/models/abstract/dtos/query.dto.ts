@@ -10,7 +10,7 @@ export class QueryDto {
   @Transform(({ value }) => parseFilter(value))
   @IsObject()
   @IsOptional()
-  filter?: { [key:string]: any };
+  filter?: Record<string, unknown>
 
   @Transform(({ value }) => parseSort(value))
   @IsObject()
