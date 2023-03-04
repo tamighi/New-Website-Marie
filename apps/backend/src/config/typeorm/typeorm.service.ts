@@ -7,6 +7,10 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   @Inject(ConfigService)
   private readonly config: ConfigService;
 
+  constructor(config: ConfigService) {
+    this.config = config;
+  }
+
   public createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: "postgres",

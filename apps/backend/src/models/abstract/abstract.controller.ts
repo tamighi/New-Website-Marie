@@ -23,7 +23,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     try {
       return await this.abstractService.getList(query);
     } catch (err) {
-      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -32,7 +32,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     try {
       return await this.abstractService.getOneById(id);
     } catch (err) {
-      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -44,7 +44,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     try {
       return await this.abstractService.updateOne(id, body);
     } catch (err) {
-      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -56,7 +56,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     try {
       return await this.abstractService.updateMany(body, query);
     } catch (err) {
-      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -65,7 +65,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     try {
       return await this.abstractService.create(body);
     } catch (err) {
-      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -75,7 +75,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     try {
       await this.abstractService.deleteOne(id);
     } catch (err) {
-      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -85,7 +85,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     try {
       await this.abstractService.deleteMany(query);
     } catch (err) {
-      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
   }
 }

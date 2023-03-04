@@ -28,7 +28,9 @@ export class UsersService extends AbstractService<User, UserDto> {
     const user: User | null = await this.repository.findOneBy({
       identifier: identifier,
     });
-
+    if (!user) {
+      return null;
+    }
 
     return this.entityToDto(user);
   }
