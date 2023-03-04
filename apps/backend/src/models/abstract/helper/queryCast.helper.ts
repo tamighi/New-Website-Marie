@@ -10,7 +10,7 @@ export function parseSort(param: string): object {
   return Object.fromEntries([lst]);
 }
 
-export function parseFilter(param: string) {
+export function parseFilter(param: string): Record<string, unknown> {
   const filter: Record<string, unknown> = {};
 
   Object.entries(JSON.parse(param)).forEach(
