@@ -6,6 +6,7 @@ import { useDialog, useForm } from "lib";
 import { useParams } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
+import { BasePage } from "../core";
 
 export const ServiceEdit = () => {
   const { register, handleSubmit } = useForm<CreateServiceDto>();
@@ -23,19 +24,22 @@ export const ServiceEdit = () => {
     return null;
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <TextInput
-        {...register("name")}
-        defaultValue={data.data.name}
-        placeholder="name"
-        autoFocus
-      />
-      <TextArea
-        {...register("description")}
-        defaultValue={data.data.description}
-        placeholder="description"
-      />
-      <input type="submit" />
-    </form>
+    <BasePage>
+    <h3>Update service {data.data.name}</h3>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <TextInput
+          {...register("name")}
+          defaultValue={data.data.name}
+          placeholder="name"
+          autoFocus
+        />
+        <TextArea
+          {...register("description")}
+          defaultValue={data.data.description}
+          placeholder="description"
+        />
+        <input type="submit" />
+      </form>
+    </BasePage>
   );
 };

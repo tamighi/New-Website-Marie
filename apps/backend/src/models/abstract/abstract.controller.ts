@@ -21,7 +21,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     @Query() query: QueryDto
   ): Promise<{ data: DTO[]; count: number }> {
     try {
-      return this.abstractService.getList(query);
+      return await this.abstractService.getList(query);
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
@@ -30,7 +30,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
   @Get("/:id")
   async getOneById(@Param() id: { id: number }): Promise<{ data: DTO }> {
     try {
-      return this.abstractService.getOneById(id);
+      return await this.abstractService.getOneById(id);
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
@@ -42,7 +42,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     @Body() body: DTO
   ): Promise<{ data: DTO }> {
     try {
-      return this.abstractService.updateOne(id, body);
+      return await this.abstractService.updateOne(id, body);
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
@@ -54,7 +54,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     @Query() query: QueryDto
   ): Promise<{ data: DTO[] }> {
     try {
-      return this.abstractService.updateMany(body, query);
+      return await this.abstractService.updateMany(body, query);
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
@@ -63,7 +63,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
   @Post()
   async create(@Body() body: DTO): Promise<{ data: DTO }> {
     try {
-      return this.abstractService.create(body);
+      return await this.abstractService.create(body);
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
@@ -73,7 +73,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
   @HttpCode(204)
   async deleteOne(@Param() id: { id: number }) {
     try {
-      this.abstractService.deleteOne(id);
+      await this.abstractService.deleteOne(id);
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
@@ -83,7 +83,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
   @HttpCode(204)
   async deleteMany(@Query() query: QueryDto) {
     try {
-      this.abstractService.deleteMany(query);
+      await this.abstractService.deleteMany(query);
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }

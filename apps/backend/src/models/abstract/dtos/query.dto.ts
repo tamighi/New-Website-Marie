@@ -10,12 +10,12 @@ export class QueryDto {
   @Transform(({ value }) => parseFilter(value))
   @IsObject()
   @IsOptional()
-  filter?: any;
+  filter?: { [key:string]: any };
 
   @Transform(({ value }) => parseSort(value))
   @IsObject()
   @IsOptional()
-  sort?: any;
+  sort?: object;
 
   @Transform(({ value }) => parseRange(value))
   @IsArray()

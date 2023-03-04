@@ -5,12 +5,12 @@ export function parseRange(param: string): number[] {
   return JSON.parse(param);
 }
 
-export function parseSort(param: string): any {
+export function parseSort(param: string): object {
   const lst: string[] = JSON.parse(param);
   return Object.fromEntries([lst]);
 }
 
-export function parseFilter(param: string): any {
+export function parseFilter(param: string): { [key: string]: any } {
   const filter: { [key: string]: any } = {};
 
   Object.entries(JSON.parse(param)).forEach(

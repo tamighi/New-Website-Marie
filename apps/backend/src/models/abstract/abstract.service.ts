@@ -18,7 +18,7 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
 
   async getList(query: QueryDto): Promise<{ data: DTO[]; count: number }> {
     const [data, count]: [T[], number] = await this.repository.findAndCount({
-      where: query.filter,
+      where: query.filter as FindOptionsWhere<T>,
       ...(query.sort && { order: query.sort }),
       ...(query.range && {
         skip: query.range[0],
@@ -29,7 +29,7 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
   }
 
   async getOneById(id: { id: number }): Promise<{ data: DTO }> {
-    const data: T = await this.repository.findOne({
+    const data: T = await this.repository.findOneOrFail({
       where: id as FindOptionsWhere<T>,
     });
 
@@ -40,7 +40,7 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
     const updateBody = body as QueryDeepPartialEntity<T>;
 
     await this.repository.update(id.id, updateBody);
-    const data: T = await this.repository.findOne({
+    const data: T = await this.repository.findOneOrFail({
       where: id as FindOptionsWhere<T>,
     });
 
@@ -52,7 +52,7 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
 
     await this.repository.update(query.filter.id, updateBody);
     const data: T[] = await this.repository.find({
-      where: query.filter,
+      where: query.filter as FindOptionsWhere<T>,
     });
     return { data: data.map((x) => this.entityToDto(x)) };
   }
@@ -71,6 +71,6 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
   }
 
   async deleteMany(query: QueryDto): Promise<DeleteResult> {
-    return this.repository.delete(query.filter);
+    return this.repository.delete(query.filter as FindOptionsWhere<T>);
   }
 }
