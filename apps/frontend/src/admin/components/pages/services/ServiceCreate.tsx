@@ -5,7 +5,7 @@ import { TextInput } from "admin/components/inputs/TextInput";
 import { BasePage } from "../core";
 
 import { dataProvider } from "admin/api/dataProvider";
-import { CreateServiceDto } from "./services";
+import { CreateServiceDto } from ".";
 import { useQueryClient } from "react-query";
 
 export const ServiceCreate = () => {

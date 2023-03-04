@@ -17,20 +17,22 @@ import { dataProvider } from "admin/api/dataProvider";
 
 import { Column } from "react-table";
 
-import styles from "./Datagrid.css";
+import styles from "./DatagridLayout.css";
 
-export const DataGridLayout = <T extends { id: string }>({
+export const DataGridLayout = <T extends { id: number }>({
   ressource,
   columns,
+  isTArray,
 }: {
   ressource: string;
   columns: Column<T>[];
+  isTArray: (obj: object) => obj is T[];
 }) => {
   const [selected, setSelected] = React.useState<T[]>([]);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data } = useGetData<T>(ressource);
+  const { data } = useGetData(ressource);
 
   const { showDialog } = useDialog();
   const onDeleteClick = async () => {
@@ -42,6 +44,9 @@ export const DataGridLayout = <T extends { id: string }>({
   };
 
   const memoizedData = React.useMemo(() => data, [data]);
+  if (memoizedData && !isTArray(memoizedData.data)) {
+    return null;
+  }
 
   return (
     <BasePage>
@@ -62,7 +67,7 @@ export const DataGridLayout = <T extends { id: string }>({
           <AddIcon />
         </IconButton>
       </Navbar>
-      {memoizedData && (
+      {memoizedData && isTArray(memoizedData.data) && (
         <DataGrid
           data={memoizedData.data}
           columns={columns}

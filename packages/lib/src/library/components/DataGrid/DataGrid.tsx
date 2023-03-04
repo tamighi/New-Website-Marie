@@ -122,7 +122,7 @@ const DataGrid = <T extends object>({
                 backgroundColor: themeColors.background,
                 transition: theme.transition,
               }}
-              onClick={onRowClick ? () => onRowClick(row.values.id) : undefined}
+              onClick={onRowClick ? () => onRowClick(row.original) : undefined}
               {...rowProps}
             >
               {row.cells.map((cell) => {

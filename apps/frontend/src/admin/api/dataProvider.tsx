@@ -10,11 +10,11 @@ interface GetListParams {
 }
 
 interface GetOneParams {
-  id: string;
+  id: number;
 }
 
 interface GetManyParams {
-  ids: string[];
+  ids: number[];
 }
 
 interface GetManyReferenceParams {
@@ -22,16 +22,16 @@ interface GetManyReferenceParams {
   sort: { field: string; order: "ASC" | "DESC" };
   filter: object;
   target: string;
-  id: string;
+  id: number;
 }
 
 interface UpdateParams {
-  id: string;
+  id: number;
   data: object;
 }
 
 interface UpdateManyParams {
-  ids: string[];
+  ids: number[];
   data: object;
 }
 
@@ -40,18 +40,18 @@ interface CreateParams {
 }
 
 interface DeleteParams {
-  id: string;
+  id: number;
 }
 
 interface DeleteManyParams {
-  ids: string[];
+  ids: number[];
 }
 
 export const dataProvider = {
-  getList: async <T,>(
+  getList: async (
     resource: string,
     params: GetListParams
-  ): Promise<{ data: T[]; count: number } | null> => {
+  ): Promise<{ data: object[]; count: number } | null> => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
 
@@ -64,19 +64,19 @@ export const dataProvider = {
 
     const resp = await httpClient(url);
     if (hasCount(resp) && hasDataArray(resp)) {
-      return resp as { data: T[]; count: number };
+      return resp;
     }
     return null;
   },
 
-  getOne: async <T,>(
+  getOne: async (
     resource: string,
     params: GetOneParams
-  ): Promise<{ data: T } | null> => {
+  ): Promise<{ data: object } | null> => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url);
     if (hasDataObject(resp)) {
-      return resp as { data: T };
+      return resp;
     }
     return null;
   },
@@ -116,7 +116,10 @@ export const dataProvider = {
     return null;
   },
 
-  update: async (resource: string, params: UpdateParams) => {
+  update: async (
+    resource: string,
+    params: UpdateParams
+  ): Promise<{ data: object } | null> => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url, {
       method: "PUT",
@@ -125,6 +128,7 @@ export const dataProvider = {
     if (hasDataObject(resp)) {
       return resp;
     }
+    return null;
   },
 
   updateMany: async (resource: string, params: UpdateManyParams) => {
