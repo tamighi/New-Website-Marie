@@ -1,5 +1,4 @@
-import { TextArea } from "admin/components/inputs/TextAreaInput";
-import { TextInput } from "admin/components/inputs/TextInput";
+import { TextArea, TextInput } from "admin/components/inputs";
 
 import { useGetOne, useUpdateOne } from "admin/hooks/useData";
 import { useDialog, useForm } from "lib";
@@ -25,7 +24,7 @@ export const ServiceEdit = () => {
   }
   return (
     <BasePage>
-    <h3>Update service {data.data.name}</h3>
+      <h3>Update service {data.data.name}</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextInput
           {...register("name")}

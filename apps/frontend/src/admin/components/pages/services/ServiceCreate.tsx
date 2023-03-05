@@ -1,5 +1,4 @@
-import { TextInput } from "admin/components/inputs";
-import { TextArea } from "admin/components/inputs/TextAreaInput";
+import { TextArea, TextInput } from "admin/components/inputs";
 import { BasePage } from "../core";
 
 import { CreateForm } from "../core/CreateForm/CreateForm";

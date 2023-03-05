@@ -1,5 +1,5 @@
 import { ICredentials } from "admin/api/authProvider";
-import { TextInput } from "admin/components/inputs/TextInput";
+import TextInput from "admin/components/inputs/TextInput";
 import { useAuth } from "admin/hooks/useAuth";
 import { Card, useForm } from "lib";
 

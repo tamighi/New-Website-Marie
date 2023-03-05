@@ -11,7 +11,7 @@ type TextAreaProps<T extends object> =
     name: keyof T;
   };
 
-export const TextArea = <T extends object>(
+const TextArea = <T extends object>(
   props: TextAreaProps<T>,
   ref: React.ForwardedRef<HTMLTextAreaElement>
 ) => {
