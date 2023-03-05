@@ -1,13 +1,13 @@
 import { ICredentials } from "admin/api/authProvider";
 import { TextInput } from "admin/components/inputs/TextInput";
-import { useLogin } from "admin/hooks/useLogin";
+import { useAuth } from "admin/hooks/useAuth";
 import { Card, useForm } from "lib";
 
 import styles from "./LoginPage.css";
 
 export const LoginPage = () => {
   const { handleSubmit, register, reset } = useForm<ICredentials>();
-  const { login } = useLogin();
+  const { login } = useAuth();
 
   const onSubmit = async (credentials: Partial<ICredentials>) => {
     try {

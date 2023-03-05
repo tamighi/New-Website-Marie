@@ -19,6 +19,9 @@ export const authProvider = {
     }
   },
   logout: async () => {
-    return Promise.resolve();
+    const url = `${apiUrl}/auth/logout`;
+    httpClient(url, {
+      method: "post",
+    });
   },
 };

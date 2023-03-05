@@ -2,7 +2,7 @@ import React from "react";
 import { authProvider, ICredentials } from "admin/api/authProvider";
 import { useAuthContext } from "admin/providers/AuthProvider";
 
-export const useLogin = () => {
+export const useAuth = () => {
   const authContext = useAuthContext();
 
   const login = React.useCallback(
@@ -17,16 +17,13 @@ export const useLogin = () => {
     [authContext]
   );
 
-  const logout = React.useCallback(
-    async (credentials: ICredentials) => {
-      try {
-        // await authProvider.logout(credentials);
-        authContext?.setAuthenticated(false);
-      } catch (error) {
-        throw error;
-      }
-    },
-    [authContext]
-  );
+  const logout = React.useCallback(async () => {
+    try {
+      await authProvider.logout();
+      authContext?.setAuthenticated(false);
+    } catch (error) {
+      throw error;
+    }
+  }, [authContext]);
   return { login, logout };
 };

@@ -10,12 +10,18 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post("login")
   async login(@Request() req: any): Promise<any> {
-    return this.authService.login(req.user)
+    return this.authService.login(req.user);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get("checkAuth")
   async checkAuth(@Request() req: any): Promise<any> {
     return req.user;
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post("logout")
+  async logout(@Request() req: any) {
+    return this.authService.logout(req.user);
   }
 }
