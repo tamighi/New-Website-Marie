@@ -2,14 +2,14 @@ import { TextArea, TextInput } from "admin/components/inputs";
 import { BasePage } from "../core";
 
 import { CreateForm } from "../core/CreateForm/CreateForm";
-import { ServiceDto } from "./service";
+import { CreateServiceDto } from "./service";
 
 export const ServiceCreate = () => {
   return (
     <BasePage>
       <h3>Creer un service</h3>
-      <CreateForm<ServiceDto> ressource="service">
-        <TextInput name="test" placeholder="Nom" autoFocus />
+      <CreateForm<CreateServiceDto> ressource="service">
+        <TextInput name="name" placeholder="Nom" autoFocus />
         <TextArea
           name="description"
           placeholder="Description"
