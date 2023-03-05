@@ -2,6 +2,7 @@ import { DialogProvider } from "lib";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AdminApp } from "./AdminApp";
 import { Alert } from "./components/generics/alert/Alert";
+import { AuthProvider } from "./providers/AuthProvider";
 
 export const AdminRoot = () => {
   const queryClient = new QueryClient({
@@ -15,10 +16,12 @@ export const AdminRoot = () => {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <DialogProvider Component={Alert}>
-        <AdminApp />
-      </DialogProvider>
-    </QueryClientProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <DialogProvider Component={Alert}>
+          <AdminApp />
+        </DialogProvider>
+      </QueryClientProvider>
+    </AuthProvider>
   );
 };

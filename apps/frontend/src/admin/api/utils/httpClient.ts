@@ -19,18 +19,15 @@ export const httpClient = async (
   options: RequestInit = {}
 ): Promise<unknown | null> => {
   const headers = createHeadersFromOptions(options);
-  return fetch(url, {
+  const resp = await fetch(url, {
     ...options,
     headers: headers,
-  })
-    .then((resp) => {
-      if (resp.ok) {
-        if (resp.status === 200) {
-          return resp.json();
-        }
-        return { status: resp.status };
-      }
-      return null;
-    })
-    .catch(() => null);
+  });
+  if (resp.ok) {
+    if (resp.status === 204) {
+      return { status: resp.status };
+    }
+    return resp.json();
+  }
+  throw new Error(`${resp.status}`);
 };
