@@ -9,13 +9,16 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from "@nestjs/common";
+import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { AbstractService } from "./abstract.service";
 import { QueryDto } from "./dtos/query.dto";
 
 export abstract class AbstractController<T extends { id: number }, DTO> {
   constructor(protected readonly abstractService: AbstractService<T, DTO>) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async getList(
     @Query() query: QueryDto

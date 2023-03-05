@@ -10,10 +10,13 @@ export interface ICredentials {
 export const authProvider = {
   login: async (credentials: ICredentials) => {
     const url = `${apiUrl}/auth/login`;
-    return httpClient(url, {
+    const resp = await httpClient(url, {
       method: "post",
       body: JSON.stringify(credentials),
     });
+    if (resp && typeof resp === "object" && "access_token" in resp) {
+      localStorage.setItem("access_token", resp.access_token as string);
+    }
   },
   logout: async () => {
     return Promise.resolve();

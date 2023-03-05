@@ -7,7 +7,7 @@ import styles from "./LoginPage.css";
 
 export const LoginPage = () => {
   const { handleSubmit, register, reset } = useForm<ICredentials>();
-  const login = useLogin();
+  const { login } = useLogin();
 
   const onSubmit = async (credentials: Partial<ICredentials>) => {
     try {

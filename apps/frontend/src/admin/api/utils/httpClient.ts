@@ -11,6 +11,11 @@ const createHeadersFromOptions = (options: RequestInit): Headers => {
     requestHeaders.set("Content-Type", "application/json");
   }
 
+  const accessToken = localStorage.getItem("access_token");
+  if (accessToken) {
+    requestHeaders.set("Authorization", `Bearer ${accessToken}`);
+  }
+
   return requestHeaders;
 };
 

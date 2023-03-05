@@ -30,7 +30,7 @@ export const DataGridLayout = <T extends { id: number }>({
 
   const navigate = useNavigate();
 
-  if (!memoizedData || !isTArray(memoizedData.data)) {
+  if (!memoizedData?.data || !isTArray(memoizedData.data)) {
     return null;
   }
 

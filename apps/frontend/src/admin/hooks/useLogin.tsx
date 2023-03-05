@@ -8,8 +8,7 @@ export const useLogin = () => {
   const login = React.useCallback(
     async (credentials: ICredentials) => {
       try {
-        const resp = await authProvider.login(credentials);
-        console.log(resp)
+        await authProvider.login(credentials);
         authContext?.setAuthenticated(true);
       } catch (error) {
         throw error;
@@ -17,5 +16,17 @@ export const useLogin = () => {
     },
     [authContext]
   );
-  return login;
+
+  const logout = React.useCallback(
+    async (credentials: ICredentials) => {
+      try {
+        // await authProvider.logout(credentials);
+        authContext?.setAuthenticated(false);
+      } catch (error) {
+        throw error;
+      }
+    },
+    [authContext]
+  );
+  return { login, logout };
 };

@@ -13,7 +13,7 @@ export const useAuthContext = () => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [authenticated, setAuthenticated] = React.useState<boolean>(false);
+  const [authenticated, setAuthenticated] = React.useState<boolean>(true);
 
   return (
     <AuthContext.Provider value={{ authenticated, setAuthenticated }}>

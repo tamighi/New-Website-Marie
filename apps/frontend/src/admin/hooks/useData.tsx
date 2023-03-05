@@ -4,7 +4,7 @@ import { dataProvider } from "admin/api/dataProvider";
 import { useQuery, useQueryClient } from "react-query";
 
 export const useGetList = (ressource: string) => {
-  const data = useQuery<{ data: object[]; count: number } | null>(
+  const { data } = useQuery<{ data: object[]; count: number } | null>(
     `${ressource}`,
     () =>
       dataProvider.getList(ressource, {
@@ -13,8 +13,7 @@ export const useGetList = (ressource: string) => {
         filter: {},
       })
   );
-
-  return data;
+  return { data };
 };
 
 export const useGetOne = (ressource: string, id: number) => {
