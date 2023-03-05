@@ -30,6 +30,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get("/:id")
   async getOneById(@Param() id: { id: number }): Promise<{ data: DTO }> {
     try {
@@ -39,6 +40,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put("/:id")
   async updateOne(
     @Param() id: { id: number },
@@ -51,6 +53,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put()
   async updateMany(
     @Body() body: DTO[],
@@ -63,6 +66,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body() body: DTO): Promise<{ data: DTO }> {
     try {
@@ -72,6 +76,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete("/:id")
   @HttpCode(204)
   async deleteOne(@Param() id: { id: number }) {
@@ -82,6 +87,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete()
   @HttpCode(204)
   async deleteMany(@Query() query: QueryDto) {
