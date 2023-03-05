@@ -9,7 +9,7 @@ export const ServiceCreate = () => {
     <BasePage>
       <h3>Creer un service</h3>
       <CreateForm<ServiceDto> ressource="service">
-        <TextInput name="name" placeholder="Nom" autoFocus />
+        <TextInput name="test" placeholder="Nom" autoFocus />
         <TextArea
           name="description"
           placeholder="Description"
