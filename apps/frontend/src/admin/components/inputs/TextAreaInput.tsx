@@ -1,11 +1,21 @@
 import React from "react";
 
-type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+declare module "react" {
+  function forwardRef<T, P = object>(
+    render: (props: P, ref: React.Ref<T>) => React.ReactElement | null
+  ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
+}
 
-export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  (props, ref) => {
-    return <textarea {...props} ref={ref} />;
-  }
-);
+type TextAreaProps<T extends object> =
+  React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+    name: keyof T;
+  };
 
-TextArea.displayName = "TextArea";
+export const TextArea = <T extends object>(
+  props: TextAreaProps<T>,
+  ref: React.ForwardedRef<HTMLTextAreaElement>
+) => {
+  return <textarea {...props} ref={ref} />;
+};
+
+export default React.forwardRef(TextArea);

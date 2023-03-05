@@ -11,12 +11,12 @@ export const CreateForm = <T extends object>({
   children,
   ressource,
 }: CreateFormProps) => {
-  const create = useCreate<T>(ressource);
+  const create = useCreate<Partial<T>>(ressource);
   const { showDialog } = useDialog();
   const { register, handleSubmit, reset } = useForm<T>();
 
   const onSubmit = async (data: Partial<T>) => {
-    await create(data as T);
+    await create(data);
     showDialog?.({ content: "Item created !" });
     reset();
   };
