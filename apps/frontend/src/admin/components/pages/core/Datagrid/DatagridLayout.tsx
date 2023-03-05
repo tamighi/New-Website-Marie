@@ -17,7 +17,6 @@ export const DataGridLayout = <T extends { id: number }>({
   isTArray: (obj: object) => obj is T[];
 }) => {
   const { data } = useGetList(ressource);
-  const memoizedData = React.useMemo(() => data, [data]);
 
   const [selected, setSelected] = React.useState<T[]>([]);
   const deleteMany = useDeleteMany(ressource);
@@ -30,7 +29,7 @@ export const DataGridLayout = <T extends { id: number }>({
 
   const navigate = useNavigate();
 
-  if (!memoizedData?.data || !isTArray(memoizedData.data)) {
+  if (!data?.data || !isTArray(data.data)) {
     return null;
   }
 
@@ -43,7 +42,7 @@ export const DataGridLayout = <T extends { id: number }>({
         </IconButton>
       </SelectedOptions>
       <DataGrid
-        data={memoizedData.data}
+        data={data.data}
         columns={columns}
         selection
         setSelected={setSelected}
