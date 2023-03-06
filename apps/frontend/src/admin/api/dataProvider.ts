@@ -25,9 +25,9 @@ export interface GetManyReferenceParams {
   id: string | number;
 }
 
-export interface UpdateParams<T extends object> {
+export interface UpdateParams {
   id: string | number;
-  data: T;
+  data: object;
 }
 
 export interface UpdateManyParams {
@@ -116,9 +116,9 @@ export const dataProvider = {
     return null;
   },
 
-  update: async <T extends object>(
+  update: async (
     resource: string,
-    params: UpdateParams<T>
+    params: UpdateParams
   ): Promise<{ data: object } | null> => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url, {

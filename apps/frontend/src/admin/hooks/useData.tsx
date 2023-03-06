@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+  CreateParams,
   dataProvider,
   DeleteManyParams,
   GetOneParams,
@@ -46,11 +47,11 @@ export const useDeleteMany = (ressource: string) => {
   return deleteMany;
 };
 
-export const useUpdateOne = <T extends object>(ressource: string) => {
+export const useUpdateOne = (ressource: string) => {
   const queryClient = useQueryClient();
 
   const updateOne = React.useCallback(
-    async (params: UpdateParams<T>) => {
+    async (params: UpdateParams) => {
       const { id, data } = params;
       await dataProvider.update(ressource, {
         id,
@@ -64,11 +65,11 @@ export const useUpdateOne = <T extends object>(ressource: string) => {
   return updateOne;
 };
 
-export const useCreate = <T extends object>(ressource: string) => {
+export const useCreate = (ressource: string) => {
   const queryClient = useQueryClient();
 
   const create = React.useCallback(
-    async (data: T) => {
+    async (data: CreateParams) => {
       await dataProvider.create(ressource, {
         data,
       });
