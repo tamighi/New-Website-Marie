@@ -51,7 +51,7 @@ export const dataProvider = {
   getList: async <T extends object>(
     resource: string,
     params: GetListParams<T>
-  ): Promise<{ data: T[]; count: number } | null> => {
+  ) => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
 
@@ -66,21 +66,16 @@ export const dataProvider = {
     if (hasCount(resp) && hasDataArray<T>(resp)) {
       return resp;
     }
-    // throw error
-    return null;
+    throw Error("Unexpected response object");
   },
 
-  getOne: async <T extends object>(
-    resource: string,
-    params: GetOneParams
-  ): Promise<{ data: T } | null> => {
+  getOne: async <T extends object>(resource: string, params: GetOneParams) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url);
     if (hasDataObject<T>(resp)) {
       return resp;
     }
-    // throw error
-    return null;
+    throw Error("Unexpected response object");
   },
 
   getMany: async <T extends object>(
@@ -96,7 +91,7 @@ export const dataProvider = {
     if (hasCount(resp) && hasDataArray<T>(resp)) {
       return resp;
     }
-    return null;
+    throw Error("Unexpected response object");
   },
 
   getManyReference: async <T extends object>(
@@ -118,7 +113,7 @@ export const dataProvider = {
     if (hasCount(resp) && hasDataArray<T>(resp)) {
       return resp;
     }
-    return null;
+    throw Error("Unexpected response object");
   },
 
   update: async <T extends object>(
@@ -133,7 +128,7 @@ export const dataProvider = {
     if (hasDataObject<T>(resp)) {
       return resp;
     }
-    return null;
+    throw Error("Unexpected response object");
   },
 
   updateMany: async <T extends object>(
@@ -151,7 +146,7 @@ export const dataProvider = {
     if (hasDataArray<T>(resp)) {
       return resp;
     }
-    return null;
+    throw Error("Unexpected response object");
   },
 
   create: async <T extends object>(
@@ -166,7 +161,7 @@ export const dataProvider = {
     if (hasDataObject<T>(resp)) {
       return resp;
     }
-    return null;
+    throw Error("Unexpected response object");
   },
 
   delete: (resource: string, params: DeleteParams) => {

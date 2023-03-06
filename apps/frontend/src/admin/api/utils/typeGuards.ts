@@ -8,10 +8,9 @@ export const hasCount = (obj: unknown): obj is { count: number } => {
 };
 
 const isGeneric = <T extends object>(obj: unknown): obj is T => {
-  if (!obj) {
+  if (!obj || !(obj === "object")) {
     return false;
   }
-  const objKeys = Object.keys(obj);
   return true;
 };
 
