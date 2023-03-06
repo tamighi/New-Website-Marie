@@ -4,20 +4,15 @@ import {
   CreateParams,
   dataProvider,
   DeleteManyParams,
+  GetListParams,
   GetOneParams,
   UpdateParams,
 } from "admin/api/dataProvider";
 import { useQuery, useQueryClient } from "react-query";
 
-export const useGetList = (ressource: string) => {
-  const queryResult = useQuery(
-    `${ressource}`,
-    () =>
-      dataProvider.getList(ressource, {
-        sort: { field: "id", order: "DESC" },
-        pagination: { page: 1, perPage: 10 },
-        filter: {},
-      }),
+export const useGetList = (ressource: string, params: GetListParams) => {
+  const queryResult = useQuery([ressource, params.pagination.page],
+    () => dataProvider.getList(ressource, params),
     { suspense: true }
   );
   return queryResult;

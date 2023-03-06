@@ -18,7 +18,13 @@ export const MyDatagrid = <T extends { id: string | number }>({
   columns,
   isTArray,
 }: MyDatagridProps<T>) => {
-  const { data, isError, error } = useGetList(ressource);
+  const [page, setPage] = React.useState(1);
+
+  const { data, isError, error } = useGetList(ressource, {
+    sort: { field: "id", order: "DESC" },
+    pagination: { page: page, perPage: 10 },
+    filter: {},
+  });
 
   const [selected, setSelected] = React.useState<T[]>([]);
   const deleteMany = useDeleteMany(ressource);
@@ -54,6 +60,15 @@ export const MyDatagrid = <T extends { id: string | number }>({
         clickable
         onRowClick={(value: T) => navigate(`${value.id}`)}
       />
+      <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+        Previous
+      </button>
+      <button
+        disabled={page === Math.ceil(data.count / 10)}
+        onClick={() => setPage(page + 1)}
+      >
+        Next
+      </button>
     </>
   );
 };
