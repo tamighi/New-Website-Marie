@@ -8,7 +8,7 @@ const columns: Column<ServiceDto>[] = [
   { Header: "Description", accessor: "description" },
 ];
 
-export const ServicesPage = () => {
+export const ServiceList = () => {
   return (
     <DataGridLayout
       ressource="service"

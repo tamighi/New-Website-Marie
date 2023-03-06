@@ -5,10 +5,13 @@ import { Appbar } from "./components/generics/appbar/Appbar";
 import { Sidebar } from "./components/generics/sidebar/Sidebar";
 import { Dashboard } from "./components/pages/dashboard/Dashboard";
 
-import { ServiceCreate, ServicesPage } from "./components/pages/services";
+import {
+  ServiceCreate,
+  ServiceEdit,
+  ServiceList,
+} from "./components/pages/services";
 
 import styles from "./AdminApp.css";
-import { ServiceEdit } from "./components/pages/services/ServiceEdit";
 
 export const AdminApp = () => {
   const [openSidebar, setOpenSidebar] = React.useState(false);
@@ -23,7 +26,7 @@ export const AdminApp = () => {
         <Sidebar open={openSidebar} toggleSideBar={toggleOpen} />
         <Routes>
           <Route path="" element={<Dashboard />} />
-          <Route path="services" element={<ServicesPage />} />
+          <Route path="services" element={<ServiceList />} />
           <Route path="services/:id" element={<ServiceEdit />} />
           <Route path="services/create" element={<ServiceCreate />} />
         </Routes>
