@@ -1,2 +1,2 @@
 export * from "./DatagridLayout";
-export * from "./Datagrid";
+export * from "./MyDatagrid";

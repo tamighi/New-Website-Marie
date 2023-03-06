@@ -24,8 +24,20 @@ export const useGetList = (ressource: string) => {
 };
 
 export const useGetOne = (ressource: string, params: GetOneParams) => {
-  const queryResult = useQuery([ressource, params.id], () =>
-    dataProvider.getOne(ressource, params)
+  const queryClient = useQueryClient();
+
+  const queryResult = useQuery(
+    [ressource, params.id],
+    () => dataProvider.getOne(ressource, params),
+    {
+      initialData: () => {
+        const initialData = queryClient
+          .getQueryData<Record<string, { id: number | string }[]>>(ressource)
+          ?.data?.find((item) => item.id == params.id);
+
+        return initialData ? { data: initialData } : undefined;
+      },
+    }
   );
   return queryResult;
 };
