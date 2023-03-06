@@ -14,7 +14,7 @@ export const DataGridLayout = <T extends { id: string | number }>({
   ressource: string;
   columns: Column<T>[];
 }) => {
-  const { data } = useGetList(ressource);
+  const { data, isError, isFetching, error } = useGetList(ressource);
 
   const [selected, setSelected] = React.useState<T[]>([]);
   const deleteMany = useDeleteMany(ressource);
@@ -27,8 +27,16 @@ export const DataGridLayout = <T extends { id: string | number }>({
 
   const navigate = useNavigate();
 
-  if (!data?.data) {
-    return null;
+  if (isError) {
+    return <div>Error</div>;
+  }
+
+  if (isFetching) {
+    return <div>Loading ...</div>;
+  }
+
+  if (!data?.data || data.count === 0) {
+    return <div>No data found ... </div>;
   }
 
   return (

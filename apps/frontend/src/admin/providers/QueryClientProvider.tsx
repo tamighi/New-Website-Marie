@@ -14,9 +14,11 @@ export const MyQueryClientProvider = ({
         staleTime: Infinity,
         retry: false,
         refetchOnWindowFocus: false,
+        /*
         onError: (error) => {
           authContext?.setAuthenticated(false);
         },
+        */
       },
     },
   });
