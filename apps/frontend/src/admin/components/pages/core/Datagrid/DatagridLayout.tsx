@@ -7,7 +7,7 @@ import { useDeleteMany, useGetList } from "admin/hooks/useData";
 
 import { Column } from "react-table";
 
-export const DataGridLayout = <T extends { id: number }>({
+export const DataGridLayout = <T extends { id: string | number }>({
   ressource,
   columns,
   isTArray,
@@ -23,7 +23,7 @@ export const DataGridLayout = <T extends { id: number }>({
   const { showDialog } = useDialog();
 
   const onDeleteClick = async () => {
-    await deleteMany(selected.map((value) => value.id));
+    await deleteMany({ ids: selected.map((value) => value.id) });
     showDialog?.({ content: `${selected.length} item(s) deleted` });
   };
 

@@ -1,6 +1,11 @@
 import React from "react";
 
-import { dataProvider } from "admin/api/dataProvider";
+import {
+  dataProvider,
+  DeleteManyParams,
+  GetOneParams,
+  UpdateParams,
+} from "admin/api/dataProvider";
 import { useQuery, useQueryClient } from "react-query";
 
 export const useGetList = (ressource: string) => {
@@ -16,7 +21,8 @@ export const useGetList = (ressource: string) => {
   return { data };
 };
 
-export const useGetOne = (ressource: string, id: number) => {
+export const useGetOne = (ressource: string, params: GetOneParams) => {
+  const { id } = params;
   const data = useQuery<{ data: object } | null>([ressource, id], () =>
     dataProvider.getOne(ressource, { id: id })
   );
@@ -27,7 +33,8 @@ export const useDeleteMany = (ressource: string) => {
   const queryClient = useQueryClient();
 
   const deleteMany = React.useCallback(
-    async (ids: number[]) => {
+    async (params: DeleteManyParams) => {
+      const { ids } = params;
       await dataProvider.deleteMany(ressource, {
         ids,
       });
@@ -39,21 +46,19 @@ export const useDeleteMany = (ressource: string) => {
   return deleteMany;
 };
 
-export const useUpdateOne = <T extends object>(
-  ressource: string,
-  id: number
-) => {
+export const useUpdateOne = <T extends object>(ressource: string) => {
   const queryClient = useQueryClient();
 
   const updateOne = React.useCallback(
-    async (data: T) => {
+    async (params: UpdateParams<T>) => {
+      const { id, data } = params;
       await dataProvider.update(ressource, {
         id,
         data,
       });
       queryClient.invalidateQueries(ressource);
     },
-    [queryClient, ressource, id]
+    [queryClient, ressource]
   );
 
   return updateOne;

@@ -3,48 +3,48 @@ import { hasCount, hasDataArray, hasDataObject, httpClient } from "./utils";
 
 const apiUrl = "http://192.168.1.50:8000";
 
-interface GetListParams {
+export interface GetListParams {
   pagination: { page: number; perPage: number };
   sort: { field: string; order: "ASC" | "DESC" };
   filter: object;
 }
 
-interface GetOneParams {
-  id: number;
+export interface GetOneParams {
+  id: string | number;
 }
 
-interface GetManyParams {
-  ids: number[];
+export interface GetManyParams {
+  ids: (string | number)[];
 }
 
-interface GetManyReferenceParams {
+export interface GetManyReferenceParams {
   pagination: { page: number; perPage: number };
   sort: { field: string; order: "ASC" | "DESC" };
   filter: object;
   target: string;
-  id: number;
+  id: string | number;
 }
 
-interface UpdateParams {
-  id: number;
+export interface UpdateParams<T extends object> {
+  id: string | number;
+  data: T;
+}
+
+export interface UpdateManyParams {
+  ids: (string | number)[];
   data: object;
 }
 
-interface UpdateManyParams {
-  ids: number[];
+export interface CreateParams {
   data: object;
 }
 
-interface CreateParams {
-  data: object;
+export interface DeleteParams {
+  id: string | number;
 }
 
-interface DeleteParams {
-  id: number;
-}
-
-interface DeleteManyParams {
-  ids: number[];
+export interface DeleteManyParams {
+  ids: (string | number)[];
 }
 
 export const dataProvider = {
@@ -116,9 +116,9 @@ export const dataProvider = {
     return null;
   },
 
-  update: async (
+  update: async <T extends object>(
     resource: string,
-    params: UpdateParams
+    params: UpdateParams<T>
   ): Promise<{ data: object } | null> => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url, {
