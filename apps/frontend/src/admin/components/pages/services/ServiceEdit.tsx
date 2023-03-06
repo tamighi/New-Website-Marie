@@ -1,31 +1,24 @@
 import { TextArea, TextInput } from "admin/components/inputs";
 
-import { useGetOne, useUpdateOne } from "admin/hooks/useData";
-import { useDialog, useForm } from "lib";
+import { useEditForm } from "admin/hooks/useEditForm";
 import { useParams } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
 import { BasePage } from "../core";
 
 export const ServiceEdit = () => {
-  const { register, handleSubmit } = useForm<CreateServiceDto>();
-  const { showDialog } = useDialog();
-
   const { id } = useParams<"id">() as { id: string };
-  const updateOne = useUpdateOne("service", parseInt(id));
-  const onSubmit = async (submitData: CreateServiceDto) => {
-    updateOne(submitData);
-    showDialog?.({ content: "Item updated !" });
-  };
-
-  const { data } = useGetOne("service", parseInt(id));
+  const { register, data, onSubmit } = useEditForm<CreateServiceDto>(
+    "service",
+    id
+  );
   if (!data || !isService(data.data)) {
     return null;
   }
   return (
     <BasePage>
       <h3>Update service {data.data.name}</h3>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={onSubmit}>
         <TextInput
           {...register("name")}
           defaultValue={data.data.name}
