@@ -34,5 +34,9 @@ export const httpClient = async (
     }
     return resp.json();
   }
-  throw new Error(`${resp.status}`);
+  const error = {
+    status: resp.status,
+    message: await resp.text(),
+  };
+  throw error;
 };

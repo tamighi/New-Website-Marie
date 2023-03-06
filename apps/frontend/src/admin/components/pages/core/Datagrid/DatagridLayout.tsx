@@ -10,9 +10,11 @@ import { Column } from "react-table";
 export const DataGridLayout = <T extends { id: string | number }>({
   ressource,
   columns,
+  isTArray,
 }: {
   ressource: string;
   columns: Column<T>[];
+  isTArray: (obj: object) => obj is T[];
 }) => {
   const { data, isError, isFetching, error } = useGetList(ressource);
 
@@ -27,15 +29,15 @@ export const DataGridLayout = <T extends { id: string | number }>({
 
   const navigate = useNavigate();
 
-  if (isError) {
-    return <div>Error</div>;
-  }
-
   if (isFetching) {
     return <div>Loading ...</div>;
   }
 
-  if (!data?.data || data.count === 0) {
+  if (!data?.data || isError || !isTArray(data.data)) {
+    return <div>Error</div>;
+  }
+
+  if (data.count === 0) {
     return <div>No data found ... </div>;
   }
 
@@ -48,7 +50,7 @@ export const DataGridLayout = <T extends { id: string | number }>({
         </IconButton>
       </SelectedOptions>
       <DataGrid
-        data={data.data as T[]}
+        data={data.data}
         columns={columns}
         selection
         setSelected={setSelected}

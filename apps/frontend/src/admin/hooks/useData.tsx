@@ -21,10 +21,10 @@ export const useGetList = (ressource: string) => {
 };
 
 export const useGetOne = (ressource: string, params: GetOneParams) => {
-  const data = useQuery([ressource, params.id], () =>
+  const queryResult = useQuery([ressource, params.id], () =>
     dataProvider.getOne(ressource, params)
   );
-  return data;
+  return queryResult;
 };
 
 export const useDeleteMany = (ressource: string) => {
