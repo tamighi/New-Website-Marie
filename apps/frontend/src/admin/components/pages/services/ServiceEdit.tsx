@@ -3,7 +3,7 @@ import { TextArea, TextInput } from "admin/components/inputs";
 import { useEditForm } from "admin/hooks/useEditForm";
 import { useParams } from "react-router-dom";
 
-import { CreateServiceDto, isService } from ".";
+import { CreateServiceDto } from ".";
 import { BasePage } from "../core";
 
 export const ServiceEdit = () => {
@@ -12,7 +12,7 @@ export const ServiceEdit = () => {
     "service",
     id
   );
-  if (!data || !isService(data.data)) {
+  if (!data) {
     return null;
   }
   return (

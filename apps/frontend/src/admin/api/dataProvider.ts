@@ -3,10 +3,10 @@ import { hasCount, hasDataArray, hasDataObject, httpClient } from "./utils";
 
 const apiUrl = "http://192.168.1.50:8000";
 
-export interface GetListParams {
+export interface GetListParams<T extends object> {
   pagination: { page: number; perPage: number };
   sort: { field: string; order: "ASC" | "DESC" };
-  filter: object;
+  filter: Partial<T>;
 }
 
 export interface GetOneParams {
@@ -25,18 +25,18 @@ export interface GetManyReferenceParams {
   id: string | number;
 }
 
-export interface UpdateParams {
+export interface UpdateParams<T extends object> {
   id: string | number;
-  data: object;
+  data: T;
 }
 
-export interface UpdateManyParams {
+export interface UpdateManyParams<T extends object> {
   ids: (string | number)[];
-  data: object;
+  data: T;
 }
 
-export interface CreateParams {
-  data: object;
+export interface CreateParams<T extends object> {
+  data: T;
 }
 
 export interface DeleteParams {
@@ -48,10 +48,10 @@ export interface DeleteManyParams {
 }
 
 export const dataProvider = {
-  getList: async (
+  getList: async <T extends object>(
     resource: string,
-    params: GetListParams
-  ): Promise<{ data: object[]; count: number } | null> => {
+    params: GetListParams<T>
+  ): Promise<{ data: T[]; count: number } | null> => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
 
@@ -63,38 +63,43 @@ export const dataProvider = {
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     const resp = await httpClient(url);
-    if (hasCount(resp) && hasDataArray(resp)) {
+    if (hasCount(resp) && hasDataArray<T>(resp)) {
       return resp;
     }
+    // throw error
     return null;
   },
 
-  getOne: async (
+  getOne: async <T extends object>(
     resource: string,
     params: GetOneParams
-  ): Promise<{ data: object } | null> => {
+  ): Promise<{ data: T } | null> => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url);
-    if (hasDataObject(resp)) {
+    if (hasDataObject<T>(resp)) {
       return resp;
     }
+    // throw error
     return null;
   },
 
-  getMany: async (resource: string, params: GetManyParams) => {
+  getMany: async <T extends object>(
+    resource: string,
+    params: GetManyParams
+  ) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
 
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     const resp = await httpClient(url);
-    if (hasCount(resp) && hasDataArray(resp)) {
+    if (hasCount(resp) && hasDataArray<T>(resp)) {
       return resp;
     }
     return null;
   },
 
-  getManyReference: async (
+  getManyReference: async <T extends object>(
     resource: string,
     params: GetManyReferenceParams
   ) => {
@@ -110,28 +115,31 @@ export const dataProvider = {
     };
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     const resp = await httpClient(url);
-    if (hasCount(resp) && hasDataArray(resp)) {
+    if (hasCount(resp) && hasDataArray<T>(resp)) {
       return resp;
     }
     return null;
   },
 
-  update: async (
+  update: async <T extends object>(
     resource: string,
-    params: UpdateParams
-  ): Promise<{ data: object } | null> => {
+    params: UpdateParams<T>
+  ): Promise<{ data: T } | null> => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url, {
       method: "PUT",
       body: JSON.stringify(params.data),
     });
-    if (hasDataObject(resp)) {
+    if (hasDataObject<T>(resp)) {
       return resp;
     }
     return null;
   },
 
-  updateMany: async (resource: string, params: UpdateManyParams) => {
+  updateMany: async <T extends object>(
+    resource: string,
+    params: UpdateManyParams<T>
+  ) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
@@ -143,9 +151,13 @@ export const dataProvider = {
     if (hasDataArray(resp)) {
       return resp;
     }
+    return null;
   },
 
-  create: async (resource: string, params: CreateParams) => {
+  create: async <T extends object>(
+    resource: string,
+    params: CreateParams<T>
+  ) => {
     const url = `${apiUrl}/${resource}`;
     const resp = await httpClient(url, {
       method: "POST",
@@ -154,6 +166,7 @@ export const dataProvider = {
     if (hasDataObject(resp)) {
       return resp;
     }
+    return null;
   },
 
   delete: (resource: string, params: DeleteParams) => {

@@ -1,2 +1,2 @@
-export * from "./httpClient"
-export * from "./typeGards"
+export * from "./httpClient";
+export * from "./typeGuards";

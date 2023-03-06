@@ -10,13 +10,11 @@ import { Column } from "react-table";
 export const DataGridLayout = <T extends { id: string | number }>({
   ressource,
   columns,
-  isTArray,
 }: {
   ressource: string;
   columns: Column<T>[];
-  isTArray: (obj: object) => obj is T[];
 }) => {
-  const { data } = useGetList(ressource);
+  const { data } = useGetList<T>(ressource);
 
   const [selected, setSelected] = React.useState<T[]>([]);
   const deleteMany = useDeleteMany(ressource);
@@ -29,7 +27,7 @@ export const DataGridLayout = <T extends { id: string | number }>({
 
   const navigate = useNavigate();
 
-  if (!data?.data || !isTArray(data.data)) {
+  if (!data?.data) {
     return null;
   }
 

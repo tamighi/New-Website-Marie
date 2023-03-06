@@ -1,6 +1,6 @@
 import { Column } from "react-table";
 import { DataGridLayout } from "../core/Datagrid";
-import { isServiceArray, ServiceDto } from ".";
+import { ServiceDto } from ".";
 
 const columns: Column<ServiceDto>[] = [
   { Header: "Id", accessor: "id" },
@@ -9,11 +9,5 @@ const columns: Column<ServiceDto>[] = [
 ];
 
 export const ServiceList = () => {
-  return (
-    <DataGridLayout
-      ressource="service"
-      columns={columns}
-      isTArray={isServiceArray}
-    />
-  );
+  return <DataGridLayout ressource="service" columns={columns} />;
 };
