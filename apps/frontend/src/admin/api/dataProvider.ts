@@ -3,10 +3,10 @@ import { hasCount, hasDataArray, hasDataObject, httpClient } from "./utils";
 
 const apiUrl = "http://192.168.1.50:8000";
 
-export interface GetListParams<T extends object> {
+export interface GetListParams {
   pagination: { page: number; perPage: number };
   sort: { field: string; order: "ASC" | "DESC" };
-  filter: Partial<T>;
+  filter: object;
 }
 
 export interface GetOneParams {
@@ -25,18 +25,18 @@ export interface GetManyReferenceParams {
   id: string | number;
 }
 
-export interface UpdateParams<T extends object> {
+export interface UpdateParams {
   id: string | number;
-  data: T;
+  data: object;
 }
 
-export interface UpdateManyParams<T extends object> {
+export interface UpdateManyParams {
   ids: (string | number)[];
-  data: T;
+  data: object;
 }
 
-export interface CreateParams<T extends object> {
-  data: T;
+export interface CreateParams {
+  data: object;
 }
 
 export interface DeleteParams {
@@ -48,10 +48,7 @@ export interface DeleteManyParams {
 }
 
 export const dataProvider = {
-  getList: async <T extends object>(
-    resource: string,
-    params: GetListParams<T>
-  ) => {
+  getList: async (resource: string, params: GetListParams) => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
 
@@ -63,38 +60,35 @@ export const dataProvider = {
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     const resp = await httpClient(url);
-    if (hasCount(resp) && hasDataArray<T>(resp)) {
+    if (hasCount(resp) && hasDataArray(resp)) {
       return resp;
     }
-    throw Error("Unexpected response object");
+    throw Error("Unexpected response");
   },
 
-  getOne: async <T extends object>(resource: string, params: GetOneParams) => {
+  getOne: async (resource: string, params: GetOneParams) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url);
-    if (hasDataObject<T>(resp)) {
+    if (hasDataObject(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
   },
 
-  getMany: async <T extends object>(
-    resource: string,
-    params: GetManyParams
-  ) => {
+  getMany: async (resource: string, params: GetManyParams) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
 
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     const resp = await httpClient(url);
-    if (hasCount(resp) && hasDataArray<T>(resp)) {
+    if (hasCount(resp) && hasDataArray(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
   },
 
-  getManyReference: async <T extends object>(
+  getManyReference: async (
     resource: string,
     params: GetManyReferenceParams
   ) => {
@@ -110,31 +104,25 @@ export const dataProvider = {
     };
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     const resp = await httpClient(url);
-    if (hasCount(resp) && hasDataArray<T>(resp)) {
+    if (hasCount(resp) && hasDataArray(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
   },
 
-  update: async <T extends object>(
-    resource: string,
-    params: UpdateParams<T>
-  ): Promise<{ data: T } | null> => {
+  update: async (resource: string, params: UpdateParams) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url, {
       method: "PUT",
       body: JSON.stringify(params.data),
     });
-    if (hasDataObject<T>(resp)) {
+    if (hasDataObject(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
   },
 
-  updateMany: async <T extends object>(
-    resource: string,
-    params: UpdateManyParams<T>
-  ) => {
+  updateMany: async (resource: string, params: UpdateManyParams) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
@@ -143,22 +131,19 @@ export const dataProvider = {
       method: "PUT",
       body: JSON.stringify(params.data),
     });
-    if (hasDataArray<T>(resp)) {
+    if (hasDataArray(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
   },
 
-  create: async <T extends object>(
-    resource: string,
-    params: CreateParams<T>
-  ) => {
+  create: async (resource: string, params: CreateParams) => {
     const url = `${apiUrl}/${resource}`;
     const resp = await httpClient(url, {
       method: "POST",
       body: JSON.stringify(params.data),
     });
-    if (hasDataObject<T>(resp)) {
+    if (hasDataObject(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");

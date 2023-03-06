@@ -14,7 +14,7 @@ export const useEditForm = <T extends object>(
     showDialog?.({ content: "Item updated !" });
   });
 
-  const { data } = useGetOne<T>("service", { id });
+  const { data } = useGetOne("service", { id });
 
   return { register, data, onSubmit };
 };

@@ -14,7 +14,7 @@ export const DataGridLayout = <T extends { id: string | number }>({
   ressource: string;
   columns: Column<T>[];
 }) => {
-  const { data } = useGetList<T>(ressource);
+  const { data } = useGetList(ressource);
 
   const [selected, setSelected] = React.useState<T[]>([]);
   const deleteMany = useDeleteMany(ressource);
@@ -40,7 +40,7 @@ export const DataGridLayout = <T extends { id: string | number }>({
         </IconButton>
       </SelectedOptions>
       <DataGrid
-        data={data.data}
+        data={data.data as T[]}
         columns={columns}
         selection
         setSelected={setSelected}

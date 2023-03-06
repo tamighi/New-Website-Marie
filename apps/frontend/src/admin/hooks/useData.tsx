@@ -9,9 +9,9 @@ import {
 } from "admin/api/dataProvider";
 import { useQuery, useQueryClient } from "react-query";
 
-export const useGetList = <T extends object>(ressource: string) => {
+export const useGetList = (ressource: string) => {
   const { data } = useQuery(`${ressource}`, () =>
-    dataProvider.getList<T>(ressource, {
+    dataProvider.getList(ressource, {
       sort: { field: "id", order: "DESC" },
       pagination: { page: 1, perPage: 10 },
       filter: {},
@@ -20,12 +20,9 @@ export const useGetList = <T extends object>(ressource: string) => {
   return { data };
 };
 
-export const useGetOne = <T extends object>(
-  ressource: string,
-  params: GetOneParams
-) => {
+export const useGetOne = (ressource: string, params: GetOneParams) => {
   const data = useQuery([ressource, params.id], () =>
-    dataProvider.getOne<T>(ressource, params)
+    dataProvider.getOne(ressource, params)
   );
   return data;
 };
@@ -44,11 +41,11 @@ export const useDeleteMany = (ressource: string) => {
   return deleteMany;
 };
 
-export const useUpdateOne = <T extends object>(ressource: string) => {
+export const useUpdateOne = (ressource: string) => {
   const queryClient = useQueryClient();
 
   const updateOne = React.useCallback(
-    async (params: UpdateParams<T>) => {
+    async (params: UpdateParams) => {
       await dataProvider.update(ressource, params);
       queryClient.invalidateQueries(ressource);
     },
@@ -58,11 +55,11 @@ export const useUpdateOne = <T extends object>(ressource: string) => {
   return updateOne;
 };
 
-export const useCreate = <T extends object>(ressource: string) => {
+export const useCreate = (ressource: string) => {
   const queryClient = useQueryClient();
 
   const create = React.useCallback(
-    async (params: CreateParams<T>) => {
+    async (params: CreateParams) => {
       await dataProvider.create(ressource, params);
       queryClient.invalidateQueries(ressource);
     },

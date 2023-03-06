@@ -17,17 +17,17 @@ export const ServiceEdit = () => {
   }
   return (
     <BasePage>
-      <h3>Update service {data.data.name}</h3>
+      <h3>Update service {(data.data as any).name}</h3>
       <form onSubmit={onSubmit}>
         <TextInput
           {...register("name")}
-          defaultValue={data.data.name}
+          defaultValue={(data.data as any).name}
           placeholder="name"
           autoFocus
         />
         <TextArea
           {...register("description")}
-          defaultValue={data.data.description}
+          defaultValue={(data.data as any).description}
           placeholder="description"
         />
         <input type="submit" />
