@@ -10,12 +10,15 @@ import {
 import { useQuery, useQueryClient } from "react-query";
 
 export const useGetList = (ressource: string) => {
-  const queryResult = useQuery(`${ressource}`, () =>
-    dataProvider.getList(ressource, {
-      sort: { field: "id", order: "DESC" },
-      pagination: { page: 1, perPage: 10 },
-      filter: {},
-    })
+  const queryResult = useQuery(
+    `${ressource}`,
+    () =>
+      dataProvider.getList(ressource, {
+        sort: { field: "id", order: "DESC" },
+        pagination: { page: 1, perPage: 10 },
+        filter: {},
+      }),
+    { suspense: true }
   );
   return queryResult;
 };

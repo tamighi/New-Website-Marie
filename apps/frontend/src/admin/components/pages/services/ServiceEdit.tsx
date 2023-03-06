@@ -3,7 +3,7 @@ import { TextArea, TextInput } from "admin/components/inputs";
 import { useEditForm } from "admin/hooks/useEditForm";
 import { useParams } from "react-router-dom";
 
-import { CreateServiceDto } from ".";
+import { CreateServiceDto, isService } from ".";
 import { BasePage } from "../core";
 
 export const ServiceEdit = () => {
@@ -12,22 +12,22 @@ export const ServiceEdit = () => {
     "service",
     id
   );
-  if (!data) {
+  if (!data || !isService(data.data)) {
     return null;
   }
   return (
     <BasePage>
-      <h3>Update service {(data.data as any).name}</h3>
+      <h3>Update service {data.data.name}</h3>
       <form onSubmit={onSubmit}>
         <TextInput
           {...register("name")}
-          defaultValue={(data.data as any).name}
+          defaultValue={data.data.name}
           placeholder="name"
           autoFocus
         />
         <TextArea
           {...register("description")}
-          defaultValue={(data.data as any).description}
+          defaultValue={data.data.description}
           placeholder="description"
         />
         <input type="submit" />
