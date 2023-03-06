@@ -148,7 +148,7 @@ export const dataProvider = {
       method: "PUT",
       body: JSON.stringify(params.data),
     });
-    if (hasDataArray(resp)) {
+    if (hasDataArray<T>(resp)) {
       return resp;
     }
     return null;
@@ -163,7 +163,7 @@ export const dataProvider = {
       method: "POST",
       body: JSON.stringify(params.data),
     });
-    if (hasDataObject(resp)) {
+    if (hasDataObject<T>(resp)) {
       return resp;
     }
     return null;
