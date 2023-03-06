@@ -1,22 +1,25 @@
 import { TextArea, TextInput } from "admin/components/inputs";
+import { useCreateForm } from "admin/hooks/useCreateForm";
 import { BasePage } from "../core";
 
-import { CreateForm } from "../core/CreateForm/CreateForm";
 import { CreateServiceDto } from "./service";
 
 export const ServiceCreate = () => {
+  const { register, onSubmit } = useCreateForm<CreateServiceDto>("service");
+
   return (
     <BasePage>
       <h3>Creer un service</h3>
-      <CreateForm<CreateServiceDto> ressource="service">
-        <TextInput name="name" placeholder="Nom" autoFocus />
+      <form onSubmit={onSubmit}>
+        <TextInput {...register("name")} placeholder="nom" autoFocus />
         <TextArea
-          name="description"
+          {...register("description")}
           placeholder="Description"
           rows={10}
           cols={40}
         />
-      </CreateForm>
+        <input type="submit" />
+      </form>
     </BasePage>
   );
 };
