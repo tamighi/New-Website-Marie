@@ -24,9 +24,8 @@ export const useGetOne = <T extends object>(
   ressource: string,
   params: GetOneParams
 ) => {
-  const { id } = params;
-  const data = useQuery([ressource, id], () =>
-    dataProvider.getOne<T>(ressource, { id: id })
+  const data = useQuery([ressource, params.id], () =>
+    dataProvider.getOne<T>(ressource, params)
   );
   return data;
 };
@@ -36,10 +35,7 @@ export const useDeleteMany = (ressource: string) => {
 
   const deleteMany = React.useCallback(
     async (params: DeleteManyParams) => {
-      const { ids } = params;
-      await dataProvider.deleteMany(ressource, {
-        ids,
-      });
+      await dataProvider.deleteMany(ressource, params);
       queryClient.invalidateQueries(ressource);
     },
     [queryClient, ressource]
@@ -53,11 +49,7 @@ export const useUpdateOne = <T extends object>(ressource: string) => {
 
   const updateOne = React.useCallback(
     async (params: UpdateParams<T>) => {
-      const { id, data } = params;
-      await dataProvider.update(ressource, {
-        id,
-        data,
-      });
+      await dataProvider.update(ressource, params);
       queryClient.invalidateQueries(ressource);
     },
     [queryClient, ressource]
@@ -70,8 +62,8 @@ export const useCreate = <T extends object>(ressource: string) => {
   const queryClient = useQueryClient();
 
   const create = React.useCallback(
-    async (data: CreateParams<T>) => {
-      await dataProvider.create(ressource, data);
+    async (params: CreateParams<T>) => {
+      await dataProvider.create(ressource, params);
       queryClient.invalidateQueries(ressource);
     },
     [queryClient, ressource]
