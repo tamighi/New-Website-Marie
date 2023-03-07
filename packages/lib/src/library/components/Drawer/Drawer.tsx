@@ -1,17 +1,16 @@
 import BlurryBackground from "../utils/BlurryBackground";
 
 import { useStyles } from "../../hooks";
-import { DefaultProps } from "..";
 
 import CSSClasses from "./Drawer.css";
 
-export interface DrawerProps extends DefaultProps {
+export interface DrawerProps extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean;
   onClose: () => void;
 }
 
 const Drawer = (props: DrawerProps) => {
-  const { style, children, className, open, onClose } = props;
+  const { style, children, className, open, onClose, ...rest } = props;
 
   const classNames = `${CSSClasses.Drawer} ` + (className || "");
 
@@ -29,6 +28,7 @@ const Drawer = (props: DrawerProps) => {
       <div
         className={`${classNames} ${open ? "" : CSSClasses.HiddenDrawer}`}
         style={styles}
+        {...rest}
       >
         {children}
       </div>

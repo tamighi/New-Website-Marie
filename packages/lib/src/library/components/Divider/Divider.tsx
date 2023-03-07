@@ -1,11 +1,10 @@
 import { useStyles } from "../../hooks";
-import { DefaultProps } from "..";
 import CSSClasses from "./Divider.css";
 
-export type DividerProps = DefaultProps;
+export type DividerProps = React.HTMLAttributes<HTMLHRElement>
 
 const Divider = (props: DividerProps) => {
-  const { style, className } = props;
+  const { style, className, ...rest } = props;
 
   const classNames = `${CSSClasses.Divider} ` + (className || "");
 
@@ -14,7 +13,7 @@ const Divider = (props: DividerProps) => {
     ...style,
   };
 
-  return <hr className={classNames} style={styles} />;
+  return <hr className={classNames} style={styles} {...rest} />;
 };
 
 export default Divider;

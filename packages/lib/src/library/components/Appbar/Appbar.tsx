@@ -1,12 +1,12 @@
-import { Paper, DefaultProps } from "..";
+import { Paper } from "..";
 import { useStyles } from "../../hooks";
 
 import CSSClasses from "./Appbar.css";
 
-export type AppbarProps = DefaultProps;
+export type AppbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const Appbar = (props: AppbarProps) => {
-  const { style, children, className } = props;
+  const { style, children, className, ...rest } = props;
 
   const classNames = `${CSSClasses.Appbar} ` + (className || "");
 
@@ -16,7 +16,7 @@ const Appbar = (props: AppbarProps) => {
   };
 
   return (
-    <Paper style={styles} className={classNames}>
+    <Paper style={styles} className={classNames} {...rest}>
       {children}
     </Paper>
   );

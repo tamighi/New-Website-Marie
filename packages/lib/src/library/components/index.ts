@@ -19,5 +19,3 @@ export * from "./IconButton";
 export * from "./Paper";
 
 export * from "./Dialog";
-
-export * from "./types";

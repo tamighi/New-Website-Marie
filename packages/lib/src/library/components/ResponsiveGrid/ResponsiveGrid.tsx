@@ -1,14 +1,14 @@
-import { DefaultProps } from "..";
 import CSSClasses from "./ResponsiveGrid.css";
 
-export interface ResponsiveGridProps extends DefaultProps {
+export interface ResponsiveGridProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   container?: boolean;
   small?: number;
   large?: number;
 }
 
 const ResponsiveGrid = (props: ResponsiveGridProps) => {
-  const { style, children, className, container, small, large } = props;
+  const { style, children, className, container, small, large, ...rest } = props;
 
   const classNames = [
     container ? CSSClasses.GridContainer : CSSClasses.GridItem,
@@ -24,7 +24,7 @@ const ResponsiveGrid = (props: ResponsiveGridProps) => {
   }
 
   return (
-    <div className={classNames.join(" ")} style={style}>
+    <div className={classNames.join(" ")} style={style} {...rest}>
       {children || ""}
     </div>
   );

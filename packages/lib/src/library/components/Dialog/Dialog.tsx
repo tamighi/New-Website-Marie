@@ -4,13 +4,14 @@ import BlurryBackground from "../utils/BlurryBackground";
 
 import styles from "./Dialog.css";
 
-const Dialog = ({
-  dialogState,
-  closeDialog,
-}: {
+export interface DialogProps extends React.HTMLAttributes<HTMLDivElement> {
   dialogState: IDialogState;
   closeDialog: () => void;
-}) => {
+}
+
+const Dialog = (props: DialogProps) => {
+  const { dialogState, closeDialog, ...rest } = props;
+
   const onOkClick = () => {
     dialogState.okCallback?.();
     closeDialog();
@@ -24,7 +25,7 @@ const Dialog = ({
   return (
     <BlurryBackground onClick={closeDialog} visible={dialogState.open}>
       {dialogState.open && (
-        <Card className={styles.Dialog}>
+        <Card className={styles.Dialog} {...rest}>
           <p>{dialogState.content}</p>
           <Divider style={{ marginBottom: "10px" }} />
           <div className={styles.Buttons}>

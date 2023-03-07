@@ -1,12 +1,11 @@
 import { useStyles } from "../../hooks";
-import { DefaultProps } from "..";
 
 import CSSClasses from "./Card.css";
 
-export type CardProps = DefaultProps;
+export type CardProps = React.HTMLAttributes<HTMLDivElement>;
 
 const Card = (props: CardProps) => {
-  const { style, children, className } = props;
+  const { style, children, className, ...rest } = props;
 
   const classNames = `${CSSClasses.Card} ` + (className || "");
 
@@ -16,7 +15,7 @@ const Card = (props: CardProps) => {
   };
 
   return (
-    <div className={classNames} style={styles}>
+    <div className={classNames} style={styles} {...rest}>
       {children}
     </div>
   );

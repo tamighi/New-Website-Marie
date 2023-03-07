@@ -1,11 +1,10 @@
 import { useStyles } from "../../hooks";
-import { DefaultProps } from "..";
 
 import CSSClasses from "./Paper.css";
 
-export type PaperProps = DefaultProps;
+export type PaperProps = React.HTMLAttributes<HTMLDivElement>
 
-const Paper = (props: DefaultProps) => {
+const Paper = (props: PaperProps) => {
   const { style, children, className } = props;
 
   const classNames = `${CSSClasses.Paper} ` + (className || "");

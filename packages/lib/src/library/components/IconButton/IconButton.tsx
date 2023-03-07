@@ -1,17 +1,14 @@
-import { DefaultProps } from "..";
 import CSSClasses from "./IconButton.css";
 
-interface IconButtonProps extends DefaultProps {
-  onClick: (() => void) | undefined;
-}
+export type IconButtonProps = React.HTMLAttributes<HTMLButtonElement>
 
 const IconButton = (props: IconButtonProps) => {
-  const { style, children, className, onClick } = props;
+  const { style, children, className, ...rest } = props;
 
   const classNames = `${CSSClasses.IconButton} ` + (className || "");
 
   return (
-    <button className={classNames} style={style} onClick={onClick}>
+    <button className={classNames} style={style} {...rest}>
       {children}
     </button>
   );
