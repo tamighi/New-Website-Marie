@@ -17,15 +17,20 @@ export const ServiceEdit = ({ id }: { id: string }) => {
   }
   return (
     <SideContent>
-      <h3>Update service {data.data.name}</h3>
-      <button onClick={() => navigate("/admin/services")}>Close</button>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <button onClick={() => navigate("/admin/services")}>Close</button>
+        <h3>Update service {data.data.name}</h3>
+      </div>
       <FormContent onSubmit={onSubmit}>
+        <span>Nom du service</span>
         <TextInput
           {...register("name")}
           defaultValue={data.data.name}
           placeholder="name"
           autoFocus
+          style={{ width: "initial" }}
         />
+        <span>Description du service</span>
         <TextArea
           {...register("description")}
           defaultValue={data.data.description}

@@ -11,9 +11,13 @@
   margin-right: 24px;
   position: relative;
   flex-grow: 1;
+  min-height: 0;
+  height: 100%;
 }
 
 .FormContent {
   display: flex;
+  align-items: flex-start;
+  gap: 10px;
   flex-direction: column;
 }

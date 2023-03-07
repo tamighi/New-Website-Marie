@@ -2,6 +2,7 @@ import { matchPath, useLocation } from "react-router-dom";
 import { Column } from "react-table";
 import { isServiceArray, ServiceDto, ServiceEdit } from ".";
 import { MainContent, MyDatagrid, Toolbar } from "../core";
+import { SuspenseWrapper } from "../core/SuspenseWrapper";
 
 const columns: Column<ServiceDto>[] = [
   { Header: "Id", accessor: "id" },
@@ -17,13 +18,19 @@ export const ServiceList = () => {
     <>
       <MainContent>
         <Toolbar />
-        <MyDatagrid
-          ressource="service"
-          columns={columns}
-          isTArray={isServiceArray}
-        />
+        <SuspenseWrapper>
+          <MyDatagrid
+            ressource="service"
+            columns={columns}
+            isTArray={isServiceArray}
+          />
+        </SuspenseWrapper>
       </MainContent>
-      {match && match.params.id && <ServiceEdit id={match.params.id} />}
+      {match && match.params.id && (
+        <SuspenseWrapper>
+          <ServiceEdit id={match.params.id} />
+        </SuspenseWrapper>
+      )}
     </>
   );
 };

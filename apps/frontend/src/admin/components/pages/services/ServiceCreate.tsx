@@ -11,7 +11,9 @@ export const ServiceCreate = () => {
     <MainContent>
       <h3>Creer un service</h3>
       <FormContent onSubmit={onSubmit}>
+        <span>Nom du service</span>
         <TextInput {...register("name")} placeholder="nom" autoFocus />
+        <span>Description du service</span>
         <TextArea
           {...register("description")}
           placeholder="Description"
