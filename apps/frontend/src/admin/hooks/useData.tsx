@@ -23,9 +23,10 @@ export const useGetOne = (ressource: string, params: GetOneParams) => {
     () => dataProvider.getOne(ressource, params),
     {
       initialData: () => {
-        const initialData = queryClient
-          .getQueryData<Record<string, { id: number | string }[]>>(ressource)
-          ?.data?.find((item) => item.id == params.id);
+        const data = queryClient.getQueryData<
+          Record<string, { id: number | string }[]>
+        >([ressource, 1]);
+        const initialData = data?.data?.find((item) => item.id == params.id);
 
         return initialData ? { data: initialData } : undefined;
       },
