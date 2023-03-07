@@ -11,7 +11,7 @@ const IconBase = (props: IconProps) => {
 
   const classNames = `${CSSClasses.IconBase} ` + (className || "");
 
-  const styles = useStyles("primary", style);
+  const styles = useStyles("transparent", style);
 
   return (
     <svg

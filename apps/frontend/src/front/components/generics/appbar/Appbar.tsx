@@ -52,7 +52,7 @@ export const Appbar = () => {
               ></img>
               <Button
                 onClick={() => navigation(button.to)}
-                style={{ transition: "transform .4s ease" }}
+                style={{ transition: "transform .2s ease" }}
               >
                 {button.name}
               </Button>

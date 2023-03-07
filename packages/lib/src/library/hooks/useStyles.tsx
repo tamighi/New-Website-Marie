@@ -19,7 +19,7 @@ const useStyles = (
 
   styles.color = appendStyle?.color || palette.text;
   styles.transition = appendStyle?.transition
-    ? appendStyle.transition + ", " + theme.transition
+    ? theme.transition + ", " + appendStyle.transition
     : theme.transition;
 
   return styles;

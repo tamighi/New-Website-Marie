@@ -1,6 +1,6 @@
 import CSSClasses from "./Navbar.css";
 
-export type NavbarProps = React.HTMLAttributes<HTMLElement>
+export type NavbarProps = React.HTMLAttributes<HTMLElement>;
 
 const Navbar = (props: NavbarProps) => {
   const { style, children, className, ...rest } = props;
