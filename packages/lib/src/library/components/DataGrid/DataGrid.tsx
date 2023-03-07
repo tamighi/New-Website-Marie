@@ -119,7 +119,7 @@ const DataGrid = <T extends object>({
               key={key}
               className={clickable ? CSSClasses.Clickable : ""}
               style={{
-                backgroundColor: themeColors.background,
+                backgroundColor: themeColors.surface,
                 transition: theme.transition,
               }}
               onClick={onRowClick ? () => onRowClick(row.original) : undefined}

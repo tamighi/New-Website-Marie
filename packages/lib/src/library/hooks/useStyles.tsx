@@ -13,7 +13,7 @@ const useStyles = (type: "background" | "primary" | "secondary") => {
       ? palette.primary
       : type === "secondary"
       ? palette.secondary
-      : palette.background;
+      : palette.surface;
 
   const colors: React.CSSProperties = {
     backgroundColor: backgroundColor,

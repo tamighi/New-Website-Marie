@@ -28,13 +28,13 @@ export const MyThemeProvider = ({
       light: {
         primary: "rgba(255, 127, 80, 0.7)",
         secondary: "#a51e1e",
-        background: "rgba(255, 127, 80, 0.7)",
+        surface: "rgba(255, 127, 80, 0.7)",
         text: "black",
       },
       dark: {
         primary: "rgba(0, 0, 128, 0.5)",
         secondary: "#16368d",
-        background: "rgba(0, 0, 128, 0.5)",
+        surface: "rgba(0, 0, 128, 0.5)",
         text: "white",
       },
     },
