@@ -78,12 +78,18 @@ export const useCreate = (ressource: string, options?: MutationOptions) => {
     {
       onSuccess: (data) => {
         options?.onSuccess();
-        queryClient.setQueryData<{ data: object[] }>(
-          [ressource, 1],
-          (oldData) => {
-            return { ...oldData, data: [data.data, ...(oldData?.data || [])] };
-          }
-        );
+        const oldData = queryClient.getQueryData<{ data: object[] }>([
+          ressource,
+          1,
+        ]);
+        if (oldData) {
+          queryClient.setQueryData([ressource, 1], () => {
+            return {
+              ...oldData,
+              data: [data.data, ...(oldData?.data || [])],
+            };
+          });
+        }
       },
     }
   );
