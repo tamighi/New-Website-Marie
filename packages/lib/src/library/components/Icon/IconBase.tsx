@@ -10,19 +10,18 @@ const IconBase = (props: IconProps) => {
   const { style, className, children, coloredPath, ...rest } = props;
 
   const classNames = `${CSSClasses.IconBase} ` + (className || "");
-  const _style = useStyles("primary");
 
-  const color = style?.color || _style.color;
+  const styles = useStyles("primary", style);
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       className={classNames}
-      style={style}
+      style={styles}
       {...rest}
     >
-      <path d={coloredPath} fill={color} />
+      <path d={coloredPath} fill={styles.color} />
       {children}
     </svg>
   );

@@ -8,10 +8,7 @@ const Divider = (props: DividerProps) => {
 
   const classNames = `${CSSClasses.Divider} ` + (className || "");
 
-  const styles = {
-    ...useStyles("secondary"),
-    ...style,
-  };
+  const styles = useStyles("primary", style);
 
   return <hr className={classNames} style={styles} {...rest} />;
 };

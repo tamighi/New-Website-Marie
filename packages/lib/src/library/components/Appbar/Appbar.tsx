@@ -10,10 +10,7 @@ const Appbar = (props: AppbarProps) => {
 
   const classNames = `${CSSClasses.Appbar} ` + (className || "");
 
-  const styles = {
-    ...useStyles("primary"),
-    ...style,
-  };
+  const styles = useStyles("primary", style);
 
   return (
     <Paper style={styles} className={classNames} {...rest}>

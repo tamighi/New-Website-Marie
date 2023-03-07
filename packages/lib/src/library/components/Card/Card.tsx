@@ -9,10 +9,7 @@ const Card = (props: CardProps) => {
 
   const classNames = `${CSSClasses.Card} ` + (className || "");
 
-  const styles = {
-    ...useStyles("surface"),
-    ...style,
-  };
+  const styles = useStyles("surface", style);
 
   return (
     <div className={classNames} style={styles} {...rest}>

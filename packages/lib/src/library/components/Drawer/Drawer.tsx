@@ -14,10 +14,7 @@ const Drawer = (props: DrawerProps) => {
 
   const classNames = `${CSSClasses.Drawer} ` + (className || "");
 
-  const styles = {
-    ...useStyles("surface"),
-    ...style,
-  };
+  const styles = useStyles("surface", style);
 
   styles.transition = styles.transition
     ? styles.transition + ", transform 225ms ease"

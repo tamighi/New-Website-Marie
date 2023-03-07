@@ -9,10 +9,7 @@ const Button = (props: ButtonProps) => {
 
   const classNames = `${CSSClasses.Button} ` + (className || "");
 
-  const styles = {
-    ...useStyles("primary"),
-    ...style,
-  };
+  const styles = useStyles("transparent", style);
 
   return (
     <button style={styles} className={classNames} {...rest}>
