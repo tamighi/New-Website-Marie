@@ -1,7 +1,7 @@
 import { matchPath, useLocation } from "react-router-dom";
 import { Column } from "react-table";
 import { isServiceArray, ServiceDto, ServiceEdit } from ".";
-import { BasePage, MyDatagrid, Toolbar } from "../core";
+import { MainContent, MyDatagrid, Toolbar } from "../core";
 
 const columns: Column<ServiceDto>[] = [
   { Header: "Id", accessor: "id" },
@@ -15,14 +15,14 @@ export const ServiceList = () => {
 
   return (
     <>
-      <BasePage>
+      <MainContent>
         <Toolbar />
         <MyDatagrid
           ressource="service"
           columns={columns}
           isTArray={isServiceArray}
         />
-      </BasePage>
+      </MainContent>
       {match && match.params.id && <ServiceEdit id={match.params.id} />}
     </>
   );

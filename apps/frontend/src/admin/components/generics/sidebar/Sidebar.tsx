@@ -47,7 +47,12 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
           <ul>
             {pages.map((page, index) => (
               <li key={index}>
-                <button onClick={() => navigate(page.to)}>
+                <button
+                  onClick={() => {
+                    navigate(page.to);
+                    onClose();
+                  }}
+                >
                   {page.logo}
                   {page.name}
                 </button>

@@ -1,8 +1,19 @@
-.BasePage {
+.MainContent {
   display: flex;
   position: relative;
   flex-direction: column;
   margin-right: 46px;
   margin-left: 10px;
   flex-grow: 3;
+}
+
+.SideContent {
+  margin-right: 24px;
+  position: relative;
+  flex-grow: 1;
+}
+
+.FormContent {
+  display: flex;
+  flex-direction: column;
 }
