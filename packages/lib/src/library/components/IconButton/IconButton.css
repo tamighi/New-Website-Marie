@@ -2,7 +2,7 @@
   border: none;
   border-radius: 50%;
   padding: 8px;
-  display: flex;
+  display: block;
   cursor: pointer;
 }
 
