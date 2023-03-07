@@ -1,23 +1,28 @@
 import { TextArea, TextInput } from "admin/components/inputs";
 
 import { useEditForm } from "admin/hooks/useEditForm";
-import { useParams } from "react-router-dom";
+import { Card } from "lib";
+import { useNavigate } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
 
-export const ServiceEdit = () => {
-  const { id } = useParams<"id">() as { id: string };
+export const ServiceEdit = ({ id }: { id: string }) => {
   const { register, data, onSubmit } = useEditForm<CreateServiceDto>(
     "service",
     id
   );
+  const navigate = useNavigate()
   if (!data || !isService(data.data)) {
     return null;
   }
   return (
-    <>
+    <Card style={{ marginRight: "24px", flexGrow: 1 }}>
       <h3>Update service {data.data.name}</h3>
-      <form onSubmit={onSubmit}>
+      <button onClick={() => navigate("/admin/services")}>Close</button>
+      <form
+        onSubmit={onSubmit}
+        style={{ display: "flex", flexDirection: "column" }}
+      >
         <TextInput
           {...register("name")}
           defaultValue={data.data.name}
@@ -31,6 +36,6 @@ export const ServiceEdit = () => {
         />
         <input type="submit" />
       </form>
-    </>
+    </Card>
   );
 };
