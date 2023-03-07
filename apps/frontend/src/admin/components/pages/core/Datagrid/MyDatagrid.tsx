@@ -29,12 +29,15 @@ export const MyDatagrid = <T extends { id: string | number }>({
   });
 
   const [selected, setSelected] = React.useState<T[]>([]);
-  const deleteMany = useDeleteMany(ressource);
   const { showDialog } = useDialog();
 
+  const { mutate } = useDeleteMany(ressource, {
+    onSuccess: () =>
+      showDialog?.({ content: `${selected.length} item(s) deleted` }),
+  });
+
   const onDeleteClick = async () => {
-    await deleteMany({ ids: selected.map((value) => value.id) });
-    showDialog?.({ content: `${selected.length} item(s) deleted` });
+    mutate({ ids: selected.map((value) => value.id) });
   };
 
   const navigate = useNavigate();

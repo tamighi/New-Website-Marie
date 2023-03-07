@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
   CreateParams,
   dataProvider,
@@ -38,23 +36,45 @@ export const useGetOne = (ressource: string, params: GetOneParams) => {
   return queryResult;
 };
 
-export const useDeleteMany = (ressource: string) => {
-  const queryClient = useQueryClient();
-
-  const deleteMany = React.useCallback(
-    async (params: DeleteManyParams) => {
-      await dataProvider.deleteMany(ressource, params);
-      queryClient.invalidateQueries(ressource);
-    },
-    [queryClient, ressource]
-  );
-
-  return deleteMany;
-};
-
 interface MutationOptions {
   onSuccess: () => void;
 }
+
+export const useDeleteMany = (ressource: string, options?: MutationOptions) => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(
+    (params: DeleteManyParams) => dataProvider.deleteMany(ressource, params),
+    {
+      onMutate: async (params) => {
+        await queryClient.cancelQueries({ queryKey: ressource });
+        const oldData = queryClient.getQueryData<{
+          data: { id: number | string }[];
+        }>([ressource, 1]);
+        if (oldData) {
+          queryClient.setQueryData([ressource, 1], () => {
+            return {
+              ...oldData,
+              data: oldData.data.filter(
+                (object) => !params.ids.includes(object.id)
+              ),
+            };
+          });
+        }
+        return { oldData };
+      },
+      onError: (_, __, context) => {
+        queryClient.setQueryData([ressource, 1], context?.oldData);
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries({ queryKey: [ressource, 1] });
+      },
+      ...options,
+    }
+  );
+
+  return mutation;
+};
 
 export const useUpdateOne = (ressource: string, options?: MutationOptions) => {
   const queryClient = useQueryClient();
@@ -63,7 +83,7 @@ export const useUpdateOne = (ressource: string, options?: MutationOptions) => {
     (params: UpdateParams) => dataProvider.update(ressource, params),
     {
       onMutate: async (newData) => {
-        await queryClient.cancelQueries({ queryKey: [ressource, 1] });
+        await queryClient.cancelQueries(ressource);
         const oldData = queryClient.getQueryData<{
           data: { id: number | string }[];
         }>([ressource, 1]);
@@ -93,10 +113,8 @@ export const useUpdateOne = (ressource: string, options?: MutationOptions) => {
         queryClient.setQueryData([ressource, 1], context?.oldData);
       },
       onSettled: (data) => {
-        queryClient.invalidateQueries({
-          queryKey: [ressource, data?.data.id.toString()],
-        });
-        queryClient.invalidateQueries({ queryKey: [ressource, 1] });
+        queryClient.invalidateQueries([ressource, data?.data.id.toString()]);
+        queryClient.invalidateQueries([ressource, 1]);
       },
       ...options,
     }
@@ -124,6 +142,7 @@ export const useCreate = (ressource: string, options?: MutationOptions) => {
             };
           });
         }
+        queryClient.invalidateQueries([ressource, 1]);
       },
     }
   );
