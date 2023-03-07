@@ -8,12 +8,13 @@ import {
   GetOneParams,
   UpdateParams,
 } from "admin/api/dataProvider";
-import { useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 export const useGetList = (ressource: string, params: GetListParams) => {
-  const queryResult = useQuery([ressource, params.pagination.page],
+  const queryResult = useQuery(
+    [ressource, params.pagination.page],
     () => dataProvider.getList(ressource, params),
-    { suspense: true }
+    { suspense: true, keepPreviousData: true }
   );
   return queryResult;
 };
@@ -65,16 +66,27 @@ export const useUpdateOne = (ressource: string) => {
   return updateOne;
 };
 
-export const useCreate = (ressource: string) => {
+interface MutationOptions {
+  onSuccess: () => void;
+}
+
+export const useCreate = (ressource: string, options?: MutationOptions) => {
   const queryClient = useQueryClient();
 
-  const create = React.useCallback(
-    async (params: CreateParams) => {
-      await dataProvider.create(ressource, params);
-      queryClient.invalidateQueries(ressource);
-    },
-    [queryClient, ressource]
+  const mutation = useMutation(
+    (params: CreateParams) => dataProvider.create(ressource, params),
+    {
+      onSuccess: (data) => {
+        options?.onSuccess();
+        queryClient.setQueryData<{ data: object[] }>(
+          [ressource, 1],
+          (oldData) => {
+            return { ...oldData, data: [data.data, ...(oldData?.data || [])] };
+          }
+        );
+      },
+    }
   );
 
-  return create;
+  return mutation;
 };

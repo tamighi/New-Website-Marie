@@ -7,6 +7,8 @@ import { useDeleteMany, useGetList } from "admin/hooks/useData";
 
 import { Column } from "react-table";
 
+const entryPerPage = 10;
+
 export interface MyDatagridProps<T extends object> {
   ressource: string;
   columns: Column<T>[];
@@ -64,7 +66,7 @@ export const MyDatagrid = <T extends { id: string | number }>({
         Previous
       </button>
       <button
-        disabled={page === Math.ceil(data.count / 10)}
+        disabled={page === Math.ceil(data.count / entryPerPage)}
         onClick={() => setPage(page + 1)}
       >
         Next
