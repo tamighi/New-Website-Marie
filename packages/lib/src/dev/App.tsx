@@ -10,7 +10,7 @@ import styles from "./App.css";
 import "./Global.css";
 
 export const App = () => {
-  const style = useStyles("background");
+  const style = useStyles("surface");
 
   return (
     <div className={styles.App} style={style}>

@@ -15,7 +15,7 @@ const Drawer = (props: DrawerProps) => {
   const classNames = `${CSSClasses.Drawer} ` + (className || "");
 
   const styles = {
-    ...useStyles("background"),
+    ...useStyles("surface"),
     ...style,
   };
 

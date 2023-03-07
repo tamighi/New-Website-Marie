@@ -10,7 +10,7 @@ const Paper = (props: PaperProps) => {
   const classNames = `${CSSClasses.Paper} ` + (className || "");
 
   const styles = {
-    ...useStyles("background"),
+    ...useStyles("surface"),
     ...style,
   };
 

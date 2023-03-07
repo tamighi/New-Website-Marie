@@ -1,29 +1,26 @@
 import React from "react";
-import { useTheme } from "../providers";
+import { Colors, useTheme } from "../providers";
 
-const useStyles = (type: "background" | "primary" | "secondary") => {
+const useStyles = (
+  type: keyof Colors | "transparent",
+  appendStyle?: React.CSSProperties
+) => {
   const theme = useTheme();
+  const styles: React.CSSProperties = {};
 
   const palette = theme.palette.darkMode
     ? theme.palette.dark
     : theme.palette.light;
 
-  const backgroundColor =
-    type === "primary"
-      ? palette.primary
-      : type === "secondary"
-      ? palette.secondary
-      : palette.surface;
+  styles.backgroundColor =
+    appendStyle?.backgroundColor ||
+    (type !== "transparent" && palette[type]) ||
+    "transparent";
 
-  const colors: React.CSSProperties = {
-    backgroundColor: backgroundColor,
-    color: palette.text,
-  };
-
-  const styles: React.CSSProperties = {
-    ...colors,
-    transition: theme.transition,
-  };
+  styles.color = appendStyle?.color || palette.text;
+  styles.transition = appendStyle?.transition
+    ? appendStyle.transition + ", " + theme.transition
+    : theme.transition;
 
   return styles;
 };
