@@ -7,20 +7,35 @@ export const hasCount = (obj: unknown): obj is { count: number } => {
   );
 };
 
-export const hasDataArray = (obj: unknown): obj is { data: object[] } => {
+const hasId = (obj: unknown): obj is { id: number | string } => {
   return (
     obj !== null &&
     typeof obj === "object" &&
-    "data" in obj &&
-    obj.data instanceof Array
+    "id" in obj &&
+    (typeof obj.id === "number" || typeof obj.id === "string")
   );
 };
 
-export const hasDataObject = (obj: unknown): obj is { data: object } => {
+export const hasDataObject = (
+  obj: unknown
+): obj is { data: { id: number | string } } => {
   return (
     obj !== null &&
     typeof obj === "object" &&
     "data" in obj &&
-    typeof obj.data === "object"
+    typeof obj.data === "object" &&
+    hasId(obj.data)
+  );
+};
+
+export const hasDataArray = (
+  obj: unknown
+): obj is { data: { id: number | string }[] } => {
+  return (
+    obj !== null &&
+    typeof obj === "object" &&
+    "data" in obj &&
+    obj.data instanceof Array &&
+    obj.data.every((obj) => hasId(obj))
   );
 };

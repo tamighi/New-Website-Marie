@@ -19,7 +19,7 @@ export const isGenericArray = <T extends object>(
   arr: unknown,
   generic: T
 ): arr is T[] => {
-  if (!Array.isArray(arr)) {
+  if (!(arr instanceof Array)) {
     return false;
   }
   return arr.every((elem) => {

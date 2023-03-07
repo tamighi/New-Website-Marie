@@ -52,51 +52,57 @@ export const useDeleteMany = (ressource: string) => {
   return deleteMany;
 };
 
-export const useUpdateOne = (ressource: string) => {
+interface MutationOptions {
+  onSuccess: () => void;
+}
+
+export const useUpdateOne = (ressource: string, options?: MutationOptions) => {
   const queryClient = useQueryClient();
 
-  const updateOne = React.useCallback(
-    async (params: UpdateParams) => {
-      await dataProvider.update(ressource, params);
-      queryClient.invalidateQueries(ressource);
-    },
-    [queryClient, ressource]
-  );
-
-  return updateOne;
-};
-
-/*
+  const mutation = useMutation(
+    (params: UpdateParams) => dataProvider.update(ressource, params),
     {
       onMutate: async (newData) => {
         await queryClient.cancelQueries({ queryKey: [ressource, 1] });
-        const oldData = queryClient.getQueryData<{ data: object[] }>([
-          ressource,
-          1,
-        ]);
+        const oldData = queryClient.getQueryData<{
+          data: { id: number | string }[];
+        }>([ressource, 1]);
         if (oldData) {
           queryClient.setQueryData([ressource, 1], () => {
             return {
               ...oldData,
-              data: [{ ...newData.data }, ...(oldData?.data || [])],
+              data: [
+                ...oldData.data.map((previous) =>
+                  previous.id == newData.id
+                    ? { ...previous, ...newData.data }
+                    : previous
+                ),
+              ],
             };
           });
         }
+        queryClient.setQueryData<{ data: object }>(
+          [ressource, newData.id],
+          (oldData) => {
+            return { ...oldData, data: { ...oldData?.data, ...newData.data } };
+          }
+        );
         return { oldData };
       },
       onError: (_, __, context) => {
         queryClient.setQueryData([ressource, 1], context?.oldData);
       },
-      onSettled: () => {
+      onSettled: (data) => {
+        queryClient.invalidateQueries({
+          queryKey: [ressource, data?.data.id.toString()],
+        });
         queryClient.invalidateQueries({ queryKey: [ressource, 1] });
       },
       ...options,
     }
-    */
-
-interface MutationOptions {
-  onSuccess: () => void;
-}
+  );
+  return mutation;
+};
 
 export const useCreate = (ressource: string, options?: MutationOptions) => {
   const queryClient = useQueryClient();
@@ -114,7 +120,7 @@ export const useCreate = (ressource: string, options?: MutationOptions) => {
           queryClient.setQueryData([ressource, 1], () => {
             return {
               ...oldData,
-              data: [data.data, ...(oldData?.data || [])],
+              data: [data.data, ...oldData.data],
             };
           });
         }
