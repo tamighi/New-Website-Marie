@@ -38,6 +38,10 @@ export const useGetOne = (ressource: string, params: GetOneParams) => {
   return queryResult;
 };
 
+interface MutationOptions {
+  onSuccess: () => void;
+}
+
 export const useDeleteMany = (ressource: string) => {
   const queryClient = useQueryClient();
 
@@ -66,18 +70,14 @@ export const useUpdateOne = (ressource: string) => {
   return updateOne;
 };
 
-interface MutationOptions {
-  onSuccess: () => void;
-}
-
 export const useCreate = (ressource: string, options?: MutationOptions) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(
     (params: CreateParams) => dataProvider.create(ressource, params),
     {
-      onSuccess: (data) => {
-        options?.onSuccess();
+      onMutate: async (newData) => {
+        await queryClient.cancelQueries({ queryKey: [ressource, 1] });
         const oldData = queryClient.getQueryData<{ data: object[] }>([
           ressource,
           1,
@@ -86,11 +86,19 @@ export const useCreate = (ressource: string, options?: MutationOptions) => {
           queryClient.setQueryData([ressource, 1], () => {
             return {
               ...oldData,
-              data: [data.data, ...(oldData?.data || [])],
+              data: [newData, ...(oldData?.data || [])],
             };
           });
         }
+        return { oldData };
       },
+      onError: (_, __, context) => {
+        queryClient.setQueryData([ressource, 1], context?.oldData);
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries({ queryKey: [ressource, 1] });
+      },
+      ...options,
     }
   );
 
