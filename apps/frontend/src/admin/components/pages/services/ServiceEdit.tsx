@@ -1,6 +1,7 @@
 import { TextArea, TextInput } from "admin/components/inputs";
 
 import { useEditForm } from "admin/hooks/useEditForm";
+import { Button } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
@@ -18,7 +19,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
   return (
     <SideContent>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <button onClick={() => navigate("/admin/services")}>Close</button>
+        <Button onClick={() => navigate("/admin/services")}>Close</Button>
         <h3>Update service {data.data.name}</h3>
       </div>
       <FormContent onSubmit={onSubmit}>

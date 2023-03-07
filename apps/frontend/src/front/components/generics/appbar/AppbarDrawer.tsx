@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Divider, Drawer, IconButton, MenuIcon } from "lib";
+import { Button, Divider, Drawer, IconButton, MenuIcon } from "lib";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
           </li>
           {navItems.map((button, id) => (
             <li key={id}>
-              <button onClick={() => onClick(button.to)} className="DrawerLink">
+              <Button onClick={() => onClick(button.to)} className="DrawerLink">
                 {button.name}
                 <img
                   alt=""
@@ -46,7 +46,7 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
                       button.to === location.pathname ? "visible" : "hidden",
                   }}
                 ></img>
-              </button>
+              </Button>
             </li>
           ))}
         </ul>

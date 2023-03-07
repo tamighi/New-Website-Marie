@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Appbar as LibAppbar, Navbar } from "lib";
+import { Appbar as LibAppbar, Button, Navbar } from "lib";
 
 import { AppbarDrawer } from "./AppbarDrawer";
 import { ThemeToggleIcon } from "./ThemeToggleIcon";
@@ -50,9 +50,12 @@ export const Appbar = () => {
                     button.to === location.pathname ? undefined : "hidden",
                 }}
               ></img>
-              <button onClick={() => navigation(button.to)}>
+              <Button
+                onClick={() => navigation(button.to)}
+                style={{ transition: "transform .4s ease" }}
+              >
                 {button.name}
-              </button>
+              </Button>
             </li>
           ))}
         </ul>

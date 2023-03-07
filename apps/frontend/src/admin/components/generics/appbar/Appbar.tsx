@@ -1,5 +1,5 @@
 import { useAuth } from "admin/hooks/useAuth";
-import { HomeIcon } from "lib";
+import { Button, HomeIcon } from "lib";
 import { Appbar as LibAppbar, MenuIcon, IconButton, Navbar } from "lib";
 
 import styles from "./Appbar.css";
@@ -17,7 +17,7 @@ export const Appbar = ({ toggleSideBar }: AppbarProps) => {
           <MenuIcon />
         </IconButton>
         <div style={{ flexGrow: 1, textAlign: "center" }}>Appbar</div>
-        <button onClick={logout}>Logout</button>
+        <Button onClick={logout}>Logout</Button>
         <a href="/">
           <HomeIcon />
         </a>

@@ -1,4 +1,11 @@
-import { Divider, Drawer, HomeIcon, TableChartIcon, useMediaQuery } from "lib";
+import {
+  Button,
+  Divider,
+  Drawer,
+  HomeIcon,
+  TableChartIcon,
+  useMediaQuery,
+} from "lib";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Sidebar.css";
@@ -29,10 +36,10 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
         <ul>
           {pages.map((page, index) => (
             <li key={index}>
-              <button onClick={() => navigate(page.to)}>
+              <Button onClick={() => navigate(page.to)}>
                 {page.logo}
                 {open && page.name}
-              </button>
+              </Button>
               {page.divider && <Divider />}
             </li>
           ))}
@@ -47,7 +54,7 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
           <ul>
             {pages.map((page, index) => (
               <li key={index}>
-                <button
+                <Button
                   onClick={() => {
                     navigate(page.to);
                     onClose();
@@ -55,7 +62,7 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
                 >
                   {page.logo}
                   {page.name}
-                </button>
+                </Button>
                 {page.divider && <Divider />}
               </li>
             ))}
