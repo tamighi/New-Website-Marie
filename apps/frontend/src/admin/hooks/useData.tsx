@@ -9,10 +9,8 @@ import {
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 export const useGetList = (ressource: string, params: GetListParams) => {
-  const queryResult = useQuery(
-    [ressource, params.pagination.page],
-    () => dataProvider.getList(ressource, params),
-    { suspense: true, keepPreviousData: true }
+  const queryResult = useQuery([ressource, params.pagination.page], () =>
+    dataProvider.getList(ressource, params)
   );
   return queryResult;
 };
@@ -47,7 +45,7 @@ export const useDeleteMany = (ressource: string, options?: MutationOptions) => {
     (params: DeleteManyParams) => dataProvider.deleteMany(ressource, params),
     {
       onMutate: async (params) => {
-        await queryClient.cancelQueries({ queryKey: ressource });
+        await queryClient.cancelQueries(ressource);
         const oldData = queryClient.getQueryData<{
           data: { id: number | string }[];
         }>([ressource, 1]);

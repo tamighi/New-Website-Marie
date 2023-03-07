@@ -14,6 +14,7 @@ export const MyQueryClientProvider = ({
         staleTime: Infinity,
         retry: false,
         refetchOnWindowFocus: false,
+        suspense: true,
         /*
         onError: (error) => {
           authContext?.setAuthenticated(false);

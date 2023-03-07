@@ -8,6 +8,8 @@ export const useEditForm = <T extends object>(
   const { register, handleSubmit } = useForm<T>();
   const { showDialog } = useDialog();
 
+  const { data } = useGetOne("service", { id });
+
   const { mutate } = useUpdateOne(ressource, {
     onSuccess: () => showDialog?.({ content: "Item updated !" }),
   });
@@ -15,8 +17,6 @@ export const useEditForm = <T extends object>(
   const onSubmit = handleSubmit(async (data: Partial<T>) => {
     mutate({ data, id });
   });
-
-  const { data } = useGetOne("service", { id });
 
   return { register, data, onSubmit };
 };

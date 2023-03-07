@@ -12,6 +12,7 @@ import {
 } from "./components/pages/services";
 
 import styles from "./AdminApp.css";
+import { SuspenseWrapper } from "./components/pages/core/SuspenseWrapper";
 
 export const AdminApp = () => {
   const [openSidebar, setOpenSidebar] = React.useState(false);
@@ -24,12 +25,14 @@ export const AdminApp = () => {
       <Appbar toggleSideBar={toggleOpen} />
       <main className={styles.AdminMain}>
         <Sidebar open={openSidebar} toggleSideBar={toggleOpen} />
-        <Routes>
-          <Route path="" element={<Dashboard />} />
-          <Route path="services" element={<ServiceList />} />
-          <Route path="services/:id" element={<ServiceEdit />} />
-          <Route path="services/create" element={<ServiceCreate />} />
-        </Routes>
+        <SuspenseWrapper>
+          <Routes>
+            <Route path="" element={<Dashboard />} />
+            <Route path="services" element={<ServiceList />} />
+            <Route path="services/:id" element={<ServiceEdit />} />
+            <Route path="services/create" element={<ServiceCreate />} />
+          </Routes>
+        </SuspenseWrapper>
       </main>
     </div>
   );

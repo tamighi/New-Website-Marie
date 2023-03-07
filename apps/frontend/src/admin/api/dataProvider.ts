@@ -66,10 +66,15 @@ export const dataProvider = {
     throw Error("Unexpected response");
   },
 
-  getOne: async (resource: string, params: GetOneParams) => {
+  getOne: async (resource: string, params: GetOneParams): Promise<any> => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url);
     if (hasDataObject(resp)) {
+      return new Promise((resolve, _) => {
+        setTimeout(() => {
+          resolve(resp);
+        }, 2000);
+      });
       return resp;
     }
     throw Error("Unexpected response object");
