@@ -1,6 +1,6 @@
 import React from "react";
 import { SelectedOptions } from "..";
-import { DataGrid, DeleteIcon, IconButton, useDialog } from "lib";
+import { Button, DataGrid, DeleteIcon, IconButton, useDialog } from "lib";
 
 import { useNavigate } from "react-router-dom";
 import { useDeleteMany, useGetList } from "admin/hooks/useData";
@@ -65,15 +65,15 @@ export const MyDatagrid = <T extends { id: string | number }>({
         clickable
         onRowClick={(value: T) => navigate(`${value.id}`)}
       />
-      <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+      <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
         Previous
-      </button>
-      <button
+      </Button>
+      <Button
         disabled={page === Math.ceil(data.count / entryPerPage)}
         onClick={() => setPage(page + 1)}
       >
         Next
-      </button>
+      </Button>
     </>
   );
 };
