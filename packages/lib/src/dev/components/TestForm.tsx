@@ -1,4 +1,5 @@
 import { useForm } from "library";
+import { Button } from "library/components/Button";
 import { useDialog } from "../../library/providers";
 import styles from "../styles/Page.css";
 
@@ -27,7 +28,7 @@ export const TestForm = () => {
           <option value="male">male</option>
           <option value="other">other</option>
         </select>
-        <input type="submit" />
+        <Button type="submit">Submit</Button>
       </form>
     </div>
   );

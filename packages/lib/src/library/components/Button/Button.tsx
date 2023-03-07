@@ -1,7 +1,24 @@
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
+import { useStyles } from "library";
+
+import CSSClasses from "./Button.css";
+
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = (props: ButtonProps) => {
-  return <button {...props} />;
+  const { style, children, className, ...rest } = props;
+
+  const classNames = `${CSSClasses.Button} ` + (className || "");
+
+  const styles = {
+    ...useStyles("primary"),
+    ...style,
+  };
+
+  return (
+    <button style={styles} className={classNames} {...rest}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;
