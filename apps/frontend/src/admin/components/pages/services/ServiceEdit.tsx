@@ -4,7 +4,6 @@ import { useEditForm } from "admin/hooks/useEditForm";
 import { useParams } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
-import { BasePage } from "../core";
 
 export const ServiceEdit = () => {
   const { id } = useParams<"id">() as { id: string };
@@ -16,7 +15,7 @@ export const ServiceEdit = () => {
     return null;
   }
   return (
-    <BasePage>
+    <>
       <h3>Update service {data.data.name}</h3>
       <form onSubmit={onSubmit}>
         <TextInput
@@ -32,6 +31,6 @@ export const ServiceEdit = () => {
         />
         <input type="submit" />
       </form>
-    </BasePage>
+    </>
   );
 };
