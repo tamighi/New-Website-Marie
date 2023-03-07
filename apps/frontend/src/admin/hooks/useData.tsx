@@ -101,15 +101,19 @@ export const useUpdateOne = (ressource: string, options?: MutationOptions) => {
             };
           });
         }
-        queryClient.setQueryData<{ data: object }>(
-          [ressource, newData.id],
-          (oldData) => {
-            return { ...oldData, data: { ...oldData?.data, ...newData.data } };
-          }
-        );
-        return { oldData };
+        const updated = queryClient.getQueryData<{
+          data: { id: number | string };
+        }>([ressource, newData.id]);
+        queryClient.setQueryData([ressource, newData.id], () => {
+          return { ...updated, data: { ...updated?.data, ...newData.data } };
+        });
+        return { oldData, updated };
       },
       onError: (_, __, context) => {
+        queryClient.setQueryData(
+          [ressource, context?.updated?.data.id],
+          context?.updated
+        );
         queryClient.setQueryData([ressource, 1], context?.oldData);
       },
       onSettled: (data) => {
