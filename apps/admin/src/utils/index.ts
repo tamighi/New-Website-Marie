@@ -1,1 +1,1 @@
-export * from "./genericTypeGuards"
+export * from "./genericTypeGuards";

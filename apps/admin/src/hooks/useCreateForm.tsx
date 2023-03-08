@@ -13,7 +13,7 @@ export const useCreateForm = <T extends object>(ressource: string) => {
       reset();
       resetErrors();
     },
-    onError: () => setError("badEntry")
+    onError: () => setError("badEntry"),
   });
 
   const onSubmit = handleSubmit(async (data: Partial<T>) => {
