@@ -1,4 +1,4 @@
-import { DataGrid } from "library";
+import { Button, DataGrid, Drawer } from "library";
 import React from "react";
 import { Column } from "react-table";
 import styles from "../styles/Page.css";
@@ -22,6 +22,7 @@ const columns: Column<Data>[] = [
 
 export const TestDataGrid = () => {
   const [selectedRows, setSelectedRows] = React.useState<Data[]>([]);
+  const [open, setOpen] = React.useState(false);
 
   const onRowClick = (data: Data) => {
     console.log(data);
@@ -37,6 +38,15 @@ export const TestDataGrid = () => {
         clickable
         onRowClick={onRowClick}
       />
+      <Button onClick={() => setOpen(true)}>Open me !</Button>
+      <Drawer
+        variant="persistent"
+        anchor="right"
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        Hello
+      </Drawer>
     </div>
   );
 };

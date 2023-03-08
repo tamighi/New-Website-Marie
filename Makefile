@@ -3,6 +3,9 @@ all:
 frontend:
 	npx lerna run start --scope=frontend
 
+admin:
+	npx lerna run start --scope=admin
+
 lib:
 	npx lerna run start --scope=lib
 
