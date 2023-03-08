@@ -5,7 +5,7 @@ import { Button } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
-import { FormContent, SideContent } from "../core";
+import { FormContent } from "../core";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
   const { register, data, onSubmit } = useEditForm<CreateServiceDto>(
@@ -17,7 +17,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
     return <div>Error</div>;
   }
   return (
-    <SideContent>
+    <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Button onClick={() => navigate("/admin/services")}>Close</Button>
         <h3>Update service {data.data.name}</h3>
@@ -39,6 +39,6 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         />
         <input type="submit" />
       </FormContent>
-    </SideContent>
+    </>
   );
 };

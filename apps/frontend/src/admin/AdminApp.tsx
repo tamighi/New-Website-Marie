@@ -5,7 +5,7 @@ import { Appbar } from "./components/generics/appbar/Appbar";
 import { Sidebar } from "./components/generics/sidebar/Sidebar";
 import { Dashboard } from "./components/pages/dashboard/Dashboard";
 
-import { ServiceCreate, ServiceList } from "./components/pages/services";
+import { ServiceCreate, ServicePage } from "./components/pages/services";
 
 import styles from "./AdminApp.css";
 
@@ -22,7 +22,7 @@ export const AdminApp = () => {
         <Sidebar open={openSidebar} toggleSideBar={toggleOpen} />
         <Routes>
           <Route path="" element={<Dashboard />} />
-          <Route path="services/*" element={<ServiceList />} />
+          <Route path="services/*" element={<ServicePage />} />
           <Route path="services/create" element={<ServiceCreate />} />
         </Routes>
       </main>
