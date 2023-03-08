@@ -19,13 +19,14 @@ export const ServiceEdit = ({ id }: { id: string }) => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Button onClick={() => navigate("/admin/services")}>Close</Button>
+        <Button onClick={() => navigate("")}>Close</Button>
         <h3>Update service {data.data.name}</h3>
       </div>
       <FormContent onSubmit={onSubmit}>
         <span>Nom du service</span>
         <TextInput
           {...register("name")}
+          key={data.data.id}
           defaultValue={data.data.name}
           placeholder="name"
           autoFocus

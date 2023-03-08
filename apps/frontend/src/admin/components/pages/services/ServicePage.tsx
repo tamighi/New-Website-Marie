@@ -1,6 +1,8 @@
+import { Navbar } from "lib";
 import { matchPath, useLocation } from "react-router-dom";
 import { ServiceEdit, ServiceList } from ".";
-import { MainContent, SideContent, Toolbar } from "../core";
+import { MainContent, SideContent } from "../core";
+import { AddButton } from "../core/Buttons";
 
 export const ServicePage = () => {
   const location = useLocation();
@@ -9,7 +11,9 @@ export const ServicePage = () => {
   return (
     <>
       <MainContent>
-      <Toolbar />
+        <Navbar style={{ justifyContent: "flex-end" }}>
+          <AddButton />
+        </Navbar>
         <ServiceList />
       </MainContent>
       {match && match.params.id && (

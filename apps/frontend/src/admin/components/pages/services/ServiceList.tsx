@@ -9,14 +9,11 @@ const columns: Column<ServiceDto>[] = [
 ];
 
 export const ServiceList = () => {
-
   return (
-    <>
-      <MyDatagrid
-        ressource="service"
-        columns={columns}
-        isTArray={isServiceArray}
-      />
-    </>
+    <MyDatagrid
+      ressource="service"
+      columns={columns}
+      isTArray={isServiceArray}
+    />
   );
 };
