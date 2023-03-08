@@ -5,7 +5,8 @@ import { FormContent, MainContent } from "../core";
 import { CreateServiceDto } from "./service";
 
 export const ServiceCreate = () => {
-  const { register, onSubmit } = useCreateForm<CreateServiceDto>("service");
+  const { register, onSubmit, errors } =
+    useCreateForm<CreateServiceDto>("service");
 
   return (
     <MainContent>
@@ -21,6 +22,7 @@ export const ServiceCreate = () => {
           cols={40}
         />
         <input type="submit" />
+        {errors?.badEntry && "Bad entry"}
       </FormContent>
     </MainContent>
   );

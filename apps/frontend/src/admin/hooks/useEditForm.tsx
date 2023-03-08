@@ -54,15 +54,12 @@ export const useEditForm = <T extends object>(
     mutate({ data, id });
   });
 
-  const { badEntry, unknownError } = errors;
-
   return {
     register,
     data,
     onSubmit,
     isFetching,
     isLoading,
-    badEntries,
-    unknownError,
+    error: errors,
   };
 };

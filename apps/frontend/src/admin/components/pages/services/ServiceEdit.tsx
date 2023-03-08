@@ -8,22 +8,15 @@ import { CreateServiceDto, isService } from ".";
 import { CloseButton, FormContent } from "../core";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
-  const {
-    register,
-    data,
-    onSubmit,
-    isFetching,
-    isLoading,
-    badEntry,
-    unknownError,
-  } = useEditForm<CreateServiceDto>("service", id);
+  const { register, data, onSubmit, isFetching, isLoading, error } =
+    useEditForm<CreateServiceDto>("service", id);
   const navigate = useNavigate();
 
   if (isFetching) {
     return <div>Fetching ...</div>;
   }
 
-  if (!data || !isService(data.data) || unknownError) {
+  if (!data || !isService(data.data) || error?.unknownError) {
     return <div>Unkown Error</div>;
   }
   return (
@@ -50,7 +43,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         />
         {isLoading && <div>Loading ...</div>}
         <input type="submit" />
-        {badEntry && "Bad entries ..."}
+        {error?.badEntry && "Bad entries ..."}
       </FormContent>
     </>
   );

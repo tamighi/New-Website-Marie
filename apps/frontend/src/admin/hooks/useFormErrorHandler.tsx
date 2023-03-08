@@ -6,22 +6,20 @@ type FormError = {
   [k in KeyError]: boolean;
 };
 
-const initialErrors: FormError = {
+const initialErrors = {
   unknownError: false,
   badEntry: false,
 };
 
 export const useFormErrorHandler = () => {
-  const [errors, setErrors] = React.useState<FormError>(initialErrors);
+  const [errors, setErrors] = React.useState<FormError | undefined>();
 
   const resetErrors = React.useCallback(() => {
-    setErrors(initialErrors);
+    setErrors(undefined);
   }, []);
 
   const setError = React.useCallback((error: KeyError) => {
-    setErrors((prev) => {
-      return { ...prev, [error]: true };
-    });
+    setErrors({ ...initialErrors, [error]: true });
   }, []);
 
   return { errors, setError, resetErrors };
