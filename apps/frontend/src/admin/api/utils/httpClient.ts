@@ -1,3 +1,12 @@
+export class HttpError extends Error {
+  public status: number;
+
+  constructor(status: number, message: string) {
+    super(message);
+    this.status = status;
+  }
+}
+
 const createHeadersFromOptions = (options: RequestInit): Headers => {
   const requestHeaders = (options.headers ||
     new Headers({
@@ -34,9 +43,5 @@ export const httpClient = async (
     }
     return resp.json();
   }
-  const error = {
-    status: resp.status,
-    message: await resp.text(),
-  };
-  throw error;
+  throw new HttpError(resp.status, await resp.text());
 };

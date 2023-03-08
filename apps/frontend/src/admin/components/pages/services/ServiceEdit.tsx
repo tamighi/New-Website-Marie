@@ -14,7 +14,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
   );
   const navigate = useNavigate();
   if (!data || !isService(data.data)) {
-    return null;
+    return <div>Error</div>;
   }
   return (
     <SideContent>
