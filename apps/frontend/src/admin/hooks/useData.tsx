@@ -8,14 +8,29 @@ import {
 } from "admin/api/dataProvider";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-export const useGetList = (ressource: string, params: GetListParams) => {
-  const queryResult = useQuery([ressource, params.pagination.page], () =>
-    dataProvider.getList(ressource, params)
+interface QueryOptions {
+  onSuccess?: () => void;
+  onError?: (error: unknown) => void;
+}
+
+export const useGetList = (
+  ressource: string,
+  params: GetListParams,
+  options?: QueryOptions
+) => {
+  const queryResult = useQuery(
+    [ressource, params.pagination.page],
+    () => dataProvider.getList(ressource, params),
+    { ...options }
   );
   return queryResult;
 };
 
-export const useGetOne = (ressource: string, params: GetOneParams) => {
+export const useGetOne = (
+  ressource: string,
+  params: GetOneParams,
+  options?: QueryOptions
+) => {
   const queryClient = useQueryClient();
 
   const queryResult = useQuery(
@@ -30,17 +45,19 @@ export const useGetOne = (ressource: string, params: GetOneParams) => {
 
         return initialData ? { data: initialData } : undefined;
       },
+      ...options,
     }
   );
   return queryResult;
 };
 
-interface MutationOptions {
-  onSuccess: () => void;
-}
-
-export const useDeleteMany = (ressource: string, options?: MutationOptions) => {
+export const useDeleteMany = (
+  ressource: string,
+  options: QueryOptions = {}
+) => {
   const queryClient = useQueryClient();
+
+  const { onError, ...rest } = options;
 
   const mutation = useMutation(
     (params: DeleteManyParams) => dataProvider.deleteMany(ressource, params),
@@ -62,21 +79,24 @@ export const useDeleteMany = (ressource: string, options?: MutationOptions) => {
         }
         return { oldData };
       },
-      onError: (_, __, context) => {
+      onError: (error, _, context) => {
         queryClient.setQueryData([ressource, 1], context?.oldData);
+        onError?.(error);
       },
       onSettled: () => {
         queryClient.invalidateQueries({ queryKey: [ressource, 1] });
       },
-      ...options,
+      ...rest
     }
   );
 
   return mutation;
 };
 
-export const useUpdateOne = (ressource: string, options?: MutationOptions) => {
+export const useUpdateOne = (ressource: string, options: QueryOptions = {}) => {
   const queryClient = useQueryClient();
+
+  const { onError, ...rest } = options;
 
   const mutation = useMutation(
     (params: UpdateParams) => dataProvider.update(ressource, params),
@@ -108,7 +128,8 @@ export const useUpdateOne = (ressource: string, options?: MutationOptions) => {
         });
         return { oldData, updated };
       },
-      onError: (_, __, context) => {
+      onError: (error, _, context) => {
+        onError?.(error);
         queryClient.setQueryData(
           [ressource, context?.updated?.data.id],
           context?.updated
@@ -119,20 +140,21 @@ export const useUpdateOne = (ressource: string, options?: MutationOptions) => {
         queryClient.invalidateQueries([ressource, data?.data.id.toString()]);
         queryClient.invalidateQueries([ressource, 1]);
       },
-      ...options,
+      ...rest,
     }
   );
   return mutation;
 };
 
-export const useCreate = (ressource: string, options?: MutationOptions) => {
+export const useCreate = (ressource: string, options: QueryOptions = {}) => {
   const queryClient = useQueryClient();
+  const { onSuccess, ...rest } = options;
 
   const mutation = useMutation(
     (params: CreateParams) => dataProvider.create(ressource, params),
     {
       onSuccess: (data) => {
-        options?.onSuccess();
+        onSuccess?.();
         const oldData = queryClient.getQueryData<{ data: object[] }>([
           ressource,
           1,
@@ -147,6 +169,7 @@ export const useCreate = (ressource: string, options?: MutationOptions) => {
         }
         queryClient.invalidateQueries([ressource, 1]);
       },
+      ...rest,
     }
   );
 
