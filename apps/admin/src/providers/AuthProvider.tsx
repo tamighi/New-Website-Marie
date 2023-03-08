@@ -1,0 +1,23 @@
+import React from "react";
+import { LoginPage } from "components/pages/login/LoginPage";
+
+interface IAuthContext {
+  authenticated: boolean;
+  setAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AuthContext = React.createContext<IAuthContext | null>(null);
+
+export const useAuthContext = () => {
+  return React.useContext(AuthContext);
+};
+
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [authenticated, setAuthenticated] = React.useState<boolean>(true);
+
+  return (
+    <AuthContext.Provider value={{ authenticated, setAuthenticated }}>
+      {authenticated ? <>{children}</> : <LoginPage />}
+    </AuthContext.Provider>
+  );
+};

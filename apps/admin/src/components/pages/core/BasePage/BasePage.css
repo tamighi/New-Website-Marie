@@ -1,0 +1,24 @@
+.MainContent {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin-right: 46px;
+  margin-left: 10px;
+  flex-grow: 3;
+}
+
+.SideContent {
+  margin-right: 24px;
+  position: relative;
+  flex-grow: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+.FormContent {
+  display: flex;
+  align-items: flex-start;
+  margin: 8px;
+  gap: 10px;
+  flex-direction: column;
+}

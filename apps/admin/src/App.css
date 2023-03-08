@@ -1,0 +1,15 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  transition: background 0.6s ease-in-out;
+  min-height: 100vh;
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  letter-spacing: 0.00938em;
+  font-size: 18px;
+}
+
+.Main {
+  padding-top: 100px;
+  display: flex;
+}
