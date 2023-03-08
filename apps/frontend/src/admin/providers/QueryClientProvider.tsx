@@ -1,3 +1,4 @@
+import { HttpError } from "admin/api/utils";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useAuthContext } from "./AuthProvider";
 
@@ -14,11 +15,13 @@ export const MyQueryClientProvider = ({
         staleTime: Infinity,
         retry: false,
         refetchOnWindowFocus: false,
-        /*
         onError: (error) => {
-          authContext?.setAuthenticated(false);
+          if (error instanceof HttpError) {
+            if (error.status === 401) {
+              authContext?.setAuthenticated(false);
+            }
+          }
         },
-        */
       },
     },
   });
