@@ -14,7 +14,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
     onSubmit,
     isFetching,
     isLoading,
-    badEntries,
+    badEntry,
     unknownError,
   } = useEditForm<CreateServiceDto>("service", id);
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         />
         {isLoading && <div>Loading ...</div>}
         <input type="submit" />
-        {badEntries && "Bad entries ..."}
+        {badEntry && "Bad entries ..."}
       </FormContent>
     </>
   );
