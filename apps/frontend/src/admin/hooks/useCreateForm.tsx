@@ -7,7 +7,7 @@ export const useCreateForm = <T extends object>(ressource: string) => {
   const { showDialog } = useDialog();
   const { register, handleSubmit, reset } = useForm<T>();
 
-  const { mutate } = useCreate(ressource, {
+  const { mutate, isLoading } = useCreate(ressource, {
     onSuccess: () => {
       showDialog?.({ content: "Item created !" });
       reset();
@@ -20,5 +20,5 @@ export const useCreateForm = <T extends object>(ressource: string) => {
     mutate({ data });
   });
 
-  return { register, onSubmit, errors };
+  return { register, onSubmit, isLoading, errors };
 };
