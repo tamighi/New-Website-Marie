@@ -1,11 +1,11 @@
 import { TextArea, TextInput } from "admin/components/inputs";
 
 import { useEditForm } from "admin/hooks/useEditForm";
-import { Button } from "lib";
+import { Toolbar } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
-import { FormContent } from "../core";
+import { CloseButton, FormContent } from "../core";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
   const { register, data, onSubmit } = useEditForm<CreateServiceDto>(
@@ -18,10 +18,10 @@ export const ServiceEdit = ({ id }: { id: string }) => {
   }
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Button onClick={() => navigate("")}>Close</Button>
-        <h3>Update service {data.data.name}</h3>
-      </div>
+      <Toolbar style={{ justifyContent: "space-between" }}>
+        <CloseButton onClick={() => navigate("")} />
+        <span>Update service {data.data.name}</span>
+      </Toolbar>
       <FormContent onSubmit={onSubmit}>
         <span>Nom du service</span>
         <TextInput

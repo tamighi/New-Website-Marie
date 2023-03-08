@@ -2,6 +2,8 @@ export * from "./Appbar";
 
 export * from "./Navbar";
 
+export * from "./Toolbar";
+
 export * from "./Card";
 
 export * from "./DataGrid";
