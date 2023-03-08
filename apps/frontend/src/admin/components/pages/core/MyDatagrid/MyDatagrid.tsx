@@ -22,7 +22,7 @@ export const MyDatagrid = <T extends { id: string | number }>({
 }: MyDatagridProps<T>) => {
   const [page, setPage] = React.useState(1);
 
-  const { data, isError, error } = useGetList(ressource, {
+  const { data, isFetching, isError, error } = useGetList(ressource, {
     sort: { field: "id", order: "DESC" },
     pagination: { page: page, perPage: 10 },
     filter: {},
@@ -42,8 +42,12 @@ export const MyDatagrid = <T extends { id: string | number }>({
 
   const navigate = useNavigate();
 
+  if (isFetching) {
+    return <div>Fetching ...</div>;
+  }
+
   if (!data?.data || isError || !isTArray(data.data)) {
-    return <div>Error</div>;
+    return <div>Error !</div>;
   }
 
   if (data.count === 0) {
