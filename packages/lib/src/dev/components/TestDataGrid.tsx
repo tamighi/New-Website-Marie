@@ -29,7 +29,7 @@ export const TestDataGrid = () => {
   };
 
   return (
-    <div className={styles.Page} style={{ margin: "20px" }}>
+    <div className={styles.Page} style={{ position: "relative" }}>
       <DataGrid
         data={data}
         columns={columns}
@@ -38,7 +38,17 @@ export const TestDataGrid = () => {
         clickable
         onRowClick={onRowClick}
       />
-      <Button onClick={() => setOpen(true)}>Open me !</Button>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          paddingRight: open ? "180px" : "0px",
+          transition: "padding-right 225ms"
+        }}
+      >
+        <Button onClick={() => setOpen(true)}>Open me !</Button>
+        <Button onClick={() => setOpen(false)}>Close me !</Button>
+      </div>
       <Drawer
         variant="persistent"
         anchor="right"

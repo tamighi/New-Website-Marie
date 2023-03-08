@@ -4,6 +4,13 @@ import { useStyles } from "../../hooks";
 
 import CSSClasses from "./Drawer.css";
 
+enum HiddenClassnames {
+  "left" = "HiddenLeft",
+  "right" = "HiddenRight",
+  "top" = "HiddenTop",
+  "bottom" = "HiddenBottom",
+}
+
 export interface DrawerProps extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean;
   onClose: () => void;
@@ -60,7 +67,9 @@ const Drawer = (props: DrawerProps) => {
       )}
     >
       <div
-        className={`${classNames} ${open ? "" : CSSClasses.HiddenDrawer}`}
+        className={`${classNames} ${
+          open ? "" : CSSClasses[HiddenClassnames[anchor]]
+        }`}
         style={styles}
         {...rest}
       >
