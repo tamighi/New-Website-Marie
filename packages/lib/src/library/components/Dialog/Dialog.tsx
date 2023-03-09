@@ -1,6 +1,6 @@
 import { Button, Card, Divider } from "..";
 import { Colors, IDialogState } from "../../providers";
-import BlurryBackground from "../utils/BlurryBackground";
+import { BlurryBackground } from "../utils";
 
 import styles from "./Dialog.css";
 
