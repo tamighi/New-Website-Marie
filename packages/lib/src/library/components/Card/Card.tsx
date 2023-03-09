@@ -1,15 +1,24 @@
+import { Colors } from "library/providers";
 import { useStyles } from "../../hooks";
 
 import CSSClasses from "./Card.css";
 
-export type CardProps = React.HTMLAttributes<HTMLDivElement>;
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: keyof Colors;
+}
 
 const Card = (props: CardProps) => {
-  const { style, children, className, ...rest } = props;
+  const {
+    style: customStyle,
+    variant: type = "surface",
+    children,
+    className,
+    ...rest
+  } = props;
 
   const classNames = `${CSSClasses.Card} ` + (className || "");
 
-  const styles = useStyles("surface", style);
+  const styles = useStyles({ type, customStyle });
 
   return (
     <div className={classNames} style={styles} {...rest}>

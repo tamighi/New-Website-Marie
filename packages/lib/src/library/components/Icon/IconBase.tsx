@@ -7,11 +7,17 @@ export interface IconProps extends React.SVGProps<SVGSVGElement> {
 }
 
 const IconBase = (props: IconProps) => {
-  const { style, className, children, coloredPath, ...rest } = props;
+  const {
+    style: customStyle,
+    className,
+    children,
+    coloredPath,
+    ...rest
+  } = props;
 
   const classNames = `${CSSClasses.IconBase} ` + (className || "");
 
-  const styles = useStyles("transparent", style);
+  const styles = useStyles({ type: "transparent", customStyle });
 
   return (
     <svg

@@ -1,5 +1,5 @@
-import { Card, Divider } from "..";
-import { IDialogState } from "../../providers";
+import { Button, Card, Divider } from "..";
+import { Colors, IDialogState } from "../../providers";
 import BlurryBackground from "../utils/BlurryBackground";
 
 import styles from "./Dialog.css";
@@ -7,6 +7,7 @@ import styles from "./Dialog.css";
 export interface DialogProps extends React.HTMLAttributes<HTMLDivElement> {
   dialogState: IDialogState;
   closeDialog: () => void;
+  variant?: keyof Colors;
 }
 
 const Dialog = (props: DialogProps) => {
@@ -29,8 +30,8 @@ const Dialog = (props: DialogProps) => {
           <p>{dialogState.content}</p>
           <Divider style={{ marginBottom: "10px" }} />
           <div className={styles.Buttons}>
-            <button onClick={onOkClick}>Ok</button>
-            <button onClick={onCancelClick}>Cancel</button>
+            <Button onClick={onOkClick}>Ok</Button>
+            <Button onClick={onCancelClick}>Cancel</Button>
           </div>
         </Card>
       )}

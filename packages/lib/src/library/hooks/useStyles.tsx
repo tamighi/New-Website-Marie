@@ -1,10 +1,15 @@
 import React from "react";
 import { Colors, useTheme } from "../providers";
 
-const useStyles = (
-  type: keyof Colors | "transparent",
-  appendStyle?: React.CSSProperties
-) => {
+interface StyleOptions {
+  customStyle?: React.CSSProperties;
+  type?: keyof Colors | "transparent";
+  color?: keyof Colors;
+}
+
+const useStyles = (styleOptions: StyleOptions) => {
+  const { customStyle, type = "primary", color = "text" } = styleOptions;
+
   const theme = useTheme();
   const styles: React.CSSProperties = {};
 
@@ -13,13 +18,13 @@ const useStyles = (
     : theme.palette.light;
 
   styles.backgroundColor =
-    appendStyle?.backgroundColor ||
+    customStyle?.backgroundColor ||
     (type !== "transparent" && palette[type]) ||
     "transparent";
 
-  styles.color = appendStyle?.color || palette.text;
-  styles.transition = appendStyle?.transition
-    ? theme.transition + ", " + appendStyle.transition
+  styles.color = customStyle?.color || palette[color];
+  styles.transition = customStyle?.transition
+    ? theme.transition + ", " + customStyle.transition
     : theme.transition;
 
   return styles;

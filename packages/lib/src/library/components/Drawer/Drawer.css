@@ -1,11 +1,11 @@
 .Drawer {
   transform: none;
-  z-index: 1100;
   display: flex;
   overflow: hidden;
 }
 
 .Temporary {
+  z-index: 1100;
   position: fixed;
 }
 

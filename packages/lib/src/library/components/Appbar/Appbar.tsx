@@ -1,16 +1,25 @@
+import { Colors } from "library/providers";
 import { Paper } from "..";
 import { useStyles } from "../../hooks";
 
 import CSSClasses from "./Appbar.css";
 
-export type AppbarProps = React.HTMLAttributes<HTMLDivElement>
+export interface AppbarProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: keyof Colors;
+}
 
 const Appbar = (props: AppbarProps) => {
-  const { style, children, className, ...rest } = props;
+  const {
+    style: customStyle,
+    children,
+    className,
+    variant: type = "primary",
+    ...rest
+  } = props;
 
   const classNames = `${CSSClasses.Appbar} ` + (className || "");
 
-  const styles = useStyles("primary", style);
+  const styles = useStyles({ type, customStyle });
 
   return (
     <Paper style={styles} className={classNames} {...rest}>

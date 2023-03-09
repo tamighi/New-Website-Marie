@@ -28,7 +28,9 @@ export const TestForm = () => {
           <option value="male">male</option>
           <option value="other">other</option>
         </select>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" color="secondary">
+          Submit
+        </Button>
       </form>
     </div>
   );
