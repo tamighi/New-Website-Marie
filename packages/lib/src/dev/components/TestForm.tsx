@@ -1,4 +1,4 @@
-import { useForm } from "library";
+import { Input, useForm } from "library";
 import { Button } from "library/components/Button";
 import { useDialog } from "../../library/providers";
 import styles from "../styles/Page.css";
@@ -21,7 +21,11 @@ export const TestForm = () => {
   return (
     <div className={styles.Page}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("test")} placeholder="Test input" />
+        <Input
+          {...register("test")}
+          placeholder="Test input"
+          style={{ margin: "10px" }}
+        />
         <textarea {...register("test2")} placeholder="Test input 2" />
         <select {...register("gender")}>
           <option value="female">female</option>

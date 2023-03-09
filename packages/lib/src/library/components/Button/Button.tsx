@@ -1,13 +1,18 @@
 import React from "react";
+
 import { Colors, useStyles } from "library";
 
 import CSSClasses from "./Button.css";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: keyof Colors;
 }
 
-const Button = (props: ButtonProps) => {
+const Button = (
+  props: ButtonProps,
+  ref: React.ForwardedRef<HTMLButtonElement>
+) => {
   const {
     style: customStyle,
     color = "primary",
@@ -29,7 +34,7 @@ const Button = (props: ButtonProps) => {
     : "background-color 225ms";
 
   return (
-    <button style={styles} className={classNames} {...rest}>
+    <button style={styles} className={classNames} ref={ref} {...rest}>
       {children}
     </button>
   );
