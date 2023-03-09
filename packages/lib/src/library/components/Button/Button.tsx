@@ -1,3 +1,4 @@
+import React from "react";
 import { Colors, useStyles } from "library";
 
 import CSSClasses from "./Button.css";
@@ -34,4 +35,4 @@ const Button = (props: ButtonProps) => {
   );
 };
 
-export default Button;
+export default React.forwardRef(Button);
