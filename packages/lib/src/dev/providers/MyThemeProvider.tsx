@@ -38,7 +38,7 @@ export const MyThemeProvider = ({
         text: "white",
       },
     },
-    transition: "all .6s ease",
+    transition: "background .6s ease, color .6s ease",
   });
 
   return (

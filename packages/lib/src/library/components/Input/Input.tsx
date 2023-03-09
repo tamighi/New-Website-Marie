@@ -1,21 +1,25 @@
 import React from "react";
 
-import { useStyles } from "library";
+import { Colors, useStyles } from "library";
 
 import CSSClasses from "./Input.css";
 
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  color?: keyof Colors;
+}
 
 const Input = (
   props: InputProps,
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
-  const { style: customStyle, className, ...rest } = props;
+  const { style: customStyle, className, color = "text", ...rest } = props;
   const classNames = `${CSSClasses.Input} ` + (className || "");
 
   const styles = useStyles({
     type: "surface",
     customStyle,
+    color,
   });
 
   return <input style={styles} className={classNames} ref={ref} {...rest} />;
