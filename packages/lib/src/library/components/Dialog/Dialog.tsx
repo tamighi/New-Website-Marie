@@ -13,25 +13,27 @@ export interface DialogProps extends React.HTMLAttributes<HTMLDivElement> {
 const Dialog = (props: DialogProps) => {
   const { dialogState, closeDialog, ...rest } = props;
 
+  const { okCallback, closeCallback, open } = dialogState;
+
   const onOkClick = () => {
-    dialogState.okCallback?.();
+    okCallback?.();
     closeDialog();
   };
 
   const onCancelClick = () => {
-    dialogState.closeCallback?.();
+    closeCallback?.();
     closeDialog();
   };
 
   return (
-    <BlurryBackground onClick={closeDialog} visible={dialogState.open}>
+    <BlurryBackground onClick={closeDialog} visible={open}>
       {dialogState.open && (
         <Card className={styles.Dialog} {...rest}>
           <p>{dialogState.content}</p>
           <Divider style={{ marginBottom: "10px" }} />
           <div className={styles.Buttons}>
-            <Button onClick={onOkClick}>Ok</Button>
-            <Button onClick={onCancelClick}>Cancel</Button>
+            {okCallback && <Button onClick={onOkClick}>Ok</Button>}
+            {closeCallback && <Button onClick={onCancelClick}>Cancel</Button>}
           </div>
         </Card>
       )}
