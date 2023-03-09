@@ -14,6 +14,7 @@ const Input = (
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
   const { style: customStyle, className, color = "text", ...rest } = props;
+
   const classNames = `${CSSClasses.Input} ` + (className || "");
 
   const styles = useStyles({

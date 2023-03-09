@@ -1,6 +1,4 @@
-import { Input, useForm } from "library";
-import { Button } from "library/components/Button";
-import { useDialog } from "../../library/providers";
+import { Button, Input, TextArea, useDialog, useForm } from "library";
 import styles from "../styles/Page.css";
 
 interface Dto {
@@ -26,7 +24,7 @@ export const TestForm = () => {
           placeholder="Test input"
           style={{ margin: "10px" }}
         />
-        <textarea {...register("test2")} placeholder="Test input 2" />
+        <TextArea {...register("test2")} placeholder="Test input 2" />
         <select {...register("gender")}>
           <option value="female">female</option>
           <option value="male">male</option>
