@@ -42,7 +42,7 @@ export const MyDatagrid = <T extends { id: string | number }>({
 
   const navigate = useNavigate();
 
-  if (isFetching) {
+  if (!data?.data && isFetching) {
     return <div>Fetching ...</div>;
   }
 

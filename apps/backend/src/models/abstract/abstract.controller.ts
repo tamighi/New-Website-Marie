@@ -21,7 +21,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
   @UseGuards(JwtAuthGuard)
   @Get()
   async getList(
-    @Query() query: QueryDto
+    @Query() query: QueryDto<T>
   ): Promise<{ data: DTO[]; count: number }> {
     try {
       return await this.abstractService.getList(query);
@@ -57,7 +57,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
   @Put()
   async updateMany(
     @Body() body: DTO[],
-    @Query() query: QueryDto
+    @Query() query: QueryDto<T>
   ): Promise<{ data: DTO[] }> {
     try {
       return await this.abstractService.updateMany(body, query);
@@ -90,7 +90,7 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
   @UseGuards(JwtAuthGuard)
   @Delete()
   @HttpCode(204)
-  async deleteMany(@Query() query: QueryDto) {
+  async deleteMany(@Query() query: QueryDto<T>) {
     try {
       await this.abstractService.deleteMany(query);
     } catch (err) {

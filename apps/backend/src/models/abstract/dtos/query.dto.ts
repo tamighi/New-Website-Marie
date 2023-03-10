@@ -5,12 +5,13 @@ import {
   parseSort,
   parseFilter,
 } from "src/models/abstract/helper/queryCast.helper";
+import { FindOptionsWhere } from "typeorm";
 
-export class QueryDto {
+export class QueryDto<T extends object> {
   @Transform(({ value }) => parseFilter(value))
   @IsObject()
   @IsOptional()
-  filter?: Record<string, unknown>
+  filter?: FindOptionsWhere<T>
 
   @Transform(({ value }) => parseSort(value))
   @IsObject()

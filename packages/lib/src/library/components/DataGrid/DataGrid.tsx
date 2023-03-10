@@ -74,7 +74,7 @@ const DataGrid = <T extends object>({
   }, [selectedFlatRows, setSelected]);
 
   return (
-    <Table {...getTableProps()} style={{ width: "100%", margin: "10px" }}>
+    <Table {...getTableProps()} style={{ width: "100%" }}>
       <TableHead>
         {headerGroups.map((headerGroup) => {
           const { key, ...headerGroupProps } =
@@ -124,4 +124,4 @@ const DataGrid = <T extends object>({
   );
 };
 
-export default React.memo(DataGrid);
+export default React.memo(DataGrid) as typeof DataGrid;
