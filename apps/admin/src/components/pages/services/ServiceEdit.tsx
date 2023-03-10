@@ -8,11 +8,11 @@ import { CreateServiceDto, isService } from ".";
 import { CloseButton, FormContent } from "../core";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
-  const { register, data, onSubmit, isFetching, isLoading, error } =
+  const { register, data, onSubmit, isFetchLoading, isUpdateLoading, error } =
     useEditForm<CreateServiceDto>("service", id);
   const navigate = useNavigate();
 
-  if (isFetching) {
+  if (isFetchLoading) {
     return <div>Fetching ...</div>;
   }
 
@@ -41,7 +41,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
           defaultValue={data.data.description}
           placeholder="description"
         />
-        {isLoading && <div>Loading ...</div>}
+        {isUpdateLoading && <span>Loading ...</span>}
         <input type="submit" />
         {error?.badEntry && "Bad entries ..."}
       </FormContent>

@@ -37,13 +37,13 @@ export const useEditForm = <T extends object>(
     [setError]
   );
 
-  const { data, isFetching } = useGetOne(
+  const { data, isLoading: isFetchLoading } = useGetOne(
     "service",
     { id },
     { onError: onFetchingError }
   );
 
-  const { mutate, isLoading } = useUpdateOne(ressource, {
+  const { mutate, isLoading: isUpdateLoading } = useUpdateOne(ressource, {
     onSuccess: () => {
       showDialog?.({ content: "Item updated !" });
     },
@@ -58,8 +58,8 @@ export const useEditForm = <T extends object>(
     register,
     data,
     onSubmit,
-    isFetching,
-    isLoading,
+    isFetchLoading,
+    isUpdateLoading,
     error: errors,
   };
 };
