@@ -16,15 +16,15 @@ import { ThemeToggleIcon } from "./ThemeToggleIcon";
 const links = [
   {
     icon: <HomeIcon />,
-    to: "/",
+    to: "",
   },
   {
     icon: <TableChartIcon />,
-    to: "/dataGrid",
+    to: "dataGrid",
   },
   {
     icon: <CommentIcon />,
-    to: "/form",
+    to: "form",
   },
 ];
 
