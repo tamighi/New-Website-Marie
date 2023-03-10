@@ -19,6 +19,7 @@ export const App = () => {
         backgroundColor: theme.palette.darkMode
           ? "rgba(0, 0, 128, 0.5)"
           : "rgba(255, 127, 80, 0.7)",
+        transition: "background .6s",
       }}
     >
       <BrowserRouter>

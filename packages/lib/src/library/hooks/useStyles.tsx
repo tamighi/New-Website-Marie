@@ -5,10 +5,16 @@ interface StyleOptions {
   customStyle?: React.CSSProperties;
   type?: keyof Colors | "transparent";
   color?: keyof Colors;
+  transition?: boolean;
 }
 
 const useStyles = (styleOptions: StyleOptions) => {
-  const { customStyle = {}, type = "primary", color = "text" } = styleOptions;
+  const {
+    customStyle = {},
+    type = "primary",
+    color = "text",
+    transition = true,
+  } = styleOptions;
 
   const theme = useTheme();
   const palette = theme.palette.darkMode
@@ -21,7 +27,9 @@ const useStyles = (styleOptions: StyleOptions) => {
   };
 
   const mergedStyles: React.CSSProperties = {
-    transition: customStyle.transition
+    transition: !transition
+      ? customStyle.transition
+      : customStyle.transition
       ? theme.transition + ", " + customStyle.transition
       : theme.transition,
   };

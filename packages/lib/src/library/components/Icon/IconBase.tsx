@@ -2,22 +2,18 @@ import { useStyles } from "../../hooks";
 
 import CSSClasses from "./IconBase.css";
 
-export interface IconProps extends React.SVGProps<SVGSVGElement> {
-  coloredPath: string;
-}
+export type IconProps = React.SVGProps<SVGSVGElement>;
 
 const IconBase = (props: IconProps) => {
-  const {
-    style: customStyle,
-    className,
-    children,
-    coloredPath,
-    ...rest
-  } = props;
+  const { style: customStyle, className, children, ...rest } = props;
 
   const classNames = `${CSSClasses.IconBase} ` + (className || "");
 
-  const styles = useStyles({ type: "transparent", customStyle });
+  const styles = useStyles({
+    type: "transparent",
+    customStyle,
+    transition: false,
+  });
 
   return (
     <svg
@@ -27,7 +23,6 @@ const IconBase = (props: IconProps) => {
       style={styles}
       {...rest}
     >
-      <path d={coloredPath} fill={styles.color} />
       {children}
     </svg>
   );
