@@ -25,7 +25,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         <CloseButton onClick={() => navigate("")} />
         <span>Update service {data.data.name}</span>
       </Toolbar>
-      <FormContent onSubmit={onSubmit}>
+      <FormContent onSubmit={onSubmit} key={data.data.id}>
         <span>Nom du service</span>
         <TextInput
           {...register("name")}
