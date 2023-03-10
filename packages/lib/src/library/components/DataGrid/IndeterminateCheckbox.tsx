@@ -27,7 +27,7 @@ export const IndeterminateCheckbox = React.forwardRef<
       }
     }, [defaultRef, indeterminate]);
 
-    const resolvedRef = (node: any) => {
+    const resolvedRef = (node: HTMLInputElement) => {
       defaultRef.current = node;
       if (typeof ref === "function") {
         ref(node);
@@ -37,14 +37,12 @@ export const IndeterminateCheckbox = React.forwardRef<
     };
 
     return (
-      <>
-        <input
-          type="checkbox"
-          ref={resolvedRef}
-          onClick={(e) => e.stopPropagation()}
-          {...rest}
-        />
-      </>
+      <input
+        type="checkbox"
+        ref={resolvedRef}
+        onClick={(e) => e.stopPropagation()}
+        {...rest}
+      />
     );
   }
 );
