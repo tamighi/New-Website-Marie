@@ -8,24 +8,29 @@ interface StyleOptions {
 }
 
 const useStyles = (styleOptions: StyleOptions) => {
-  const { customStyle, type = "primary", color = "text" } = styleOptions;
+  const { customStyle = {}, type = "primary", color = "text" } = styleOptions;
 
   const theme = useTheme();
-  const styles: React.CSSProperties = customStyle || {};
-
   const palette = theme.palette.darkMode
     ? theme.palette.dark
     : theme.palette.light;
 
-  styles.backgroundColor =
-    styles.backgroundColor ||
-    (type !== "transparent" && palette[type]) ||
-    "transparent";
+  const defaultStyles: React.CSSProperties = {
+    backgroundColor: (type !== "transparent" && palette[type]) || "transparent",
+    color: palette[color],
+  };
 
-  styles.color = styles.color || palette[color];
-  styles.transition = styles.transition
-    ? theme.transition + ", " + styles.transition
-    : theme.transition;
+  const mergedStyles: React.CSSProperties = {
+    transition: customStyle.transition
+      ? theme.transition + ", " + customStyle.transition
+      : theme.transition,
+  };
+
+  const styles: React.CSSProperties = {
+    ...defaultStyles,
+    ...customStyle,
+    ...mergedStyles,
+  };
 
   return styles;
 };

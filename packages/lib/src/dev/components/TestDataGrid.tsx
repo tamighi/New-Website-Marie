@@ -43,7 +43,7 @@ export const TestDataGrid = () => {
           display: "flex",
           flexDirection: "column",
           paddingRight: open ? "180px" : "0px",
-          transition: "padding-right 225ms"
+          transition: "padding-right 225ms",
         }}
       >
         <Button onClick={() => setOpen(true)}>Open me !</Button>
@@ -55,7 +55,10 @@ export const TestDataGrid = () => {
         open={open}
         onClose={() => setOpen(false)}
       >
-        Hello
+        Hello to ...
+        {selectedRows.map((data) => (
+          <div key={data.id}>{data.name}</div>
+        ))}
       </Drawer>
     </div>
   );
