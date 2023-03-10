@@ -5,8 +5,7 @@ import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
 import { useTheme } from "../../providers";
 
 import CSSClasses from "./DataGrid.css";
-import { Table } from "./Table";
-import TableHead from "./TableHead/TableHead";
+import { Table, TableBody, TableHead } from ".";
 
 interface DataProps<T extends object> {
   data: T[];
@@ -112,7 +111,7 @@ const DataGrid = <T extends object>({
           );
         })}
       </TableHead>
-      <tbody {...getTableBodyProps()}>
+      <TableBody {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);
           const { key, ...rowProps } = row.getRowProps();
@@ -138,7 +137,7 @@ const DataGrid = <T extends object>({
             </tr>
           );
         })}
-      </tbody>
+      </TableBody>
     </Table>
   );
 };
