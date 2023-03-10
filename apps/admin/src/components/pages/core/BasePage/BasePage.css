@@ -1,7 +1,0 @@
-.FormContent {
-  display: flex;
-  align-items: flex-start;
-  margin: 8px;
-  gap: 10px;
-  flex-direction: column;
-}

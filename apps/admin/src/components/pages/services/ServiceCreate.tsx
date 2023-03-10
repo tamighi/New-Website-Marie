@@ -1,7 +1,6 @@
 import { TextArea, TextInput } from "components/inputs";
 import { useCreateForm } from "hooks/useCreateForm";
 import { Card } from "lib";
-import { FormContent } from "../core";
 
 import { CreateServiceDto } from "./service";
 
@@ -10,9 +9,18 @@ export const ServiceCreate = () => {
     useCreateForm<CreateServiceDto>("service");
 
   return (
-    <Card>
+    <Card style={{ width: "100%", height: "100%", margin: "10px" }}>
       <h3>Creer un service</h3>
-      <FormContent onSubmit={onSubmit}>
+      <form
+        onSubmit={onSubmit}
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          margin: "8px",
+          gap: "10px",
+          flexDirection: "column",
+        }}
+      >
         <span>Nom du service</span>
         <TextInput {...register("name")} placeholder="nom" autoFocus />
         <span>Description du service</span>
@@ -25,7 +33,7 @@ export const ServiceCreate = () => {
         <input type="submit" />
         {isLoading && "Loading ..."}
         {errors?.badEntry && "Bad entry"}
-      </FormContent>
+      </form>
     </Card>
   );
 };
