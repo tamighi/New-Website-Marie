@@ -2,10 +2,9 @@ import React from "react";
 import { Column, useTable, useRowSelect, Hooks, CellProps } from "react-table";
 import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
 
-import { useTheme } from "../../providers";
+import { Table, TableBody, TableCell, TableHead, TableRow } from ".";
 
 import CSSClasses from "./DataGrid.css";
-import { Table, TableBody, TableCell, TableHead, TableRow } from ".";
 
 interface DataProps<T extends object> {
   data: T[];
@@ -73,12 +72,6 @@ const DataGrid = <T extends object>({
       setSelected(selectedFlatRows.map((row) => row.original));
     }
   }, [selectedFlatRows, setSelected]);
-
-  const theme = useTheme();
-
-  const themeColors = theme.palette.darkMode
-    ? theme.palette.dark
-    : theme.palette.light;
 
   return (
     <Table {...getTableProps()} style={{ width: "100%" }}>
