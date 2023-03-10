@@ -1,4 +1,4 @@
-import { Button, DataGrid, Drawer } from "library";
+import { Button, CloseIcon, DataGrid, Drawer, IconButton } from "library";
 import React from "react";
 import { Column } from "react-table";
 import styles from "../styles/Page.css";
@@ -46,6 +46,7 @@ export const TestDataGrid = () => {
           flexDirection: "column",
           paddingRight: open ? "180px" : "0px",
           transition: "padding-right 225ms",
+          marginRight: "12px",
         }}
       >
         <Button onClick={() => setOpen(true)}>Open me !</Button>
@@ -57,7 +58,10 @@ export const TestDataGrid = () => {
         open={open}
         onClose={() => setOpen(false)}
       >
-        Hello to ...
+        <IconButton onClick={() => setOpen(false)}>
+          <CloseIcon />
+        </IconButton>
+        <span>Hello to ...</span>
         {selectedRows.map((data) => (
           <div key={data.id}>{data.name}</div>
         ))}

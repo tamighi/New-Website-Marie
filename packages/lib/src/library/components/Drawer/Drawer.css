@@ -1,6 +1,5 @@
 .Drawer {
   transform: none;
-  display: flex;
   overflow: hidden;
 }
 

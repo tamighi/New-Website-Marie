@@ -6,4 +6,5 @@ export { default as TableChartIcon } from "./TableChartIcon";
 export { default as CommentIcon } from "./CommentIcon";
 export { default as DeleteIcon } from "./DeleteIcon";
 export { default as AddIcon } from "./AddIcon";
+export { default as CloseIcon } from "./CloseIcon";
 export * from "./SvgIconProps";

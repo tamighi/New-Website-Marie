@@ -12,7 +12,7 @@ const IconBase = (props: IconProps) => {
   const styles = useStyles({
     type: "transparent",
     customStyle,
-    transition: false,
+    themeTransition: false,
   });
 
   return (
