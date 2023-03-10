@@ -1,3 +1,4 @@
 .TableHead {
   padding: 4px;
+  display: table-header-group;
 }
