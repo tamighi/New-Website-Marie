@@ -15,7 +15,7 @@ export const App = () => {
   return (
     <div className={styles.App} style={style}>
       <BrowserRouter>
-        <TestAppbar />
+      <TestAppbar />
         <Routes>
           <Route path="/" element={<TestHomePage />} />
           <Route path="/dataGrid" element={<TestDataGrid />} />

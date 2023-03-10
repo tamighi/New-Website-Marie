@@ -33,29 +33,31 @@ export const TestAppbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Appbar>
-      <Navbar>
-        <IconButton onClick={() => setOpen(true)}>
-          <MenuIcon />
-        </IconButton>
-        <Drawer open={open} onClose={() => setOpen(false)}>
-          Hello World
-          <Divider />
-        </Drawer>
-        <ThemeToggleIcon />
-        <div style={{ flexGrow: 1 }} />
-        <ul style={{ display: "flex" }}>
-          {links.map((link, index) => {
-            return (
-              <li key={index}>
-                <IconButton onClick={() => navigate(link.to)}>
-                  {link.icon}
-                </IconButton>
-              </li>
-            );
-          })}
-        </ul>
-      </Navbar>
-    </Appbar>
+    <>
+      <Appbar>
+        <Navbar>
+          <IconButton onClick={() => setOpen(true)}>
+            <MenuIcon />
+          </IconButton>
+          <ThemeToggleIcon />
+          <div style={{ flexGrow: 1 }} />
+          <ul style={{ display: "flex" }}>
+            {links.map((link, index) => {
+              return (
+                <li key={index}>
+                  <IconButton onClick={() => navigate(link.to)}>
+                    {link.icon}
+                  </IconButton>
+                </li>
+              );
+            })}
+          </ul>
+        </Navbar>
+      </Appbar>
+      <Drawer open={open} onClose={() => setOpen(false)}>
+        Hello World
+        <Divider />
+      </Drawer>
+    </>
   );
 };

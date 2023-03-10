@@ -124,4 +124,4 @@ const DataGrid = <T extends object>({
   );
 };
 
-export default DataGrid;
+export default React.memo(DataGrid);

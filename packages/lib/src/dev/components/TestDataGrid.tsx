@@ -24,9 +24,9 @@ export const TestDataGrid = () => {
   const [selectedRows, setSelectedRows] = React.useState<Data[]>([]);
   const [open, setOpen] = React.useState(false);
 
-  const onRowClick = (data: Data) => {
+  const onRowClick = React.useCallback((data: Data) => {
     console.log(data);
-  };
+  }, []);
 
   return (
     <div className={styles.Page} style={{ position: "relative" }}>
