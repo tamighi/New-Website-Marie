@@ -12,6 +12,8 @@ interface Data {
 const data: Data[] = [
   { name: "Alfred", age: 30, id: 1 },
   { name: "Bob", age: 40, id: 3 },
+  { name: "Stephan", age: 38, id: 2 },
+  { name: "Josephine", age: 70, id: 4 },
 ];
 
 const columns: Column<Data>[] = [
