@@ -1,7 +1,6 @@
 import { ICredentials } from "api/authProvider";
-import TextInput from "components/inputs/TextInput";
 import { useAuth } from "hooks/useAuth";
-import { Card, useForm } from "lib";
+import { Card, Input, useForm } from "lib";
 
 import styles from "./LoginPage.css";
 
@@ -22,8 +21,8 @@ export const LoginPage = () => {
       <Card>
         <h3>Login</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <TextInput {...register("username")} placeholder="Identifier" />
-          <TextInput {...register("password")} placeholder="Password" />
+          <Input {...register("username")} placeholder="Identifier" />
+          <Input {...register("password")} placeholder="Password" />
           <input type="submit" />
         </form>
       </Card>

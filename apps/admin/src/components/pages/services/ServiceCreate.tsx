@@ -1,6 +1,5 @@
-import { TextArea, TextInput } from "components/inputs";
 import { useCreateForm } from "hooks/useCreateForm";
-import { Card } from "lib";
+import { Card, Input, TextArea } from "lib";
 
 import { CreateServiceDto } from "./service";
 
@@ -22,7 +21,7 @@ export const ServiceCreate = () => {
         }}
       >
         <span>Nom du service</span>
-        <TextInput {...register("name")} placeholder="nom" autoFocus />
+        <Input {...register("name")} placeholder="nom" autoFocus />
         <span>Description du service</span>
         <TextArea
           {...register("description")}

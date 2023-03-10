@@ -1,7 +1,5 @@
-import { TextArea, TextInput } from "components/inputs";
-
 import { useEditForm } from "hooks/useEditForm";
-import { Card, Toolbar } from "lib";
+import { Card, Input, TextArea, Toolbar } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
@@ -37,7 +35,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         }}
       >
         <span>Nom du service</span>
-        <TextInput
+        <Input
           {...register("name")}
           defaultValue={data.data.name}
           placeholder="name"
@@ -47,6 +45,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
           {...register("description")}
           defaultValue={data.data.description}
           placeholder="description"
+          rows={10}
         />
         {isUpdateLoading && <span>Loading ...</span>}
         <input type="submit" />
