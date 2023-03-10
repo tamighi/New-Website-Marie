@@ -74,7 +74,7 @@ const DataGrid = <T extends object>({
   }, [selectedFlatRows, setSelected]);
 
   return (
-    <Table {...getTableProps()} style={{ width: "100%" }}>
+    <Table {...getTableProps()} style={{ width: "100%", margin: "10px" }}>
       <TableHead>
         {headerGroups.map((headerGroup) => {
           const { key, ...headerGroupProps } =

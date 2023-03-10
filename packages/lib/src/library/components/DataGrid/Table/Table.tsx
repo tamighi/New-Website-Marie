@@ -1,5 +1,3 @@
-import { useStyles } from "library";
-
 import CSSClasses from "./Table.css";
 
 export type TableProps = React.HTMLAttributes<HTMLTableElement>;
@@ -9,10 +7,8 @@ const Table = (props: TableProps) => {
 
   const classNames = `${CSSClasses.Table} ` + (className || "");
 
-  const styles = useStyles({ type: "transparent", customStyle });
-
   return (
-    <table {...rest} style={styles} className={classNames}>
+    <table {...rest} style={customStyle} className={classNames}>
       {children}
     </table>
   );
