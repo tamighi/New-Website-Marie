@@ -1,4 +1,4 @@
-import { Button, CloseIcon, DataGrid, Drawer, IconButton } from "library";
+import { Button, Card, CloseIcon, DataGrid, Drawer, IconButton } from "library";
 import React from "react";
 import { Column } from "react-table";
 import styles from "../styles/Page.css";
@@ -40,7 +40,7 @@ export const TestDataGrid = () => {
         clickable
         onRowClick={onRowClick}
       />
-      <div
+      <Card
         style={{
           display: "flex",
           flexDirection: "column",
@@ -51,7 +51,7 @@ export const TestDataGrid = () => {
       >
         <Button onClick={() => setOpen(true)}>Open me !</Button>
         <Button onClick={() => setOpen(false)}>Close me !</Button>
-      </div>
+      </Card>
       <Drawer
         variant="persistent"
         anchor="right"

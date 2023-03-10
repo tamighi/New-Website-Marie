@@ -16,7 +16,7 @@ const baseTheme: Theme = {
       text: "white",
     },
   },
-  transition: "",
+  transition: undefined,
 } as const;
 
 export default baseTheme;
