@@ -65,7 +65,7 @@ const DataGrid = <T extends object>({
     rows,
     prepareRow,
     selectedFlatRows,
-  } = useTable({ columns: columns, data: data }, ...plugins);
+  } = useTable({ columns, data }, ...plugins);
 
   React.useEffect(() => {
     if (setSelected) {
