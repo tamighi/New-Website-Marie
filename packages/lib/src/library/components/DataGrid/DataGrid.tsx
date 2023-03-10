@@ -5,7 +5,7 @@ import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
 import { useTheme } from "../../providers";
 
 import CSSClasses from "./DataGrid.css";
-import { Table, TableBody, TableHead } from ".";
+import { Table, TableBody, TableCell, TableHead, TableRow } from ".";
 
 interface DataProps<T extends object> {
   data: T[];
@@ -81,60 +81,49 @@ const DataGrid = <T extends object>({
     : theme.palette.light;
 
   return (
-    <Table
-      className={CSSClasses.DataGrid}
-      {...getTableProps()}
-      style={{ width: "100%" }}
-    >
+    <Table {...getTableProps()} style={{ width: "100%" }}>
       <TableHead>
         {headerGroups.map((headerGroup) => {
           const { key, ...headerGroupProps } =
             headerGroup.getHeaderGroupProps();
           return (
-            <tr
-              key={key}
-              {...headerGroupProps}
-              style={{
-                backgroundColor: themeColors.primary,
-                transition: theme.transition,
-              }}
-            >
+            <TableRow key={key} {...headerGroupProps}>
               {headerGroup.headers.map((column) => {
                 const { key, ...headerProps } = column.getHeaderProps();
                 return (
-                  <th key={key} {...headerProps}>
+                  <TableCell
+                    key={key}
+                    style={{ paddingTop: "12px", paddingBottom: "12px" }}
+                    {...headerProps}
+                  >
                     {column.render("Header")}
-                  </th>
+                  </TableCell>
                 );
               })}
-            </tr>
+            </TableRow>
           );
         })}
       </TableHead>
-      <TableBody {...getTableBodyProps()}>
+      <TableBody {...getTableBodyProps()} className={CSSClasses.StrippedTable}>
         {rows.map((row) => {
           prepareRow(row);
           const { key, ...rowProps } = row.getRowProps();
           return (
-            <tr
+            <TableRow
               key={key}
               className={clickable ? CSSClasses.Clickable : ""}
-              style={{
-                backgroundColor: themeColors.surface,
-                transition: theme.transition,
-              }}
               onClick={onRowClick ? () => onRowClick(row.original) : undefined}
               {...rowProps}
             >
               {row.cells.map((cell) => {
                 const { key, ...cellProps } = cell.getCellProps();
                 return (
-                  <td key={key} {...cellProps}>
+                  <TableCell key={key} {...cellProps}>
                     {cell.render("Cell")}
-                  </td>
+                  </TableCell>
                 );
               })}
-            </tr>
+            </TableRow>
           );
         })}
       </TableBody>
