@@ -6,6 +6,6 @@
   );
 }
 
-.StrippedTable tr:nth-child(odd) {
+.StrippedTable tr:nth-child(even) {
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
 }
