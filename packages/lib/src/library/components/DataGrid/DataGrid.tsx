@@ -6,6 +6,7 @@ import { useTheme } from "../../providers";
 
 import CSSClasses from "./DataGrid.css";
 import { Table } from "./Table";
+import TableHead from "./TableHead/TableHead";
 
 interface DataProps<T extends object> {
   data: T[];
@@ -86,7 +87,7 @@ const DataGrid = <T extends object>({
       {...getTableProps()}
       style={{ width: "100%" }}
     >
-      <thead>
+      <TableHead>
         {headerGroups.map((headerGroup) => {
           const { key, ...headerGroupProps } =
             headerGroup.getHeaderGroupProps();
@@ -110,7 +111,7 @@ const DataGrid = <T extends object>({
             </tr>
           );
         })}
-      </thead>
+      </TableHead>
       <tbody {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);
