@@ -7,7 +7,7 @@ const BlurryBackground = ({
   visible,
   children,
 }: {
-  onClick: () => void;
+  onClick?: () => void;
   visible: boolean;
   children: React.ReactNode;
 }) => {

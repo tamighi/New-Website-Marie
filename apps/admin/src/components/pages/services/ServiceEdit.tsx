@@ -1,7 +1,7 @@
 import { TextArea, TextInput } from "components/inputs";
 
 import { useEditForm } from "hooks/useEditForm";
-import { Toolbar } from "lib";
+import { Card, Toolbar } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
@@ -20,7 +20,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
     return <div>Unkown Error</div>;
   }
   return (
-    <>
+    <Card style={{ width: "100%", height: "100%" }}>
       <Toolbar style={{ justifyContent: "space-between" }}>
         <CloseButton onClick={() => navigate("")} />
         <span>Update service {data.data.name}</span>
@@ -29,11 +29,8 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         <span>Nom du service</span>
         <TextInput
           {...register("name")}
-          key={data.data.id}
           defaultValue={data.data.name}
           placeholder="name"
-          autoFocus
-          style={{ width: "initial" }}
         />
         <span>Description du service</span>
         <TextArea
@@ -45,6 +42,6 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         <input type="submit" />
         {error?.badEntry && "Bad entries ..."}
       </FormContent>
-    </>
+    </Card>
   );
 };

@@ -1,6 +1,7 @@
 import { TextArea, TextInput } from "components/inputs";
 import { useCreateForm } from "hooks/useCreateForm";
-import { FormContent, MainContent } from "../core";
+import { Card } from "lib";
+import { FormContent } from "../core";
 
 import { CreateServiceDto } from "./service";
 
@@ -9,7 +10,7 @@ export const ServiceCreate = () => {
     useCreateForm<CreateServiceDto>("service");
 
   return (
-    <MainContent>
+    <Card>
       <h3>Creer un service</h3>
       <FormContent onSubmit={onSubmit}>
         <span>Nom du service</span>
@@ -25,6 +26,6 @@ export const ServiceCreate = () => {
         {isLoading && "Loading ..."}
         {errors?.badEntry && "Bad entry"}
       </FormContent>
-    </MainContent>
+    </Card>
   );
 };

@@ -13,7 +13,7 @@ const Classnames = {
 
 export interface DrawerProps extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   variant?: "persistent" | "temporary";
   anchor?: "left" | "right" | "bottom" | "top";
 }
