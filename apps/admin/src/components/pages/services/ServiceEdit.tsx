@@ -1,9 +1,9 @@
 import { useEditForm } from "hooks/useEditForm";
-import { Card, Input, TextArea, Toolbar } from "lib";
+import { Input, TextArea } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
-import { CloseButton, FormContent } from "../core";
+import { CloseButton, FormContent, Header } from "../core";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
   const { register, data, onSubmit, isFetchLoading, isUpdateLoading, error } =
@@ -19,10 +19,10 @@ export const ServiceEdit = ({ id }: { id: string }) => {
   }
   return (
     <>
-      <Toolbar style={{ justifyContent: "space-between" }}>
+      <Header style={{ justifyContent: "space-between" }}>
         <CloseButton onClick={() => navigate("")} />
         <span>Update service {data.data.name}</span>
-      </Toolbar>
+      </Header>
       <FormContent onSubmit={onSubmit} key={data.data.id}>
         <span>Nom du service</span>
         <Input

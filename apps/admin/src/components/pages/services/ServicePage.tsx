@@ -1,7 +1,6 @@
-import { Toolbar } from "lib";
 import { matchPath, useLocation } from "react-router-dom";
 import { ServiceEdit, ServiceList } from ".";
-import { AddButton, MainCard, RightDrawer } from "../core";
+import { AddButton, Header, MainCard, RightDrawer } from "../core";
 
 export const ServicePage = () => {
   const location = useLocation();
@@ -15,9 +14,11 @@ export const ServicePage = () => {
           transition: "margin-right 225ms",
         }}
       >
-        <Toolbar style={{ justifyContent: "flex-end" }}>
+        <Header>
+          <h3>Tous les services</h3>
+          <div style={{ flexGrow: 1 }} />
           <AddButton />
-        </Toolbar>
+        </Header>
         <ServiceList />
       </MainCard>
       <RightDrawer open={!!match}>
