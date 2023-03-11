@@ -18,7 +18,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
     data,
     onSubmit,
     isFetchLoading,
-    isUpdateLoading,
+    isMutateLoading,
     error,
     onDelete,
   } = useEditForm<CreateServiceDto>("service", id);
@@ -56,8 +56,8 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         {error?.badEntry && "Bad entries ..."}
         <FormAction>
           <Button type="submit">Update</Button>
-          {isUpdateLoading && <span>Loading ...</span>}
-          <IconButton type="button" onClick={() => {}}>
+          {isMutateLoading && <span>Loading ...</span>}
+          <IconButton type="button" onClick={onDelete}>
             <DeleteIcon />
           </IconButton>
         </FormAction>
