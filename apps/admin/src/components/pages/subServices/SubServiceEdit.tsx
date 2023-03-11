@@ -1,12 +1,5 @@
 import { useEditForm } from "hooks/useEditForm";
-import {
-  Button,
-  CloseIcon,
-  DeleteIcon,
-  IconButton,
-  Input,
-  TextArea,
-} from "lib";
+import { Button, CloseIcon, DeleteIcon, IconButton, Input } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { CreateSubServiceDto, isSubService } from ".";
@@ -38,21 +31,20 @@ export const SubServiceEdit = ({ id }: { id: string }) => {
         <IconButton onClick={() => navigate("")}>
           <CloseIcon />
         </IconButton>
-        <span>Update sous-service {data.data.name}</span>
+        <span>Update sous-service {data.data.textType}</span>
       </Header>
       <FormContent onSubmit={onSubmit} key={data.data.id}>
-        <span>Nom du sous-service</span>
+        <span>Type de texte</span>
         <Input
-          {...register("name")}
-          defaultValue={data.data.name}
-          placeholder="name"
+          {...register("textType")}
+          defaultValue={data.data.textType}
+          placeholder="Memoire"
         />
-        <span>Description du sous-service</span>
-        <TextArea
-          {...register("description")}
-          defaultValue={data.data.description}
-          placeholder="description"
-          rows={10}
+        <span>Prix par caractere</span>
+        <Input
+          {...register("pricePerCharacter")}
+          defaultValue={data.data.pricePerCharacter}
+          placeholder="0.002"
         />
         {error?.badEntry && "Bad entries ..."}
         <FormAction>

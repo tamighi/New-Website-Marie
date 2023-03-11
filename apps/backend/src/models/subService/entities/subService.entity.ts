@@ -6,8 +6,17 @@ export class SubService {
   id: number;
 
   @Column()
-  name: string;
+  textType: string;
 
-  @Column()
-  description: string;
+  @Column("decimal", {
+    transformer: {
+      to(value) {
+        return value;
+      },
+      from(value) {
+        return parseFloat(value);
+      },
+    },
+  })
+  pricePerCharacter: number;
 }

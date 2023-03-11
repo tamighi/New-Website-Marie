@@ -2,19 +2,19 @@ import { isGeneric, isGenericArray } from "utils";
 
 export interface SubServiceDto {
   id: number;
-  name: string;
-  description: string;
+  textType: string;
+  pricePerCharacter: number;
 }
 
 export interface CreateSubServiceDto {
-  name?: string;
-  description?: string;
+  textType?: string;
+  pricePerCharacter?: number;
 }
 
 const subServiceDto: SubServiceDto = {
   id: 1,
-  name: "",
-  description: "",
+  textType: "",
+  pricePerCharacter: 1,
 } as const;
 
 export const isSubService = (data: unknown): data is SubServiceDto => {

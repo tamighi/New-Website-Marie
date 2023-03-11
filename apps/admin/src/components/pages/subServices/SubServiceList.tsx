@@ -4,8 +4,8 @@ import { MyDatagrid } from "../core";
 
 const columns: Column<SubServiceDto>[] = [
   { Header: "Id", accessor: "id" },
-  { Header: "Name", accessor: "name" },
-  { Header: "Description", accessor: "description" },
+  { Header: "Type de texte", accessor: "textType" },
+  { Header: "Prix", accessor: "pricePerCharacter" },
 ];
 
 export const SubServiceList = () => {

@@ -1,5 +1,5 @@
 export class SubServiceDto {
   id: number;
-  name: string;
-  description: string;
+  textType: string;
+  pricePerCharacter: number;
 }

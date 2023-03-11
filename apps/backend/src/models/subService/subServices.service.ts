@@ -21,8 +21,8 @@ export class SubServicesService extends AbstractService<
     const subServiceDto: SubServiceDto = new SubServiceDto();
 
     subServiceDto.id = subService.id;
-    subServiceDto.name = subService.name;
-    subServiceDto.description = subService.description;
+    subServiceDto.textType = subService.textType;
+    subServiceDto.pricePerCharacter = subService.pricePerCharacter;
 
     return subServiceDto;
   }

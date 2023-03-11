@@ -60,6 +60,7 @@ export const dataProvider = {
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     const resp = await httpClient(url);
+    console.log(resp);
     if (hasCount(resp) && hasDataArray(resp)) {
       return resp;
     }
