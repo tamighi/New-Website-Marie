@@ -7,7 +7,7 @@ import { useDeleteMany, useGetList } from "hooks/useData";
 import { Column } from "react-table";
 import { SelectedOptions } from "../..";
 
-const entryPerPage = 10;
+const entryPerPage = 20;
 
 export interface MyDatagridProps<T extends object> {
   ressource: string;
@@ -24,7 +24,7 @@ export const MyDatagrid = <T extends { id: string | number }>({
 
   const { data, isLoading, isError, error } = useGetList(ressource, {
     sort: { field: "id", order: "DESC" },
-    pagination: { page: page, perPage: 10 },
+    pagination: { page: page, perPage: entryPerPage },
     filter: {},
   });
 

@@ -1,8 +1,7 @@
-import { Column } from "react-table";
 import { isServiceArray, ServiceDto } from ".";
-import { MyDatagrid } from "../core";
+import { CardLayout, Row } from "../core/content/CardLayout";
 
-const columns: Column<ServiceDto>[] = [
+const columns: Row<ServiceDto>[] = [
   { Header: "Id", accessor: "id" },
   { Header: "Name", accessor: "name" },
   { Header: "Description", accessor: "description" },
@@ -11,7 +10,7 @@ const columns: Column<ServiceDto>[] = [
     accessor: "subServices",
     Cell: (data) => (
       <div>
-        {data.value?.map((subService) => (
+        {data?.map((subService) => (
           <span key={subService.id}>{subService.textType}</span>
         ))}
       </div>
@@ -21,10 +20,6 @@ const columns: Column<ServiceDto>[] = [
 
 export const ServiceList = () => {
   return (
-    <MyDatagrid
-      ressource="service"
-      columns={columns}
-      isTArray={isServiceArray}
-    />
+    <CardLayout rows={columns} ressource="service" isTArray={isServiceArray} />
   );
 };
