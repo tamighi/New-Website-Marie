@@ -13,4 +13,5 @@
   margin-top: 100px;
   position: relative;
   display: flex;
+  overflow-x: clip;
 }
