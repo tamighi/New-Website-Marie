@@ -9,8 +9,8 @@ export const useEditForm = <T extends object>(
   id: string
 ) => {
   const { errors, resetErrors, setError } = useFormErrorHandler();
-  const { register, handleSubmit } = useForm<T>();
   const { showDialog } = useDialog();
+  const { register, handleSubmit } = useForm<T>();
 
   React.useEffect(() => {
     resetErrors();
