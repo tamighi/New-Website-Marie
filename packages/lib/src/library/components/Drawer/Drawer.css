@@ -18,14 +18,12 @@
 .Vertical {
   top: 0;
   bottom: 0;
-  min-width: 180px;
   flex-direction: column;
 }
 
 .Horizontal {
   left: 0;
   right: 0;
-  min-height: 180px;
 }
 
 .HiddenLeft {

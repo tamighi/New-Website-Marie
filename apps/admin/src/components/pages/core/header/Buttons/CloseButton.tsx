@@ -1,7 +1,11 @@
-import { Button } from "lib";
+import { CloseIcon, IconButton } from "lib";
 
 export const CloseButton = (
   props: React.ButtonHTMLAttributes<HTMLButtonElement>
 ) => {
-  return <Button {...props}>Close</Button>;
+  return (
+    <IconButton {...props}>
+      <CloseIcon />
+    </IconButton>
+  );
 };
