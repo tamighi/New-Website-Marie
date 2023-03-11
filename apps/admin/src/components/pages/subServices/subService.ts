@@ -15,7 +15,7 @@ const subServiceDto: SubServiceDto = {
   id: 1,
   textType: "",
   pricePerCharacter: 1,
-} as const;
+};
 
 export const isSubService = (data: unknown): data is SubServiceDto => {
   return isGeneric(data, subServiceDto);
