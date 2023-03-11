@@ -7,16 +7,6 @@ export interface ServiceDto {
   subServices?: SubServiceDto[];
 }
 
-export interface CreateServiceDto {
-  name?: string;
-  description?: string;
-}
-
-export interface UpdateServiceDto {
-  name?: string;
-  description?: string;
-}
-
 const serviceDto: ServiceDto = {
   id: 1,
   name: "",
@@ -35,11 +25,6 @@ export interface SubServiceDto {
   id: number;
   textType: string;
   pricePerCharacter: number;
-}
-
-export interface CreateSubServiceDto {
-  textType?: string;
-  pricePerCharacter?: number;
 }
 
 const subServiceDto: SubServiceDto = {
