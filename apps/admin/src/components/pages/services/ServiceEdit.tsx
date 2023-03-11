@@ -13,8 +13,15 @@ import { CreateServiceDto, isService } from ".";
 import { FormAction, FormContent, Header } from "../core";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
-  const { register, data, onSubmit, isFetchLoading, isUpdateLoading, error } =
-    useEditForm<CreateServiceDto>("service", id);
+  const {
+    register,
+    data,
+    onSubmit,
+    isFetchLoading,
+    isUpdateLoading,
+    error,
+    onDelete,
+  } = useEditForm<CreateServiceDto>("service", id);
   const navigate = useNavigate();
 
   if (isFetchLoading) {

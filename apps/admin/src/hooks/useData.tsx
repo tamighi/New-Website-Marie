@@ -2,6 +2,7 @@ import {
   CreateParams,
   dataProvider,
   DeleteManyParams,
+  DeleteParams,
   GetListParams,
   GetOneParams,
   UpdateParams,
@@ -49,6 +50,42 @@ export const useGetOne = (
     }
   );
   return queryResult;
+};
+
+export const useDeleteOne = (ressource: string, options: QueryOptions = {}) => {
+  const queryClient = useQueryClient();
+
+  const { onError, ...rest } = options;
+
+  const mutation = useMutation(
+    (params: DeleteParams) => dataProvider.delete(ressource, params),
+    {
+      onMutate: async (params) => {
+        await queryClient.cancelQueries(ressource);
+        const oldData = queryClient.getQueryData<{
+          data: { id: number | string }[];
+        }>([ressource, 1]);
+        if (oldData) {
+          queryClient.setQueryData([ressource, 1], () => {
+            return {
+              ...oldData,
+              data: oldData.data.filter((object) => params.id !== object.id),
+            };
+          });
+        }
+        return { oldData };
+      },
+      onError: (error, _, context) => {
+        queryClient.setQueryData([ressource, 1], context?.oldData);
+        onError?.(error);
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries({ queryKey: [ressource, 1] });
+      },
+      ...rest,
+    }
+  );
+  return mutation;
 };
 
 export const useDeleteMany = (
