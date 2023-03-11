@@ -22,6 +22,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
     error,
     onDelete,
   } = useEditForm<CreateServiceDto>("service", id);
+
   const navigate = useNavigate();
 
   if (isFetchLoading) {
@@ -58,7 +59,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
           <Button type="submit">Update</Button>
           {isMutateLoading && <span>Loading ...</span>}
           <IconButton type="button" onClick={onDelete}>
-            <DeleteIcon />
+            <DeleteIcon style={{ color: "red" }} />
           </IconButton>
         </FormAction>
       </FormContent>

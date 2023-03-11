@@ -4,9 +4,9 @@ const baseTheme: Theme = {
   palette: {
     darkMode: false,
     light: {
-      primary: "#bcead5",
-      secondary: "ffcac8",
-      surface: "#d4d9d6",
+      primary: "#6200ee",
+      secondary: "#03cac6",
+      surface: "#ffffff",
       text: "black",
     },
     dark: {
