@@ -7,6 +7,7 @@ import { getEnvPath } from "./common/utils/envFinder.utils";
 import { ServicesModule } from "./models/service/services.module";
 import { AuthModule } from "./auth/auth.module";
 import { UsersModule } from "./models/user/users.module";
+import { SubServicesModule } from "./models/subService/subServices.module";
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
@@ -14,9 +15,10 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
   imports: [
     ConfigModule.forRoot({ envFilePath, isGlobal: true }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    ServicesModule,
     AuthModule,
     UsersModule,
+    ServicesModule,
+    SubServicesModule,
   ],
 })
 export class AppModule {}
