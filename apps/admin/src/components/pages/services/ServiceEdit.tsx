@@ -1,9 +1,16 @@
 import { useEditForm } from "hooks/useEditForm";
-import { Input, TextArea } from "lib";
+import {
+  Button,
+  CloseIcon,
+  DeleteIcon,
+  IconButton,
+  Input,
+  TextArea,
+} from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
-import { CloseButton, FormContent, Header } from "../core";
+import { FormAction, FormContent, Header } from "../core";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
   const { register, data, onSubmit, isFetchLoading, isUpdateLoading, error } =
@@ -20,7 +27,9 @@ export const ServiceEdit = ({ id }: { id: string }) => {
   return (
     <>
       <Header style={{ justifyContent: "space-between" }}>
-        <CloseButton onClick={() => navigate("")} />
+        <IconButton onClick={() => navigate("")}>
+          <CloseIcon />
+        </IconButton>
         <span>Update service {data.data.name}</span>
       </Header>
       <FormContent onSubmit={onSubmit} key={data.data.id}>
@@ -37,9 +46,14 @@ export const ServiceEdit = ({ id }: { id: string }) => {
           placeholder="description"
           rows={10}
         />
-        {isUpdateLoading && <span>Loading ...</span>}
-        <input type="submit" />
         {error?.badEntry && "Bad entries ..."}
+        <FormAction>
+          <Button type="submit">Update</Button>
+          {isUpdateLoading && <span>Loading ...</span>}
+          <IconButton type="button" onClick={() => {}}>
+            <DeleteIcon />
+          </IconButton>
+        </FormAction>
       </FormContent>
     </>
   );

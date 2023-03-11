@@ -2,7 +2,7 @@ import { useStyles } from "library";
 
 import CSSClasses from "./IconButton.css";
 
-export type IconButtonProps = React.HTMLAttributes<HTMLButtonElement>;
+export type IconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const IconButton = (props: IconButtonProps) => {
   const { style: customStyle, children, className, ...rest } = props;

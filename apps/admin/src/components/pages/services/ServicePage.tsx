@@ -1,6 +1,6 @@
 import { matchPath, useLocation } from "react-router-dom";
 import { ServiceEdit, ServiceList } from ".";
-import { AddButton, Header, MainCard, RightDrawer } from "../core";
+import { CreateButton, Header, MainCard, RightDrawer } from "../core";
 
 export const ServicePage = () => {
   const location = useLocation();
@@ -17,7 +17,7 @@ export const ServicePage = () => {
         <Header>
           <h3>Tous les services</h3>
           <div style={{ flexGrow: 1 }} />
-          <AddButton />
+          <CreateButton />
         </Header>
         <ServiceList />
       </MainCard>

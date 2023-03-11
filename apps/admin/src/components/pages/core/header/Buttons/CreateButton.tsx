@@ -1,7 +1,7 @@
 import { AddIcon, IconButton } from "lib";
 import { useNavigate } from "react-router-dom";
 
-export const AddButton = () => {
+export const CreateButton = () => {
   const navigate = useNavigate();
 
   return (
