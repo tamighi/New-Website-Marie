@@ -20,6 +20,7 @@ export class ServicesService extends AbstractService<Service, ServiceDto> {
     serviceDto.id = service.id;
     serviceDto.name = service.name;
     serviceDto.description = service.description;
+    serviceDto.subServices = service.subServices;
 
     return serviceDto;
   }

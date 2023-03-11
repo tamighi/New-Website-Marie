@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Service } from "src/models/service/entities/service.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class SubService {
@@ -9,6 +10,8 @@ export class SubService {
   textType: string;
 
   @Column("decimal", {
+    precision: 5,
+    scale: 4,
     transformer: {
       to(value) {
         return value;
@@ -19,4 +22,10 @@ export class SubService {
     },
   })
   pricePerCharacter: number;
+
+  @ManyToOne(() => Service, (service) => service.subServices, {
+    onDelete: "CASCADE",
+    nullable: false,
+  })
+  service: Service;
 }
