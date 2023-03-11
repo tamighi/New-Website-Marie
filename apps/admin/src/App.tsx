@@ -6,6 +6,7 @@ import { Sidebar } from "./components/generics/sidebar/Sidebar";
 import { Dashboard } from "./components/pages/dashboard/Dashboard";
 
 import { ServiceCreate, ServicePage } from "./components/pages/services";
+import { SubServiceCreate, SubServicePage } from "components/pages/subServices";
 
 import styles from "./App.css";
 import "./Global.css";
@@ -25,6 +26,8 @@ export const App = () => {
           <Route path="" element={<Dashboard />} />
           <Route path="services/*" element={<ServicePage />} />
           <Route path="services/create" element={<ServiceCreate />} />
+          <Route path="subServices/*" element={<SubServicePage />} />
+          <Route path="subServices/create" element={<SubServiceCreate />} />
         </Routes>
       </main>
     </div>

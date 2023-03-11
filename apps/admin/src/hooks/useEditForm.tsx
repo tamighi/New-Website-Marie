@@ -40,7 +40,7 @@ export const useEditForm = <T extends object>(
   );
 
   const { data, isLoading: isFetchLoading } = useGetOne(
-    "service",
+    ressource,
     { id },
     { onError: onFetchingError }
   );
