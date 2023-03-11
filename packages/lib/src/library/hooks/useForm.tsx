@@ -42,7 +42,7 @@ const useForm = <T,>() => {
   };
 
   const handleSubmit = (onSubmit: (data: Partial<T>) => void) => {
-    return (event: React.FormEvent<HTMLFormElement>) => {
+    return (event: React.FormEvent<HTMLFormElement | HTMLButtonElement>) => {
       event.preventDefault();
 
       const data = Object.keys(inputRefs).reduce(

@@ -12,6 +12,11 @@ export interface CreateServiceDto {
   description?: string;
 }
 
+export interface UpdateServiceDto {
+  name?: string;
+  description?: string;
+}
+
 const serviceDto: ServiceDto = {
   id: 1,
   name: "",

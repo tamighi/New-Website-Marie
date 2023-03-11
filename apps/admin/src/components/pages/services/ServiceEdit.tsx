@@ -9,8 +9,9 @@ import {
 } from "lib";
 import { useNavigate } from "react-router-dom";
 
-import { CreateServiceDto, isService } from ".";
+import { isService, UpdateServiceDto } from ".";
 import { FormAction, FormContent, Header } from "../core";
+import { SubServiceEdit } from "./SubServiceEdit";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
   const {
@@ -21,7 +22,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
     isMutateLoading,
     error,
     onDelete,
-  } = useEditForm<CreateServiceDto>("service", id);
+  } = useEditForm<UpdateServiceDto>("service", id);
 
   const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         </IconButton>
         <span>Update service {data.data.name}</span>
       </Header>
-      <FormContent onSubmit={onSubmit} key={data.data.id}>
+      <FormContent key={data.data.id}>
         <span>Nom du service</span>
         <Input
           {...register("name")}
@@ -54,9 +55,12 @@ export const ServiceEdit = ({ id }: { id: string }) => {
           placeholder="description"
           rows={10}
         />
+        <SubServiceEdit subServices={data.data.subServices} />
         {error?.badEntry && "Bad entries ..."}
         <FormAction>
-          <Button type="submit">Update</Button>
+          <Button type="submit" onClick={onSubmit}>
+            Update
+          </Button>
           {isMutateLoading && <span>Loading ...</span>}
           <IconButton type="button" onClick={onDelete}>
             <DeleteIcon style={{ color: "red" }} />
