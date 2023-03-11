@@ -2,11 +2,11 @@ import { useCreateForm } from "hooks/useCreateForm";
 import { Input, TextArea } from "lib";
 import { FormContent, Header, MainCard } from "../core";
 
-import { CreateServiceDto } from "./service";
+import { ServiceDto } from "./service";
 
 export const ServiceCreate = () => {
   const { register, onSubmit, errors, isLoading } =
-    useCreateForm<CreateServiceDto>("service");
+    useCreateForm<ServiceDto>("service");
 
   return (
     <MainCard>

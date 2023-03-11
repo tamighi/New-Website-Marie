@@ -10,13 +10,13 @@ import {
 } from "lib";
 import { useNavigate } from "react-router-dom";
 
-import { isService, UpdateServiceDto } from ".";
+import { isService, ServiceDto } from ".";
 import { FormAction, FormContent, Header } from "../core";
 import { SubServiceEdit } from "./SubServiceEdit";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
   const { register, onSubmit, isMutateLoading, error, onDelete, setError } =
-    useEditForm<UpdateServiceDto>("service", id);
+    useEditForm<Partial<ServiceDto>>("service", id);
 
   const { data, isLoading: isFetchLoading } = useGetOne(
     "service",
