@@ -44,9 +44,8 @@ export const TestDataGrid = () => {
         style={{
           display: "flex",
           flexDirection: "column",
-          paddingRight: open ? "180px" : "0px",
-          transition: "padding-right 225ms",
-          marginRight: "12px",
+          marginRight: open ? "192px" : "12px",
+          transition: "margin-right 225ms",
         }}
       >
         <Button onClick={() => setOpen(true)}>Open me !</Button>

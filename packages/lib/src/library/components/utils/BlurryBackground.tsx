@@ -4,36 +4,25 @@ import CSSClasses from "./BlurryBlackground.css";
 
 const BlurryBackground = ({
   onClick,
-  visible,
+  open,
+  delayedClose = open,
   children,
 }: {
   onClick?: () => void;
-  visible: boolean;
+  open: boolean;
+  delayedClose?: boolean;
   children: React.ReactNode;
 }) => {
-  const [displayed, setDisplayed] = React.useState(visible);
-
-  React.useEffect(() => {
-    if (visible) {
-      setDisplayed(visible);
-    }
-    const timer = setTimeout(() => {
-      if (!visible) {
-        setDisplayed(visible);
-      }
-    }, 225);
-    return () => clearTimeout(timer);
-  }, [visible]);
 
   return (
     <div
       className={`${CSSClasses.DrawerContainer} ${
-        displayed ? "" : CSSClasses.HiddenContainer
+        delayedClose ? "" : CSSClasses.HiddenContainer
       }`}
     >
       <div
         className={`${CSSClasses.Background} ${
-          visible ? "" : CSSClasses.HiddenBackground
+          open ? "" : CSSClasses.HiddenBackground
         }`}
         onClick={onClick}
       />

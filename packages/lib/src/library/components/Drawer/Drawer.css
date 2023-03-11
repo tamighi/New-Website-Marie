@@ -1,6 +1,5 @@
 .Drawer {
   transform: none;
-  overflow: hidden;
 }
 
 .Temporary {
@@ -10,6 +9,10 @@
 
 .Persistent {
   position: absolute;
+}
+
+.Closed {
+  visibility: hidden;
 }
 
 .Vertical {

@@ -3,8 +3,10 @@ import BlurryBackground from "../utils/BlurryBackground";
 import { useStyles } from "../../hooks";
 
 import CSSClasses from "./Drawer.css";
+import { Paper } from "../Paper";
+import useDelayedClose from "library/hooks/useDelayedClose";
 
-const Classnames = {
+const HiddenClasses = {
   left: "HiddenLeft",
   right: "HiddenRight",
   top: "HiddenTop",
@@ -40,6 +42,8 @@ const Drawer = (props: DrawerProps) => {
     ...rest
   } = props;
 
+  const delayedClose = useDelayedClose(open);
+
   const classNames =
     `${CSSClasses.Drawer} ${
       anchor === "bottom" || anchor === "top"
@@ -61,20 +65,24 @@ const Drawer = (props: DrawerProps) => {
     <ConditionalWrapper
       condition={variant === "temporary"}
       wrapper={(children) => (
-        <BlurryBackground onClick={onClose} visible={open}>
+        <BlurryBackground
+          onClick={onClose}
+          open={open}
+          delayedClose={delayedClose}
+        >
           {children}
         </BlurryBackground>
       )}
     >
-      <div
+      <Paper
         className={`${classNames} ${
-          open ? "" : CSSClasses[Classnames[anchor]]
-        }`}
+          open ? "" : CSSClasses[HiddenClasses[anchor]]
+        } ${delayedClose? "" : CSSClasses.Closed}`}
         style={styles}
         {...rest}
       >
         {children}
-      </div>
+      </Paper>
     </ConditionalWrapper>
   );
 };

@@ -18,7 +18,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
     return <div>Unkown Error</div>;
   }
   return (
-    <Card style={{ width: "100%", height: "100%" }}>
+    <>
       <Toolbar style={{ justifyContent: "space-between" }}>
         <CloseButton onClick={() => navigate("")} />
         <span>Update service {data.data.name}</span>
@@ -41,6 +41,6 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         <input type="submit" />
         {error?.badEntry && "Bad entries ..."}
       </FormContent>
-    </Card>
+    </>
   );
 };

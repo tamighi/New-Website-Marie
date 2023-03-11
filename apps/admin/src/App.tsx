@@ -8,7 +8,7 @@ import { Dashboard } from "./components/pages/dashboard/Dashboard";
 import { ServiceCreate, ServicePage } from "./components/pages/services";
 
 import styles from "./App.css";
-import "./Global.css"
+import "./Global.css";
 
 export const App = () => {
   const [openSidebar, setOpenSidebar] = React.useState(false);

@@ -1,3 +1,4 @@
+import useDelayedClose from "library/hooks/useDelayedClose";
 import { Button, Card, Divider } from "..";
 import { Colors, IDialogState } from "../../providers";
 import { BlurryBackground } from "../utils";
@@ -15,6 +16,8 @@ const Dialog = (props: DialogProps) => {
 
   const { okCallback, closeCallback, open } = dialogState;
 
+  const delayedClose = useDelayedClose(open);
+
   const onOkClick = () => {
     okCallback?.();
     closeDialog();
@@ -26,7 +29,11 @@ const Dialog = (props: DialogProps) => {
   };
 
   return (
-    <BlurryBackground onClick={closeDialog} visible={open}>
+    <BlurryBackground
+      onClick={closeDialog}
+      open={open}
+      delayedClose={delayedClose}
+    >
       {dialogState.open && (
         <Card className={styles.Dialog} {...rest}>
           <p>{dialogState.content}</p>
