@@ -1,6 +1,6 @@
 import { useCreateForm } from "hooks/useCreateForm";
 import { Input, TextArea } from "lib";
-import { MainCard } from "../core";
+import { FormContent, MainCard } from "../core";
 
 import { CreateServiceDto } from "./service";
 
@@ -11,16 +11,7 @@ export const ServiceCreate = () => {
   return (
     <MainCard>
       <h3>Creer un service</h3>
-      <form
-        onSubmit={onSubmit}
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          margin: "8px",
-          gap: "10px",
-          flexDirection: "column",
-        }}
-      >
+      <FormContent onSubmit={onSubmit}>
         <span>Nom du service</span>
         <Input {...register("name")} placeholder="nom" autoFocus />
         <span>Description du service</span>
@@ -33,7 +24,7 @@ export const ServiceCreate = () => {
         <input type="submit" />
         {isLoading && "Loading ..."}
         {errors?.badEntry && "Bad entry"}
-      </form>
+      </FormContent>
     </MainCard>
   );
 };

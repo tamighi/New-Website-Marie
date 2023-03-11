@@ -3,7 +3,7 @@ import { Card, Input, TextArea, Toolbar } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { CreateServiceDto, isService } from ".";
-import { CloseButton } from "../core";
+import { CloseButton, FormContent } from "../core";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
   const { register, data, onSubmit, isFetchLoading, isUpdateLoading, error } =
@@ -23,17 +23,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         <CloseButton onClick={() => navigate("")} />
         <span>Update service {data.data.name}</span>
       </Toolbar>
-      <form
-        onSubmit={onSubmit}
-        key={data.data.id}
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          margin: "8px",
-          gap: "10px",
-          flexDirection: "column",
-        }}
-      >
+      <FormContent onSubmit={onSubmit} key={data.data.id}>
         <span>Nom du service</span>
         <Input
           {...register("name")}
@@ -50,7 +40,7 @@ export const ServiceEdit = ({ id }: { id: string }) => {
         {isUpdateLoading && <span>Loading ...</span>}
         <input type="submit" />
         {error?.badEntry && "Bad entries ..."}
-      </form>
+      </FormContent>
     </Card>
   );
 };
