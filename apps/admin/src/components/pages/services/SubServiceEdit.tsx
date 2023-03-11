@@ -1,4 +1,5 @@
 import { SubServiceDto } from "./service";
+import { SubServiceForm } from "./SubServiceForm";
 
 export const SubServiceEdit = ({
   subServices = [],
@@ -8,7 +9,7 @@ export const SubServiceEdit = ({
   return (
     <>
       {subServices.map((subService) => (
-        <span key={subService.id}>{subService.textType}</span>
+        <SubServiceForm key={subService.id} subService={subService} />
       ))}
     </>
   );

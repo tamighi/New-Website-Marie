@@ -1,3 +1,4 @@
+import { useGetOne } from "hooks/useData";
 import { useEditForm } from "hooks/useEditForm";
 import {
   Button,
@@ -14,15 +15,14 @@ import { FormAction, FormContent, Header } from "../core";
 import { SubServiceEdit } from "./SubServiceEdit";
 
 export const ServiceEdit = ({ id }: { id: string }) => {
-  const {
-    register,
-    data,
-    onSubmit,
-    isFetchLoading,
-    isMutateLoading,
-    error,
-    onDelete,
-  } = useEditForm<UpdateServiceDto>("service", id);
+  const { register, onSubmit, isMutateLoading, error, onDelete, setError } =
+    useEditForm<UpdateServiceDto>("service", id);
+
+  const { data, isLoading: isFetchLoading } = useGetOne(
+    "service",
+    { id },
+    { onError: () => setError("unknownError") }
+  );
 
   const navigate = useNavigate();
 

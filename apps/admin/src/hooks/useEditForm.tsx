@@ -18,14 +18,6 @@ export const useEditForm = <T extends object>(
     resetErrors();
   }, [id, resetErrors]);
 
-  const onFetchingError = React.useCallback(
-    (error: unknown) => {
-      console.log(error);
-      setError("unknownError");
-    },
-    [setError]
-  );
-
   const onMutationError = React.useCallback(
     (error: unknown) => {
       console.log(error);
@@ -37,12 +29,6 @@ export const useEditForm = <T extends object>(
       setError("unknownError");
     },
     [setError]
-  );
-
-  const { data, isLoading: isFetchLoading } = useGetOne(
-    ressource,
-    { id },
-    { onError: onFetchingError }
   );
 
   const { mutate: updateMutation, isLoading: isUpdateLoading } = useUpdateOne(
@@ -76,11 +62,10 @@ export const useEditForm = <T extends object>(
 
   return {
     register,
-    data,
     onSubmit,
     onDelete,
-    isFetchLoading,
     isMutateLoading: isUpdateLoading || isDeleteLoading,
     error: errors,
+    setError,
   };
 };
