@@ -44,9 +44,13 @@ export const CardLayout = <T extends { id: string | number }>({
   }
 
   return (
-    <>
+    <div style={{ display: "flex" }}>
       {data.data.map((item: T) => (
-        <Card key={item.id}>
+        <Card
+          key={item.id}
+          onClick={() => navigate(`${item.id}`)}
+          style={{ display: "flex", flexDirection: "column" }}
+        >
           {rows.map((row, idx) => {
             return (
               <>
@@ -62,6 +66,6 @@ export const CardLayout = <T extends { id: string | number }>({
           })}
         </Card>
       ))}
-    </>
+    </div>
   );
 };
