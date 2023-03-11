@@ -1,5 +1,6 @@
 import { useCreateForm } from "hooks/useCreateForm";
-import { Card, Input, TextArea } from "lib";
+import { Input, TextArea } from "lib";
+import { MainCard } from "../core";
 
 import { CreateServiceDto } from "./service";
 
@@ -8,7 +9,7 @@ export const ServiceCreate = () => {
     useCreateForm<CreateServiceDto>("service");
 
   return (
-    <Card style={{ width: "100%", margin: "12px" }}>
+    <MainCard>
       <h3>Creer un service</h3>
       <form
         onSubmit={onSubmit}
@@ -33,6 +34,6 @@ export const ServiceCreate = () => {
         {isLoading && "Loading ..."}
         {errors?.badEntry && "Bad entry"}
       </form>
-    </Card>
+    </MainCard>
   );
 };

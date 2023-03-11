@@ -1,8 +1,7 @@
-import { Drawer, Toolbar } from "lib";
+import { Toolbar } from "lib";
 import { matchPath, useLocation } from "react-router-dom";
 import { ServiceEdit, ServiceList } from ".";
-import { MainContainer } from "../core";
-import { AddButton } from "../core/Buttons";
+import { AddButton, MainCard, RightDrawer } from "../core";
 
 export const ServicePage = () => {
   const location = useLocation();
@@ -10,7 +9,7 @@ export const ServicePage = () => {
 
   return (
     <>
-      <MainContainer
+      <MainCard
         style={{
           marginRight: !!match ? "252px" : "12px",
           transition: "margin-right 225ms",
@@ -20,15 +19,10 @@ export const ServicePage = () => {
           <AddButton />
         </Toolbar>
         <ServiceList />
-      </MainContainer>
-      <Drawer
-        open={!!match}
-        variant="persistent"
-        anchor="right"
-        style={{ width: "240px", height: "fit-content" }}
-      >
+      </MainCard>
+      <RightDrawer open={!!match}>
         {match && match.params.id && <ServiceEdit id={match.params.id} />}
-      </Drawer>
+      </RightDrawer>
     </>
   );
 };
