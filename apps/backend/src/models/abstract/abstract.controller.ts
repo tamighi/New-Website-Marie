@@ -70,8 +70,10 @@ export abstract class AbstractController<T extends { id: number }, DTO> {
   @Post()
   async create(@Body() body: DTO): Promise<{ data: DTO }> {
     try {
+      console.log(body);
       return await this.abstractService.create(body);
     } catch (err) {
+      console.log(err);
       throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
   }

@@ -9,7 +9,7 @@ export const SubServiceForm = ({
 }) => {
   const { register, onSubmit, isMutateLoading, error, onDelete } = useEditForm<
     Partial<SubServiceDto>
-  >("subService", subService.id.toString());
+  >("subService", subService.id);
 
   return (
     <div style={{ display: "flex" }}>

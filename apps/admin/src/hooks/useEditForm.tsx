@@ -7,7 +7,7 @@ import { useFormErrorHandler } from "./useFormErrorHandler";
 
 export const useEditForm = <T extends object>(
   ressource: string,
-  id: string
+  id: number | string
 ) => {
   const { errors, resetErrors, setError } = useFormErrorHandler();
   const { showDialog } = useDialog();

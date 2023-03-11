@@ -55,7 +55,10 @@ export const ServiceEdit = ({ id }: { id: string }) => {
           placeholder="description"
           rows={10}
         />
-        <SubServiceEdit subServices={data.data.subServices} />
+        <SubServiceEdit
+          serviceId={data.data.id}
+          subServices={data.data.subServices}
+        />
         {error?.badEntry && "Bad entries ..."}
         <FormAction>
           <Button type="submit" onClick={onSubmit}>
