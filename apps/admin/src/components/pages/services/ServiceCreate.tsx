@@ -8,7 +8,7 @@ export const ServiceCreate = () => {
     useCreateForm<CreateServiceDto>("service");
 
   return (
-    <Card style={{ width: "100%", height: "100%", margin: "10px" }}>
+    <Card style={{ width: "100%", margin: "12px" }}>
       <h3>Creer un service</h3>
       <form
         onSubmit={onSubmit}

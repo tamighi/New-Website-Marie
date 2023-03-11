@@ -1,11 +1,11 @@
 import React from "react";
-import { SelectedOptions } from "..";
 import { Button, DataGrid, DeleteIcon, IconButton, useDialog } from "lib";
 
 import { useNavigate } from "react-router-dom";
 import { useDeleteMany, useGetList } from "hooks/useData";
 
 import { Column } from "react-table";
+import { SelectedOptions } from "../..";
 
 const entryPerPage = 10;
 
