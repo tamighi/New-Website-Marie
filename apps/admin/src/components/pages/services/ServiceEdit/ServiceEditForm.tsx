@@ -18,6 +18,7 @@ export const ServiceEditForm = ({ data }: { data: ServiceDto }) => {
           {...register("name")}
           defaultValue={data.name}
           placeholder="name"
+          style={{ width: "100%", boxSizing: "border-box" }}
         />
         <span>Description du service</span>
         <TextArea
@@ -25,6 +26,7 @@ export const ServiceEditForm = ({ data }: { data: ServiceDto }) => {
           defaultValue={data.description}
           placeholder="description"
           rows={10}
+          style={{ width: "100%", boxSizing: "border-box" }}
         />
         {error?.badEntry && "Bad entries ..."}
       </FormContent>

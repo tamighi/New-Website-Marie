@@ -1,7 +1,6 @@
 .FormContent {
   display: flex;
   flex-wrap: wrap;
-  margin: 8px;
   gap: 8px;
 }
 
