@@ -10,7 +10,7 @@ const columns: Row<ServiceDto>[] = [
     Cell: (data) => (
       <div>
         {data?.map((subService) => (
-          <span key={subService.id}>{subService.textType}</span>
+          <span key={subService.id}>{subService.textType} </span>
         ))}
       </div>
     ),

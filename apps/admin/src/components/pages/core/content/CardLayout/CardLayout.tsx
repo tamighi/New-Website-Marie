@@ -57,13 +57,13 @@ export const CardLayout = <T extends { id: string | number }>({
             return (
               <div key={idx}>
                 <h5 className={styles.CardHeader}>{row.Header}</h5>
-                <span className={styles.CardContent}>
-                  {row.Cell ? (
-                    row.Cell(item[row.accessor])
-                  ) : (
+                {row.Cell ? (
+                  row.Cell(item[row.accessor])
+                ) : (
+                  <span className={styles.CardContent}>
                     <>{item[row.accessor]}</>
-                  )}
-                </span>
+                  </span>
+                )}
               </div>
             );
           })}
