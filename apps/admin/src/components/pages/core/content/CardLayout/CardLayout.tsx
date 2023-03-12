@@ -58,16 +58,16 @@ export const CardLayout = <T extends { id: string | number }>({
         >
           {rows.map((row, idx) => {
             return (
-              <>
+              <div key={idx}>
               <span>{row.Header}</span>
                 {row.Cell ? (
                   row.Cell(item[row.accessor])
                 ) : (
-                  <span key={idx}>
+                  <span>
                     <>{item[row.accessor]}</>
                   </span>
                 )}
-              </>
+              </div>
             );
           })}
         </Card>

@@ -5,7 +5,11 @@ import { Appbar } from "./components/generics/appbar/Appbar";
 import { Sidebar } from "./components/generics/sidebar/Sidebar";
 import { Dashboard } from "./components/pages/dashboard/Dashboard";
 
-import { ServiceCreate, ServiceEdit, ServicePage } from "./components/pages/services";
+import {
+  ServiceCreate,
+  ServiceEdit,
+  ServicePage,
+} from "./components/pages/services";
 
 import styles from "./App.css";
 import "./Global.css";
