@@ -1,8 +1,9 @@
 .Alert {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 50%;
   transition: transform 0.5s;
+  z-index: 1050;
 }
 
 .Open {
