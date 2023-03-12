@@ -8,13 +8,15 @@ import {
   Input,
   TextArea,
 } from "lib";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { isService, ServiceDto } from ".";
-import { FormAction, FormContent, Header } from "../core";
+import { FormAction, FormContent, Header, MainCard } from "../core";
 import { SubServiceEdit } from "./SubServiceEdit";
 
-export const ServiceEdit = ({ id }: { id: string }) => {
+export const ServiceEdit = () => {
+  const { id = "1" } = useParams();
+
   const { register, onSubmit, isMutateLoading, error, onDelete, setError } =
     useEditForm<Partial<ServiceDto>>("service", id);
 
@@ -33,10 +35,11 @@ export const ServiceEdit = ({ id }: { id: string }) => {
   if (!data || !isService(data.data) || error?.unknownError) {
     return <div>Unkown Error</div>;
   }
+
   return (
-    <>
+    <MainCard>
       <Header style={{ justifyContent: "space-between" }}>
-        <IconButton onClick={() => navigate("")}>
+        <IconButton onClick={() => navigate(-1)}>
           <CloseIcon />
         </IconButton>
         <span>Update service {data.data.name}</span>
@@ -70,6 +73,6 @@ export const ServiceEdit = ({ id }: { id: string }) => {
           </IconButton>
         </FormAction>
       </FormContent>
-    </>
+    </MainCard>
   );
 };

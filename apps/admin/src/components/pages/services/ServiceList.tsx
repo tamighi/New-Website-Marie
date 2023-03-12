@@ -2,9 +2,8 @@ import { isServiceArray, ServiceDto } from ".";
 import { CardLayout, Row } from "../core/content/CardLayout";
 
 const columns: Row<ServiceDto>[] = [
-  { Header: "Id", accessor: "id" },
-  { Header: "Name", accessor: "name" },
-  { Header: "Description", accessor: "description" },
+  { Header: "Nom du service", accessor: "name" },
+  { Header: "Description du service", accessor: "description" },
   {
     Header: "Services",
     accessor: "subServices",

@@ -44,16 +44,22 @@ export const CardLayout = <T extends { id: string | number }>({
   }
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", gap: "12px" }}>
       {data.data.map((item: T) => (
         <Card
           key={item.id}
           onClick={() => navigate(`${item.id}`)}
-          style={{ display: "flex", flexDirection: "column" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "300px",
+            height: "330px",
+          }}
         >
           {rows.map((row, idx) => {
             return (
               <>
+              <span>{row.Header}</span>
                 {row.Cell ? (
                   row.Cell(item[row.accessor])
                 ) : (
