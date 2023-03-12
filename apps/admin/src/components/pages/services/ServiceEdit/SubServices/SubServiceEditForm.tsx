@@ -1,5 +1,6 @@
+import { useDeleteOne } from "hooks/useData";
 import { useEditForm } from "hooks/useEditForm";
-import { Button, Input } from "lib";
+import { Button, DeleteIcon, IconButton, Input } from "lib";
 import { SubServiceDto } from "../../service";
 
 export const SubServiceEditForm = ({
@@ -11,6 +12,8 @@ export const SubServiceEditForm = ({
     "subService",
     subService.id
   );
+
+  const { mutate } = useDeleteOne("subService");
 
   return (
     <div style={{ display: "flex" }}>
@@ -27,6 +30,9 @@ export const SubServiceEditForm = ({
       <Button type="submit" onClick={onSubmit}>
         Update
       </Button>
+      <IconButton type="button" onClick={() => mutate({ id: subService.id })}>
+        <DeleteIcon style={{ color: "red" }} />
+      </IconButton>
     </div>
   );
 };
