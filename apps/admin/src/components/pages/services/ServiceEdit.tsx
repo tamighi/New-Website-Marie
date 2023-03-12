@@ -44,6 +44,10 @@ export const ServiceEdit = () => {
           <CloseIcon />
         </IconButton>
         <h3>Update service {data.data.name}</h3>
+        <div style={{ flexGrow: 1 }} />
+        <IconButton type="button" onClick={onDelete}>
+          <DeleteIcon style={{ color: "red" }} />
+        </IconButton>
       </Header>
       <div
         style={{
@@ -73,9 +77,6 @@ export const ServiceEdit = () => {
                 Update
               </Button>
               {isMutateLoading && <span>Loading ...</span>}
-              <IconButton type="button" onClick={onDelete}>
-                <DeleteIcon style={{ color: "red" }} />
-              </IconButton>
             </FormAction>
           </FormContent>
         </MainCard>

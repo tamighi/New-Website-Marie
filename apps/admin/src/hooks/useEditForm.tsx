@@ -46,7 +46,7 @@ export const useEditForm = <T extends object>(
     {
       onSuccess: () => {
         showDialog?.({ content: "Item deleted !" });
-        navigate("");
+        navigate(-1);
       },
       onError: onMutationError,
     }
