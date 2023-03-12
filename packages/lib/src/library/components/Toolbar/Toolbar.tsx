@@ -8,9 +8,9 @@ const Toolbar = (props: ToolbarProps) => {
   const classNames = `${CSSClasses.Toolbar} ` + (className || "");
 
   return (
-    <nav className={classNames} style={style} {...rest}>
+    <div className={classNames} style={style} {...rest}>
       {children}
-    </nav>
+    </div>
   );
 };
 

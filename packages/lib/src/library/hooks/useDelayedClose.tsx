@@ -1,6 +1,6 @@
 import React from "react";
 
-const useDelayedClose = (open: boolean) => {
+const useDelayedClose = (open: boolean, delay = 225) => {
   const [delayedClose, setDelayedClose] = React.useState(open);
 
   React.useEffect(() => {
@@ -11,9 +11,9 @@ const useDelayedClose = (open: boolean) => {
       if (!open) {
         setDelayedClose(open);
       }
-    }, 225);
+    }, delay);
     return () => clearTimeout(timer);
-  }, [open]);
+  }, [open, delay]);
   return delayedClose;
 };
 

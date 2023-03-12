@@ -4,6 +4,7 @@ import {
   Button,
   CloseIcon,
   DeleteIcon,
+  Divider,
   IconButton,
   Input,
   TextArea,
@@ -38,41 +39,55 @@ export const ServiceEdit = () => {
 
   return (
     <MainCard>
-      <Header style={{ justifyContent: "space-between" }}>
+      <Header>
         <IconButton onClick={() => navigate(-1)}>
           <CloseIcon />
         </IconButton>
-        <span>Update service {data.data.name}</span>
+        <h3>Update service {data.data.name}</h3>
       </Header>
-      <FormContent key={data.data.id}>
-        <span>Nom du service</span>
-        <Input
-          {...register("name")}
-          defaultValue={data.data.name}
-          placeholder="name"
-        />
-        <span>Description du service</span>
-        <TextArea
-          {...register("description")}
-          defaultValue={data.data.description}
-          placeholder="description"
-          rows={10}
-        />
-        <SubServiceEdit
-          serviceId={data.data.id}
-          subServices={data.data.subServices}
-        />
-        {error?.badEntry && "Bad entries ..."}
-        <FormAction>
-          <Button type="submit" onClick={onSubmit}>
-            Update
-          </Button>
-          {isMutateLoading && <span>Loading ...</span>}
-          <IconButton type="button" onClick={onDelete}>
-            <DeleteIcon style={{ color: "red" }} />
-          </IconButton>
-        </FormAction>
-      </FormContent>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
+        <MainCard>
+          <FormContent key={data.data.id}>
+            <span>Nom du service</span>
+            <Input
+              {...register("name")}
+              defaultValue={data.data.name}
+              placeholder="name"
+            />
+            <span>Description du service</span>
+            <TextArea
+              {...register("description")}
+              defaultValue={data.data.description}
+              placeholder="description"
+              rows={10}
+            />
+            {error?.badEntry && "Bad entries ..."}
+            <FormAction>
+              <Button type="submit" onClick={onSubmit}>
+                Update
+              </Button>
+              {isMutateLoading && <span>Loading ...</span>}
+              <IconButton type="button" onClick={onDelete}>
+                <DeleteIcon style={{ color: "red" }} />
+              </IconButton>
+            </FormAction>
+          </FormContent>
+        </MainCard>
+        <MainCard>
+          <FormContent>
+            <SubServiceEdit
+              serviceId={data.data.id}
+              subServices={data.data.subServices}
+            />
+          </FormContent>
+        </MainCard>
+      </div>
     </MainCard>
   );
 };

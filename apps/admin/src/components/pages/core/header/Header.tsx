@@ -1,7 +1,14 @@
 import { Toolbar, ToolbarProps } from "lib";
+import styles from "./Header.css";
 
 export const Header = (props: ToolbarProps) => {
-  const { children, ...rest } = props;
+  const { children, className, ...rest } = props;
 
-  return <Toolbar {...rest}>{children}</Toolbar>;
+  const classNames = `${className ? className : ""} ${styles.Header}`;
+
+  return (
+    <Toolbar {...rest} className={classNames}>
+      {children}
+    </Toolbar>
+  );
 };

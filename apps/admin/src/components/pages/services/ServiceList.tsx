@@ -8,11 +8,11 @@ const columns: Row<ServiceDto>[] = [
     Header: "Services",
     accessor: "subServices",
     Cell: (data) => (
-      <div>
+      <>
         {data?.map((subService) => (
           <span key={subService.id}>{subService.textType} </span>
         ))}
-      </div>
+      </>
     ),
   },
 ];
