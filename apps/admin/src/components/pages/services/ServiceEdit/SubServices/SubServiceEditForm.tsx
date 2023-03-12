@@ -1,6 +1,6 @@
 import { useEditForm } from "hooks/useEditForm";
 import { Button, Input } from "lib";
-import { SubServiceDto } from "../service";
+import { SubServiceDto } from "../../service";
 
 export const SubServiceEditForm = ({
   subService,

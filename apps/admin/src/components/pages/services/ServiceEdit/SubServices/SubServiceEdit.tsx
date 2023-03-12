@@ -1,7 +1,7 @@
 import { useCreateForm } from "hooks/useCreateForm";
 import { useDeleteOne } from "hooks/useData";
 import { Button, DeleteIcon, IconButton, Input } from "lib";
-import { SubServiceDto } from "../service";
+import { SubServiceDto } from "../../service";
 import { SubServiceEditForm } from "./SubServiceEditForm";
 
 export const SubServiceEdit = ({
