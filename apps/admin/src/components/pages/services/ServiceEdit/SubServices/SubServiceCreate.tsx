@@ -1,4 +1,4 @@
-import { FormContent } from "components/pages/core";
+import { FormAction, FormContent } from "components/pages/core";
 import { useCreateForm } from "hooks/useCreateForm";
 import { Button, Input } from "lib";
 import { SubServiceDto } from "../../service";
@@ -19,7 +19,9 @@ export const SubServiceCreate = ({ serviceId }: { serviceId: number }) => {
         {isLoading && "Loading ..."}
         {error?.badEntry && "Bad entry"}
       </FormContent>
-      <Button onClick={onSubmit}>Create</Button>
+      <FormAction>
+        <Button onClick={onSubmit}>Create</Button>
+      </FormAction>
     </div>
   );
 };

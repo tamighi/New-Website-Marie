@@ -17,7 +17,7 @@ export const SubServiceEditForm = ({
   const { mutate } = useDeleteOne("subService");
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
       <FormContent direction="horizontal">
         <Input
           {...register("textType")}
