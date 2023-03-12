@@ -29,5 +29,5 @@ export const useCreateForm = <T extends object>(
     mutate({ data: { ...data, ...createOptions?.defaultData } });
   });
 
-  return { register, onSubmit, isLoading, errors };
+  return { register, onSubmit, isLoading, error: errors };
 };
