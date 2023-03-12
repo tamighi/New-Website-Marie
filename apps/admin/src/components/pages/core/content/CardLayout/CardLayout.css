@@ -1,0 +1,27 @@
+.CardGrid {
+  display: flex;
+  gap: 24px;
+}
+
+.Card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 80px;
+  max-width: 200px;
+}
+
+.CardHeader {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.CardContent {
+  font-size: 14px;
+  line-height: 1.5;
+  display: -webkit-box; /* Set the display to a box layout */
+  -webkit-line-clamp: 2; /* Set the maximum number of lines to display */
+  -webkit-box-orient: vertical; /* Set the layout orientation to vertical */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

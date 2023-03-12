@@ -2,6 +2,8 @@ import { useGetList } from "hooks/useData";
 import { Card } from "lib";
 import { useNavigate } from "react-router-dom";
 
+import styles from "./CardLayout.css";
+
 export type Row<T extends object> = {
   [K in keyof T]: {
     Header: string;
@@ -44,29 +46,24 @@ export const CardLayout = <T extends { id: string | number }>({
   }
 
   return (
-    <div style={{ display: "flex", gap: "12px" }}>
+    <div className={styles.CardGrid}>
       {data.data.map((item: T) => (
         <Card
           key={item.id}
           onClick={() => navigate(`${item.id}`)}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "300px",
-            height: "330px",
-          }}
+          className={styles.Card}
         >
           {rows.map((row, idx) => {
             return (
               <div key={idx}>
-              <span>{row.Header}</span>
-                {row.Cell ? (
-                  row.Cell(item[row.accessor])
-                ) : (
-                  <span>
+                <h5 className={styles.CardHeader}>{row.Header}</h5>
+                <span className={styles.CardContent}>
+                  {row.Cell ? (
+                    row.Cell(item[row.accessor])
+                  ) : (
                     <>{item[row.accessor]}</>
-                  </span>
-                )}
+                  )}
+                </span>
               </div>
             );
           })}
