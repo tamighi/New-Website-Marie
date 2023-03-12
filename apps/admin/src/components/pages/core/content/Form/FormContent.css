@@ -1,0 +1,12 @@
+.FormContent {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8px;
+  gap: 8px;
+}
+
+.VerticalForm {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}

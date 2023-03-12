@@ -2,7 +2,7 @@ import { useGetOne } from "hooks/useData";
 import { useParams } from "react-router-dom";
 
 import { isService } from "..";
-import { FormContent, MainCard, SecondaryCard } from "../../core";
+import { MainCard, SecondaryCard } from "../../core";
 import { ServiceEditForm } from "./ServiceEditForm";
 import { ServiceEditHeader } from "./ServiceEditHeader";
 import { SubServiceEdit } from "./SubServices";
@@ -34,12 +34,10 @@ export const ServiceEdit = () => {
           <ServiceEditForm data={data.data} />
         </SecondaryCard>
         <SecondaryCard>
-          <FormContent>
-            <SubServiceEdit
-              serviceId={data.data.id}
-              subServices={data.data.subServices}
-            />
-          </FormContent>
+          <SubServiceEdit
+            serviceId={data.data.id}
+            subServices={data.data.subServices}
+          />
         </SecondaryCard>
       </div>
     </MainCard>

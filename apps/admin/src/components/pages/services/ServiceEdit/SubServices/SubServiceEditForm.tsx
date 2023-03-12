@@ -1,3 +1,4 @@
+import { FormAction, FormContent } from "components/pages/core";
 import { useDeleteOne } from "hooks/useData";
 import { useEditForm } from "hooks/useEditForm";
 import { Button, DeleteIcon, IconButton, Input } from "lib";
@@ -16,23 +17,27 @@ export const SubServiceEditForm = ({
   const { mutate } = useDeleteOne("subService");
 
   return (
-    <div style={{ display: "flex" }}>
-      <Input
-        {...register("textType")}
-        defaultValue={subService.textType}
-        placeholder="Type de texte"
-      />
-      <Input
-        {...register("pricePerCharacter")}
-        defaultValue={subService.pricePerCharacter}
-        placeholder="Prix par caractere"
-      />
-      <Button type="submit" onClick={onSubmit}>
-        Update
-      </Button>
-      <IconButton type="button" onClick={() => mutate({ id: subService.id })}>
-        <DeleteIcon style={{ color: "red" }} />
-      </IconButton>
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
+      <FormContent direction="horizontal">
+        <Input
+          {...register("textType")}
+          defaultValue={subService.textType}
+          placeholder="Type de texte"
+        />
+        <Input
+          {...register("pricePerCharacter")}
+          defaultValue={subService.pricePerCharacter}
+          placeholder="Prix par caractere"
+        />
+      </FormContent>
+      <FormAction>
+        <Button type="submit" onClick={onSubmit}>
+          Update
+        </Button>
+        <IconButton type="button" onClick={() => mutate({ id: subService.id })}>
+          <DeleteIcon style={{ color: "red" }} />
+        </IconButton>
+      </FormAction>
     </div>
   );
 };

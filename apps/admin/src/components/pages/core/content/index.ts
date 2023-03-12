@@ -1,3 +1,3 @@
 export * from "./MyDatagrid";
-export * from "./FormContent";
+export * from "./Form";
 export * from "./CardLayout";
