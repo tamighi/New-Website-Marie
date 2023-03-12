@@ -1,6 +1,5 @@
 .App {
   transition: background 0.6s ease-in-out;
-  min-height: 100vh;
 }
 
 .Main {
