@@ -1,15 +1,15 @@
 import { ResponsiveGrid } from "lib";
-import { Header, MainCard } from "../core";
+import { Header, SecondaryCard } from "../core";
 
 export const Dashboard = () => {
   return (
-    <MainCard>
+    <SecondaryCard>
       <Header>
         <h2>Dashboard</h2>
       </Header>
       <ResponsiveGrid container>
         <ResponsiveGrid small={12}></ResponsiveGrid>
       </ResponsiveGrid>
-    </MainCard>
+    </SecondaryCard>
   );
 };
