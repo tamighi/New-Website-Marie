@@ -7,15 +7,24 @@ import CSSClasses from "./TextArea.css";
 export interface TextAreaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "color"> {
   color?: keyof Colors;
+  flex?: boolean;
 }
 
 const TextArea = (
   props: TextAreaProps,
   ref: React.ForwardedRef<HTMLTextAreaElement>
 ) => {
-  const { style: customStyle, className, color = "text", ...rest } = props;
+  const {
+    style: customStyle,
+    className,
+    color = "text",
+    flex = false,
+    ...rest
+  } = props;
 
-  const classNames = `${CSSClasses.TextArea} ` + (className || "");
+  const classNames =
+    `${CSSClasses.TextArea} ${flex ? CSSClasses.TextAreaFlex : ""} ` +
+    (className || "");
 
   const styles = useStyles({
     type: "surface",

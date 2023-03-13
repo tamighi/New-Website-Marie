@@ -1,4 +1,9 @@
 .SecondaryCard {
-  flex-grow: 1;
+  flex: 1;
   margin: 12px;
+  padding: 12px;
+  gap: 12px;
+  display: grid;
+  align-content: flex-start;
+  min-width: 300px;
 }

@@ -12,3 +12,10 @@
   border: 1px solid rgba(0, 0, 0, 0.9);
   outline: none;
 }
+
+.InputFlex {
+  min-width: 150px;
+  width: inherit;
+  flex: 1;
+  box-sizing: border-box;
+}

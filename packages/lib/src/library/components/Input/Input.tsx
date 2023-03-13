@@ -7,15 +7,23 @@ import CSSClasses from "./Input.css";
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: keyof Colors;
+  flex?: boolean;
 }
 
 const Input = (
   props: InputProps,
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
-  const { style: customStyle, className, color = "text", ...rest } = props;
+  const {
+    style: customStyle,
+    className = "",
+    color = "text",
+    flex = false,
+    ...rest
+  } = props;
 
-  const classNames = `${CSSClasses.Input} ` + (className || "");
+  const classNames =
+    `${CSSClasses.Input} ${flex ? CSSClasses.InputFlex : ""} ` + className;
 
   const styles = useStyles({
     type: "surface",

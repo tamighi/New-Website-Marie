@@ -1,4 +1,3 @@
-import { Form } from "components/pages/core";
 import { SubServiceDto } from "../../service";
 import { SubServiceCreate } from "./SubServiceCreate";
 import { SubServiceEditForm } from "./SubServiceEditForm";
@@ -11,12 +10,12 @@ export const SubServiceEdit = ({
   serviceId: number;
 }) => {
   return (
-    <Form>
+    <>
       <span>Sous-services</span>
       {subServices.map((subService) => (
         <SubServiceEditForm key={subService.id} subService={subService} />
       ))}
       <SubServiceCreate serviceId={serviceId} />
-    </Form>
+    </>
   );
 };

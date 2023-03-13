@@ -1,8 +1,9 @@
 import { FormAction, FormContent } from "components/pages/core";
 import { useDeleteOne } from "hooks/useData";
 import { useEditForm } from "hooks/useEditForm";
-import { Button, DeleteIcon, IconButton, Input } from "lib";
+import { Button, DeleteIcon, IconButton, Input, Paper } from "lib";
 import { SubServiceDto } from "../../service";
+import { SubServiceFormContainer } from "./SubServiceFormContainer";
 
 export const SubServiceEditForm = ({
   subService,
@@ -17,27 +18,34 @@ export const SubServiceEditForm = ({
   const { mutate } = useDeleteOne("subService");
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
-      <FormContent direction="horizontal">
-        <Input
-          {...register("textType")}
-          defaultValue={subService.textType}
-          placeholder="Type de texte"
-        />
-        <Input
-          {...register("pricePerCharacter")}
-          defaultValue={subService.pricePerCharacter}
-          placeholder="Prix par caractere"
-        />
-      </FormContent>
-      <FormAction>
-        <Button type="submit" onClick={onSubmit}>
-          Update
-        </Button>
-        <IconButton type="button" onClick={() => mutate({ id: subService.id })}>
-          <DeleteIcon style={{ color: "red" }} />
-        </IconButton>
-      </FormAction>
-    </div>
+    <form>
+      <SubServiceFormContainer>
+        <FormContent direction="horizontal">
+          <Input
+            {...register("textType")}
+            defaultValue={subService.textType}
+            placeholder="Type de texte"
+            flex
+          />
+          <Input
+            {...register("pricePerCharacter")}
+            defaultValue={subService.pricePerCharacter}
+            placeholder="Prix par caractere"
+            flex
+          />
+        </FormContent>
+        <FormAction>
+          <Button type="submit" onClick={onSubmit}>
+            Update
+          </Button>
+          <IconButton
+            type="button"
+            onClick={() => mutate({ id: subService.id })}
+          >
+            <DeleteIcon style={{ color: "red" }} />
+          </IconButton>
+        </FormAction>
+      </SubServiceFormContainer>
+    </form>
   );
 };

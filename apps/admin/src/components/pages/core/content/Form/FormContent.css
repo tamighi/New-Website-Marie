@@ -2,10 +2,17 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  flex: 1;
 }
 
 .VerticalForm {
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  margin: 4px;
+  width: 100%;
+}
+
+.HorizontalForm {
+  align-items: center;
 }

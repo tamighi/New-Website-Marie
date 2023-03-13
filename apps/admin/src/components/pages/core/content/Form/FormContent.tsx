@@ -8,7 +8,7 @@ export const FormContent = (props: FormContentProps) => {
   const { children, direction = "vertical", className = "", ...rest } = props;
 
   const classNames = `${style.FormContent} ${
-    direction === "vertical" ? style.VerticalForm : ""
+    direction === "vertical" ? style.VerticalForm : style.HorizontalForm
   } ${className}`;
 
   return (
