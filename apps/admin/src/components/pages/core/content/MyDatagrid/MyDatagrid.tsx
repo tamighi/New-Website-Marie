@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, DataGrid, DeleteIcon, IconButton, useDialog } from "lib";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDeleteMany, useGetList } from "hooks/useData";
 
 import { Column } from "react-table";
@@ -15,6 +15,8 @@ export interface MyDatagridProps<T extends object> {
   isTArray: (obj: object) => obj is T[];
 }
 
+const baseParams = { filter: "{}", range: "[0, 19]", sort: '["id", "DESC"]' };
+
 export const MyDatagrid = <T extends { id: string | number }>({
   ressource,
   columns,
@@ -22,11 +24,11 @@ export const MyDatagrid = <T extends { id: string | number }>({
 }: MyDatagridProps<T>) => {
   const [page, setPage] = React.useState(1);
 
-  const { data, isLoading, isError, error } = useGetList(ressource, {
-    sort: { field: "id", order: "DESC" },
-    pagination: { page: page, perPage: entryPerPage },
-    filter: {},
-  });
+  const [params, setParams] = useSearchParams();
+
+  const query = { ...baseParams, ...Object.fromEntries(params) };
+
+  const { data, isLoading, isError, error } = useGetList(ressource, query);
 
   const [selected, setSelected] = React.useState<T[]>([]);
   const { showDialog } = useDialog();

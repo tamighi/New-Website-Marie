@@ -48,15 +48,7 @@ export interface DeleteManyParams {
 }
 
 export const dataProvider = {
-  getList: async (resource: string, params: GetListParams) => {
-    const { page, perPage } = params.pagination;
-    const { field, order } = params.sort;
-
-    const query = {
-      sort: JSON.stringify([field, order]),
-      range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
-      filter: JSON.stringify(params.filter),
-    };
+  getList: async (resource: string, query: { [k: string]: string }) => {
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     const resp = await httpClient(url);

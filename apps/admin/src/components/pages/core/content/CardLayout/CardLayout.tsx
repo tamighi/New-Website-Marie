@@ -1,6 +1,6 @@
 import { useGetList } from "hooks/useData";
 import { Card } from "lib";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import styles from "./CardLayout.css";
 
@@ -18,18 +18,18 @@ export interface CardLayoutProps<T extends { id: string | number }> {
   isTArray: (obj: object) => obj is T[];
 }
 
-const entryPerPage = 20;
+const baseParams = { filter: "{}", range: "[0, 19]", sort: '["id", "DESC"]' };
 
 export const CardLayout = <T extends { id: string | number }>({
   ressource,
   rows,
   isTArray,
 }: CardLayoutProps<T>) => {
-  const { data, isLoading, isError, error } = useGetList(ressource, {
-    sort: { field: "id", order: "DESC" },
-    pagination: { page: 1, perPage: entryPerPage },
-    filter: {},
-  });
+  const [params, setParams] = useSearchParams();
+
+  const query = { ...baseParams, ...Object.fromEntries(params) };
+
+  const { data, isLoading, isError, error } = useGetList(ressource, query);
 
   const navigate = useNavigate();
 

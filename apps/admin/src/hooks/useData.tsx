@@ -3,7 +3,6 @@ import {
   dataProvider,
   DeleteManyParams,
   DeleteParams,
-  GetListParams,
   GetOneParams,
   UpdateParams,
 } from "api/dataProvider";
@@ -12,16 +11,17 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 interface QueryOptions {
   onSuccess?: () => void;
   onError?: (error: unknown) => void;
+  query?: { [k: string]: string };
 }
 
 export const useGetList = (
   ressource: string,
-  params: GetListParams,
+  query: { [k: string]: string },
   options?: QueryOptions
 ) => {
   const queryResult = useQuery(
-    [ressource, params.pagination.page],
-    () => dataProvider.getList(ressource, params),
+    [ressource, query],
+    () => dataProvider.getList(ressource, query),
     { ...options }
   );
   return queryResult;
