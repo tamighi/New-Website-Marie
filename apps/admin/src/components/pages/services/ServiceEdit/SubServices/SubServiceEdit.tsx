@@ -13,7 +13,11 @@ export const SubServiceEdit = ({
     <>
       <span>Sous-services</span>
       {subServices.map((subService) => (
-        <SubServiceEditForm key={subService.id} subService={subService} />
+        <SubServiceEditForm
+          key={subService.id}
+          subService={subService}
+          serviceId={serviceId}
+        />
       ))}
       <SubServiceCreate serviceId={serviceId} />
     </>

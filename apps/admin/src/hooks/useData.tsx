@@ -60,6 +60,8 @@ export const useGetOne = (
 };
 
 export const useDeleteOne = (ressource: string, options: QueryOptions = {}) => {
+  const query = useGetQuery();
+
   const queryClient = useQueryClient();
 
   const { onError, ...rest } = options;
@@ -71,7 +73,7 @@ export const useDeleteOne = (ressource: string, options: QueryOptions = {}) => {
         await queryClient.cancelQueries(ressource);
         const oldData = queryClient.getQueryData<{
           data: { id: number | string }[];
-        }>([ressource, 1]);
+        }>([ressource, query]);
         if (oldData) {
           queryClient.setQueryData([ressource, 1], () => {
             return {
@@ -83,11 +85,11 @@ export const useDeleteOne = (ressource: string, options: QueryOptions = {}) => {
         return { oldData };
       },
       onError: (error, _, context) => {
-        queryClient.setQueryData([ressource, 1], context?.oldData);
+        queryClient.setQueryData([ressource, query], context?.oldData);
         onError?.(error);
       },
       onSettled: () => {
-        queryClient.invalidateQueries({ queryKey: [ressource, 1] });
+        queryClient.invalidateQueries({ queryKey: [ressource, query] });
       },
       ...rest,
     }
@@ -217,5 +219,34 @@ export const useCreate = (ressource: string, options: QueryOptions = {}) => {
     }
   );
 
+  return mutation;
+};
+
+interface RefOptions {
+  refRessource: string;
+  refId: string;
+}
+
+export const useDeleteOneRef = (
+  ressource: string,
+  options: QueryOptions & RefOptions
+) => {
+  const query = useGetQuery();
+
+  const queryClient = useQueryClient();
+
+  const { refRessource, onSuccess, refId, ...rest } = options;
+
+  const mutation = useMutation(
+    (params: DeleteParams) => dataProvider.delete(ressource, params),
+    {
+      onSuccess: () => {
+        onSuccess?.();
+        queryClient.invalidateQueries({ queryKey: [refRessource, query] });
+        queryClient.invalidateQueries({ queryKey: [refRessource, refId] });
+      },
+      ...rest,
+    }
+  );
   return mutation;
 };

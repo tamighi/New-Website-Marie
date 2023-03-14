@@ -4,9 +4,9 @@ import { hasCount, hasDataArray, hasDataObject, httpClient } from "./utils";
 const apiUrl = "http://192.168.1.50:8000";
 
 export interface GetListParams {
-  pagination: { page: number; perPage: number };
-  sort: { field: string; order: "ASC" | "DESC" };
-  filter: object;
+  range: string;
+  sort: string;
+  filter: string;
 }
 
 export interface GetOneParams {
@@ -48,7 +48,7 @@ export interface DeleteManyParams {
 }
 
 export const dataProvider = {
-  getList: async (resource: string, query: { [k: string]: string }) => {
+  getList: async (resource: string, query: GetListParams) => {
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     const resp = await httpClient(url);
