@@ -3,10 +3,10 @@ import {
   dataProvider,
   DeleteManyParams,
   DeleteParams,
-  GetOneParams,
   UpdateParams,
 } from "api/dataProvider";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useSearchParams } from "react-router-dom";
 
 interface QueryOptions {
   onSuccess?: () => void;
@@ -14,11 +14,16 @@ interface QueryOptions {
   query?: { [k: string]: string };
 }
 
-export const useGetList = (
-  ressource: string,
-  query: { [k: string]: string },
-  options?: QueryOptions
-) => {
+const baseParams = { filter: "{}", range: "[0, 19]", sort: '["id", "DESC"]' };
+
+const useGetQuery = () => {
+  const [params, _] = useSearchParams();
+  return { ...baseParams, ...Object.fromEntries(params) };
+};
+
+export const useGetList = (ressource: string, options?: QueryOptions) => {
+  const query = useGetQuery();
+
   const queryResult = useQuery(
     [ressource, query],
     () => dataProvider.getList(ressource, query),
@@ -29,20 +34,22 @@ export const useGetList = (
 
 export const useGetOne = (
   ressource: string,
-  params: GetOneParams,
+  id: number | string,
   options?: QueryOptions
 ) => {
+  const query = useGetQuery();
+
   const queryClient = useQueryClient();
 
   const queryResult = useQuery(
-    [ressource, params.id],
-    () => dataProvider.getOne(ressource, params),
+    [ressource, id],
+    () => dataProvider.getOne(ressource, { id }),
     {
       initialData: () => {
         const data = queryClient.getQueryData<
           Record<string, { id: number | string }[]>
-        >([ressource, 1]);
-        const initialData = data?.data?.find((item) => item.id == params.id);
+        >([ressource, query]);
+        const initialData = data?.data?.find((item) => item.id == id);
 
         return initialData ? { data: initialData } : undefined;
       },

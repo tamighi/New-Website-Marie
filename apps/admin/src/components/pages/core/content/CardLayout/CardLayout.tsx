@@ -18,18 +18,12 @@ export interface CardLayoutProps<T extends { id: string | number }> {
   isTArray: (obj: object) => obj is T[];
 }
 
-const baseParams = { filter: "{}", range: "[0, 19]", sort: '["id", "DESC"]' };
-
 export const CardLayout = <T extends { id: string | number }>({
   ressource,
   rows,
   isTArray,
 }: CardLayoutProps<T>) => {
-  const [params, setParams] = useSearchParams();
-
-  const query = { ...baseParams, ...Object.fromEntries(params) };
-
-  const { data, isLoading, isError, error } = useGetList(ressource, query);
+  const { data, isLoading, isError, error } = useGetList(ressource);
 
   const navigate = useNavigate();
 

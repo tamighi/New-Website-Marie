@@ -10,7 +10,7 @@ import { SubServiceEdit } from "./SubServices";
 export const ServiceEdit = () => {
   const { id = "1" } = useParams();
 
-  const { data, isLoading } = useGetOne("service", { id });
+  const { data, isLoading } = useGetOne("service", id);
 
   if (isLoading) {
     return <div>Loading...</div>;
