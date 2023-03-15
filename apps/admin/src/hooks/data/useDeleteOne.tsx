@@ -1,5 +1,5 @@
 import { dataProvider, DeleteParams } from "api/dataProvider";
-import { useGetSearchParams } from "hooks/useGetSearchParams";
+import { useGetSearchParams } from "hooks";
 import { useMutation, useQueryClient } from "react-query";
 
 interface DeleteOneOptions {
