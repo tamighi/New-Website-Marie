@@ -1,13 +1,16 @@
 import { FormAction, FormContent } from "components/pages/core";
-import { useCreateForm } from "hooks";
+import { useCreateRefForm } from "hooks";
 import { Button, Input } from "lib";
 import { SubServiceDto } from "../../service";
 import { SubServiceFormContainer } from "./SubServiceFormContainer";
 
 export const SubServiceCreate = ({ serviceId }: { serviceId: number }) => {
-  const { register, onSubmit, error, isLoading } = useCreateForm<
+  const { register, onSubmit, error, isLoading } = useCreateRefForm<
     Partial<SubServiceDto>
-  >("subService", { defaultData: { service: { id: serviceId } } });
+  >("subService", {
+    defaultData: { service: { id: serviceId } },
+    parentResource: "service",
+  });
 
   return (
     <form>
