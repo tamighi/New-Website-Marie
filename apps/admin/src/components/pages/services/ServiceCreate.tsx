@@ -16,13 +16,13 @@ export const ServiceCreate = () => {
             <h3>Creer un service</h3>
           </Header>
           <span>Nom du service</span>
-          <Input {...register("name")} placeholder="nom" autoFocus />
+          <Input flex {...register("name")} placeholder="nom" autoFocus />
           <span>Description du service</span>
           <TextArea
             {...register("description")}
             placeholder="Description"
             rows={10}
-            cols={40}
+            flex
           />
         </FormContent>
         <FormAction>
