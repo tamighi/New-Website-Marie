@@ -1,5 +1,5 @@
 import { FormAction, FormContent } from "components/pages/core";
-import { useDeleteOneRef, useEditForm } from "hooks";
+import { useDeleteOneRef, useEditRefForm } from "hooks";
 import { Button, DeleteIcon, IconButton, Input } from "lib";
 import { SubServiceDto } from "../../service";
 import { SubServiceFormContainer } from "./SubServiceFormContainer";
@@ -9,9 +9,10 @@ export const SubServiceEditForm = ({
 }: {
   subService: SubServiceDto;
 }) => {
-  const { register, onSubmit } = useEditForm<Partial<SubServiceDto>>(
+  const { register, onSubmit } = useEditRefForm<Partial<SubServiceDto>>(
     "subService",
-    subService.id
+    subService.id,
+    { parentResource: "service" }
   );
 
   const { mutate } = useDeleteOneRef("subService", {

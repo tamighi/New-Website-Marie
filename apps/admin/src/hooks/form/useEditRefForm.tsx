@@ -1,0 +1,53 @@
+import React from "react";
+import { HttpError } from "api/utils";
+import { useDialog, useForm } from "lib";
+import { useFormErrorHandler } from "hooks";
+import { useUpdateOneRef } from "hooks/data/useUpdateOneRef";
+
+interface EditRefFormOptions {
+  parentResource: string;
+}
+
+export const useEditRefForm = <T extends object>(
+  ressource: string,
+  id: number | string,
+  options: EditRefFormOptions
+) => {
+  const { errors, resetErrors, setError } = useFormErrorHandler();
+  const { showDialog } = useDialog();
+  const { register, handleSubmit } = useForm<T>();
+
+  React.useEffect(() => {
+    resetErrors();
+  }, [id, resetErrors]);
+
+  const onError = React.useCallback(
+    (error: unknown) => {
+      if (error instanceof HttpError) {
+        setError("badEntry");
+      } else {
+        setError("unknownError");
+      }
+    },
+    [setError]
+  );
+
+  const { mutate } = useUpdateOneRef(ressource, {
+    onSuccess: () => {
+      showDialog?.({ content: "Item updated !" });
+    },
+    onError,
+    parentResource: options.parentResource,
+  });
+
+  const onSubmit = handleSubmit(async (data: Partial<T>) => {
+    mutate({ data, id });
+  });
+
+  return {
+    register,
+    onSubmit,
+    error: errors,
+    setError,
+  };
+};
