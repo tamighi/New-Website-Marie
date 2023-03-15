@@ -1,9 +1,8 @@
 import { dataProvider, DeleteParams } from "api/dataProvider";
+import { useDialog } from "lib";
 import { useMutation, useQueryClient } from "react-query";
 
 interface DeleteOneRefOptions {
-  onSuccess?: () => void;
-  onError?: (error: unknown) => void;
   parentResource: string;
 }
 
@@ -13,16 +12,16 @@ export const useDeleteOneRef = (
 ) => {
   const queryClient = useQueryClient();
 
-  const { onSuccess, onError, parentResource } = options;
+  const { showDialog } = useDialog();
+  const { parentResource } = options;
 
   const mutation = useMutation(
     (params: DeleteParams) => dataProvider.delete(resource, params),
     {
       onSuccess: () => {
-        onSuccess?.();
         queryClient.invalidateQueries([parentResource]);
+        showDialog?.({ content: "Item deleted !" });
       },
-      onError,
     }
   );
   return mutation;

@@ -1,21 +1,16 @@
 import { dataProvider, DeleteParams } from "api/dataProvider";
 import { useGetSearchParams } from "hooks";
+import { useDialog } from "lib";
 import { useMutation, useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
 
-interface DeleteOneOptions {
-  onSuccess?: () => void;
-  onError?: (error: unknown) => void;
-}
-
-export const useDeleteOne = (
-  resource: string,
-  options: DeleteOneOptions = {}
-) => {
+export const useDeleteOne = (resource: string) => {
   const queryClient = useQueryClient();
 
   const query = useGetSearchParams();
 
-  const { onError, ...rest } = options;
+  const { showDialog } = useDialog();
+  const navigate = useNavigate();
 
   const mutation = useMutation(
     (params: DeleteParams) => dataProvider.delete(resource, params),
@@ -36,14 +31,16 @@ export const useDeleteOne = (
         }
         return { oldData };
       },
-      onError: (error, _, context) => {
+      onError: (_, __, context) => {
         queryClient.setQueryData([resource, query], context?.oldData);
-        onError?.(error);
       },
       onSettled: () => {
         queryClient.invalidateQueries({ queryKey: [resource, query] });
       },
-      ...rest,
+      onSuccess: () => {
+        showDialog?.({ content: "Item deleted !" });
+        navigate(-1);
+      },
     }
   );
   return mutation;

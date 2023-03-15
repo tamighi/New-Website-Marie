@@ -1,5 +1,5 @@
 import { useDeleteOne } from "hooks";
-import { CloseIcon, DeleteIcon, IconButton, useDialog } from "lib";
+import { CloseIcon, DeleteIcon, IconButton } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { Header } from "../../core";
@@ -10,15 +10,9 @@ export const ServiceEditHeader = ({
 }: {
   serviceDto: ServiceDto;
 }) => {
-  const { showDialog } = useDialog();
   const navigate = useNavigate();
 
-  const { mutate } = useDeleteOne("service", {
-    onSuccess: () => {
-      showDialog?.({ content: "Item deleted !" });
-      navigate(-1);
-    },
-  });
+  const { mutate } = useDeleteOne("service");
 
   return (
     <Header>
