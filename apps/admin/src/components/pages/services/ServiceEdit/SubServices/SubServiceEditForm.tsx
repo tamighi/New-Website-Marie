@@ -1,6 +1,6 @@
-import { FormAction, FormContent } from "components/pages/core";
+import { FormAction, FormContent, LoadingIcon } from "components/pages/core";
 import { useDeleteOneRef, useEditRefForm } from "hooks";
-import { Button, DeleteIcon, IconButton, Input } from "lib";
+import { Button, CloseIcon, IconButton, Input } from "lib";
 import { SubServiceDto } from "../../service";
 import { SubServiceFormContainer } from "./SubServiceFormContainer";
 
@@ -9,11 +9,9 @@ export const SubServiceEditForm = ({
 }: {
   subService: SubServiceDto;
 }) => {
-  const { register, onSubmit } = useEditRefForm<Partial<SubServiceDto>>(
-    "subService",
-    subService.id,
-    { parentResource: "service" }
-  );
+  const { register, onSubmit, isLoading } = useEditRefForm<
+    Partial<SubServiceDto>
+  >("subService", subService.id, { parentResource: "service" });
 
   const { mutate } = useDeleteOneRef("subService", {
     parentResource: "service",
@@ -40,13 +38,20 @@ export const SubServiceEditForm = ({
           <Button type="submit" onClick={onSubmit}>
             Update
           </Button>
-          <IconButton
-            type="button"
-            onClick={() => mutate({ id: subService.id })}
-          >
-            <DeleteIcon style={{ color: "red" }} />
-          </IconButton>
+          <LoadingIcon isLoading={isLoading} />
         </FormAction>
+        <IconButton
+          type="button"
+          onClick={() => mutate({ id: subService.id })}
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            transform: "translate(40%, -40%)",
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
       </SubServiceFormContainer>
     </form>
   );

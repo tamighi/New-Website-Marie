@@ -12,6 +12,7 @@ export const SubServiceFormContainer = ({
         width: "100%",
         display: "flex",
         flexWrap: "wrap",
+        position: "relative",
       }}
     >
       {children}

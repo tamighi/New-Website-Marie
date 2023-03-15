@@ -32,7 +32,7 @@ export const useEditRefForm = <T extends object>(
     [setError]
   );
 
-  const { mutate } = useUpdateOneRef(ressource, {
+  const { mutate, isLoading } = useUpdateOneRef(ressource, {
     onSuccess: () => {
       showDialog?.({ content: "Item updated !" });
     },
@@ -47,6 +47,7 @@ export const useEditRefForm = <T extends object>(
   return {
     register,
     onSubmit,
+    isLoading,
     error: errors,
     setError,
   };
