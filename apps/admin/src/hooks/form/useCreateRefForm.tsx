@@ -3,8 +3,8 @@ import { useDialog, useForm } from "lib";
 import { useFormErrorHandler } from "./useFormErrorHandler";
 
 interface CreateRefOptions<T extends object> {
-  defaultData?: {
-    [K in keyof T]?: T[K];
+  defaultData: {
+    [K in keyof T]: { id: string | number };
   };
   parentResource: string;
 }
