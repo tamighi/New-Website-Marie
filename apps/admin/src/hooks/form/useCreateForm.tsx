@@ -2,16 +2,7 @@ import { useCreate } from "hooks";
 import { useDialog, useForm } from "lib";
 import { useFormErrorHandler } from "./useFormErrorHandler";
 
-interface CreateOptions<T extends object> {
-  defaultData?: {
-    [K in keyof T]?: T[K];
-  };
-}
-
-export const useCreateForm = <T extends object>(
-  resource: string,
-  createOptions: CreateOptions<T> = {}
-) => {
+export const useCreateForm = <T extends object>(resource: string) => {
   const { errors, setError, resetErrors } = useFormErrorHandler();
   const { showDialog } = useDialog();
   const { register, handleSubmit, reset } = useForm<T>();
@@ -23,10 +14,10 @@ export const useCreateForm = <T extends object>(
       resetErrors();
     },
     onError: () => setError("badEntry"),
- });
+  });
 
   const onSubmit = handleSubmit(async (data: Partial<T>) => {
-    mutate({ data: { ...data, ...createOptions.defaultData } });
+    mutate({ data });
   });
 
   return { register, onSubmit, isLoading, error: errors };
