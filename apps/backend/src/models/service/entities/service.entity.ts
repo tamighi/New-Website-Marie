@@ -12,8 +12,6 @@ export class Service {
   @Column()
   description: string;
 
-  @OneToMany(() => SubService, (subService) => subService.service, {
-    eager: true,
-  })
+  @OneToMany(() => SubService, (subService) => subService.service)
   subServices: SubService[];
 }

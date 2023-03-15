@@ -4,9 +4,9 @@ import { hasCount, hasDataArray, hasDataObject, httpClient } from "./utils";
 const apiUrl = "http://192.168.1.50:8000";
 
 export interface GetListParams {
-  range: string;
-  sort: string;
-  filter: string;
+  range?: string;
+  sort?: string;
+  filter?: string;
 }
 
 export interface GetOneParams {

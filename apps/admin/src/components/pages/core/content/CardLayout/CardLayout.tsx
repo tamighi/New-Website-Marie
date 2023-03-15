@@ -1,6 +1,7 @@
-import { useGetList } from "hooks/useData";
 import { Card } from "lib";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { useGetList, useGetSearchParams } from "hooks";
 
 import styles from "./CardLayout.css";
 
@@ -13,17 +14,19 @@ export type Row<T extends object> = {
 }[keyof T];
 
 export interface CardLayoutProps<T extends { id: string | number }> {
-  ressource: string;
+  resource: string;
   rows: Row<T>[];
   isTArray: (obj: object) => obj is T[];
 }
 
 export const CardLayout = <T extends { id: string | number }>({
-  ressource,
+  resource,
   rows,
   isTArray,
 }: CardLayoutProps<T>) => {
-  const { data, isLoading, isError, error } = useGetList(ressource);
+  const params = useGetSearchParams();
+
+  const { data, isLoading, isError } = useGetList(resource, params);
 
   const navigate = useNavigate();
 

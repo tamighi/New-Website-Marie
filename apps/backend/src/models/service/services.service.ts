@@ -11,7 +11,7 @@ export class ServicesService extends AbstractService<Service, ServiceDto> {
     @InjectRepository(Service)
     protected readonly serviceRepository: Repository<Service>
   ) {
-    super(serviceRepository);
+    super(serviceRepository, { relations: ["subServices"] });
   }
 
   entityToDto(service: Service): ServiceDto {

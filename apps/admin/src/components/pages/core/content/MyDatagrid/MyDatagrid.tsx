@@ -1,33 +1,36 @@
 import React from "react";
+
 import { Button, DataGrid, DeleteIcon, IconButton, useDialog } from "lib";
 
 import { useNavigate } from "react-router-dom";
-import { useDeleteMany, useGetList } from "hooks/useData";
-
 import { Column } from "react-table";
+
 import { SelectedOptions } from "../..";
+import { useDeleteMany, useGetList, useGetSearchParams } from "hooks";
 
 const entryPerPage = 20;
 
 export interface MyDatagridProps<T extends object> {
-  ressource: string;
+  resource: string;
   columns: Column<T>[];
   isTArray: (obj: object) => obj is T[];
 }
 
 export const MyDatagrid = <T extends { id: string | number }>({
-  ressource,
+  resource,
   columns,
   isTArray,
 }: MyDatagridProps<T>) => {
   const [page, setPage] = React.useState(1);
-
-  const { data, isLoading, isError, error } = useGetList(ressource);
-
   const [selected, setSelected] = React.useState<T[]>([]);
+
+  const params = useGetSearchParams();
+
+  const { data, isLoading, isError } = useGetList(resource, params);
+
   const { showDialog } = useDialog();
 
-  const { mutate } = useDeleteMany(ressource, {
+  const { mutate } = useDeleteMany(resource, {
     onSuccess: () =>
       showDialog?.({ content: `${selected.length} item(s) deleted` }),
   });

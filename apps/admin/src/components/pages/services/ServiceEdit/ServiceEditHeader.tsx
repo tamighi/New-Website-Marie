@@ -1,4 +1,4 @@
-import { useDeleteOne } from "hooks/useData";
+import { useDeleteOne } from "hooks";
 import { CloseIcon, DeleteIcon, IconButton, useDialog } from "lib";
 import { useNavigate } from "react-router-dom";
 

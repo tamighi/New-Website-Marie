@@ -7,11 +7,19 @@ import {
 import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
 import { QueryDto } from "./dtos/query.dto";
 
+interface ServiceOptions {
+  relations?: string[];
+}
+
 export abstract class AbstractService<T extends { id: number }, DTO> {
   protected repository: Repository<T>;
+  protected relations: string[];
 
-  constructor(repository: Repository<T>) {
+  constructor(repository: Repository<T>, options: ServiceOptions = {}) {
+    const { relations = [] } = options;
+
     this.repository = repository;
+    this.relations = relations;
   }
 
   abstract entityToDto(entity: T): DTO;
@@ -24,6 +32,7 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
         skip: query.range[0],
         take: query.range[1] - query.range[0] + 1,
       }),
+      relations: this.relations,
     });
     return { data: data.map((x) => this.entityToDto(x)), count: count };
   }
@@ -31,6 +40,7 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
   async getOneById(id: { id: number }): Promise<{ data: DTO }> {
     const data: T = await this.repository.findOneOrFail({
       where: id as FindOptionsWhere<T>,
+      relations: this.relations,
     });
 
     return { data: this.entityToDto(data) };
@@ -42,6 +52,7 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
     await this.repository.update(id.id, updateBody);
     const data: T = await this.repository.findOneOrFail({
       where: id as FindOptionsWhere<T>,
+      relations: this.relations,
     });
 
     return { data: this.entityToDto(data) };
@@ -56,6 +67,7 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
     );
     const data: T[] = await this.repository.find({
       where: query.filter as FindOptionsWhere<T>,
+      relations: this.relations,
     });
     return { data: data.map((x) => this.entityToDto(x)) };
   }

@@ -1,8 +1,7 @@
 import React from "react";
 import { HttpError } from "api/utils";
 import { useDialog, useForm } from "lib";
-import { useUpdateOne } from "./useData";
-import { useFormErrorHandler } from "./useFormErrorHandler";
+import { useFormErrorHandler, useUpdateOne } from "hooks";
 
 export const useEditForm = <T extends object>(
   ressource: string,
@@ -16,7 +15,7 @@ export const useEditForm = <T extends object>(
     resetErrors();
   }, [id, resetErrors]);
 
-  const onMutationError = React.useCallback(
+  const onError = React.useCallback(
     (error: unknown) => {
       if (error instanceof HttpError) {
         setError("badEntry");
@@ -31,7 +30,7 @@ export const useEditForm = <T extends object>(
     onSuccess: () => {
       showDialog?.({ content: "Item updated !" });
     },
-    onError: onMutationError,
+    onError,
   });
 
   const onSubmit = handleSubmit(async (data: Partial<T>) => {

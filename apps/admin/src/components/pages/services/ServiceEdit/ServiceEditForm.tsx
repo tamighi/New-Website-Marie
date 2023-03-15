@@ -1,4 +1,4 @@
-import { useEditForm } from "hooks/useEditForm";
+import { useEditForm } from "hooks";
 import { Button, Input, TextArea } from "lib";
 
 import { ServiceDto } from "..";

@@ -19,6 +19,6 @@ const columns: Row<ServiceDto>[] = [
 
 export const ServiceList = () => {
   return (
-    <CardLayout rows={columns} ressource="service" isTArray={isServiceArray} />
+    <CardLayout rows={columns} resource="service" isTArray={isServiceArray} />
   );
 };

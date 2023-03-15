@@ -1,26 +1,20 @@
 import { FormAction, FormContent } from "components/pages/core";
-import { useDeleteOneRef } from "hooks/useData";
-import { useEditForm } from "hooks/useEditForm";
+import { useDeleteOne, useEditForm } from "hooks";
 import { Button, DeleteIcon, IconButton, Input } from "lib";
 import { SubServiceDto } from "../../service";
 import { SubServiceFormContainer } from "./SubServiceFormContainer";
 
 export const SubServiceEditForm = ({
   subService,
-  serviceId,
 }: {
   subService: SubServiceDto;
-  serviceId: number | string;
 }) => {
   const { register, onSubmit } = useEditForm<Partial<SubServiceDto>>(
     "subService",
     subService.id
   );
 
-  const { mutate } = useDeleteOneRef("subService", {
-    refId: serviceId.toString(),
-    refRessource: "service",
-  });
+  const { mutate } = useDeleteOne("subService");
 
   return (
     <form>

@@ -1,16 +1,17 @@
-import { useGetOne } from "hooks/useData";
 import { useParams } from "react-router-dom";
 
-import { isService } from "..";
 import { MainCard, SecondaryCard } from "../../core";
+import { isService } from "..";
 import { ServiceEditForm } from "./ServiceEditForm";
 import { ServiceEditHeader } from "./ServiceEditHeader";
 import { SubServiceEdit } from "./SubServices";
 
+import { useGetOne } from "hooks";
+
 export const ServiceEdit = () => {
   const { id = "1" } = useParams();
 
-  const { data, isLoading } = useGetOne("service", id);
+  const { data, isLoading } = useGetOne("service", { id });
 
   if (isLoading) {
     return <div>Loading...</div>;
