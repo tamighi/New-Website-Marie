@@ -1,4 +1,4 @@
-import { FormAction, FormContent } from "components/pages/core";
+import { FormAction, FormContent, LoadingIcon } from "components/pages/core";
 import { useCreateRefForm } from "hooks";
 import { Button, Input } from "lib";
 import { SubServiceDto } from "../../service";
@@ -22,11 +22,11 @@ export const SubServiceCreate = ({ serviceId }: { serviceId: number }) => {
             placeholder="Prix par caractere"
             flex
           />
-          {isLoading && "Loading ..."}
-          {error?.badEntry && "Bad entry"}
         </FormContent>
         <FormAction>
+          {error?.badEntry && "Bad entry"}
           <Button onClick={onSubmit}>Create</Button>
+          <LoadingIcon isLoading={isLoading} />
         </FormAction>
       </SubServiceFormContainer>
     </form>
