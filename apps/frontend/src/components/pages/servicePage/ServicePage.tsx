@@ -1,6 +1,7 @@
 import { CenteredPage } from "components/generics/basePage/CenteredPage";
 import { useServices } from "hooks/useServices";
 import { Card, Paper } from "lib";
+import { ServiceCard } from "./ServiceCard";
 
 export const ServicePage = () => {
   const services = useServices();
@@ -14,10 +15,7 @@ export const ServicePage = () => {
           cillum sint consectetur cupidatat.
         </p>
         {services?.map((service) => (
-          <Card key={service.id} style={{ margin: "3px" }}>
-            <h3>{service.name}</h3>
-            <p>{service.description}</p>
-          </Card>
+          <ServiceCard service={service} key={service.id} />
         ))}
       </Paper>
     </CenteredPage>
