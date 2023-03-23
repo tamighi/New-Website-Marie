@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AbstractService } from "src/models/abstract/abstract.service";
-import { Repository } from "typeorm";
+import { FindOptionsWhere, Repository } from "typeorm";
 import { ServiceDto } from "./dtos/service.dto";
 import { Service } from "./entities/service.entity";
 
@@ -27,6 +27,14 @@ export class ServicesService extends AbstractService<Service, ServiceDto> {
 
   async fetchServices() {
     const data = this.serviceRepository.find({ relations: ["subServices"] });
+    return data;
+  }
+
+  async fetchOneService(id: { id: number }) {
+    const data = this.serviceRepository.findOne({
+      where: id as FindOptionsWhere<Service>,
+      relations: ["subServices"],
+    });
     return data;
   }
 }

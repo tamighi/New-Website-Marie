@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ResponsiveGrid as Grid } from "lib";
+import { Paper, ResponsiveGrid as Grid } from "lib";
 import { BasePage } from "./BasePage";
 
 export const CenteredPage = ({ children }: { children: React.ReactNode }) => {
@@ -9,7 +9,7 @@ export const CenteredPage = ({ children }: { children: React.ReactNode }) => {
       <Grid container>
         <Grid large={3} />
         <Grid small={12} large={6}>
-          {children}
+          <Paper style={{ padding: "6px" }}>{children}</Paper>
         </Grid>
         <Grid large={3} />
       </Grid>
