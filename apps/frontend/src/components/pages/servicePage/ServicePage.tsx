@@ -5,7 +5,7 @@ import { ServiceCard } from "./ServiceCard";
 import { ServiceDetails } from "./ServiceDetails";
 
 export const ServicePage = () => {
-  const services = useServices();
+  const { data: services } = useServices();
   const { id } = useParams();
 
   return (

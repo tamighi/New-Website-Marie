@@ -4,5 +4,5 @@ import { ServiceDto } from "resources/service";
 
 export const useServices = () => {
   const { data } = useQuery<ServiceDto[]>("services", getServices);
-  return data;
+  return { data };
 };
