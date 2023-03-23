@@ -1,15 +1,22 @@
 import { CenteredPage } from "components/generics/basePage/CenteredPage";
 import { useServices } from "hooks/useServices";
-import { Card } from "lib";
+import { Card, Paper } from "lib";
 
 export const ServicePage = () => {
   const services = useServices();
-  console.log(services)
+
   return (
     <CenteredPage>
-      <Card>
+      <Paper>
         <h2>Les services proposés ...</h2>
-      </Card>
+        <p>
+          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+          cillum sint consectetur cupidatat.
+        </p>
+        {services?.map((service) => (
+          <Card key={service.id}>{service.name}</Card>
+        ))}
+      </Paper>
     </CenteredPage>
   );
 };
