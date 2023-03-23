@@ -26,13 +26,13 @@ export const MyThemeProvider = ({
     palette: {
       darkMode: darkMode,
       light: {
-        primary: "rgba(255, 127, 80, 0.7)",
+        primary: "rgba(248,195,115, 0.7)",
         secondary: "#a51e1e",
         surface: "rgba(255, 127, 80, 0.7)",
         text: "black",
       },
       dark: {
-        primary: "rgba(0, 0, 128, 0.5)",
+        primary: "#920094",
         secondary: "#16368d",
         surface: "rgba(0, 0, 128, 0.5)",
         text: "white",
