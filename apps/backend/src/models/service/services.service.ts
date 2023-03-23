@@ -24,4 +24,9 @@ export class ServicesService extends AbstractService<Service, ServiceDto> {
 
     return serviceDto;
   }
+
+  async fetchServices() {
+    const data = this.serviceRepository.find({ relations: ["subServices"] });
+    return data;
+  }
 }

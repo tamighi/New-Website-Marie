@@ -1,4 +1,4 @@
-import { Controller } from "@nestjs/common";
+import { Controller, Get } from "@nestjs/common";
 import { AbstractController } from "src/models/abstract/abstract.controller";
 import { ServiceDto } from "./dtos/service.dto";
 import { Service } from "./entities/service.entity";
@@ -11,5 +11,10 @@ export class ServicesController extends AbstractController<
 > {
   constructor(private readonly servicesService: ServicesService) {
     super(servicesService);
+  }
+
+  @Get("fetchServices")
+  async fetchServices() {
+    return this.servicesService.fetchServices();
   }
 }
