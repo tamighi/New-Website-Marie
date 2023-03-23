@@ -1,7 +1,10 @@
 import { CenteredPage } from "components/generics/basePage/CenteredPage";
+import { useServices } from "hooks/useServices";
 import { Card } from "lib";
 
 export const ServicePage = () => {
+  const services = useServices();
+  console.log(services)
   return (
     <CenteredPage>
       <Card>
