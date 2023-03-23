@@ -26,9 +26,9 @@ export const MyThemeProvider = ({
     palette: {
       darkMode: darkMode,
       light: {
-        primary: "rgba(248,195,115, 0.7)",
+        primary: "rgba(248,195,115,0.7)",
         secondary: "#a51e1e",
-        surface: "rgba(255, 127, 80, 0.7)",
+        surface: "rgba(229,103,20,0.7)",
         text: "black",
       },
       dark: {
