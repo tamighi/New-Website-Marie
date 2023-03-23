@@ -14,7 +14,10 @@ export const ServicePage = () => {
           cillum sint consectetur cupidatat.
         </p>
         {services?.map((service) => (
-          <Card key={service.id}>{service.name}</Card>
+          <Card key={service.id} style={{ margin: "3px" }}>
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+          </Card>
         ))}
       </Paper>
     </CenteredPage>
