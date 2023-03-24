@@ -6,7 +6,7 @@ import {
   Post,
 } from "@nestjs/common";
 import { AbstractController } from "src/models/abstract/abstract.controller";
-import { QuestionDto } from "./dtos/question.dto";
+import { CreateQuestionDto, QuestionDto } from "./dtos/question.dto";
 import { Question } from "./entities/question.entity";
 import { QuestionsService } from "./questions.service";
 
@@ -20,7 +20,7 @@ export class QuestionsController extends AbstractController<
   }
 
   @Post("postQuestion")
-  async postQuestion(@Body() body: QuestionDto) {
+  async postQuestion(@Body() body: any) {
     try {
       return await this.questionService.postQuestion(body);
     } catch (err) {
