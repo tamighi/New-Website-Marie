@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Colors, useStyles } from "library";
+import { useStyles } from "library";
+import { Colors } from "../..";
 
 import CSSClasses from "./Button.css";
 
