@@ -32,6 +32,8 @@ export const Appbar = () => {
   const location = useLocation();
   const navigation = useNavigate();
 
+  const [_, route] = location.pathname.split("/");
+
   return (
     <LibAppbar>
       <Navbar>
@@ -46,8 +48,7 @@ export const Appbar = () => {
                 src={feather}
                 style={{
                   height: "64px",
-                  visibility:
-                    button.to === location.pathname ? undefined : "hidden",
+                  visibility: button.to === "/" + route ? undefined : "hidden",
                 }}
               ></img>
               <Button

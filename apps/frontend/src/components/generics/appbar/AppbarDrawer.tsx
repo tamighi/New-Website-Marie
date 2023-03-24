@@ -17,6 +17,8 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [_, route] = location.pathname.split("/");
+
   const onClick = (to: string) => {
     setOpen(false);
     navigate(to);
@@ -43,7 +45,7 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
                   style={{
                     height: "64px",
                     visibility:
-                      button.to === location.pathname ? "visible" : "hidden",
+                      button.to === "/" + route ? undefined : "hidden",
                   }}
                 ></img>
               </Button>

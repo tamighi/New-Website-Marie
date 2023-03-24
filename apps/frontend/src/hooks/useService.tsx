@@ -5,15 +5,19 @@ import { ServiceDto } from "resources/service";
 export const useService = (id: string) => {
   const queryClient = useQueryClient();
 
-  const { data } = useQuery(["services", id], () => getService(id), {
-    initialData: () => {
-      const services = queryClient.getQueryData<ServiceDto[]>("services");
+  const { data } = useQuery<ServiceDto>(
+    ["services", id],
+    () => getService(id),
+    {
+      initialData: () => {
+        const services = queryClient.getQueryData<ServiceDto[]>("services");
 
-      const initialData = services?.find((item) => item.id == id);
+        const initialData = services?.find((item) => item.id == id);
 
-      return initialData;
-    },
-  });
+        return initialData;
+      },
+    }
+  );
 
   return { data };
 };
