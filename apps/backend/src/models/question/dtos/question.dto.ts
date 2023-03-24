@@ -1,13 +1,8 @@
-export class QuestionDto {
-  id: number;
-  message: string;
-  name?: string;
-  email?: string;
-  date: Date;
-}
+import {
+  CreateMessageDto,
+  MessageDto,
+} from "src/models/message/dtos/messages.dto";
 
-export class CreateQuestionDto {
-  message: string;
-  name?: string;
-  email?: string;
-}
+export class QuestionDto extends MessageDto {}
+
+export class CreateQuestionDto extends CreateMessageDto {}

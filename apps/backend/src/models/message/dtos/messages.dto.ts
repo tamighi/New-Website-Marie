@@ -5,3 +5,9 @@ export class MessageDto {
   email?: string;
   date: Date;
 }
+
+export class CreateMessageDto {
+  message: string;
+  name?: string;
+  email?: string;
+}
