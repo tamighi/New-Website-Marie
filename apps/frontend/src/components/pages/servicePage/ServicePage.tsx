@@ -11,10 +11,7 @@ export const ServicePage = () => {
   return (
     <CenteredPage>
       <h2>Les services proposés ...</h2>
-      <p>
-        Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-        cillum sint consectetur cupidatat.
-      </p>
+      <p>Click on a service to see the details and the price.</p>
       {id ? (
         <ServiceDetails id={id} />
       ) : (

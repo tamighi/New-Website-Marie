@@ -1,8 +1,19 @@
 import { getService } from "api/api";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { ServiceDto } from "resources/service";
 
 export const useService = (id: string) => {
-  const { data } = useQuery<ServiceDto>(["services", id], () => getService(id));
+  const queryClient = useQueryClient();
+
+  const { data } = useQuery(["services", id], () => getService(id), {
+    initialData: () => {
+      const services = queryClient.getQueryData<ServiceDto[]>("services");
+
+      const initialData = services?.find((item) => item.id == id);
+
+      return initialData;
+    },
+  });
+
   return { data };
 };

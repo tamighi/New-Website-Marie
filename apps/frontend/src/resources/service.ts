@@ -5,7 +5,7 @@ export interface SubServiceDto {
 }
 
 export interface ServiceDto {
-  id: number;
+  id: number | string;
   name: string;
   description: string;
   subServices?: SubServiceDto[];
