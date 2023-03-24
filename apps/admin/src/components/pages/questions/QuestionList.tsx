@@ -15,7 +15,7 @@ const columns: Column<QuestionDto>[] = [
     accessor: "message",
     Header: "Message",
     Cell: ({ value }) => (
-    // Will need to use maxWidth on cell and width 100% on p
+      // Will need to use maxWidth on cell and width 100% on p
       <p
         style={{
           maxWidth: "200px",
