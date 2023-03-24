@@ -18,8 +18,9 @@ export class QuestionsService extends AbstractService<Question, QuestionDto> {
     const questionDto: QuestionDto = new QuestionDto();
 
     questionDto.id = question.id;
-    questionDto.identifier = question.identifier;
-    questionDto.password = question.password;
+    questionDto.message = question.message;
+    questionDto.name = question.name;
+    questionDto.email = question.email;
 
     return questionDto;
   }

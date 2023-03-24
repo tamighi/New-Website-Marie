@@ -1,5 +1,7 @@
 export class QuestionDto {
   id: number;
-  identifier: string;
-  password: string;
+  message: string;
+  name?: string;
+  email?: string;
+  date: Date;
 }

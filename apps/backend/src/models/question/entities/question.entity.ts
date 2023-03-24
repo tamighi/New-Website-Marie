@@ -1,4 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
 @Entity()
 export class Question {
@@ -6,8 +11,14 @@ export class Question {
   id: number;
 
   @Column()
-  identifier: string;
+  message: string;
 
-  @Column()
-  password: string;
+  @Column({ nullable: true })
+  name: string;
+
+  @Column({ nullable: true })
+  email: string;
+
+  @CreateDateColumn()
+  date: Date;
 }
