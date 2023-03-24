@@ -4,11 +4,12 @@ import { Button, Input, TextArea, useForm } from "lib";
 import { QuestionDto } from "./questions";
 
 export const ContactPage = () => {
-  const { register, handleSubmit } = useForm<QuestionDto>();
+  const { register, handleSubmit, reset } = useForm<QuestionDto>();
   const { mutate } = usePostQuestion();
 
   const onSubmit = (question: Partial<QuestionDto>) => {
     mutate(question);
+    reset();
   };
 
   return (

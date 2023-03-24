@@ -4,16 +4,28 @@ import { isQuestionArray, QuestionDto } from "./questions";
 
 const columns: Column<QuestionDto>[] = [
   {
-    accessor: "message",
-    Header: "Message",
-  },
-  {
     accessor: "name",
     Header: "Nom",
   },
   {
     accessor: "email",
     Header: "Email",
+  },
+  {
+    accessor: "message",
+    Header: "Message",
+    Cell: ({ value }) => (
+    // Will need to use maxWidth on cell and width 100% on p
+      <p
+        style={{
+          maxWidth: "200px",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {value}
+      </p>
+    ),
   },
   {
     accessor: "date",
