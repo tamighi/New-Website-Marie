@@ -18,6 +18,5 @@ export const isQuestion = (data: unknown): data is QuestionDto => {
 };
 
 export const isQuestionArray = (data: unknown): data is QuestionDto[] => {
-  console.log(data);
   return isGenericArray(data, serviceDto);
 };

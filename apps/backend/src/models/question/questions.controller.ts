@@ -6,7 +6,7 @@ import {
   Post,
 } from "@nestjs/common";
 import { AbstractController } from "src/models/abstract/abstract.controller";
-import { CreateQuestionDto, QuestionDto } from "./dtos/question.dto";
+import { QuestionDto } from "./dtos/question.dto";
 import { Question } from "./entities/question.entity";
 import { QuestionsService } from "./questions.service";
 

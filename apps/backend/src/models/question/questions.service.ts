@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { AbstractService } from "src/models/abstract/abstract.service";
 import { Repository } from "typeorm";
+import { MessagesService } from "../message/messages.service";
 import { CreateQuestionDto, QuestionDto } from "./dtos/question.dto";
 import { Question } from "./entities/question.entity";
 
 @Injectable()
-export class QuestionsService extends AbstractService<Question, QuestionDto> {
+export class QuestionsService extends MessagesService<Question, QuestionDto> {
   constructor(
     @InjectRepository(Question)
     protected readonly questionRepository: Repository<Question>
