@@ -14,14 +14,8 @@ export class QuestionsService extends MessagesService<Question, QuestionDto> {
     super(questionRepository);
   }
 
-  entityToDto(question: Question): QuestionDto {
-    const questionDto: QuestionDto = new QuestionDto();
-
-    questionDto.id = question.id;
-    questionDto.message = question.message;
-    questionDto.name = question.name;
-    questionDto.email = question.email;
-    questionDto.date = question.date;
+  override entityToDto(question: Question): QuestionDto {
+    const questionDto: QuestionDto = super.entityToDto(question);
 
     return questionDto;
   }
