@@ -13,6 +13,7 @@ import {
 
 import styles from "./App.css";
 import "./Global.css";
+import { QuestionPage } from "components/pages/questions/QuestionPage";
 
 export const App = () => {
   const [openSidebar, setOpenSidebar] = React.useState(false);
@@ -30,6 +31,7 @@ export const App = () => {
           <Route path="services" element={<ServicePage />} />
           <Route path="services/:id" element={<ServiceEdit />} />
           <Route path="services/create" element={<ServiceCreate />} />
+          <Route path="questions/*" element={<QuestionPage />} />
         </Routes>
       </main>
     </div>

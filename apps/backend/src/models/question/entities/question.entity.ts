@@ -14,10 +14,10 @@ export class Question {
   message: string;
 
   @Column({ nullable: true })
-  name: string;
+  name?: string;
 
   @Column({ nullable: true })
-  email: string;
+  email?: string;
 
   @CreateDateColumn()
   date: Date;

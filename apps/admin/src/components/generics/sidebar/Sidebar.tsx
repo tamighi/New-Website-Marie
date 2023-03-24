@@ -13,6 +13,7 @@ import styles from "./Sidebar.css";
 const pages = [
   { name: "Dashboard", to: "/", logo: <HomeIcon />, divider: true },
   { name: "Services", to: "/services", logo: <TableChartIcon /> },
+  { name: "Questions", to: "/questions", logo: <TableChartIcon /> },
 ];
 
 interface SidebarProps {
