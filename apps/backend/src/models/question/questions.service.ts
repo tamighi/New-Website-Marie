@@ -21,6 +21,7 @@ export class QuestionsService extends AbstractService<Question, QuestionDto> {
     questionDto.message = question.message;
     questionDto.name = question.name;
     questionDto.email = question.email;
+    questionDto.date = question.date;
 
     return questionDto;
   }

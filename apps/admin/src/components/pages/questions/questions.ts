@@ -3,7 +3,7 @@ import { isGeneric, isGenericArray } from "utils";
 export interface QuestionDto {
   id: number;
   message: string;
-  date: Date;
+  date?: Date;
   name?: string;
   email?: string;
 }
@@ -11,7 +11,6 @@ export interface QuestionDto {
 const serviceDto: QuestionDto = {
   id: 1,
   message: "",
-  date: new Date(),
 } as const;
 
 export const isQuestion = (data: unknown): data is QuestionDto => {
@@ -19,5 +18,6 @@ export const isQuestion = (data: unknown): data is QuestionDto => {
 };
 
 export const isQuestionArray = (data: unknown): data is QuestionDto[] => {
+  console.log(data);
   return isGenericArray(data, serviceDto);
 };
