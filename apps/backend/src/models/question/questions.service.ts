@@ -24,4 +24,11 @@ export class QuestionsService extends AbstractService<Question, QuestionDto> {
 
     return questionDto;
   }
+
+  async postQuestion(question: QuestionDto) {
+    const createdQuestion = this.questionRepository.create(question);
+    const saved = await this.questionRepository.save(createdQuestion);
+
+    return { data: this.entityToDto(saved) };
+  }
 }

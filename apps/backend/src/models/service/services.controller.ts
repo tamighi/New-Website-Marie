@@ -1,4 +1,10 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+} from "@nestjs/common";
 import { AbstractController } from "src/models/abstract/abstract.controller";
 import { ServiceDto } from "./dtos/service.dto";
 import { Service } from "./entities/service.entity";
@@ -15,11 +21,19 @@ export class ServicesController extends AbstractController<
 
   @Get("fetchServices")
   async fetchServices() {
-    return this.servicesService.fetchServices();
+    try {
+      return await this.servicesService.fetchServices();
+    } catch (err) {
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
+    }
   }
 
   @Get("fetchServices/:id")
   async fetchOneService(@Param() id: { id: number }) {
-    return this.servicesService.fetchOneService(id);
+    try {
+      return await this.servicesService.fetchOneService(id);
+    } catch (err) {
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
+    }
   }
 }

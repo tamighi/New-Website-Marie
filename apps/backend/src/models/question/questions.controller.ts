@@ -1,4 +1,10 @@
-import { Controller } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  HttpException,
+  HttpStatus,
+  Post,
+} from "@nestjs/common";
 import { AbstractController } from "src/models/abstract/abstract.controller";
 import { QuestionDto } from "./dtos/question.dto";
 import { Question } from "./entities/question.entity";
@@ -11,5 +17,14 @@ export class QuestionsController extends AbstractController<
 > {
   constructor(private readonly questionService: QuestionsService) {
     super(questionService);
+  }
+
+  @Post("postQuestion")
+  async postQuestion(@Body() body: QuestionDto) {
+    try {
+      return await this.questionService.postQuestion(body);
+    } catch (err) {
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
+    }
   }
 }
