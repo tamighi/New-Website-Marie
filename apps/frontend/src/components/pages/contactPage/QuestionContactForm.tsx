@@ -1,5 +1,6 @@
 import { usePostQuestion } from "hooks/usePostQuestion";
 import { Button, Input, TextArea, useForm } from "lib";
+import { FormContent } from "../core/FormContent";
 import { QuestionDto } from "./questions";
 
 export const QuestionContactForm = () => {
@@ -13,9 +14,17 @@ export const QuestionContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input {...register("name")} placeholder="Nom" />
-      <Input {...register("email")} placeholder="Email" />
-      <TextArea {...register("message")} placeholder="Message" />
+      <FormContent>
+        <p>Formulaire de demande d'informations</p>
+        <Input flex {...register("name")} placeholder="Nom" />
+        <Input flex {...register("email")} placeholder="Email" />
+        <TextArea
+          flex
+          rows={12}
+          {...register("message")}
+          placeholder="Message"
+        />
+      </FormContent>
       <Button type="submit"> Submit </Button>
     </form>
   );

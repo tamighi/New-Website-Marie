@@ -5,7 +5,6 @@ export const ContactPage = () => {
   return (
     <CenteredPage>
       <h2>Contact</h2>
-      <p>Formulaire</p>
       <QuestionContactForm />
     </CenteredPage>
   );
