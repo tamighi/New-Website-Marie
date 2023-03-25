@@ -2,6 +2,8 @@ import { Card } from "lib";
 import { useNavigate } from "react-router-dom";
 import { ServiceDto } from "resources/service";
 
+import styles from "./Service.css";
+
 export const ServiceCard = ({ service }: { service: ServiceDto }) => {
   const navigate = useNavigate();
 
@@ -11,7 +13,7 @@ export const ServiceCard = ({ service }: { service: ServiceDto }) => {
       onClick={() => navigate(`${service.id}`)}
     >
       <h3>{service.name}</h3>
-      <p>{service.description}</p>
+      <p className={styles.DescriptionClamp}>{service.description}</p>
     </Card>
   );
 };
