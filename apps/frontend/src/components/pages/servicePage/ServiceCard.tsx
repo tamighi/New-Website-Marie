@@ -9,7 +9,7 @@ export const ServiceCard = ({ service }: { service: ServiceDto }) => {
 
   return (
     <Card
-      style={{ margin: "3px", width: "300px" }}
+      className={styles.ServiceCard}
       onClick={() => navigate(`${service.id}`)}
     >
       <h3>{service.name}</h3>
