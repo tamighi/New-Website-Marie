@@ -18,8 +18,8 @@ export const ServiceMain = () => {
         vous pourrez ainsi voir concrètement ce que cela peut vous apporter. À
         moins que vous cherchiez plutôt à être accompagné(e) dans vos efforts
         d’écriture.
-        <br/>
-        <br/>
+        <br />
+        <br />
         Clickez sur un service afin de voir les tarifs proposés.
       </p>
       {services?.map((service) => (
