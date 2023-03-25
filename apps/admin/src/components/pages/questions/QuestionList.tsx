@@ -16,16 +16,17 @@ const columns: Column<QuestionDto>[] = [
     Header: "Message",
     Cell: ({ value }) => (
       // Will need to use maxWidth on cell and width 100% on p
-      <p
+      <span
         style={{
-          maxWidth: "200px",
           overflow: "hidden",
           textOverflow: "ellipsis",
+          display: "block",
         }}
       >
         {value}
-      </p>
+      </span>
     ),
+    maxWidth: 150,
   },
   {
     accessor: "date",

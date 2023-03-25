@@ -109,7 +109,9 @@ const DataGrid = <T extends object>({
               {...rowProps}
             >
               {row.cells.map((cell) => {
-                const { key, ...cellProps } = cell.getCellProps();
+                const { key, ...cellProps } = cell.getCellProps({
+                  style: { maxWidth: cell.column.maxWidth },
+                });
                 return (
                   <TableCell key={key} {...cellProps}>
                     {cell.render("Cell")}

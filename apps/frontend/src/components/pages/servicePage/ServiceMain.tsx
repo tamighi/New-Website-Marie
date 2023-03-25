@@ -20,7 +20,7 @@ export const ServiceMain = () => {
         d’écriture.
         <br />
         <br />
-        Clickez sur un service afin de voir les tarifs proposés.
+        Cliquez sur un service afin de voir les tarifs proposés.
       </p>
       {services?.map((service) => (
         <ServiceCard service={service} key={service.id} />
