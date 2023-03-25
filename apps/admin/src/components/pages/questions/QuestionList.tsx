@@ -6,16 +6,17 @@ const columns: Column<QuestionDto>[] = [
   {
     accessor: "name",
     Header: "Nom",
+    maxWidth: 150,
   },
   {
     accessor: "email",
     Header: "Email",
+    maxWidth: 150,
   },
   {
     accessor: "message",
     Header: "Message",
     Cell: ({ value }) => (
-      // Will need to use maxWidth on cell and width 100% on p
       <span
         style={{
           overflow: "hidden",
@@ -31,6 +32,14 @@ const columns: Column<QuestionDto>[] = [
   {
     accessor: "date",
     Header: "Date",
+    Cell: ({ value }) => {
+      if (!value) {
+        return null;
+      }
+      const date = new Date(value).toLocaleDateString();
+
+      return <span>{date}</span>;
+    },
   },
 ];
 
