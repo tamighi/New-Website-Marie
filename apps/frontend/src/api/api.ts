@@ -16,6 +16,6 @@ export const getService = async (id: string): Promise<any> => {
 export const postQuestion = async (
   question: Partial<QuestionDto>
 ): Promise<any> => {
-  const url = `${apiUrl}/question/postQuestion`;
+  const url = `${apiUrl}/question/postMessage`;
   return httpClient(url, { method: "POST", body: JSON.stringify(question) });
 };

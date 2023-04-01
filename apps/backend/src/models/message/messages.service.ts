@@ -11,6 +11,7 @@ export class MessagesService<
 
   constructor(messageRepository: Repository<T>) {
     super(messageRepository);
+    this.messageRepository = messageRepository;
   }
 
   entityToDto(message: T): DTO {
