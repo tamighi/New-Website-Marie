@@ -10,10 +10,12 @@ import {
   ServiceEdit,
   ServicePage,
 } from "./components/pages/services";
+import { QuestionPage } from "components/pages/questions/QuestionPage";
+import { DevisPage } from "components/pages/devis/DevisPage";
+import { ReviewPage } from "components/pages/reviews/ReviewPage";
 
 import styles from "./App.css";
 import "./Global.css";
-import { QuestionPage } from "components/pages/questions/QuestionPage";
 
 export const App = () => {
   const [openSidebar, setOpenSidebar] = React.useState(false);
@@ -32,6 +34,8 @@ export const App = () => {
           <Route path="services/:id" element={<ServiceEdit />} />
           <Route path="services/create" element={<ServiceCreate />} />
           <Route path="questions/*" element={<QuestionPage />} />
+          <Route path="devis/*" element={<DevisPage />} />
+          <Route path="reviews/*" element={<ReviewPage />} />
         </Routes>
       </main>
     </div>

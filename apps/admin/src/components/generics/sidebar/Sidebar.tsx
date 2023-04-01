@@ -14,6 +14,8 @@ const pages = [
   { name: "Dashboard", to: "/", logo: <HomeIcon />, divider: true },
   { name: "Services", to: "/services", logo: <TableChartIcon /> },
   { name: "Questions", to: "/questions", logo: <TableChartIcon /> },
+  { name: "Devis", to: "/devis", logo: <TableChartIcon /> },
+  { name: "Avis", to: "/reviews", logo: <TableChartIcon /> },
 ];
 
 interface SidebarProps {

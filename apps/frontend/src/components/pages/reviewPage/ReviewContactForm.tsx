@@ -5,7 +5,7 @@ import { ReviewDto } from "./review";
 
 export const ReviewContactForm = () => {
   const { register, handleSubmit, reset } = useForm<ReviewDto>();
-  const { mutate } = usePostMessage<ReviewDto>("devis");
+  const { mutate } = usePostMessage<ReviewDto>("review");
 
   const onSubmit = (devis: Partial<ReviewDto>) => {
     mutate(devis);
