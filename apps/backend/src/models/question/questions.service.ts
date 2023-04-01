@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { MessagesService } from "../message/messages.service";
-import { CreateQuestionDto, QuestionDto } from "./dtos/question.dto";
+import { QuestionDto } from "./dtos/question.dto";
 import { Question } from "./entities/question.entity";
 
 @Injectable()
@@ -18,12 +18,5 @@ export class QuestionsService extends MessagesService<Question, QuestionDto> {
     const questionDto: QuestionDto = super.entityToDto(question);
 
     return questionDto;
-  }
-
-  async postQuestion(question: CreateQuestionDto) {
-    const createdQuestion = this.questionRepository.create(question);
-    const saved = await this.questionRepository.save(createdQuestion);
-
-    return { data: this.entityToDto(saved) };
   }
 }

@@ -1,5 +1,5 @@
 import { AbstractService } from "src/models/abstract/abstract.service";
-import { Repository } from "typeorm";
+import { DeepPartial, Repository } from "typeorm";
 import { MessageDto } from "./dtos/messages.dto";
 import { Message } from "./entities/messages.entity";
 
@@ -7,7 +7,7 @@ export class MessagesService<
   T extends Message,
   DTO extends MessageDto
 > extends AbstractService<T, DTO> {
-  protected repository: Repository<T>;
+  protected messageRepository: Repository<T>;
 
   constructor(messageRepository: Repository<T>) {
     super(messageRepository);
@@ -23,5 +23,12 @@ export class MessagesService<
     messageDto.date = message.date;
 
     return messageDto;
+  }
+
+  async postMessage(message: DeepPartial<T>) {
+    const createdQuestion = this.messageRepository.create(message);
+    const saved = await this.messageRepository.save(createdQuestion);
+
+    return { data: this.entityToDto(saved) };
   }
 }
