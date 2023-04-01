@@ -1,4 +1,4 @@
-import { QuestionDto } from "components/pages/contactPage/questions";
+import { MessageDto } from "components/pages/contactPage/message";
 import { httpClient } from "./httpClient";
 
 const apiUrl = "http://192.168.1.50:8000";
@@ -13,9 +13,10 @@ export const getService = async (id: string): Promise<any> => {
   return httpClient(url);
 };
 
-export const postQuestion = async (
-  question: Partial<QuestionDto>
+export const postMessage = async <T extends MessageDto>(
+  message: Partial<T>,
+  resource: string,
 ): Promise<any> => {
-  const url = `${apiUrl}/question/postMessage`;
-  return httpClient(url, { method: "POST", body: JSON.stringify(question) });
+  const url = `${apiUrl}/${resource}/postMessage`;
+  return httpClient(url, { method: "POST", body: JSON.stringify(message) });
 };

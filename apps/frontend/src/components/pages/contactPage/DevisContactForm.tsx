@@ -1,21 +1,21 @@
 import { usePostMessage } from "hooks/usePostMessage";
 import { Button, Input, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
-import { QuestionDto } from "./questions";
+import { DevisDto } from "./devis";
 
-export const QuestionContactForm = () => {
-  const { register, handleSubmit, reset } = useForm<QuestionDto>();
-  const { mutate } = usePostMessage<QuestionDto>("question");
+export const DevisContactForm = () => {
+  const { register, handleSubmit, reset } = useForm<DevisDto>();
+  const { mutate } = usePostMessage<DevisDto>("devis");
 
-  const onSubmit = (question: Partial<QuestionDto>) => {
-    mutate(question);
+  const onSubmit = (devis: Partial<DevisDto>) => {
+    mutate(devis);
     reset();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
-        <p>Formulaire de demande d'informations</p>
+        <p>Formulaire de demande de devis</p>
         <Input flex {...register("name")} placeholder="Nom" />
         <Input flex {...register("email")} placeholder="Email" />
         <TextArea
@@ -25,7 +25,7 @@ export const QuestionContactForm = () => {
           placeholder="Message"
         />
       </FormContent>
-      <Button type="submit">Submit</Button>
+      <Button type="submit"> Submit </Button>
     </form>
   );
 };

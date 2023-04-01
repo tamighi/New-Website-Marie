@@ -9,6 +9,7 @@ import { AuthModule } from "./auth/auth.module";
 import { UsersModule } from "./models/user/users.module";
 import { SubServicesModule } from "./models/subService/subServices.module";
 import { QuestionsModule } from "./models/question/questions.module";
+import { DevisModule } from "./models/devis/devis.module";
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
@@ -21,6 +22,7 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
     ServicesModule,
     SubServicesModule,
     QuestionsModule,
+    DevisModule,
   ],
 })
 export class AppModule {}
