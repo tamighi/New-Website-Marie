@@ -1,5 +1,6 @@
 import { matchPath, useLocation } from "react-router-dom";
-import { Header, MainCard, RightDrawer } from "../../core";
+import { Header, MainCard } from "../../core";
+import { QuestionDrawer } from "./QuestionDrawer";
 import { QuestionList } from "./QuestionList";
 
 export const QuestionPage = () => {
@@ -20,9 +21,7 @@ export const QuestionPage = () => {
         </Header>
         <QuestionList />
       </MainCard>
-      <RightDrawer open={!!match}>
-        <p>{match?.params.id} Hello World</p>
-      </RightDrawer>
+      <QuestionDrawer />
     </>
   );
 };

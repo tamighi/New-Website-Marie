@@ -1,5 +1,6 @@
 import { matchPath, useLocation } from "react-router-dom";
-import { Header, MainCard, RightDrawer } from "../../core";
+import { Header, MainCard } from "../../core";
+import { ReviewDrawer } from "./ReviewDrawer";
 import { ReviewList } from "./ReviewList";
 
 export const ReviewPage = () => {
@@ -20,9 +21,7 @@ export const ReviewPage = () => {
         </Header>
         <ReviewList />
       </MainCard>
-      <RightDrawer open={!!match}>
-        <p>{match?.params.id} Hello World</p>
-      </RightDrawer>
+      <ReviewDrawer />
     </>
   );
 };
