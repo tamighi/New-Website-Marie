@@ -20,3 +20,9 @@ export const postMessage = async <T extends MessageDto>(
   const url = `${apiUrl}/${resource}/postMessage`;
   return httpClient(url, { method: "POST", body: JSON.stringify(message) });
 };
+
+export const getReviews = async (): Promise<any> => {
+  const url = `${apiUrl}/review/fetchReviews`;
+  return httpClient(url);
+};
+
