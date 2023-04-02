@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { FindOptionsWhere, Repository } from "typeorm";
+import { QueryDto } from "../abstract/dtos/query.dto";
 import { MessagesService } from "../message/messages.service";
 import { ReviewDto } from "./dtos/review.dto";
 import { Review } from "./entities/review.entity";
@@ -18,5 +19,17 @@ export class ReviewsService extends MessagesService<Review, ReviewDto> {
     const reviewDto: ReviewDto = super.entityToDto(review);
 
     return reviewDto;
+  }
+
+  async fetchReviews(query: QueryDto) {
+    const [data, count]: [Review[], number] = await this.repository.findAndCount({
+      where: query.filter as FindOptionsWhere<Review>,
+      ...(query.sort && { order: query.sort }),
+      ...(query.range && {
+        skip: query.range[0],
+        take: query.range[1] - query.range[0] + 1,
+      }),
+    });
+    return { data: data.map((x) => this.entityToDto(x)), count: count };
   }
 }
