@@ -1,11 +1,11 @@
 import { matchPath, useLocation } from "react-router-dom";
-import { Header, MainCard, RightDrawer } from "../core";
-import { QuestionList } from "./QuestionList";
+import { Header, MainCard, RightDrawer } from "../../core";
+import { DevisList } from "./DevisList";
 
-export const QuestionPage = () => {
+export const DevisPage = () => {
   const location = useLocation();
 
-  const match = matchPath("/questions/:id", location.pathname);
+  const match = matchPath("/devis/:id", location.pathname);
 
   return (
     <>
@@ -18,7 +18,7 @@ export const QuestionPage = () => {
         <Header>
           <h3>Demandes d'information</h3>
         </Header>
-        <QuestionList />
+        <DevisList />
       </MainCard>
       <RightDrawer open={!!match}>
         <p>{match?.params.id} Hello World</p>

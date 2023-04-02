@@ -10,9 +10,9 @@ import {
   ServiceEdit,
   ServicePage,
 } from "./components/pages/services";
-import { QuestionPage } from "components/pages/questions/QuestionPage";
-import { DevisPage } from "components/pages/devis/DevisPage";
-import { ReviewPage } from "components/pages/reviews/ReviewPage";
+import { QuestionPage } from "components/pages/messages/questions/QuestionPage";
+import { DevisPage } from "components/pages/messages/devis/DevisPage";
+import { ReviewPage } from "components/pages/messages/reviews/ReviewPage";
 
 import styles from "./App.css";
 import "./Global.css";

@@ -1,8 +1,10 @@
-import { Column } from "react-table";
-import { MyDatagrid } from "../core";
-import { DevisDto, isDevisArray } from "./devis";
+import React from "react";
 
-const columns: Column<DevisDto>[] = [
+import { MyDatagrid } from "components/pages/core";
+import { Column } from "react-table";
+import { MessageDto } from "./message";
+
+const messageColumns: Column<MessageDto>[] = [
   {
     accessor: "name",
     Header: "Nom",
@@ -43,14 +45,25 @@ const columns: Column<DevisDto>[] = [
   },
 ];
 
-export const DevisList = () => {
+type Props<T extends MessageDto> = {
+  additionnalColumn?: Column<T>[];
+  isTArray: any;
+  resource: string;
+};
+
+export const MessageList = <T extends MessageDto>(props: Props<T>) => {
+  const { additionnalColumn = [], isTArray, resource } = props;
+
+  const columns = React.useMemo(
+    () => ([ ...additionnalColumn, ...messageColumns as Column<T>[] ]),
+    []
+  );
+
   return (
-    <>
-      <MyDatagrid
-        isTArray={isDevisArray}
-        columns={columns}
-        resource="devis"
-      />
-    </>
+    <MyDatagrid<T>
+      isTArray={isTArray}
+      columns={columns}
+      resource={resource}
+    />
   );
 };
