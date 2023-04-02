@@ -1,0 +1,7 @@
+.Tabs {
+  display: flex;
+}
+
+.ActiveTab {
+  background-color: red !important;
+}
