@@ -5,14 +5,14 @@ import { Appbar } from "./components/generics/appbar/Appbar";
 import { Sidebar } from "./components/generics/sidebar/Sidebar";
 import { Dashboard } from "./components/pages/dashboard/Dashboard";
 
+import { DevisPage } from "components/pages/messages/devis/DevisPage";
+import { QuestionPage } from "components/pages/messages/questions/QuestionPage";
+import { ReviewPage } from "components/pages/messages/reviews/ReviewPage";
 import {
   ServiceCreate,
   ServiceEdit,
   ServicePage,
 } from "./components/pages/services";
-import { QuestionPage } from "components/pages/messages/questions/QuestionPage";
-import { DevisPage } from "components/pages/messages/devis/DevisPage";
-import { ReviewPage } from "components/pages/messages/reviews/ReviewPage";
 
 import styles from "./App.css";
 import "./Global.css";
@@ -30,9 +30,16 @@ export const App = () => {
         <Sidebar open={openSidebar} toggleSideBar={toggleOpen} />
         <Routes>
           <Route path="" element={<Dashboard />} />
-          <Route path="services" element={<ServicePage />} />
-          <Route path="services/:id" element={<ServiceEdit />} />
-          <Route path="services/create" element={<ServiceCreate />} />
+          <Route
+            path="services/*"
+            element={
+              <Routes>
+                <Route path="" element={<ServicePage />} />
+                <Route path=":id" element={<ServiceEdit />} />
+                <Route path="create" element={<ServiceCreate />} />
+              </Routes>
+            }
+          />
           <Route path="questions/*" element={<QuestionPage />} />
           <Route path="devis/*" element={<DevisPage />} />
           <Route path="reviews/*" element={<ReviewPage />} />
