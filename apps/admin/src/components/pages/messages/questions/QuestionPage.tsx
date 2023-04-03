@@ -1,26 +1,10 @@
-import { matchPath, useLocation } from "react-router-dom";
-import { Header, MainCard } from "../../core";
+import { QuestionCard } from "./QuestionCard";
 import { QuestionDrawer } from "./QuestionDrawer";
-import { QuestionList } from "./QuestionList";
 
 export const QuestionPage = () => {
-  const location = useLocation();
-
-  const match = matchPath("/questions/:id", location.pathname);
-
   return (
     <>
-      <MainCard
-        style={{
-          marginRight: !!match ? "412px" : "12px",
-          transition: "margin-right 225ms",
-        }}
-      >
-        <Header>
-          <h3>Demandes d'information</h3>
-        </Header>
-        <QuestionList />
-      </MainCard>
+      <QuestionCard />
       <QuestionDrawer />
     </>
   );
