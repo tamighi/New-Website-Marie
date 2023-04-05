@@ -1,7 +1,7 @@
+import { ServiceDto } from "api/types";
 import { useEditForm } from "hooks";
 import { Button, Input, TextArea } from "lib";
 
-import { ServiceDto } from "..";
 import { FormAction, FormContent } from "../../core";
 
 export const ServiceEditForm = ({ data }: { data: ServiceDto }) => {

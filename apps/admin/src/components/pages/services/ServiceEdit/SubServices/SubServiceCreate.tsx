@@ -1,7 +1,7 @@
+import { SubServiceDto } from "api/types";
 import { FormAction, FormContent, LoadingIcon } from "components/pages/core";
 import { useCreateRefForm } from "hooks";
 import { Button, Input } from "lib";
-import { SubServiceDto } from "../../service";
 import { SubServiceFormContainer } from "./SubServiceFormContainer";
 
 export const SubServiceCreate = ({ serviceId }: { serviceId: number }) => {

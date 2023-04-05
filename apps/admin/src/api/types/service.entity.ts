@@ -2,6 +2,9 @@ export interface SubServiceDto {
   id: number;
   textType: string;
   pricePerCharacter: number;
+  service?: {
+    id: number;
+  }
 }
 
 export interface ServiceDto {

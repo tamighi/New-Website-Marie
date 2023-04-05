@@ -3,6 +3,7 @@ import React from "react";
 import { MyDatagrid } from "components/pages/core";
 import { Column } from "react-table";
 import { MessageDto } from "./message";
+import { ResourceType } from "api/dataProvider";
 
 const messageColumns: Column<MessageDto>[] = [
   {
@@ -45,23 +46,22 @@ const messageColumns: Column<MessageDto>[] = [
   },
 ];
 
-type MessageResourceType = "question" | "review" | "devis";
+type MessageResourceString = "question" | "review" | "devis";
 
-type Props<T extends MessageDto> = {
-  additionnalColumn?: Column<T>[];
-  isTArray: any;
-  resource: MessageResourceType;
+type MessageListProps<R extends MessageResourceString> = {
+  additionnalColumn?: Column<ResourceType<R>>[];
+  resource: R;
 };
 
-export const MessageList = <T extends MessageDto>(props: Props<T>) => {
-  const { additionnalColumn = [], isTArray, resource } = props;
+export const MessageList = <R extends MessageResourceString>(
+  props: MessageListProps<R>
+) => {
+  const { additionnalColumn = [], resource } = props;
 
   const columns = React.useMemo(
-    () => [...additionnalColumn, ...(messageColumns as Column<T>[])],
+    () => [...additionnalColumn, ...(messageColumns as Column<ResourceType<R>>[])],
     []
   );
 
-  return (
-    <MyDatagrid<T> isTArray={isTArray} columns={columns} resource={resource} />
-  );
+  return <MyDatagrid columns={columns} resource={resource} />;
 };

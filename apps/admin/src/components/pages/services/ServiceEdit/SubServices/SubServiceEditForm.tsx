@@ -1,7 +1,7 @@
+import { SubServiceDto } from "api/types";
 import { FormAction, FormContent, LoadingIcon } from "components/pages/core";
 import { useDeleteOneRef, useEditRefForm } from "hooks";
 import { Button, CloseIcon, IconButton, Input } from "lib";
-import { SubServiceDto } from "../../service";
 import { SubServiceFormContainer } from "./SubServiceFormContainer";
 
 export const SubServiceEditForm = ({

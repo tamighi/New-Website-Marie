@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 
 import { MainCard, SecondaryCard } from "../../core";
-import { isService } from "..";
 import { ServiceEditForm } from "./ServiceEditForm";
 import { ServiceEditHeader } from "./ServiceEditHeader";
 import { SubServiceEdit } from "./SubServices";
@@ -17,7 +16,7 @@ export const ServiceEdit = () => {
     return <div>Loading...</div>;
   }
 
-  if (!data || !isService(data.data)) {
+  if (!data) {
     return <div>Unkown error...</div>;
   }
 

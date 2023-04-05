@@ -1,8 +1,16 @@
-import { dataProvider, GetOneParams } from "api/dataProvider";
+import {
+  dataProvider,
+  GetOneParams,
+  ResourceString,
+  ResourceType,
+} from "api/dataProvider";
 import { useGetSearchParams } from "hooks";
 import { useQuery, useQueryClient } from "react-query";
 
-export const useGetOne = (resource: string, params: GetOneParams) => {
+export const useGetOne = <R extends ResourceString>(
+  resource: R,
+  params: GetOneParams
+) => {
   const { id } = params;
 
   const query = useGetSearchParams();
@@ -11,7 +19,7 @@ export const useGetOne = (resource: string, params: GetOneParams) => {
 
   const initialData = () => {
     const data = queryClient.getQueryData<
-      Record<string, { id: number | string }[]>
+      Record<string, ResourceType<R>[]>
     >([resource, query]);
 
     const initialData = data?.data?.find((item) => item.id == id);
@@ -21,7 +29,7 @@ export const useGetOne = (resource: string, params: GetOneParams) => {
 
   const queryResult = useQuery(
     [resource, params],
-    () => dataProvider.getOne(resource, params),
+    () => dataProvider.getOne<R>(resource, params),
     {
       initialData,
     }

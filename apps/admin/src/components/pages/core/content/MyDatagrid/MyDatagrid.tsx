@@ -7,27 +7,25 @@ import { Column } from "react-table";
 
 import { useDeleteMany, useGetList, useGetSearchParams } from "hooks";
 import { SelectedOptions } from "../..";
-import { ResourceString } from "api/dataProvider";
+import { ResourceString, ResourceType } from "api/dataProvider";
 
 const entryPerPage = 20;
 
-export interface MyDatagridProps<T extends object> {
-  resource: ResourceString;
-  columns: Column<T>[];
-  isTArray: (obj: object) => obj is T[];
+export interface MyDatagridProps<R extends ResourceString> {
+  resource: R;
+  columns: Column<ResourceType<R>>[];
 }
 
-export const MyDatagrid = <T extends { id: string | number }>({
+export const MyDatagrid = <R extends ResourceString>({
   resource,
   columns,
-  isTArray,
-}: MyDatagridProps<T>) => {
+}: MyDatagridProps<R>) => {
   const [page, setPage] = React.useState(1);
-  const [selected, setSelected] = React.useState<T[]>([]);
+  const [selected, setSelected] = React.useState<ResourceType<R>[]>([]);
 
   const params = useGetSearchParams();
 
-  const { data, isLoading, isError } = useGetList(resource, params);
+  const { data, isLoading, isError } = useGetList<R>(resource, params);
 
   const { showDialog } = useDialog();
 
@@ -46,7 +44,7 @@ export const MyDatagrid = <T extends { id: string | number }>({
     return <div>Fetching ...</div>;
   }
 
-  if (!data?.data || isError || !isTArray(data.data)) {
+  if (!data?.data || isError) {
     return <div>Error !</div>;
   }
 
@@ -67,7 +65,7 @@ export const MyDatagrid = <T extends { id: string | number }>({
         selection
         setSelected={setSelected}
         clickable
-        onRowClick={(value: T) => navigate(`${value.id}`)}
+        onRowClick={(value: ResourceType<R>) => navigate(`${value.id}`)}
       />
       <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
         Previous

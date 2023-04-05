@@ -1,4 +1,4 @@
-import { SubServiceDto } from "../../service";
+import { SubServiceDto } from "api/types";
 import { SubServiceCreate } from "./SubServiceCreate";
 import { SubServiceEditForm } from "./SubServiceEditForm";
 

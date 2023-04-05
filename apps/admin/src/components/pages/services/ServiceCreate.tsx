@@ -1,8 +1,8 @@
+import { ServiceDto } from "api/types";
 import { useCreateForm } from "hooks";
 import { Button, Input, TextArea } from "lib";
 import { FormAction, FormContent, Header, MainCard } from "../core";
 
-import { ServiceDto } from "./service";
 
 export const ServiceCreate = () => {
   const { register, onSubmit, error, isLoading } =

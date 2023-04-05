@@ -89,7 +89,7 @@ export const dataProvider = {
   getList: async <R extends ResourceString>(
     resource: ResourceString,
     query: GetListParams
-  ): Promise<{ count: number; data: ResourceType<R>[] }> => {
+  ) => {
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     const resp = await httpClient(url);
@@ -103,13 +103,22 @@ export const dataProvider = {
     throw Error("Unexpected response");
   },
 
-  getOne: async (resource: string, params: GetOneParams) => {
+  getOne: async <R extends ResourceString>(
+    resource: ResourceString,
+    params: GetOneParams
+  ) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url);
-    if (tGS.hasDataObject(resp)) {
-      return resp;
+    if (!tGS.hasDataObject(resp)) {
+      throw Error("Unexpected response object");
     }
-    throw Error("Unexpected response object");
+
+    const data = resp.data;
+
+    if (!tGS.isGeneric<ResourceType<R>>(data, resource)) {
+      throw Error("Unexpected response object");
+    }
+    return { data };
   },
 
   getMany: async (resource: string, params: GetManyParams) => {

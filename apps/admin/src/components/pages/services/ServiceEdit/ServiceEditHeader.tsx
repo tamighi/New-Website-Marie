@@ -1,9 +1,9 @@
+import { ServiceDto } from "api/types";
 import { useDeleteOne } from "hooks";
 import { CloseIcon, DeleteIcon, IconButton } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { Header } from "../../core";
-import { ServiceDto } from "../service";
 
 export const ServiceEditHeader = ({
   serviceDto,
