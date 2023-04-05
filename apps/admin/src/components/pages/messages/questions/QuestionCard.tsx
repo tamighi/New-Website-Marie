@@ -1,14 +1,18 @@
-import { Header } from 'components/pages/core'
-import { MessageCard } from '../common/MessageCard'
-import { QuestionList } from './QuestionList'
+import { Header, MainCard } from "components/pages/core";
+import { QuestionList } from "./QuestionList";
 
-export const QuestionCard = () => {
+export const QuestionCard = ({ openDrawer }: { openDrawer: boolean }) => {
   return (
-    <MessageCard resource={"questions"}>
+    <MainCard
+      style={{
+        marginRight: openDrawer ? "412px" : "12px",
+        transition: "margin-right 225ms",
+      }}
+    >
       <Header>
         <h3>Demandes d'information</h3>
       </Header>
       <QuestionList />
-    </MessageCard>
-  )
-}
+    </MainCard>
+  );
+};

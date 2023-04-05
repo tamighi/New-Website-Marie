@@ -8,7 +8,7 @@ export interface MessageDto {
   email?: string;
 }
 
-const messageDto: MessageDto = {
+export const messageDto: MessageDto = {
   id: 1,
   message: "",
 } as const;

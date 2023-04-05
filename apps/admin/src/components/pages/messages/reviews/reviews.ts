@@ -1,17 +1,9 @@
 import { isGeneric, isGenericArray } from "utils";
+import { messageDto, MessageDto } from "../common/message";
 
-export interface ReviewDto {
-  id: number;
-  message: string;
-  date?: Date;
-  name?: string;
-  email?: string;
-}
+export type ReviewDto = MessageDto;
 
-const reviewDto: ReviewDto = {
-  id: 1,
-  message: "",
-} as const;
+const reviewDto: ReviewDto = { ...messageDto } as const;
 
 export const isReview = (data: unknown): data is ReviewDto => {
   return isGeneric(data, reviewDto);
