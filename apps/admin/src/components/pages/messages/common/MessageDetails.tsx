@@ -4,15 +4,18 @@ export type MessageDetailsProps<T extends MessageDto> = {
   message: T;
 };
 
-export const MessageDetails = <T extends MessageDto>(props: MessageDetailsProps<T>) => {
+export const MessageDetails = <T extends MessageDto>(
+  props: MessageDetailsProps<T>
+) => {
   const { message } = props;
 
   return (
     <p>
-      {message.email}
+      Email: {message.email}
       <br />
-      {message.name}
+      Nom : {message.name}
       <br />
+      Message : <br />
       {message.message}
       <br />
     </p>

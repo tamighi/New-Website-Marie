@@ -39,3 +39,20 @@ export const hasDataArray = (
     obj.data.every((obj) => hasId(obj))
   );
 };
+
+export const isGeneric = <T extends object>(
+  obj: unknown,
+  generic: T
+): obj is T => {
+  if (!obj) {
+    return false;
+  }
+  const objKeys = Object.keys(obj);
+  return Object.keys(generic).every((key) => {
+    const k = key as keyof T;
+    if (!objKeys.includes(key) || typeof (obj as T)[k] !== typeof generic[k]) {
+      return false;
+    }
+    return true;
+  });
+};

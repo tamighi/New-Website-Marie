@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetList, useGetSearchParams } from "hooks";
 
 import styles from "./CardLayout.css";
+import { ResourceType } from "api/dataProvider";
 
 export type Row<T extends object> = {
   [K in keyof T]: {
@@ -14,15 +15,13 @@ export type Row<T extends object> = {
 }[keyof T];
 
 export interface CardLayoutProps<T extends { id: string | number }> {
-  resource: string;
+  resource: ResourceType;
   rows: Row<T>[];
-  isTArray: (obj: object) => obj is T[];
 }
 
 export const CardLayout = <T extends { id: string | number }>({
   resource,
   rows,
-  isTArray,
 }: CardLayoutProps<T>) => {
   const params = useGetSearchParams();
 
@@ -34,7 +33,7 @@ export const CardLayout = <T extends { id: string | number }>({
     return <div>Fetching ...</div>;
   }
 
-  if (!data?.data || isError || !isTArray(data.data)) {
+  if (!data?.data || isError) {
     return <div>Error !</div>;
   }
 
@@ -44,7 +43,7 @@ export const CardLayout = <T extends { id: string | number }>({
 
   return (
     <div className={styles.CardGrid}>
-      {data.data.map((item: T) => (
+      {data.data.map((item: any) => (
         <Card
           key={item.id}
           onClick={() => navigate(`${item.id}`)}

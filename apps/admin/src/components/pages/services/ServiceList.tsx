@@ -1,4 +1,4 @@
-import { isServiceArray, ServiceDto } from ".";
+import { ServiceDto } from ".";
 import { CardLayout, Row } from "../core/content/CardLayout";
 
 const columns: Row<ServiceDto>[] = [
@@ -19,6 +19,6 @@ const columns: Row<ServiceDto>[] = [
 
 export const ServiceList = () => {
   return (
-    <CardLayout rows={columns} resource="service" isTArray={isServiceArray} />
+    <CardLayout rows={columns} resource="service"/>
   );
 };

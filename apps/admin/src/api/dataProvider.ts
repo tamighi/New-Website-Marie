@@ -1,4 +1,10 @@
 import query_string from "query-string";
+import {
+  DevisEntity,
+  QuestionEntity,
+  ReviewEntity,
+  ServiceEntity,
+} from "./entities";
 import { hasCount, hasDataArray, hasDataObject, httpClient } from "./utils";
 
 const apiUrl = "http://192.168.1.50:8000";
@@ -47,13 +53,30 @@ export interface DeleteManyParams {
   ids: (string | number)[];
 }
 
+const entities = {
+  service: new ServiceEntity(),
+  question: new QuestionEntity(),
+  review: new ReviewEntity(),
+  devis: new DevisEntity(),
+};
+
+export type ResourceType = keyof typeof entities;
+
 export const dataProvider = {
-  getList: async (resource: string, query: GetListParams) => {
+  getList: async (resource: keyof typeof entities, query: GetListParams) => {
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     const resp = await httpClient(url);
-    if (hasCount(resp) && hasDataArray(resp)) {
-      return resp;
+    if (
+      hasCount(resp) &&
+      hasDataArray(resp) &&
+      entities[resource].isGenericArray(resp.data)
+    ) {
+      let data = null;
+      if (entities[resource].isGenericArray(resp?.data)) {
+        data = resp.data;
+      }
+      return { ...resp, data };
     }
     throw Error("Unexpected response");
   },

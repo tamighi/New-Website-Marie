@@ -45,25 +45,23 @@ const messageColumns: Column<MessageDto>[] = [
   },
 ];
 
+type MessageResourceType = "question" | "review" | "devis";
+
 type Props<T extends MessageDto> = {
   additionnalColumn?: Column<T>[];
   isTArray: any;
-  resource: string;
+  resource: MessageResourceType;
 };
 
 export const MessageList = <T extends MessageDto>(props: Props<T>) => {
   const { additionnalColumn = [], isTArray, resource } = props;
 
   const columns = React.useMemo(
-    () => ([ ...additionnalColumn, ...messageColumns as Column<T>[] ]),
+    () => [...additionnalColumn, ...(messageColumns as Column<T>[])],
     []
   );
 
   return (
-    <MyDatagrid<T>
-      isTArray={isTArray}
-      columns={columns}
-      resource={resource}
-    />
+    <MyDatagrid<T> isTArray={isTArray} columns={columns} resource={resource} />
   );
 };
