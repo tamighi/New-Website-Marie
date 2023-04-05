@@ -1,22 +1,22 @@
-import { RightDrawer } from 'components/pages/core';
-import { useGetOne } from 'hooks';
-import { matchPath, useLocation } from 'react-router-dom';
-import { MessageDetails } from '../common/MessageDetails'
-import { isReview } from './reviews';
+import { RightDrawer } from "components/pages/core";
+import { ReviewDetails } from "./ReviewDetails";
 
-export const ReviewDrawer = () => {
-  const { data } = useGetOne("reviews", { id: 1 });
+interface Match {
+  open: true;
+  id: number | string;
+}
 
-  const location = useLocation();
+interface NoMatch {
+  open: false;
+  id: undefined;
+}
 
-  const match = matchPath("/reviews/:id", location.pathname);
+export type ReviewDrawerProps = Match | NoMatch
 
-  if (!data || !isReview(data.data)) {
-    return null;
-  }
+export const ReviewDrawer = (props: ReviewDrawerProps) => {
+  const { id, open } = props;
+
   return (
-    <RightDrawer open={!!match}>
-      <MessageDetails message={data.data} />
-    </RightDrawer>
+    <RightDrawer open={open}>{open && <ReviewDetails id={id} />}</RightDrawer>
   );
 };

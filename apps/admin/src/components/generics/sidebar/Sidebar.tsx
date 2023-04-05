@@ -12,10 +12,10 @@ import styles from "./Sidebar.css";
 
 const pages = [
   { name: "Dashboard", to: "/", logo: <HomeIcon />, divider: true },
-  { name: "Services", to: "/services", logo: <TableChartIcon /> },
-  { name: "Questions", to: "/questions", logo: <TableChartIcon /> },
+  { name: "Services", to: "/service", logo: <TableChartIcon /> },
+  { name: "Questions", to: "/question", logo: <TableChartIcon /> },
   { name: "Devis", to: "/devis", logo: <TableChartIcon /> },
-  { name: "Avis", to: "/reviews", logo: <TableChartIcon /> },
+  { name: "Avis", to: "/review", logo: <TableChartIcon /> },
 ];
 
 interface SidebarProps {

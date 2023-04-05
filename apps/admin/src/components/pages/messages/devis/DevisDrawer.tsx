@@ -1,22 +1,23 @@
 import { RightDrawer } from "components/pages/core";
-import { useGetOne } from "hooks";
-import { matchPath, useLocation } from "react-router-dom";
-import { MessageDetails } from "../common/MessageDetails";
-import { isDevis } from "./devis";
+import { DevisDetails } from "./DevisDetails";
 
-export const DevisDrawer = () => {
-  const { data } = useGetOne("devis", { id: 1 });
+interface Match {
+  open: true;
+  id: number | string;
+}
 
-  const location = useLocation();
+interface NoMatch {
+  open: false;
+  id: undefined;
+}
 
-  const match = matchPath("/devis/:id", location.pathname);
+export type DevisDrawerProps = Match | NoMatch
 
-  if (!data || !isDevis(data.data)) {
-    return null;
-  }
+export const DevisDrawer = (props: DevisDrawerProps) => {
+  const { open, id } = props
   return (
-    <RightDrawer open={!!match}>
-      <MessageDetails message={data.data} />
+    <RightDrawer open={open}>
+      {open && <DevisDetails id={id} />}
     </RightDrawer>
   );
 };

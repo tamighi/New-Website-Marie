@@ -1,22 +1,23 @@
 import { RightDrawer } from "components/pages/core";
-import { useGetOne } from "hooks";
-import { matchPath, useLocation } from "react-router-dom";
-import { MessageDetails } from "../common/MessageDetails"
-import { isQuestion } from "./questions";
+import { QuestionDetails } from "./QuestionDetails";
 
-export const QuestionDrawer = () => {
-  const { data } = useGetOne("questions", { id: 1 });
+interface Match {
+  open: true;
+  id: number | string;
+}
 
-  const location = useLocation();
+interface NoMatch {
+  open: false;
+  id: undefined;
+}
 
-  const match = matchPath("/questions/:id", location.pathname);
+export type QuestionDrawerProps = Match | NoMatch
 
-  if (!data || !isQuestion(data.data)) {
-    return null;
-  }
+export const QuestionDrawer = (props: QuestionDrawerProps) => {
+  const { open, id } = props
   return (
-    <RightDrawer open={!!match}>
-      <MessageDetails message={data.data} />
+    <RightDrawer open={open}>
+      {open && <QuestionDetails id={id} />}
     </RightDrawer>
   );
 };

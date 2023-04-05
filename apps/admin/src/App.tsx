@@ -31,7 +31,7 @@ export const App = () => {
         <Routes>
           <Route path="" element={<Dashboard />} />
           <Route
-            path="services/*"
+            path="service/*"
             element={
               <Routes>
                 <Route path="" element={<ServicePage />} />
@@ -40,9 +40,9 @@ export const App = () => {
               </Routes>
             }
           />
-          <Route path="questions/*" element={<QuestionPage />} />
+          <Route path="question/*" element={<QuestionPage />} />
           <Route path="devis/*" element={<DevisPage />} />
-          <Route path="reviews/*" element={<ReviewPage />} />
+          <Route path="review/*" element={<ReviewPage />} />
         </Routes>
       </main>
     </div>

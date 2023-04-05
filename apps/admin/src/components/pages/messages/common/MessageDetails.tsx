@@ -1,10 +1,10 @@
 import { MessageDto } from "./message";
 
-type Props<T extends MessageDto> = {
+export type MessageDetailsProps<T extends MessageDto> = {
   message: T;
 };
 
-export const MessageDetails = <T extends MessageDto>(props: Props<T>) => {
+export const MessageDetails = <T extends MessageDto>(props: MessageDetailsProps<T>) => {
   const { message } = props;
 
   return (
