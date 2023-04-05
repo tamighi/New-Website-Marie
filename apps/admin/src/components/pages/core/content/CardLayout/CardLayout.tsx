@@ -1,7 +1,7 @@
+import { useGetList, useGetSearchParams } from "hooks";
 import { Card } from "lib";
 import { useNavigate } from "react-router-dom";
-import { useGetList, useGetSearchParams } from "hooks";
-import { ResourceString, ResourceType } from "api/dataProvider";
+import { ResourceString, ResourceType } from "api/entities/generic.entity";
 
 import styles from "./CardLayout.css";
 

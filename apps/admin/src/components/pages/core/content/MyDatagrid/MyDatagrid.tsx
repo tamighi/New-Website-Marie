@@ -5,9 +5,9 @@ import { Button, DataGrid, DeleteIcon, IconButton, useDialog } from "lib";
 import { useNavigate } from "react-router-dom";
 import { Column } from "react-table";
 
-import { SelectedOptions } from "../..";
+import { ResourceString } from "api/entities/generic.entity";
 import { useDeleteMany, useGetList, useGetSearchParams } from "hooks";
-import { ResourceString } from "api/dataProvider";
+import { SelectedOptions } from "../..";
 
 const entryPerPage = 20;
 

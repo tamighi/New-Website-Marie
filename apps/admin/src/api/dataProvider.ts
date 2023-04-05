@@ -9,7 +9,7 @@ import {
   ServiceDto,
   ServiceEntity,
 } from "./entities";
-import { GenericEntity } from "./entities/generic.entity";
+import { GenericEntity, ResourceString, ResourceType } from "./entities/generic.entity";
 import { hasCount, hasDataArray, hasDataObject, httpClient } from "./utils";
 
 const apiUrl = "http://192.168.1.50:8000";
@@ -57,17 +57,6 @@ export interface DeleteParams {
 export interface DeleteManyParams {
   ids: (string | number)[];
 }
-
-type Type = {
-  service: ServiceDto;
-  question: QuestionDto;
-  review: ReviewDto;
-  devis: DevisDto;
-};
-
-export type ResourceString = "service" | "question" | "review" | "devis";
-
-export type ResourceType<R extends ResourceString> = Type[R]
 
 export const dataProvider = {
   getList: async <R extends ResourceString>(
