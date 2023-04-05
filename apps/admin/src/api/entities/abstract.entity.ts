@@ -19,4 +19,8 @@ export class AbstractEntity<T extends { id: number }> {
       return this.isGeneric(elem);
     });
   };
+
+  getEntity() {
+    return this.entity;
+  }
 }

@@ -1,10 +1,15 @@
 import query_string from "query-string";
 import {
+  DevisDto,
   DevisEntity,
+  QuestionDto,
   QuestionEntity,
+  ReviewDto,
   ReviewEntity,
+  ServiceDto,
   ServiceEntity,
 } from "./entities";
+import { GenericEntity } from "./entities/generic.entity";
 import { hasCount, hasDataArray, hasDataObject, httpClient } from "./utils";
 
 const apiUrl = "http://192.168.1.50:8000";
@@ -53,28 +58,31 @@ export interface DeleteManyParams {
   ids: (string | number)[];
 }
 
-const entities = {
-  service: new ServiceEntity(),
-  question: new QuestionEntity(),
-  review: new ReviewEntity(),
-  devis: new DevisEntity(),
+type Type = {
+  service: ServiceDto;
+  question: QuestionDto;
+  review: ReviewDto;
+  devis: DevisDto;
 };
 
-export type ResourceType = keyof typeof entities;
+export type ResourceString = "service" | "question" | "review" | "devis";
+
+export type ResourceType<R extends ResourceString> = Type[R]
 
 export const dataProvider = {
-  getList: async (resource: keyof typeof entities, query: GetListParams) => {
+  getList: async <R extends ResourceString>(
+    resource: ResourceString,
+    query: GetListParams
+  ): Promise<{count: number, data: ResourceType<R>[]}> => {
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
+    const entity = new GenericEntity<R>(resource)
+
     const resp = await httpClient(url);
-    if (
-      hasCount(resp) &&
-      hasDataArray(resp) &&
-      entities[resource].isGenericArray(resp.data)
-    ) {
-      let data = null;
-      if (entities[resource].isGenericArray(resp?.data)) {
-        data = resp.data;
+    if (hasCount(resp) && hasDataArray(resp)) {
+      const data = resp.data;
+      if (!entity.isGenericArray(data)) {
+        throw Error("Unexpected response");
       }
       return { ...resp, data };
     }

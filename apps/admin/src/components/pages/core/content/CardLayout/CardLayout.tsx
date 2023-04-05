@@ -1,10 +1,9 @@
 import { Card } from "lib";
 import { useNavigate } from "react-router-dom";
-
 import { useGetList, useGetSearchParams } from "hooks";
+import { ResourceString, ResourceType } from "api/dataProvider";
 
 import styles from "./CardLayout.css";
-import { ResourceType } from "api/dataProvider";
 
 export type Row<T extends object> = {
   [K in keyof T]: {
@@ -14,18 +13,18 @@ export type Row<T extends object> = {
   };
 }[keyof T];
 
-export interface CardLayoutProps<T extends { id: string | number }> {
-  resource: ResourceType;
-  rows: Row<T>[];
+export interface CardLayoutProps<R extends ResourceString> {
+  resource: R;
+  rows: Row<ResourceType<R>>[];
 }
 
-export const CardLayout = <T extends { id: string | number }>({
+export const CardLayout = <K extends ResourceString>({
   resource,
   rows,
-}: CardLayoutProps<T>) => {
+}: CardLayoutProps<K>) => {
   const params = useGetSearchParams();
 
-  const { data, isLoading, isError } = useGetList(resource, params);
+  const { data, isLoading, isError } = useGetList<K>(resource, params);
 
   const navigate = useNavigate();
 
@@ -43,10 +42,10 @@ export const CardLayout = <T extends { id: string | number }>({
 
   return (
     <div className={styles.CardGrid}>
-      {data.data.map((item: any) => (
+      {data.data.map((value) => (
         <Card
-          key={item.id}
-          onClick={() => navigate(`${item.id}`)}
+          key={value.id}
+          onClick={() => navigate(`${value.id}`)}
           className={styles.Card}
         >
           {rows.map((row, idx) => {
@@ -55,9 +54,9 @@ export const CardLayout = <T extends { id: string | number }>({
                 <h5 className={styles.CardHeader}>{row.Header}</h5>
                 <span className={styles.CardContent}>
                   {row.Cell ? (
-                    row.Cell(item[row.accessor])
+                    row.Cell(value[row.accessor])
                   ) : (
-                    <>{item[row.accessor]}</>
+                    <>{value[row.accessor]}</>
                   )}
                 </span>
               </div>

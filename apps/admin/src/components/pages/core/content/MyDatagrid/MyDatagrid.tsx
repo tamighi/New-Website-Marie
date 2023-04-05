@@ -7,12 +7,12 @@ import { Column } from "react-table";
 
 import { SelectedOptions } from "../..";
 import { useDeleteMany, useGetList, useGetSearchParams } from "hooks";
-import { ResourceType } from "api/dataProvider";
+import { ResourceString } from "api/dataProvider";
 
 const entryPerPage = 20;
 
 export interface MyDatagridProps<T extends object> {
-  resource: ResourceType;
+  resource: ResourceString;
   columns: Column<T>[];
   isTArray: (obj: object) => obj is T[];
 }
