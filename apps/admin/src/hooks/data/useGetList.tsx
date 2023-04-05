@@ -1,5 +1,4 @@
-import { dataProvider, GetListParams } from "api/dataProvider";
-import { ResourceString } from "api/entities/generic.entity";
+import { dataProvider, GetListParams, ResourceString } from "api/dataProvider";
 import { useQuery } from "react-query";
 
 export const useGetList = <R extends ResourceString>(

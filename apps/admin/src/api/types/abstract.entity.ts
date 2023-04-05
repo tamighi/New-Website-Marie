@@ -1,6 +1,6 @@
 import { isGeneric } from "api/utils";
 
-export class AbstractEntity<T extends { id: number }> {
+export class AbstractTypeGuard<T extends { id: number | string }> {
   protected readonly entity: T;
 
   constructor(entity: T) {
@@ -19,8 +19,4 @@ export class AbstractEntity<T extends { id: number }> {
       return this.isGeneric(elem);
     });
   };
-
-  getEntity() {
-    return this.entity;
-  }
 }

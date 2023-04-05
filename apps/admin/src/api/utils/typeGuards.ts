@@ -56,3 +56,15 @@ export const isGeneric = <T extends object>(
     return true;
   });
 };
+
+export const isGenericArray = <T extends object>(
+  arr: unknown,
+  generic: T
+): arr is T[] => {
+  if (!(arr instanceof Array)) {
+    return false;
+  }
+  return arr.every((elem) => {
+    return isGeneric(elem, generic);
+  });
+};

@@ -1,7 +1,7 @@
-import { ServiceDto } from ".";
+import { ResourceType } from "api/dataProvider";
 import { CardLayout, Row } from "../core/content/CardLayout";
 
-const columns: Row<ServiceDto>[] = [
+const columns: Row<ResourceType<"service">>[] = [
   { Header: "Nom du service", accessor: "name" },
   { Header: "Description du service", accessor: "description" },
   {

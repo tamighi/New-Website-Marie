@@ -1,5 +1,5 @@
 import { isGeneric } from "utils";
-import { AbstractEntity } from "./abstract.entity";
+import { AbstractTypeGuard } from "./abstract.entity";
 
 export interface SubServiceDto {
   id: number;
@@ -14,7 +14,7 @@ export interface ServiceDto {
   subServices?: SubServiceDto[];
 }
 
-const serviceDto: ServiceDto = {
+export const serviceDto: ServiceDto = {
   id: 1,
   name: "",
   description: "",
@@ -26,7 +26,7 @@ const subServiceDto: SubServiceDto = {
   pricePerCharacter: 1,
 };
 
-export class ServiceEntity extends AbstractEntity<ServiceDto> {
+export class ServiceEntity extends AbstractTypeGuard<ServiceDto> {
   private readonly subService: SubServiceDto;
 
   constructor() {
