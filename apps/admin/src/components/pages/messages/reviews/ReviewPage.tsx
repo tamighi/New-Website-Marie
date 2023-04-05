@@ -1,20 +1,19 @@
 import { matchPath, useLocation } from "react-router-dom";
+import { MessageDrawer } from "../common/MessageDrawer";
 import { ReviewCard } from "./ReviewCard";
-import { ReviewDrawer, ReviewDrawerProps } from "./ReviewDrawer";
+import { ReviewDetails } from "./ReviewDetails";
 
 export const ReviewPage = () => {
   const location = useLocation();
 
   const match = matchPath("/review/:id", location.pathname);
 
-  const reviewDrawerProps: ReviewDrawerProps = match
-    ? { open: true, id: match.params.id as string }
-    : { open: false, id: undefined };
-
   return (
     <>
       <ReviewCard openDrawer={!!match} />
-      <ReviewDrawer {...reviewDrawerProps} />
+      <MessageDrawer open={!!match}>
+        {!!match && <ReviewDetails id={match.params.id as string} />}
+      </MessageDrawer>
     </>
   );
 };

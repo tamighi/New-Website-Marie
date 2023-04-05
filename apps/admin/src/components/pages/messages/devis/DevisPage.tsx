@@ -1,20 +1,19 @@
 import { matchPath, useLocation } from "react-router-dom";
+import { MessageDrawer } from "../common/MessageDrawer";
 import { DevisCard } from "./DevisCard";
-import { DevisDrawer, DevisDrawerProps } from "./DevisDrawer";
+import { DevisDetails } from "./DevisDetails";
 
 export const DevisPage = () => {
   const location = useLocation();
 
   const match = matchPath("/devis/:id", location.pathname);
 
-  const devisDrawerProps: DevisDrawerProps = match
-    ? { open: true, id: match.params.id as string }
-    : { open: false, id: undefined };
-
   return (
     <>
       <DevisCard openDrawer={!!match}/>
-      <DevisDrawer {...devisDrawerProps} />
+      <MessageDrawer open={!!match}>
+        {!!match && <DevisDetails id={match.params.id as string} />}
+      </MessageDrawer>
     </>
   );
 };
