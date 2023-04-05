@@ -1,4 +1,4 @@
-import { dataProvider, UpdateParams } from "api/dataProvider";
+import { dataProvider, ResourceString, UpdateParams } from "api/dataProvider";
 import { useGetSearchParams } from "hooks";
 import { useMutation, useQueryClient } from "react-query";
 
@@ -7,8 +7,8 @@ interface UpdateOneOptions {
   onError?: (error: unknown) => void;
 }
 
-export const useUpdateOne = (
-  resource: string,
+export const useUpdateOne = <R extends ResourceString>(
+  resource: ResourceString,
   options: UpdateOneOptions = {}
 ) => {
   const queryClient = useQueryClient();
@@ -18,7 +18,7 @@ export const useUpdateOne = (
   const { onError, ...rest } = options;
 
   const mutation = useMutation(
-    (params: UpdateParams) => dataProvider.update(resource, params),
+    (params: UpdateParams) => dataProvider.update<R>(resource, params),
     {
       onMutate: async (newData) => {
         await queryClient.cancelQueries([resource, query]);

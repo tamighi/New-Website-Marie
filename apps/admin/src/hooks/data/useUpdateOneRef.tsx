@@ -1,4 +1,4 @@
-import { dataProvider, UpdateParams } from "api/dataProvider";
+import { dataProvider, ResourceString, UpdateParams } from "api/dataProvider";
 import { useMutation, useQueryClient } from "react-query";
 
 interface UpdateOneOptions {
@@ -8,7 +8,7 @@ interface UpdateOneOptions {
 }
 
 export const useUpdateOneRef = (
-  resource: string,
+  resource: ResourceString,
   options: UpdateOneOptions
 ) => {
   const queryClient = useQueryClient();

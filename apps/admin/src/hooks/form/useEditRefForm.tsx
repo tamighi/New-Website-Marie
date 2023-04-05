@@ -3,13 +3,14 @@ import { HttpError } from "api/utils";
 import { useDialog, useForm } from "lib";
 import { useFormErrorHandler } from "hooks";
 import { useUpdateOneRef } from "hooks/data/useUpdateOneRef";
+import { ResourceString } from "api/dataProvider";
 
 interface EditRefFormOptions {
   parentResource: string;
 }
 
 export const useEditRefForm = <T extends object>(
-  ressource: string,
+  ressource: ResourceString,
   id: number | string,
   options: EditRefFormOptions
 ) => {

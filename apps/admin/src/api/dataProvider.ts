@@ -1,6 +1,6 @@
 import query_string from "query-string";
-import { TypeGuardSource } from "./utils/generic.entity";
-import { hasCount, hasDataArray, hasDataObject, httpClient } from "./utils";
+import { TypeGuard } from "./utils/TypeGuard";
+import { httpClient } from "./utils";
 import {
   devisDto,
   DevisDto,
@@ -10,6 +10,8 @@ import {
   ReviewDto,
   serviceDto,
   ServiceDto,
+  subServiceDto,
+  SubServiceDto,
 } from "./types";
 
 const apiUrl = "http://192.168.1.50:8000";
@@ -60,20 +62,27 @@ export interface DeleteManyParams {
 
 type Type = {
   service: ServiceDto;
+  subService: SubServiceDto;
   question: QuestionDto;
   review: ReviewDto;
   devis: DevisDto;
 };
 
-export type ResourceString = "service" | "question" | "review" | "devis";
+export type ResourceString =
+  | "service"
+  | "question"
+  | "review"
+  | "devis"
+  | "subService";
 
 export type ResourceType<R extends ResourceString> = Type[R];
 
-const typeGuardSource = new TypeGuardSource<ResourceString>({
-  "review": reviewDto,
-  "question": questionDto,
-  "service": serviceDto,
-  "devis": devisDto
+const tGS = new TypeGuard<ResourceString>({
+  review: reviewDto,
+  question: questionDto,
+  service: serviceDto,
+  devis: devisDto,
+  subService: subServiceDto,
 });
 
 export const dataProvider = {
@@ -84,9 +93,9 @@ export const dataProvider = {
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     const resp = await httpClient(url);
-    if (hasCount(resp) && hasDataArray(resp)) {
+    if (tGS.hasCount(resp) && tGS.hasDataArray(resp)) {
       const data = resp.data;
-      if (!typeGuardSource.isGenericArray<ResourceType<R>>(data, resource)) {
+      if (!tGS.isGenericArray<ResourceType<R>>(data, resource)) {
         throw Error("Unexpected response");
       }
       return { ...resp, data };
@@ -97,7 +106,7 @@ export const dataProvider = {
   getOne: async (resource: string, params: GetOneParams) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url);
-    if (hasDataObject(resp)) {
+    if (tGS.hasDataObject(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
@@ -110,7 +119,7 @@ export const dataProvider = {
 
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     const resp = await httpClient(url);
-    if (hasCount(resp) && hasDataArray(resp)) {
+    if (tGS.hasCount(resp) && tGS.hasDataArray(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
@@ -132,22 +141,33 @@ export const dataProvider = {
     };
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     const resp = await httpClient(url);
-    if (hasCount(resp) && hasDataArray(resp)) {
+    if (tGS.hasCount(resp) && tGS.hasDataArray(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
   },
 
-  update: async (resource: string, params: UpdateParams) => {
+  update: async <R extends ResourceString>(
+    resource: ResourceString,
+    params: UpdateParams
+  ) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url, {
       method: "PUT",
       body: JSON.stringify(params.data),
     });
-    if (hasDataObject(resp)) {
-      return resp;
+
+    if (!tGS.hasDataObject(resp)) {
+      throw Error("Unexpected response object");
     }
-    throw Error("Unexpected response object");
+
+    const data = resp.data;
+
+    if (!tGS.isGeneric<ResourceType<R>>(data, resource)) {
+      throw Error("Unexpected response object");
+    }
+
+    return { data };
   },
 
   updateMany: async (resource: string, params: UpdateManyParams) => {
@@ -159,7 +179,7 @@ export const dataProvider = {
       method: "PUT",
       body: JSON.stringify(params.data),
     });
-    if (hasDataArray(resp)) {
+    if (tGS.hasDataArray(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
@@ -171,7 +191,7 @@ export const dataProvider = {
       method: "POST",
       body: JSON.stringify(params.data),
     });
-    if (hasDataObject(resp)) {
+    if (tGS.hasDataObject(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
