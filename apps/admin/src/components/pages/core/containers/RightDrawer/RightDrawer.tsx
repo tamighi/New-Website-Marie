@@ -1,9 +1,10 @@
-import { Drawer, DrawerProps, useMediaQuery } from "lib";
+import { useIsSmall } from "hooks";
+import { Drawer, DrawerProps } from "lib";
 import styles from "./RightDrawer.css"
 
 export const RightDrawer = (props: DrawerProps) => {
   const { children, open, ...rest } = props;
-  const isSmall = useMediaQuery("only screen and (max-width: 600px)")
+  const isSmall = useIsSmall();
 
   return (
     <Drawer

@@ -3,7 +3,7 @@ import React from "react";
 import { ResourceType } from "api/types";
 import { MyDatagrid, SimpleGrid } from "components/pages/core";
 import { Column } from "react-table";
-import { useMediaQuery } from "lib";
+import { useIsSmall } from "hooks";
 
 type MessageResourceString = "question" | "review" | "devis";
 
@@ -79,7 +79,7 @@ export const MessageList = <R extends MessageResourceString>(
   props: MessageListProps<R>
 ) => {
   const { additionnalColumn = [], resource } = props;
-  const isSmall = useMediaQuery("only screen and (max-width: 600px)");
+  const isSmall = useIsSmall();
 
   const columns = React.useMemo(
     () => [

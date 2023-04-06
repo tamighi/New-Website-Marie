@@ -1,3 +1,4 @@
+import { useIsSmall } from "hooks";
 import {
   Button,
   ContactSupportIcon,
@@ -7,7 +8,6 @@ import {
   MessageIcon,
   ReviewIcon,
   SnippetFolderIcon,
-  useMediaQuery,
 } from "lib";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +27,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
-  const isSmall = useMediaQuery("only screen and (max-width: 600px)");
+  const isSmall = useIsSmall()
 
   const navigate = useNavigate();
   const onClose = () => {
@@ -38,7 +38,7 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
 
   return (
     <>
-      <div className={`${styles.Sidebar} ${open ? styles.Open : styles.Close}`}>
+      <div className={`${isSmall? styles.HideSideBar : styles.Sidebar} ${open ? styles.Open : styles.Close}`}>
         <ul>
           {pages.map((page, index) => (
             <li key={index}>
