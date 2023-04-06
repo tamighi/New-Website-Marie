@@ -16,7 +16,7 @@ export const ServiceEditHeader = ({
 
   return (
     <Header>
-      <IconButton onClick={() => navigate("/services")}>
+      <IconButton onClick={() => navigate("/service")}>
         <CloseIcon />
       </IconButton>
       <h3>Update service {serviceDto.name}</h3>
