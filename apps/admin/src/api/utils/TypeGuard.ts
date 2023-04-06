@@ -1,6 +1,7 @@
 export class TypeGuard<ResourceString extends string> {
-  private objs: { [K in ResourceString]: { id: number | string } };
+  private readonly objs: { [K in ResourceString]: { id: number | string } };
 
+  // TODO: implement deep type safe guard
   constructor(register: {
     [k in ResourceString]: { id: number | string };
   }) {
@@ -12,6 +13,7 @@ export class TypeGuard<ResourceString extends string> {
       return false;
     }
     const objKeys = Object.keys(obj);
+
     const generic = this.objs[resource];
 
     return Object.keys(generic).every((key) => {
@@ -44,21 +46,11 @@ export class TypeGuard<ResourceString extends string> {
     );
   };
 
-  hasDataObject = (obj: unknown): obj is { data: object } => {
+  hasData = (obj: unknown): obj is { data: object } => {
     return (
       obj !== null &&
       typeof obj === "object" &&
-      "data" in obj &&
-      typeof obj.data === "object"
-    );
-  };
-
-  hasDataArray = (obj: unknown): obj is { data: object[] } => {
-    return (
-      obj !== null &&
-      typeof obj === "object" &&
-      "data" in obj &&
-      obj.data instanceof Array
+      "data" in obj
     );
   };
 }

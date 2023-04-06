@@ -1,11 +1,12 @@
 import React from "react";
 
+import { ResourceType } from "api/dataProvider";
 import { MyDatagrid } from "components/pages/core";
 import { Column } from "react-table";
-import { MessageDto } from "./message";
-import { ResourceType } from "api/dataProvider";
 
-const messageColumns: Column<MessageDto>[] = [
+type MessageResourceString = "question" | "review" | "devis";
+
+const messageColumns: Column<ResourceType<MessageResourceString>>[] = [
   {
     accessor: "name",
     Header: "Nom",
@@ -45,8 +46,6 @@ const messageColumns: Column<MessageDto>[] = [
     },
   },
 ];
-
-type MessageResourceString = "question" | "review" | "devis";
 
 type MessageListProps<R extends MessageResourceString> = {
   additionnalColumn?: Column<ResourceType<R>>[];

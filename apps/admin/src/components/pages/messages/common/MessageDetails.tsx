@@ -1,10 +1,13 @@
-import { MessageDto } from "./message";
+import { ResourceType } from "api/dataProvider";
 
-export type MessageDetailsProps<T extends MessageDto> = {
-  message: T;
-};
+type MessageResourceString = "question" | "review" | "devis";
 
-export const MessageDetails = <T extends MessageDto>(
+export type MessageDetailsProps<T extends ResourceType<MessageResourceString>> =
+  {
+    message: T;
+  };
+
+export const MessageDetails = <T extends ResourceType<MessageResourceString>>(
   props: MessageDetailsProps<T>
 ) => {
   const { message } = props;

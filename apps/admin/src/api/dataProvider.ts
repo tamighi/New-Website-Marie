@@ -13,6 +13,7 @@ import {
   subServiceDto,
   SubServiceDto,
 } from "./types";
+import { messageDto, MessageDto } from "./types/message";
 
 const apiUrl = "http://192.168.1.50:8000";
 
@@ -66,6 +67,7 @@ type Type = {
   question: QuestionDto;
   review: ReviewDto;
   devis: DevisDto;
+  message: MessageDto;
 };
 
 export type ResourceString =
@@ -73,7 +75,7 @@ export type ResourceString =
   | "question"
   | "review"
   | "devis"
-  | "subService";
+  | "subService"
 
 export type ResourceType<R extends ResourceString> = Type[R];
 
@@ -93,14 +95,17 @@ export const dataProvider = {
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
 
     const resp = await httpClient(url);
-    if (tGS.hasCount(resp) && tGS.hasDataArray(resp)) {
-      const data = resp.data;
-      if (!tGS.isGenericArray<ResourceType<R>>(data, resource)) {
-        throw Error("Unexpected response");
-      }
-      return { ...resp, data };
+
+    if (!tGS.hasCount(resp) || !tGS.hasData(resp)) {
+      throw Error("Unexpected response");
     }
-    throw Error("Unexpected response");
+
+    const { data, count } = resp;
+
+    if (!tGS.isGenericArray<ResourceType<R>>(data, resource)) {
+      throw Error("Unexpected response");
+    }
+    return { data, count };
   },
 
   getOne: async <R extends ResourceString>(
@@ -109,7 +114,7 @@ export const dataProvider = {
   ) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url);
-    if (!tGS.hasDataObject(resp)) {
+    if (!tGS.hasData(resp)) {
       throw Error("Unexpected response object");
     }
 
@@ -128,7 +133,7 @@ export const dataProvider = {
 
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     const resp = await httpClient(url);
-    if (tGS.hasCount(resp) && tGS.hasDataArray(resp)) {
+    if (tGS.hasCount(resp) && tGS.hasData(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
@@ -150,7 +155,7 @@ export const dataProvider = {
     };
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
     const resp = await httpClient(url);
-    if (tGS.hasCount(resp) && tGS.hasDataArray(resp)) {
+    if (tGS.hasCount(resp) && tGS.hasData(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
@@ -166,7 +171,7 @@ export const dataProvider = {
       body: JSON.stringify(params.data),
     });
 
-    if (!tGS.hasDataObject(resp)) {
+    if (!tGS.hasData(resp)) {
       throw Error("Unexpected response object");
     }
 
@@ -188,7 +193,7 @@ export const dataProvider = {
       method: "PUT",
       body: JSON.stringify(params.data),
     });
-    if (tGS.hasDataArray(resp)) {
+    if (tGS.hasData(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
@@ -200,7 +205,7 @@ export const dataProvider = {
       method: "POST",
       body: JSON.stringify(params.data),
     });
-    if (tGS.hasDataObject(resp)) {
+    if (tGS.hasData(resp)) {
       return resp;
     }
     throw Error("Unexpected response object");
