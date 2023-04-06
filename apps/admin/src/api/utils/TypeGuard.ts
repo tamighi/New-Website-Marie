@@ -16,6 +16,7 @@ export type TypeGuardRegister = {
   [K in ResourceString]: TypeGuardObject<K>;
 };
 
+// TODO: Need to be possible to have an entity with instance in it ...
 export class TypeGuard {
   private readonly typeObjects: TypeGuardRegister;
 
@@ -27,9 +28,25 @@ export class TypeGuard {
     obj: unknown,
     resource: ResourceString
   ): obj is ResourceType<R> {
-    const instance = this.getInstance(resource);
+    const typeObject = this.typeObjects[resource];
 
-    return this,this.checkTypeSafety(obj, instance)
+    if ("instance" in typeObject) {
+      //  Iterate over typeObject
+      return Object.keys(typeObject).every((k) => {
+        if (k === "instance") {
+          return this.checkTypeSafety(obj, typeObject.instance);
+        } else {
+          const instance = (typeObject as any)[k];
+          if (instance instanceof Array) {
+            return this.checkArray((obj as any)[k], instance[0])
+          } else {
+            return this.checkTypeSafety((obj as any)[k], instance);
+          }
+        }
+      });
+    } else {
+      return this.checkTypeSafety(obj, typeObject);
+    }
   }
 
   isGenericArray<R extends ResourceString>(
@@ -40,9 +57,14 @@ export class TypeGuard {
       return false;
     }
 
-    const instance = this.getInstance(resource); // Check only one instance
+    const typeObject = this.typeObjects[resource];
 
-    return this.checkArray(obj, instance)
+    if ("instance" in typeObject) {
+      //  Iterate over typeObject
+      return this.checkArray(obj, typeObject.instance);
+    } else {
+      return this.checkArray(obj, typeObject);
+    }
   }
 
   hasCount = (obj: unknown): obj is { count: number } => {
@@ -58,27 +80,17 @@ export class TypeGuard {
     return obj !== null && typeof obj === "object" && "data" in obj;
   };
 
-  public checkArray(obj: unknown, instance: object): boolean {
+  private checkArray(obj: unknown, instance: object): boolean {
     if (!(obj instanceof Array)) {
       return false;
     }
 
     if (obj.length === 0) {
-      return true
+      return true;
     }
 
-    return this.checkTypeSafety(obj[0], instance)
-  }
-
-  private getInstance(resource: ResourceString) {
-    const typeObject = this.typeObjects[resource];
-
-    // TODO: Need to be possible to have an entity with instance in it ...
-    if ("instance" in typeObject) {
-      return typeObject.instance;
-    } else {
-      return typeObject;
-    }
+    // check only one item
+    return this.checkTypeSafety(obj[0], instance);
   }
 
   private checkTypeSafety(obj: unknown, generic: object): boolean {

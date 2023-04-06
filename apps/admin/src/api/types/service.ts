@@ -11,13 +11,14 @@ export interface ServiceDto {
   id: number;
   name: string;
   description: string;
-  subServices?: SubServiceDto[];
+  subServices: SubServiceDto[];
 }
 
 export const serviceDto: ServiceDto = {
   id: 1,
   name: "",
   description: "",
+  subServices: []
 };
 
 export const subServiceDto: SubServiceDto = {
