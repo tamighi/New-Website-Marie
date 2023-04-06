@@ -3,10 +3,8 @@ import { ResourceString, ResourceType } from "api/types";
 type NestedTypeGuardRegister<T extends object | undefined> = { instance: T } & {
   [K in keyof T]?: T[K] extends object
     ? object | undefined
-    : T[K] extends (infer U)[] | undefined
-    ? U extends object
-      ? U | NestedTypeGuardRegister<U>
-      : never
+    : T[K] extends Array<object> | undefined
+    ? T[K] | NestedTypeGuardRegister<T[K]>
     : never;
 };
 
@@ -21,7 +19,6 @@ export type TypeGuardRegister = {
 export class TypeGuard {
   private readonly typeObjects: TypeGuardRegister;
 
-  // TODO: implement deep type safe guard
   constructor(typeObjects: TypeGuardRegister) {
     this.typeObjects = typeObjects;
   }
@@ -31,22 +28,21 @@ export class TypeGuard {
     resource: ResourceString
   ): obj is ResourceType<R> {
     const instance = this.getInstance(resource);
-    return this.checkTypeSafety(obj, instance);
+
+    return this,this.checkTypeSafety(obj, instance)
   }
 
   isGenericArray<R extends ResourceString>(
     obj: unknown,
     resource: ResourceString
   ): obj is ResourceType<R>[] {
-    const instance = this.getInstance(resource);
-
     if (!(obj instanceof Array)) {
       return false;
     }
-    if (obj[0]) {
-      return this.checkTypeSafety(obj[0], instance); // Check only one instance
-    }
-    return true;
+
+    const instance = this.getInstance(resource); // Check only one instance
+
+    return this.checkArray(obj, instance)
   }
 
   hasCount = (obj: unknown): obj is { count: number } => {
@@ -62,7 +58,19 @@ export class TypeGuard {
     return obj !== null && typeof obj === "object" && "data" in obj;
   };
 
-  getInstance(resource: ResourceString) {
+  public checkArray(obj: unknown, instance: object): boolean {
+    if (!(obj instanceof Array)) {
+      return false;
+    }
+
+    if (obj.length === 0) {
+      return true
+    }
+
+    return this.checkTypeSafety(obj[0], instance)
+  }
+
+  private getInstance(resource: ResourceString) {
     const typeObject = this.typeObjects[resource];
 
     // TODO: Need to be possible to have an entity with instance in it ...
@@ -73,20 +81,16 @@ export class TypeGuard {
     }
   }
 
-  private checkTypeSafety<T extends object>(
-    obj: unknown,
-    generic: T
-  ): obj is T {
+  private checkTypeSafety(obj: unknown, generic: object): boolean {
     if (!obj) {
       return false;
     }
     const objKeys = Object.keys(obj);
 
     return Object.keys(generic).every((key) => {
-      const k = key as keyof T;
       if (
         !objKeys.includes(key) ||
-        typeof (obj as any)[k] !== typeof (generic as any)[k]
+        typeof (obj as any)[key] !== typeof (generic as any)[key]
       ) {
         return false;
       }

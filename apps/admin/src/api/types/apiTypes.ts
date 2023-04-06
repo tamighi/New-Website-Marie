@@ -19,7 +19,7 @@ export type ResourceType<R extends ResourceString> = Types[R];
 export const typeRegister: TypeGuardRegister = {
   review: reviewDto,
   devis: devisDto,
-  service: { instance: serviceDto, subServices: subServiceDto },
+  service: { instance: serviceDto, subServices: [subServiceDto] },
   question: questionDto,
   subService: subServiceDto,
 };
