@@ -11,6 +11,7 @@ export const ServiceCard = ({ service }: { service: ServiceDto }) => {
     <Card
       className={styles.ServiceCard}
       onClick={() => navigate(`${service.id}`)}
+      style={{ transition: "transform .2s" }}
     >
       <h3>{service.name}</h3>
       <p className={styles.DescriptionClamp}>{service.description}</p>

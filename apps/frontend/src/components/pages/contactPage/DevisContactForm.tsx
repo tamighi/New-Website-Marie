@@ -15,7 +15,11 @@ export const DevisContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
-        <p>Formulaire de demande de devis</p>
+        <p>
+          Formulaire de demande de devis
+          <br />
+          Combien coûte la correction de votre texte ? Écrivez-moi !{" "}
+        </p>
         <Input flex {...register("name")} placeholder="Nom" />
         <Input flex {...register("email")} placeholder="Email" />
         <TextArea

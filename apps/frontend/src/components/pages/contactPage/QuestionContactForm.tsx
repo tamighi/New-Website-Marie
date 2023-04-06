@@ -15,7 +15,11 @@ export const QuestionContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
-        <p>Formulaire de demande d'informations</p>
+        <p>
+          Formulaire de demande d'informations
+          <br />
+          Une information vous manque ? Un cas particulier ? Contactez-moi !
+        </p>
         <Input flex {...register("name")} placeholder="Nom" />
         <Input flex {...register("email")} placeholder="Email" />
         <TextArea
