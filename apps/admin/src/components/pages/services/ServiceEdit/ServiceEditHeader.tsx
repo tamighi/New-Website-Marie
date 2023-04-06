@@ -1,6 +1,6 @@
 import { ServiceDto } from "api/types";
 import { useDeleteOne } from "hooks";
-import { CloseIcon, DeleteIcon, IconButton } from "lib";
+import { ArrowBackIcon, DeleteIcon, IconButton } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { Header } from "../../core";
@@ -17,7 +17,7 @@ export const ServiceEditHeader = ({
   return (
     <Header>
       <IconButton onClick={() => navigate("/service")}>
-        <CloseIcon />
+        <ArrowBackIcon />
       </IconButton>
       <h3>Update service {serviceDto.name}</h3>
       <div style={{ flexGrow: 1 }} />
