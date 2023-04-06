@@ -10,10 +10,12 @@ type NestedTypeGuardRegister<T extends object | undefined> = { instance: T } & {
     : never;
 };
 
+type TypeGuardObject<K extends ResourceString> =
+  | ResourceType<K>
+  | NestedTypeGuardRegister<ResourceType<K>>;
+
 export type TypeGuardRegister = {
-  [K in ResourceString]:
-    | ResourceType<K>
-    | NestedTypeGuardRegister<ResourceType<K>>;
+  [K in ResourceString]: TypeGuardObject<K>;
 };
 
 export class TypeGuard {
@@ -24,39 +26,11 @@ export class TypeGuard {
     this.typeObjects = typeObjects;
   }
 
-  private checkTypeSafety<T extends object>(
-    obj: unknown,
-    generic: T
-  ): obj is T {
-    if (!obj) {
-      return false;
-    }
-    const objKeys = Object.keys(obj);
-
-    return Object.keys(generic).every((key) => {
-      const k = key as keyof T;
-      if (
-        !objKeys.includes(key) ||
-        typeof (obj as any)[k] !== typeof (generic as any)[k]
-      ) {
-        return false;
-      }
-      return true;
-    });
-  }
-
   isGeneric<R extends ResourceString>(
     obj: unknown,
     resource: ResourceString
   ): obj is ResourceType<R> {
-    const typeObject = (this.typeObjects as any)[resource];
-
-    let instance: object;
-    if ("instance" in typeObject) {
-      instance = typeObject.instance;
-    } else {
-      instance = typeObject;
-    }
+    const instance = this.getInstance(resource);
     return this.checkTypeSafety(obj, instance);
   }
 
@@ -64,14 +38,7 @@ export class TypeGuard {
     obj: unknown,
     resource: ResourceString
   ): obj is ResourceType<R>[] {
-    const typeObject = (this.typeObjects as any)[resource];
-
-    let instance: object;
-    if ("instance" in typeObject) {
-      instance = typeObject.instance;
-    } else {
-      instance = typeObject;
-    }
+    const instance = this.getInstance(resource);
 
     if (!(obj instanceof Array)) {
       return false;
@@ -94,4 +61,36 @@ export class TypeGuard {
   hasData = (obj: unknown): obj is { data: object } => {
     return obj !== null && typeof obj === "object" && "data" in obj;
   };
+
+  getInstance(resource: ResourceString) {
+    const typeObject = this.typeObjects[resource];
+
+    // TODO: Need to be possible to have an entity with instance in it ...
+    if ("instance" in typeObject) {
+      return typeObject.instance;
+    } else {
+      return typeObject;
+    }
+  }
+
+  private checkTypeSafety<T extends object>(
+    obj: unknown,
+    generic: T
+  ): obj is T {
+    if (!obj) {
+      return false;
+    }
+    const objKeys = Object.keys(obj);
+
+    return Object.keys(generic).every((key) => {
+      const k = key as keyof T;
+      if (
+        !objKeys.includes(key) ||
+        typeof (obj as any)[k] !== typeof (generic as any)[k]
+      ) {
+        return false;
+      }
+      return true;
+    });
+  }
 }

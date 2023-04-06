@@ -12,12 +12,7 @@ type Types = {
   devis: typeof devisDto;
 };
 
-export type ResourceString =
-  | "service"
-  | "subService"
-  | "question"
-  | "review"
-  | "devis";
+export type ResourceString = keyof Types;
 
 export type ResourceType<R extends ResourceString> = Types[R];
 
@@ -28,11 +23,3 @@ export const typeRegister: TypeGuardRegister = {
   question: questionDto,
   subService: subServiceDto,
 };
-
-/* type TestArray<T extends object> = {
- [K in keyof T]?: T[K] extends string ? string : T[K] extends (infer U)[] | undefined ? U : never
-}
-
-const test: typeof serviceDto = {...serviceDto, subServices: [subServiceDto]}
-
-export type Test = TestArray<typeof test> */
