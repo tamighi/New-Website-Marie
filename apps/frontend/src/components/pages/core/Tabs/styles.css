@@ -2,7 +2,3 @@
   display: flex;
   gap: 3px;
 }
-
-.ActiveTab {
-  background-color: red !important;
-}

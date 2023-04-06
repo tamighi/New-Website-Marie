@@ -9,6 +9,9 @@
   padding: 6px;
 }
 
+/*
+ * TODO: removing important here !
+*/
 .Button:hover {
   background-color: rgba(0, 0, 0, 0.08) !important;
 }

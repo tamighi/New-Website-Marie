@@ -7,7 +7,7 @@ export const HomePage = () => {
   // TODO: Better alignement of image with about
   return (
     <BasePage>
-      <Grid container>
+      <Grid container >
         <Grid small={12} large={6}>
           <HomeImage />
         </Grid>

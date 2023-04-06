@@ -8,6 +8,7 @@ export const About = () => {
       className={styles.slideInLeft}
       style={{
         animationDelay: "0.5s",
+        marginTop: "60px"
       }}
     >
       <Card>
