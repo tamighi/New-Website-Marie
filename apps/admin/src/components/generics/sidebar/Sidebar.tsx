@@ -1,9 +1,12 @@
 import {
   Button,
+  ContactSupportIcon,
   Divider,
   Drawer,
   HomeIcon,
-  TableChartIcon,
+  MessageIcon,
+  ReviewIcon,
+  SnippetFolderIcon,
   useMediaQuery,
 } from "lib";
 import { useNavigate } from "react-router-dom";
@@ -12,10 +15,10 @@ import styles from "./Sidebar.css";
 
 const pages = [
   { name: "Dashboard", to: "/", logo: <HomeIcon />, divider: true },
-  { name: "Services", to: "/service", logo: <TableChartIcon /> },
-  { name: "Questions", to: "/question", logo: <TableChartIcon /> },
-  { name: "Devis", to: "/devis", logo: <TableChartIcon /> },
-  { name: "Avis", to: "/review", logo: <TableChartIcon /> },
+  { name: "Services", to: "/service", logo: <SnippetFolderIcon />, divider: true },
+  { name: "Devis", to: "/devis", logo: <MessageIcon /> },
+  { name: "Questions", to: "/question", logo: <ContactSupportIcon /> },
+  { name: "Avis", to: "/review", logo: <ReviewIcon /> },
 ];
 
 interface SidebarProps {

@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Appbar,
+  CloseIcon,
   CommentIcon,
   Divider,
   Drawer,
@@ -25,6 +26,10 @@ const links = [
   {
     icon: <CommentIcon />,
     to: "form",
+  },
+  {
+    icon: <CloseIcon />,
+    to: "icon",
   },
 ];
 
