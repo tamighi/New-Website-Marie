@@ -16,7 +16,8 @@ export type TypeGuardRegister = {
   [K in ResourceString]: TypeGuardObject<K>;
 };
 
-// TODO: Need to be possible to have an entity with instance in it ...
+// TODO: Need to be possible to have an entity with instance in it !
+// TODO: Clean this mess
 export class TypeGuard {
   private readonly typeObjects: TypeGuardRegister;
 
