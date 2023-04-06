@@ -1,18 +1,14 @@
-import { Header, MainCard } from "components/pages/core";
+import { Header } from "components/pages/core";
+import { MessageCard } from "../common/MessageCard";
 import { ReviewList } from "./ReviewList";
 
 export const ReviewCard = ({ openDrawer }: { openDrawer: boolean }) => {
   return (
-    <MainCard
-      style={{
-        marginRight: openDrawer ? "412px" : "12px",
-        transition: "margin-right 225ms",
-      }}
-    >
+    <MessageCard openDrawer={openDrawer}>
       <Header>
         <h3>Avis</h3>
       </Header>
       <ReviewList />
-    </MainCard>
+    </MessageCard>
   );
 };

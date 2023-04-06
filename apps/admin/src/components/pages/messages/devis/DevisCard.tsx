@@ -1,18 +1,14 @@
-import { Header, MainCard } from "components/pages/core";
+import { Header } from "components/pages/core";
+import { MessageCard } from "../common/MessageCard";
 import { DevisList } from "./DevisList";
 
 export const DevisCard = ({ openDrawer }: { openDrawer: boolean }) => {
   return (
-    <MainCard
-      style={{
-        marginRight: openDrawer ? "412px" : "12px",
-        transition: "margin-right 225ms",
-      }}
-    >
+     <MessageCard openDrawer={openDrawer}>
       <Header>
         <h3>Demande de devis</h3>
       </Header>
       <DevisList />
-    </MainCard>
+    </MessageCard>
   );
 };
