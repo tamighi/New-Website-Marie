@@ -37,7 +37,7 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
           </li>
           {navItems.map((button, id) => (
             <li key={id}>
-              <Button onClick={() => onClick(button.to)} className="DrawerLink">
+              <Button color={"text"} onClick={() => onClick(button.to)} className="DrawerLink">
                 {button.name}
                 <img
                   alt=""

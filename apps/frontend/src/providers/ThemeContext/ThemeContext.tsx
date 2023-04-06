@@ -26,15 +26,15 @@ export const MyThemeProvider = ({
     palette: {
       darkMode: darkMode,
       light: {
-        primary: "rgba(248,195,115,0.7)",
+        primary: "rgba(248,195,115,0.8)",
         secondary: "#a51e1e",
-        surface: "rgba(229,103,20,0.7)",
+        surface: "rgba(229,103,20,0.8)",
         text: "black",
       },
       dark: {
-        primary: "#920094",
+        primary: "rgba(0, 0, 32, 0.9)",
         secondary: "#16368d",
-        surface: "rgba(0, 0, 128, 0.5)",
+        surface: "rgba(0, 0, 96, 0.9)",
         text: "white",
       },
     },
