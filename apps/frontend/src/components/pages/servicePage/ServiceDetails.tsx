@@ -1,5 +1,5 @@
 import { useService } from "hooks/useService";
-import { CloseIcon, DataGrid, IconButton } from "lib";
+import { ArrowBackIcon, DataGrid, IconButton } from "lib";
 import { useNavigate, useParams } from "react-router-dom";
 import { Column } from "react-table";
 import { SubServiceDto } from "resources/service";
@@ -26,7 +26,7 @@ export const ServiceDetails = () => {
   return (
     <>
       <IconButton onClick={() => navigate("/services")}>
-        <CloseIcon />
+        <ArrowBackIcon />
       </IconButton>
       <h3>{service.name}</h3>
       <p>{service.description}</p>
