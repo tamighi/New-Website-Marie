@@ -16,6 +16,7 @@ export type ResourceString = keyof Types;
 
 export type ResourceType<R extends ResourceString> = Types[R];
 
+// TODO: Type guard type should be cleaner. Or use zod(z.object)
 export const typeRegister: TypeGuardRegister = {
   review: reviewDto,
   devis: devisDto,

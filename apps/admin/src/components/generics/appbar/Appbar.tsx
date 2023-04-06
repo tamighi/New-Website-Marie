@@ -17,7 +17,7 @@ export const Appbar = ({ toggleSideBar }: AppbarProps) => {
           <MenuIcon />
         </IconButton>
         <div style={{ flexGrow: 1, textAlign: "center" }}>Appbar</div>
-        <Button onClick={logout}>Logout</Button>
+        <Button onClick={logout} color={"secondary"}>Logout</Button>
         <a href="/">
           <HomeIcon />
         </a>

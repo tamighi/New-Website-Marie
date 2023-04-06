@@ -14,9 +14,9 @@ export * from "./Drawer";
 
 export * from "./ResponsiveGrid";
 
-export * from "./Icon";
-
 export * from "./IconButton";
+
+export * from "./Icon";
 
 export * from "./Paper";
 
