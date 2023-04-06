@@ -12,14 +12,19 @@ type Types = {
   devis: typeof devisDto;
 };
 
-export type ResourceString = "service" | "subService" | "question" | "review" | "devis"
+export type ResourceString =
+  | "service"
+  | "subService"
+  | "question"
+  | "review"
+  | "devis";
 
 export type ResourceType<R extends ResourceString> = Types[R];
 
 export const typeRegister: TypeGuardRegister = {
   review: reviewDto,
   devis: devisDto,
-  service: { instance: serviceDto },
+  service: { instance: serviceDto, subServices: subServiceDto },
   question: questionDto,
   subService: subServiceDto,
 };

@@ -1,7 +1,11 @@
 import { ResourceString, ResourceType } from "api/types";
 
 type NestedTypeGuardRegister<T extends object | undefined> = { instance: T } & {
-  [K in keyof T]?: T[K];
+  [K in keyof T]?: T[K] extends object 
+    ? object | undefined 
+    : T[K] extends (infer U)[] | undefined
+    ? U
+    : never;
 };
 
 export type TypeGuardRegister = {
