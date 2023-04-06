@@ -1,9 +1,5 @@
-import {
-  dataProvider,
-  GetOneParams,
-  ResourceString,
-  ResourceType,
-} from "api/dataProvider";
+import { dataProvider, GetOneParams } from "api/dataProvider";
+import { ResourceString, ResourceType } from "api/types";
 import { useGetSearchParams } from "hooks";
 import { useQuery, useQueryClient } from "react-query";
 
@@ -18,9 +14,10 @@ export const useGetOne = <R extends ResourceString>(
   const queryClient = useQueryClient();
 
   const initialData = () => {
-    const data = queryClient.getQueryData<
-      Record<string, ResourceType<R>[]>
-    >([resource, query]);
+    const data = queryClient.getQueryData<Record<string, ResourceType<R>[]>>([
+      resource,
+      query,
+    ]);
 
     const initialData = data?.data?.find((item) => item.id == id);
 

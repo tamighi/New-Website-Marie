@@ -1,4 +1,4 @@
-import { ResourceString, ResourceType } from "api/dataProvider";
+import { ResourceString, ResourceType } from "api/types";
 import { useGetList, useGetSearchParams } from "hooks";
 import { Card } from "lib";
 import { useNavigate } from "react-router-dom";

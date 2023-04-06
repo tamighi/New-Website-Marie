@@ -1,4 +1,5 @@
-import { dataProvider, ResourceString, UpdateParams } from "api/dataProvider";
+import { dataProvider, UpdateParams } from "api/dataProvider";
+import { ResourceString } from "api/types";
 import { useGetSearchParams } from "hooks";
 import { useMutation, useQueryClient } from "react-query";
 

@@ -1,14 +1,16 @@
-export class TypeGuard<ResourceString extends string> {
-  private readonly objs: { [K in ResourceString]: { id: number | string } };
+export type TypeGuardRegister<R extends string> = {
+  [K in R]: object;
+}
+
+export class TypeGuard<R extends string> {
+  private readonly objs: TypeGuardRegister<R>;
 
   // TODO: implement deep type safe guard
-  constructor(register: {
-    [k in ResourceString]: { id: number | string };
-  }) {
+  constructor(register: TypeGuardRegister<R>) {
     this.objs = register;
   }
 
-  isGeneric<T>(obj: unknown, resource: ResourceString): obj is T {
+  isGeneric<T>(obj: unknown, resource: R): obj is T {
     if (!obj) {
       return false;
     }
@@ -17,7 +19,7 @@ export class TypeGuard<ResourceString extends string> {
     const generic = this.objs[resource];
 
     return Object.keys(generic).every((key) => {
-      const k = key as ResourceString;
+      const k = key as R;
       if (
         !objKeys.includes(key) ||
         typeof (obj as any)[k] !== typeof (generic as any)[k]
@@ -28,7 +30,7 @@ export class TypeGuard<ResourceString extends string> {
     });
   }
 
-  isGenericArray<T>(obj: unknown, resource: ResourceString): obj is T[] {
+  isGenericArray<T>(obj: unknown, resource: R): obj is T[] {
     if (!(obj instanceof Array)) {
       return false;
     }
@@ -47,10 +49,6 @@ export class TypeGuard<ResourceString extends string> {
   };
 
   hasData = (obj: unknown): obj is { data: object } => {
-    return (
-      obj !== null &&
-      typeof obj === "object" &&
-      "data" in obj
-    );
+    return obj !== null && typeof obj === "object" && "data" in obj;
   };
 }

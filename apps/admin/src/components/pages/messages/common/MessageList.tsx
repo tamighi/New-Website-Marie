@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ResourceType } from "api/dataProvider";
+import { ResourceType } from "api/types";
 import { MyDatagrid } from "components/pages/core";
 import { Column } from "react-table";
 

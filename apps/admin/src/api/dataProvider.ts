@@ -1,19 +1,7 @@
 import query_string from "query-string";
-import { TypeGuard } from "./utils/TypeGuard";
+import { typeRegister, ResourceString, ResourceType } from "./types";
 import { httpClient } from "./utils";
-import {
-  devisDto,
-  DevisDto,
-  questionDto,
-  QuestionDto,
-  reviewDto,
-  ReviewDto,
-  serviceDto,
-  ServiceDto,
-  subServiceDto,
-  SubServiceDto,
-} from "./types";
-import { messageDto, MessageDto } from "./types/message";
+import { TypeGuard } from "./utils/TypeGuard";
 
 const apiUrl = "http://192.168.1.50:8000";
 
@@ -61,31 +49,7 @@ export interface DeleteManyParams {
   ids: (string | number)[];
 }
 
-type Type = {
-  service: ServiceDto;
-  subService: SubServiceDto;
-  question: QuestionDto;
-  review: ReviewDto;
-  devis: DevisDto;
-  message: MessageDto;
-};
-
-export type ResourceString =
-  | "service"
-  | "question"
-  | "review"
-  | "devis"
-  | "subService"
-
-export type ResourceType<R extends ResourceString> = Type[R];
-
-const tGS = new TypeGuard<ResourceString>({
-  review: reviewDto,
-  question: questionDto,
-  service: serviceDto,
-  devis: devisDto,
-  subService: subServiceDto,
-});
+const tGS = new TypeGuard(typeRegister);
 
 export const dataProvider = {
   getList: async <R extends ResourceString>(

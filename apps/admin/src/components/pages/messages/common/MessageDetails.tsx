@@ -1,4 +1,4 @@
-import { ResourceType } from "api/dataProvider";
+import { ResourceType } from "api/types";
 
 type MessageResourceString = "question" | "review" | "devis";
 

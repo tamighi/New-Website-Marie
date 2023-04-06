@@ -1,4 +1,5 @@
-import { dataProvider, ResourceString, UpdateParams } from "api/dataProvider";
+import { dataProvider, UpdateParams } from "api/dataProvider";
+import { ResourceString } from "api/types";
 import { useMutation, useQueryClient } from "react-query";
 
 interface UpdateOneOptions {
@@ -22,7 +23,7 @@ export const useUpdateOneRef = (
         onSuccess?.();
         queryClient.invalidateQueries([parentResource]);
       },
-      onError
+      onError,
     }
   );
   return mutation;

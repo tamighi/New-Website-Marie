@@ -1,4 +1,4 @@
-import { ResourceType } from "api/dataProvider";
+import { ResourceType } from "api/types";
 import { CardLayout, Row } from "../core/content/CardLayout";
 
 const columns: Row<ResourceType<"service">>[] = [
