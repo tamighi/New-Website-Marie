@@ -4,6 +4,7 @@ import { About } from "./About";
 import { HomeImage } from "./HomeImage";
 
 export const HomePage = () => {
+  // TODO: Better alignement of image with about
   return (
     <BasePage>
       <Grid container>

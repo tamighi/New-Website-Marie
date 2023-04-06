@@ -11,25 +11,21 @@ export const About = () => {
       }}
     >
       <Card>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
-        fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
-        aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis
-        in cum quibusdam sed quae, accusantium et aperiam? Quod itaque
-        exercitationem, at ab sequi qui modi delectus quia corrupti alias
-        distinctio nostrum. <br /> <br />
-        Minima ex dolor modi inventore sapiente necessitatibus aliquam fuga et.
-        Sed numquam quibusdam at officia sapiente porro maxime corrupti
-        perspiciatis asperiores, exercitationem eius nostrum consequuntur iure
-        aliquam itaque, assumenda et! Quibusdam temporibus beatae doloremque
-        voluptatum doloribus soluta accusamus porro reprehenderit eos inventore
-        facere, fugit, molestiae ab officiis illo voluptates recusandae. Vel
-        dolor nobis eius, ratione atque soluta, aliquam fugit qui iste
-        architecto perspiciatis. Nobis, voluptatem! Cumque, eligendi unde
-        aliquid minus quis sit debitis obcaecati error, delectus quo eius
-        exercitationem tempore. Delectus sapiente, provident corporis dolorum
-        quibusdam aut beatae repellendus est labore quisquam praesentium
-        repudiandae non vel laboriosam quo ab perferendis velit ipsa deleniti
-        modi!
+        Bonjour a tous !<br /><br />
+        {/*TODO: Add title typography*/}
+        Pour vos récits, articles, mémoires, supports publicitaires, magazines,
+        presse d’entreprise, sites Internet..., particuliers, professionnels,
+        associations, collectivités, pensez à la correction professionnelle !
+        Moins cher et moins chronophage qu’un stage de formation en orthographe,
+        plus concret que des séances de coaching orthographique, plus fiable
+        qu’un correcteur informatique…, avec la correction professionnelle,
+        améliorez progressivement votre niveau, tout en éradiquant tout de suite
+        les erreurs. De Paris, de France, de n’importe où dans le monde,
+        écrivez-moi ! <br /> <br />« La critique, art aisé, se doit d’être
+        constructive. » Boris Vian, écrivain, poète, parolier et chanteur
+        français (1920-1959) « Quoi que vous écriviez, évitez la bassesse ; le
+        style le moins noble a pourtant sa noblesse. » Nicolas Boileau, écrivain
+        et poète français (1636-1711)
       </Card>
     </div>
   );

@@ -62,13 +62,25 @@ const messageColumns: Column<ResourceType<MessageResourceString>>[] = [
   {
     accessor: "date",
     Header: "Date",
+    maxWidth: 50,
     Cell: ({ value }) => {
       if (!value) {
         return null;
       }
       const date = new Date(value).toLocaleDateString();
 
-      return <span>{date}</span>;
+      return (
+        <span
+          style={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "block",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {date}
+        </span>
+      );
     },
   },
 ];

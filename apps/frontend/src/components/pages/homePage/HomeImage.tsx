@@ -1,4 +1,4 @@
-import portrait from "assets/images/cat.png";
+import portrait from "assets/images/HomePagePortrait.png";
 
 import styles from "./SlideInLeft.css";
 
