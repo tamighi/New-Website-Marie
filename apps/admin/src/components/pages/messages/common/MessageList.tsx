@@ -1,8 +1,9 @@
 import React from "react";
 
 import { ResourceType } from "api/types";
-import { MyDatagrid } from "components/pages/core";
+import { MyDatagrid, SimpleGrid } from "components/pages/core";
 import { Column } from "react-table";
+import { useMediaQuery } from "lib";
 
 type MessageResourceString = "question" | "review" | "devis";
 
@@ -10,16 +11,7 @@ const messageColumns: Column<ResourceType<MessageResourceString>>[] = [
   {
     accessor: "name",
     Header: "Nom",
-    maxWidth: 150,
-  },
-  {
-    accessor: "email",
-    Header: "Email",
-    maxWidth: 150,
-  },
-  {
-    accessor: "message",
-    Header: "Message",
+    maxWidth: 50,
     Cell: ({ value }) => (
       <span
         style={{
@@ -31,7 +23,38 @@ const messageColumns: Column<ResourceType<MessageResourceString>>[] = [
         {value}
       </span>
     ),
-    maxWidth: 150,
+  },
+  {
+    accessor: "email",
+    Header: "Email",
+    maxWidth: 50,
+    Cell: ({ value }) => (
+      <span
+        style={{
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          display: "block",
+        }}
+      >
+        {value}
+      </span>
+    ),
+  },
+  {
+    accessor: "message",
+    Header: "Message",
+    maxWidth: 50,
+    Cell: ({ value }) => (
+      <span
+        style={{
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          display: "block",
+        }}
+      >
+        {value}
+      </span>
+    ),
   },
   {
     accessor: "date",
@@ -56,12 +79,23 @@ export const MessageList = <R extends MessageResourceString>(
   props: MessageListProps<R>
 ) => {
   const { additionnalColumn = [], resource } = props;
-  const isSmall = true;
+  const isSmall = useMediaQuery("only screen and (max-width: 600px)");
 
   const columns = React.useMemo(
-    () => [...additionnalColumn, ...(messageColumns as Column<ResourceType<R>>[])],
+    () => [
+      ...additionnalColumn,
+      ...(messageColumns as Column<ResourceType<R>>[]),
+    ],
     []
   );
 
-  return <MyDatagrid columns={columns} resource={resource} />;
+  return (
+    <>
+      {isSmall ? (
+        <SimpleGrid columns={columns} resource={resource} />
+      ) : (
+        <MyDatagrid columns={columns} resource={resource} />
+      )}
+    </>
+  );
 };
