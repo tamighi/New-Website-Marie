@@ -4,14 +4,7 @@ import { questionDto } from "./question";
 import { reviewDto } from "./review";
 import { serviceDto, subServiceDto } from "./service";
 
-export type ResourceString =
-  | "service"
-  | "question"
-  | "review"
-  | "devis"
-  | "subService";
-
-type Type = {
+type Types = {
   service: typeof serviceDto;
   subService: typeof subServiceDto;
   question: typeof questionDto;
@@ -19,12 +12,22 @@ type Type = {
   devis: typeof devisDto;
 };
 
-export type ResourceType<R extends ResourceString> = Type[R];
+export type ResourceString = "service" | "subService" | "question" | "review" | "devis"
 
-export const typeRegister: TypeGuardRegister<ResourceString> = {
+export type ResourceType<R extends ResourceString> = Types[R];
+
+export const typeRegister: TypeGuardRegister = {
   review: reviewDto,
   devis: devisDto,
-  service: serviceDto,
+  service: { instance: serviceDto },
   question: questionDto,
   subService: subServiceDto,
 };
+
+/* type TestArray<T extends object> = {
+ [K in keyof T]?: T[K] extends string ? string : T[K] extends (infer U)[] | undefined ? U : never
+}
+
+const test: typeof serviceDto = {...serviceDto, subServices: [subServiceDto]}
+
+export type Test = TestArray<typeof test> */

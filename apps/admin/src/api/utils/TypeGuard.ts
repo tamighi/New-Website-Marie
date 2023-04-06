@@ -1,25 +1,34 @@
-export type TypeGuardRegister<R extends string> = {
-  [K in R]: object;
-}
+import { ResourceString, ResourceType } from "api/types";
 
-export class TypeGuard<R extends string> {
-  private readonly objs: TypeGuardRegister<R>;
+type NestedTypeGuardRegister<T extends object | undefined> = { instance: T } & {
+  [K in keyof T]?: T[K];
+};
+
+export type TypeGuardRegister = {
+  [K in ResourceString]:
+    | ResourceType<K>
+    | NestedTypeGuardRegister<ResourceType<K>>;
+};
+
+export class TypeGuard {
+  private readonly typeObjects: TypeGuardRegister;
 
   // TODO: implement deep type safe guard
-  constructor(register: TypeGuardRegister<R>) {
-    this.objs = register;
+  constructor(typeObjects: TypeGuardRegister) {
+    this.typeObjects = typeObjects;
   }
 
-  isGeneric<T>(obj: unknown, resource: R): obj is T {
+  private checkTypeSafety<T extends object>(
+    obj: unknown,
+    generic: T
+  ): obj is T {
     if (!obj) {
       return false;
     }
     const objKeys = Object.keys(obj);
 
-    const generic = this.objs[resource];
-
     return Object.keys(generic).every((key) => {
-      const k = key as R;
+      const k = key as keyof T;
       if (
         !objKeys.includes(key) ||
         typeof (obj as any)[k] !== typeof (generic as any)[k]
@@ -30,13 +39,41 @@ export class TypeGuard<R extends string> {
     });
   }
 
-  isGenericArray<T>(obj: unknown, resource: R): obj is T[] {
+  isGeneric<R extends ResourceString>(
+    obj: unknown,
+    resource: ResourceString
+  ): obj is ResourceType<R> {
+    const typeObject = (this.typeObjects as any)[resource];
+
+    let instance: object;
+    if ("instance" in typeObject) {
+      instance = typeObject.instance;
+    } else {
+      instance = typeObject;
+    }
+    return this.checkTypeSafety(obj, instance);
+  }
+
+  isGenericArray<R extends ResourceString>(
+    obj: unknown,
+    resource: ResourceString
+  ): obj is ResourceType<R>[] {
+    const typeObject = (this.typeObjects as any)[resource];
+
+    let instance: object;
+    if ("instance" in typeObject) {
+      instance = typeObject.instance;
+    } else {
+      instance = typeObject;
+    }
+
     if (!(obj instanceof Array)) {
       return false;
     }
-    return obj.every((elem) => {
-      return this.isGeneric(elem, resource);
-    });
+    if (obj[0]) {
+      return this.checkTypeSafety(obj[0], instance); // Check only one instance
+    }
+    return true;
   }
 
   hasCount = (obj: unknown): obj is { count: number } => {

@@ -66,7 +66,7 @@ export const dataProvider = {
 
     const { data, count } = resp;
 
-    if (!tGS.isGenericArray<ResourceType<R>>(data, resource)) {
+    if (!tGS.isGenericArray<R>(data, resource)) {
       throw Error("Unexpected response");
     }
     return { data, count };
@@ -84,7 +84,7 @@ export const dataProvider = {
 
     const data = resp.data;
 
-    if (!tGS.isGeneric<ResourceType<R>>(data, resource)) {
+    if (!tGS.isGeneric<R>(data, resource)) {
       throw Error("Unexpected response object");
     }
     return { data };
@@ -141,7 +141,7 @@ export const dataProvider = {
 
     const data = resp.data;
 
-    if (!tGS.isGeneric<ResourceType<R>>(data, resource)) {
+    if (!tGS.isGeneric<R>(data, resource)) {
       throw Error("Unexpected response object");
     }
 
