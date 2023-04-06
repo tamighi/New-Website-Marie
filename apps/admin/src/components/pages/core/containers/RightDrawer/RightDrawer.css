@@ -3,3 +3,12 @@
   margin-top: 12px;
   width: 400px;
 }
+
+.DesktopRightDrawer {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}

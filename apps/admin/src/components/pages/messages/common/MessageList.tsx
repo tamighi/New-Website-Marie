@@ -56,6 +56,7 @@ export const MessageList = <R extends MessageResourceString>(
   props: MessageListProps<R>
 ) => {
   const { additionnalColumn = [], resource } = props;
+  const isSmall = true;
 
   const columns = React.useMemo(
     () => [...additionnalColumn, ...(messageColumns as Column<ResourceType<R>>[])],
