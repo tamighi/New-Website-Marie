@@ -1,7 +1,7 @@
 import { SvgIconProps } from ".";
 import IconBase from "./IconBase";
 
-const ArrowBack = (props: SvgIconProps) => {
+const ArrowBackIcon = (props: SvgIconProps) => {
   return (
     <IconBase {...props}>
       <path d="M0 0h24v24H0z" fill="none" />
@@ -10,4 +10,4 @@ const ArrowBack = (props: SvgIconProps) => {
   );
 };
 
-export default ArrowBack;
+export default ArrowBackIcon;

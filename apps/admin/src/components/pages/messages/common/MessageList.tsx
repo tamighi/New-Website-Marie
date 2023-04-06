@@ -18,6 +18,7 @@ const messageColumns: Column<ResourceType<MessageResourceString>>[] = [
           overflow: "hidden",
           textOverflow: "ellipsis",
           display: "block",
+          whiteSpace: "nowrap",
         }}
       >
         {value}
@@ -34,6 +35,7 @@ const messageColumns: Column<ResourceType<MessageResourceString>>[] = [
           overflow: "hidden",
           textOverflow: "ellipsis",
           display: "block",
+          whiteSpace: "nowrap",
         }}
       >
         {value}
@@ -50,6 +52,7 @@ const messageColumns: Column<ResourceType<MessageResourceString>>[] = [
           overflow: "hidden",
           textOverflow: "ellipsis",
           display: "block",
+          whiteSpace: "nowrap",
         }}
       >
         {value}

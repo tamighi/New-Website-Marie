@@ -1,5 +1,5 @@
 import { RightDrawer } from "components/pages/core";
-import { ArrowBackIcon, IconButton } from "lib";
+import { ArrowForwardIcon, IconButton } from "lib";
 import { useNavigate } from "react-router-dom";
 
 export interface MessageDrawerProps {
@@ -15,7 +15,7 @@ export const MessageDrawer = (props: MessageDrawerProps) => {
   return (
     <RightDrawer open={open}>
       <IconButton onClick={() => navigate("")}>
-        <ArrowBackIcon />
+        <ArrowForwardIcon />
       </IconButton>
       {children}
     </RightDrawer>
