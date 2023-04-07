@@ -8,7 +8,7 @@ interface StyleOptions {
   themeTransition?: boolean;
 }
 
-const useStyles = (styleOptions: StyleOptions) => {
+const useStyles = (styleOptions: StyleOptions = {}) => {
   const {
     customStyle = {},
     type = "primary",
