@@ -3,7 +3,7 @@ import styles from "./Footer.css";
 
 export const NavLinks = () => {
   return (
-    <div className={styles.FooterSection}>
+    <div className={`${styles.FooterSection} ${styles.FooterLinkSection}`}>
       <NavLinkButton to="/">Home</NavLinkButton>
       <NavLinkButton to="contact">Contact</NavLinkButton>
       <NavLinkButton to="services">Services</NavLinkButton>

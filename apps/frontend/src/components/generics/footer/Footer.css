@@ -5,16 +5,26 @@
 .Footer {
   text-align: center;
   display: flex;
+  align-items: center;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 
 .FooterSection {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
   align-items: center;
   justify-content: center;
+}
+
+.FooterLinkSection {
+  gap: 12px;
+}
+
+.FooterMediaSection {
+  gap: 48px;
 }
 
 .FooterNavLink {
