@@ -28,8 +28,8 @@ export const DevisContactForm = () => {
           {...register("message")}
           placeholder="Message"
         />
+      <Button type="submit" variant="contained">Envoyer</Button>
       </FormContent>
-      <Button type="submit"> Submit </Button>
     </form>
   );
 };
