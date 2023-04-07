@@ -8,6 +8,7 @@ import CSSClasses from "./Button.css";
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: keyof Colors;
+  variant?: "text" | "contained"
 }
 
 const Button = (
@@ -19,20 +20,17 @@ const Button = (
     color = "primary",
     children,
     className,
+    variant = "text",
     ...rest
   } = props;
 
   const classNames = `${CSSClasses.Button} ` + (className || "");
 
   const styles = useStyles({
-    type: "transparent",
+    type: variant === "contained" ? color : "transparent",
     customStyle,
-    color,
+    color: variant === "contained"? "text" : color,
   });
-
-  styles.transition = styles.transition
-    ? styles.transition + ", background-color 225ms"
-    : "background-color 225ms";
 
   return (
     <button style={styles} className={classNames} ref={ref} {...rest}>

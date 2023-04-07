@@ -1,7 +1,7 @@
 .Button {
   font-family: inherit;
   letter-spacing: inherit;
-  font-size: inherit;
+  font-weight: bold;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -10,8 +10,11 @@
 }
 
 /*
- * TODO: removing important here !
+ * TODO: better color on hover (depend on theme) => bg-color to animate
 */
 .Button:hover {
-  background-color: rgba(0, 0, 0, 0.08) !important;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1)
+  );
 }

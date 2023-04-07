@@ -1,4 +1,6 @@
 .Page {
   display: flex;
   margin-top: 90px;
+  align-items: center;
+  justify-content: center;
 }
