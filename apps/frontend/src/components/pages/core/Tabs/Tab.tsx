@@ -1,4 +1,4 @@
-import { Button, ButtonProps, useStyles } from "lib";
+import { Button, ButtonProps } from "lib";
 
 interface TabProps extends ButtonProps {
   active: Boolean;
@@ -6,14 +6,11 @@ interface TabProps extends ButtonProps {
 
 export const Tab = (props: TabProps) => {
   const { active, children, ...rest } = props;
-  const color = useStyles({ type: "secondary" });
 
-  // TODO: button with variant bgcolor -> etc: contained -> color access bgcolor
   return (
     <Button
-      style={{
-        backgroundColor: active ? color.backgroundColor : "transparent",
-      }}
+      variant={active? "contained" : "text"}
+      color="secondary"
       {...rest}
     >
       {children}
