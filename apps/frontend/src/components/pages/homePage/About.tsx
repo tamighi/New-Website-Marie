@@ -15,7 +15,6 @@ export const About = () => {
       <Card style={{ padding: "8px" }}>
         <Title>Bonjour a tous !</Title>
         <br />
-        {/*TODO: Add title typography*/}
         Pour vos récits, articles, mémoires, supports publicitaires, magazines,
         presse d’entreprise, sites Internet..., particuliers, professionnels,
         associations, collectivités, pensez à la correction professionnelle !

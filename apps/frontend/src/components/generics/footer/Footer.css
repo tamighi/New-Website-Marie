@@ -1,5 +1,9 @@
 .FooterContainer {
   margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .Footer {
@@ -7,9 +11,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: 6px;
+  border-radius: 8px;
   gap: 6px;
-  margin-top: 6px;
-  margin-bottom: 6px;
 }
 
 .FooterSection {

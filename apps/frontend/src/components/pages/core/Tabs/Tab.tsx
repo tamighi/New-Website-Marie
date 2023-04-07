@@ -4,7 +4,6 @@ interface TabProps extends ButtonProps {
   active: Boolean;
 }
 
-// TODO: outlined button for inactive tabs lib
 export const Tab = (props: TabProps) => {
   const { active, children, ...rest } = props;
 
