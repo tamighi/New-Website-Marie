@@ -1,19 +1,14 @@
 .FooterContainer {
   margin-top: auto;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
 .Footer {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   margin: 6px;
   border-radius: 8px;
-  gap: 6px;
+  text-align: center;
 }
 
 .FooterSection {
@@ -21,6 +16,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  margin-bottom: 8px;
 }
 
 .FooterLinkSection {
@@ -33,5 +29,5 @@
 }
 
 .FooterNavLink {
-  width: 120px;
+  min-width: 80px;
 }

@@ -3,6 +3,7 @@ import { Title } from "components/typography/Title";
 import { useReviews } from "hooks/useReviews";
 import { ReviewList } from "./ReviewList";
 
+// TODO: Well ... Add style
 export const GoldenBookPage = () => {
   const { data } = useReviews();
   if (!data) {

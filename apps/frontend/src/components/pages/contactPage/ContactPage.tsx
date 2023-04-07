@@ -6,6 +6,9 @@ import { DevisContactForm } from "./DevisContactForm";
 import { Tab, Tabs } from "../core";
 import { Title } from "components/typography/Title";
 
+// TODO: Add form inputs for other details
+// TODO: Confirmation on sent
+// TODO: Errors
 export const ContactPage = () => {
   const [tab, setTab] = React.useState(0);
   return (
