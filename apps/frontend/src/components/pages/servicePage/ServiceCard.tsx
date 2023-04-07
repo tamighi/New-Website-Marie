@@ -7,7 +7,7 @@ import styles from "./Service.css";
 //TODO: lib: Accessing color more easily (useGetColor("type"))
 export const ServiceCard = ({ service }: { service: ServiceDto }) => {
   const navigate = useNavigate();
-  const themeStyle = useStyles({ type: "secondary" });
+  const themeStyle = useStyles({ color: "secondary" });
 
   return (
     <Card
@@ -15,7 +15,7 @@ export const ServiceCard = ({ service }: { service: ServiceDto }) => {
       onClick={() => navigate(`${service.id}`)}
       style={{
         transition: "transform .2s",
-        border: `3px solid ${themeStyle.backgroundColor}`,
+        border: `3px solid ${themeStyle.color}`,
       }}
     >
       <h3>{service.name}</h3>

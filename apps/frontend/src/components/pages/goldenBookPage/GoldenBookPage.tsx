@@ -1,4 +1,5 @@
 import { CenteredPage } from "components/generics/basePage/CenteredPage";
+import { Title } from "components/typography/Title";
 import { useReviews } from "hooks/useReviews";
 import { ReviewList } from "./ReviewList";
 
@@ -9,7 +10,7 @@ export const GoldenBookPage = () => {
   }
   return (
     <CenteredPage>
-      <h2>Les avis !</h2>
+      <Title>Les avis !</Title>
       {data.data.length !== 0 ? (
         <ReviewList reviews={data.data} />
       ) : (

@@ -1,3 +1,4 @@
+import { Title } from "components/typography/Title";
 import { useService } from "hooks/useService";
 import { ArrowBackIcon, DataGrid, IconButton } from "lib";
 import { useNavigate, useParams } from "react-router-dom";
@@ -28,7 +29,7 @@ export const ServiceDetails = () => {
       <IconButton onClick={() => navigate("/services")}>
         <ArrowBackIcon />
       </IconButton>
-      <h3>{service.name}</h3>
+      <Title>{service.name}</Title>
       <p>{service.description}</p>
       {service.subServices && (
         <DataGrid columns={columns} data={service.subServices} />

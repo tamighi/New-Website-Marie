@@ -1,3 +1,4 @@
+import { Title } from "components/typography/Title";
 import { useServices } from "hooks/useServices";
 import { ServiceCard } from "./ServiceCard";
 
@@ -6,7 +7,7 @@ export const ServiceMain = () => {
 
   return (
     <>
-      <h2>Les services proposés ...</h2>
+      <Title>Les services proposés ...</Title>
       <p>
         Avoir recours à un service de relecture-correction implique
         naturellement d’y consacrer un budget. Vous pourrez cependant vite
