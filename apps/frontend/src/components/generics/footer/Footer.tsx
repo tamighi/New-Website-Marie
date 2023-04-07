@@ -1,15 +1,17 @@
-import { Button, Divider } from "lib";
+import { Button, Divider, Paper } from "lib";
 import { useNavigate } from "react-router-dom";
 import styles from "./Footer.css";
 
 export const Footer = () => {
-  const navigation = useNavigate()
+  const navigation = useNavigate();
 
   return (
-    <div className={styles.Footer}>
+    <div className={styles.FooterContainer}>
       <Divider />
-      Footer
-      <Button onClick={() => navigation("avis")}>Avis</Button>
+      <Paper className={styles.Footer}>
+        Footer
+        <Button onClick={() => navigation("avis")}>Avis</Button>
+      </Paper>
     </div>
   );
 };
