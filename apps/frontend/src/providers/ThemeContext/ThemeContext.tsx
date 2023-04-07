@@ -32,9 +32,9 @@ export const MyThemeProvider = ({
         text: "black",
       },
       dark: {
-        primary: "rgba(60, 80, 200, 0.9)",
-        secondary: "rgba(153, 30, 170, 0.9)",
-        surface: "rgba(0, 0, 96, 0.9)",
+        primary: "rgba(60, 80, 200, 0.8)",
+        secondary: "rgba(153, 30, 170, 0.8)",
+        surface: "rgba(0, 0, 96, 0.8)",
         text: "white",
       },
     },
