@@ -1,6 +1,8 @@
 import { ReviewDto } from "../reviewPage/review";
 import { ReviewItem } from "./ReviewItem";
 
+import styles from "./Review.css";
+
 type Props = {
   reviews: ReviewDto[];
 };
@@ -9,12 +11,10 @@ export const ReviewList = (props: Props) => {
   const { reviews } = props;
 
   return (
-    <ul>
+    <div className={styles.ReviewList}>
       {reviews.map((review) => (
-        <li key={review.id}>
-          <ReviewItem review={review} />
-        </li>
+        <ReviewItem review={review} key={review.id} />
       ))}
-    </ul>
+    </div>
   );
-}
+};

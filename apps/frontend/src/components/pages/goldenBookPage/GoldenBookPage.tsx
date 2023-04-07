@@ -4,6 +4,7 @@ import { useReviews } from "hooks/useReviews";
 import { ReviewList } from "./ReviewList";
 
 // TODO: Well ... Add style
+// TODO: Loading button / Error management
 export const GoldenBookPage = () => {
   const { data } = useReviews();
   if (!data) {
@@ -11,7 +12,7 @@ export const GoldenBookPage = () => {
   }
   return (
     <CenteredPage>
-      <Title>Les avis !</Title>
+      <Title>Livre d'or</Title>
       {data.data.length !== 0 ? (
         <ReviewList reviews={data.data} />
       ) : (
@@ -19,4 +20,4 @@ export const GoldenBookPage = () => {
       )}
     </CenteredPage>
   );
-};
+}

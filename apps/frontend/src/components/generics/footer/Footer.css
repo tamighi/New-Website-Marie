@@ -1,7 +1,7 @@
 .FooterContainer {
   margin-top: auto;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
 }
 

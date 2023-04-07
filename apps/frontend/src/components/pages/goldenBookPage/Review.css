@@ -1,0 +1,24 @@
+.ReviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px
+}
+
+.ReviewItemHead {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ReviewMessage {
+  overflow: hidden;
+  max-height: 5rem;
+  font-size: 14px;
+}
+
+.ReviewMessageOverflow {
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+.ReviewMessageFull {
+  max-height: 100%;
+}
