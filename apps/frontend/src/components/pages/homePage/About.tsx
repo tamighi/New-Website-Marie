@@ -1,3 +1,4 @@
+import { Title } from "components/typography/Title";
 import { Card } from "lib";
 
 import styles from "./SlideInLeft.css";
@@ -8,11 +9,12 @@ export const About = () => {
       className={styles.slideInLeft}
       style={{
         animationDelay: "0.5s",
-        marginTop: "60px"
+        marginTop: "60px",
       }}
     >
-      <Card>
-        Bonjour a tous !<br /><br />
+      <Card style={{ padding: "8px" }}>
+        <Title>Bonjour a tous !</Title>
+        <br />
         {/*TODO: Add title typography*/}
         Pour vos récits, articles, mémoires, supports publicitaires, magazines,
         presse d’entreprise, sites Internet..., particuliers, professionnels,
