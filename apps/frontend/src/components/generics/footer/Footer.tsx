@@ -11,11 +11,11 @@ export const Footer = () => {
   return (
     <div className={styles.FooterContainer}>
       <Divider />
-      <Paper className={styles.Footer}>
+      <div className={styles.Footer}>
         <MediaLinks />
         <NavLinks />
         <Copyrights />
-      </Paper>
+      </div>
     </div>
   );
 };

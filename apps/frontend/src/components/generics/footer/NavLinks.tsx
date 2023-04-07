@@ -1,13 +1,14 @@
-import { Button } from "lib";
-import { useNavigate } from "react-router-dom";
+import { NavLinkButton } from "./NavLinkButton";
+import styles from "./Footer.css";
 
 export const NavLinks = () => {
-  const navigation = useNavigate();
   return (
-    <div>
-      <Button onClick={() => navigation("avis")} variant="contained">
-        Avis
-      </Button>
+    <div className={styles.FooterSection}>
+      <NavLinkButton to="/">Home</NavLinkButton>
+      <NavLinkButton to="contact">Contact</NavLinkButton>
+      <NavLinkButton to="services">Services</NavLinkButton>
+      <NavLinkButton to="livredor">Livre d'or</NavLinkButton>
+      <NavLinkButton to="avis">Laisser un avis</NavLinkButton>
     </div>
   );
 };
