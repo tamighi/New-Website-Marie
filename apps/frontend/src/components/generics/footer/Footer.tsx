@@ -7,7 +7,6 @@ import { Copyrights } from "./Copyrights";
 import styles from "./Footer.css";
 
 export const Footer = () => {
-
   return (
     <div className={styles.FooterContainer}>
       <Divider />

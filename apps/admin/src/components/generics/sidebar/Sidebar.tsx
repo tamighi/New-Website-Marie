@@ -15,7 +15,12 @@ import styles from "./Sidebar.css";
 
 const pages = [
   { name: "Dashboard", to: "/", logo: <HomeIcon />, divider: true },
-  { name: "Services", to: "/service", logo: <SnippetFolderIcon />, divider: true },
+  {
+    name: "Services",
+    to: "/service",
+    logo: <SnippetFolderIcon />,
+    divider: true,
+  },
   { name: "Devis", to: "/devis", logo: <MessageIcon /> },
   { name: "Questions", to: "/question", logo: <ContactSupportIcon /> },
   { name: "Avis", to: "/review", logo: <ReviewIcon /> },
@@ -27,7 +32,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
-  const isSmall = useIsSmall()
+  const isSmall = useIsSmall();
 
   const navigate = useNavigate();
   const onClose = () => {
@@ -38,7 +43,7 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
 
   return (
     <>
-      <div className={`${isSmall? styles.HideSideBar : styles.Sidebar} ${open ? styles.Open : styles.Close}`}>
+      <div className={`${styles.Sidebar} ${open ? styles.Open : styles.Close}`}>
         <ul>
           {pages.map((page, index) => (
             <li key={index}>
