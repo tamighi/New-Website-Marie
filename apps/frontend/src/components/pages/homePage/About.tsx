@@ -12,7 +12,7 @@ export const About = () => {
         marginTop: "60px",
       }}
     >
-      <Card style={{ padding: "12px", margin: "8px" }}>
+      <Card style={{ padding: "12px", paddingTop: "0", margin: "8px" }}>
         <Title>Bonjour a tous !</Title>
         <br />
         Pour vos récits, articles, mémoires, supports publicitaires, magazines,

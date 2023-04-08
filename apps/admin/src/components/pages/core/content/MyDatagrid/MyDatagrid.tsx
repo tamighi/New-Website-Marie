@@ -16,6 +16,7 @@ export interface MyDatagridProps<R extends ResourceString> {
   columns: Column<ResourceType<R>>[];
 }
 
+// TODO: Set Search params when page changes
 export const MyDatagrid = <R extends ResourceString>({
   resource,
   columns,

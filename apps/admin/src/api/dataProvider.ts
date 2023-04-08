@@ -1,5 +1,5 @@
 import query_string from "query-string";
-import { typeRegister, ResourceString, ResourceType } from "./types";
+import { typeRegister, ResourceString } from "./types";
 import { httpClient } from "./utils";
 import { TypeGuard } from "./utils/TypeGuard";
 

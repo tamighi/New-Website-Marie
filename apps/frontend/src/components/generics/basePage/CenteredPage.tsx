@@ -3,8 +3,6 @@ import React from "react";
 import { Paper, Grid } from "lib";
 import { BasePage } from "./BasePage";
 
-// TODO: Better display styles
-// TODO: Grid should have more possibilities for responsiveness (md, xs, ...) + rename lol
 export const CenteredPage = ({ children }: { children: React.ReactNode }) => {
   return (
     <BasePage>
