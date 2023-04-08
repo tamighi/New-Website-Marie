@@ -1,14 +1,14 @@
-import CSSClasses from "./ResponsiveGrid.css";
+import CSSClasses from "./Grid.css";
 
-export interface ResponsiveGridProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   container?: boolean;
   small?: number;
   large?: number;
 }
 
-const ResponsiveGrid = (props: ResponsiveGridProps) => {
-  const { style, children, className, container, small, large, ...rest } = props;
+const Grid = (props: GridProps) => {
+  const { style, children, className, container, small, large, ...rest } =
+    props;
 
   const classNames = [
     container ? CSSClasses.GridContainer : CSSClasses.GridItem,
@@ -30,4 +30,4 @@ const ResponsiveGrid = (props: ResponsiveGridProps) => {
   );
 };
 
-export default ResponsiveGrid;
+export default Grid;

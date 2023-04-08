@@ -12,7 +12,7 @@ export * from "./Divider";
 
 export * from "./Drawer";
 
-export * from "./ResponsiveGrid";
+export * from "./Grid";
 
 export * from "./IconButton";
 
