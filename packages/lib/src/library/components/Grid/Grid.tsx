@@ -2,14 +2,14 @@ import { useCurrentBreakpoint } from "library/hooks";
 import React from "react";
 import CSSClasses from "./Grid.css";
 
-export interface GridProps extends React.HTMLAttributes<HTMLDivElement>  {
+export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   container?: boolean;
   xs?: number;
   sm?: number;
   md?: number;
   lg?: number;
   xl?: number;
-};
+}
 
 const Grid = (props: GridProps) => {
   const {
@@ -29,15 +29,16 @@ const Grid = (props: GridProps) => {
 
   const currentBreakPoint = useCurrentBreakpoint();
 
-  style.gridColumn =
-    style.gridColumn ||
-    (container ? "" : `span ${breakPoints[currentBreakPoint]}`);
+  const styles = {
+    gridColumn: container ? "" : `span ${breakPoints[currentBreakPoint]}`,
+    ...style,
+  };
 
   const classNames =
     `${container ? CSSClasses.GridContainer : ""} ` + className;
 
   return (
-    <div className={classNames} style={style} {...rest}>
+    <div className={classNames} style={styles} {...rest}>
       {children}
     </div>
   );
