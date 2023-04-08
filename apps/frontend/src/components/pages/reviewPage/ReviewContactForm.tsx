@@ -1,3 +1,4 @@
+import { Loader } from "components/utils/Loader";
 import { usePostMessage } from "hooks/usePostMessage";
 import { Button, Input, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
@@ -5,11 +6,11 @@ import { ReviewDto } from "./review";
 
 export const ReviewContactForm = () => {
   const { register, handleSubmit, reset } = useForm<ReviewDto>();
-  const { mutate } = usePostMessage<ReviewDto>("review");
+  const { mutate, isLoading, isError, isSuccess } =
+    usePostMessage<ReviewDto>("review");
 
   const onSubmit = (devis: Partial<ReviewDto>) => {
-    mutate(devis);
-    reset();
+    mutate(devis, { onSuccess: reset });
   };
 
   return (
@@ -23,9 +24,19 @@ export const ReviewContactForm = () => {
           {...register("message")}
           placeholder="Message"
         />
-        <Button type="submit" variant="contained">
-          Envoyer
-        </Button>
+        <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
+          <Button type="submit" variant="contained" disabled={isLoading}>
+            Envoyer
+          </Button>
+          {isLoading && <Loader size="small" />}
+          {isError && <div>Une erreur est survenue ...</div>}
+        </div>
+        {isSuccess && (
+          <p>
+            Votre message a bien été envoyé ! Je reviendrai vers vous dès que
+            possible.
+          </p>
+        )}
       </FormContent>
     </form>
   );

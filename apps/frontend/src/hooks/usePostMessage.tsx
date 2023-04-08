@@ -5,8 +5,8 @@ import { useMutation } from "react-query";
 export const usePostMessage = <T extends MessageDto>(
   resource: "question" | "devis" | "review"
 ) => {
-  const { mutate } = useMutation((question: Partial<T>) =>
-    postMessage(question, resource)
+  const { mutate, isLoading, isError, isSuccess } = useMutation(
+    (question: Partial<T>) => postMessage(question, resource)
   );
-  return { mutate };
+  return { mutate, isError, isLoading, isSuccess };
 };

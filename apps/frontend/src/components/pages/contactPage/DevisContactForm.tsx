@@ -1,3 +1,4 @@
+import { Loader } from "components/utils/Loader";
 import { usePostMessage } from "hooks/usePostMessage";
 import { Button, Input, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
@@ -5,7 +6,8 @@ import { DevisDto } from "./devis";
 
 export const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
-  const { mutate } = usePostMessage<DevisDto>("devis");
+  const { mutate, isLoading, isError, isSuccess } =
+    usePostMessage<DevisDto>("devis");
 
   const onSubmit = (devis: Partial<DevisDto>) => {
     mutate(devis);
@@ -18,7 +20,7 @@ export const DevisContactForm = () => {
         <p>
           Formulaire de demande de devis
           <br />
-          Combien coûte la correction de votre texte ? Écrivez-moi !{" "}
+          Combien coûte la correction de votre texte ? Écrivez-moi !
         </p>
         <Input flex {...register("name")} placeholder="Nom" />
         <Input flex {...register("email")} placeholder="Email" />
@@ -28,7 +30,19 @@ export const DevisContactForm = () => {
           {...register("message")}
           placeholder="Message"
         />
-      <Button type="submit" variant="contained">Envoyer</Button>
+        <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
+          <Button type="submit" variant="contained" disabled={isLoading}>
+            Envoyer
+          </Button>
+          {isLoading && <Loader size="small" />}
+          {isError && <div>Une erreur est survenue ...</div>}
+        </div>
+        {isSuccess && (
+          <p>
+            Votre message a bien été envoyé ! Je reviendrai vers vous dès que
+            possible.
+          </p>
+        )}
       </FormContent>
     </form>
   );

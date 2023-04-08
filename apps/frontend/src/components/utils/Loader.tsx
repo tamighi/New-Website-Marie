@@ -1,5 +1,12 @@
-import styles from "./Loader.css"
+import styles from "./Loader.css";
 
-export const Loader = () => {
-  return <div className={styles.Loader}/>;
+interface LoaderProps {
+  size?: "small" | "big";
+}
+// TODO: Loader in lib
+export const Loader = (props: LoaderProps) => {
+  const { size = "big" } = props;
+  return (
+    <div className={size === "small" ? styles.SmallLoader : styles.Loader} />
+  );
 };

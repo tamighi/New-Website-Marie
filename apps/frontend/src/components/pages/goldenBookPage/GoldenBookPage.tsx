@@ -8,13 +8,13 @@ import { Loader } from "components/utils/Loader";
 
 const reviewPerPage = 10;
 
-// TODO: Loading button / Error management
+// TODO:  Error management => look at styled mini persons
 // TODO: correct way to handle params
 // TODO: style pagination
 export const GoldenBookPage = () => {
   const [page, setPage] = React.useState(1);
 
-  const { data, isLoading } = useReviews({
+  const { data, isLoading, isError } = useReviews({
     pagination: { page, perPage: reviewPerPage },
   });
 
@@ -23,7 +23,7 @@ export const GoldenBookPage = () => {
       <Title>Livre d'or</Title>
       {isLoading ? (
         <Loader />
-      ) : !data ? (
+      ) : !data || isError ? (
         <div>Error</div>
       ) : data.data.length === 0 ? (
         <p>No reviews</p>
