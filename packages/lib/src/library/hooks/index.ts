@@ -9,3 +9,5 @@ export { default as useMediaQuery } from "./useMediaQuery";
 export { default as useForm } from "./useForm";
 
 export { default as useDelayedClose } from "./useDelayedClose";
+
+export { default as useCurrentBreakpoint } from "./useCurrentBreakpoint";

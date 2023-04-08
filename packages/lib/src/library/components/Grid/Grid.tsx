@@ -1,26 +1,15 @@
+import { useCurrentBreakpoint } from "library/hooks";
 import React from "react";
 import CSSClasses from "./Grid.css";
 
-type BreakPoints = "xs" | "sm" | "md" | "lg" | "xl";
-
-const getCurrentBreakPoint = (): BreakPoints => {
-  const windowWidth = window.innerWidth;
-  if (windowWidth >= 1536) {
-    return "xl";
-  } else if (windowWidth >= 1200) {
-    return "lg";
-  } else if (windowWidth >= 900) {
-    return "md";
-  } else if (windowWidth >= 600) {
-    return "sm";
-  } else {
-    return "xs";
-  }
-};
-
-export type GridProps = React.HTMLAttributes<HTMLDivElement> & {
+export interface GridProps extends React.HTMLAttributes<HTMLDivElement>  {
   container?: boolean;
-} & { [K in BreakPoints]?: number };
+  xs?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
+};
 
 const Grid = (props: GridProps) => {
   const {
@@ -38,25 +27,14 @@ const Grid = (props: GridProps) => {
 
   const breakPoints = { xs, sm, md, lg, xl };
 
-  const [currentBreakPoint, setCurrentBreakPoint] =
-    React.useState<BreakPoints>(getCurrentBreakPoint);
-
-  const classNames =
-    `${container ? CSSClasses.GridContainer : ""} ` + className;
-
-  React.useEffect(() => {
-    function handleResize() {
-      setCurrentBreakPoint(getCurrentBreakPoint());
-    }
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const currentBreakPoint = useCurrentBreakpoint();
 
   style.gridColumn =
     style.gridColumn ||
     (container ? "" : `span ${breakPoints[currentBreakPoint]}`);
+
+  const classNames =
+    `${container ? CSSClasses.GridContainer : ""} ` + className;
 
   return (
     <div className={classNames} style={style} {...rest}>
