@@ -4,6 +4,7 @@ import { Title } from "components/typography/Title";
 import { useReviews } from "hooks/useReviews";
 import { ReviewList } from "./ReviewList";
 import { Button } from "lib";
+import { Loader } from "components/utils/Loader";
 
 const reviewPerPage = 10;
 
@@ -13,33 +14,37 @@ const reviewPerPage = 10;
 export const GoldenBookPage = () => {
   const [page, setPage] = React.useState(1);
 
-  const { data } = useReviews({ pagination: { page, perPage: reviewPerPage } });
-
-  if (!data) {
-    return null;
-  }
+  const { data, isLoading } = useReviews({
+    pagination: { page, perPage: reviewPerPage },
+  });
 
   return (
     <CenteredPage>
       <Title>Livre d'or</Title>
-      {data.data.length !== 0 ? (
-        <ReviewList reviews={data.data} />
-      ) : (
+      {isLoading ? (
+        <Loader />
+      ) : !data ? (
+        <div>Error</div>
+      ) : data.data.length === 0 ? (
         <p>No reviews</p>
+      ) : (
+        <>
+          <ReviewList reviews={data.data} />
+          <Button
+            onClick={() => setPage((prevPage) => prevPage - 1)}
+            disabled={page === 1}
+          >
+            Prev
+          </Button>
+          {page}
+          <Button
+            onClick={() => setPage((prevPage) => prevPage + 1)}
+            disabled={page === Math.ceil(data.count / reviewPerPage)}
+          >
+            Next
+          </Button>
+        </>
       )}
-      <Button
-        onClick={() => setPage((prevPage) => prevPage - 1)}
-        disabled={page === 1}
-      >
-        Prev
-      </Button>
-      {page}
-      <Button
-        onClick={() => setPage((prevPage) => prevPage + 1)}
-        disabled={page === Math.ceil(data.count / reviewPerPage)}
-      >
-        Next
-      </Button>
     </CenteredPage>
   );
 };
