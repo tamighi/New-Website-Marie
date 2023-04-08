@@ -17,7 +17,7 @@ const Grid = (props: GridProps) => {
     children,
     className = "",
     container,
-    xs = 1,
+    xs = 0,
     sm = xs,
     md = sm,
     lg = md,
