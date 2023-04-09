@@ -2,20 +2,31 @@ import React, { RefObject } from "react";
 
 type InputElements = HTMLInputElement & HTMLTextAreaElement & HTMLSelectElement;
 
+type Join<K, P> = K extends string | number ?
+    P extends string | number ?
+    `${K}${"" extends P ? "" : "."}${P}`
+    : never : never;
+
+type Prev = [never, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...0[]]
+
+type Leaves<T, D extends number = 2> = [D] extends [never] ? never : T extends object ?
+    { [K in keyof T]-?: Join<K, Leaves<T[K], Prev[D]>> }[keyof T] : "";
+
 interface InputProps<T> {
-  name: keyof T;
+  name: Leaves<T>
   ref: RefObject<InputElements>;
 }
 
-type PartialMapToRefs<T> = {
-  [K in keyof T]?: RefObject<InputElements>;
+type PartialMapToRefs<T extends object> = {
+  [k in Leaves<T>]?: RefObject<InputElements>;
 };
 
-const useForm = <T,>() => {
+const useForm = <T extends object>() => {
   const [inputRefs, setInputRefs] = React.useState<PartialMapToRefs<T>>({});
 
   const register = React.useCallback(
-    (name: keyof T) => {
+    (name: Leaves<T>) => {
       let ref = inputRefs[name];
       if (!ref) {
         ref = React.createRef<InputElements>();
@@ -34,7 +45,8 @@ const useForm = <T,>() => {
 
   const reset = () => {
     for (const k in inputRefs) {
-      const ref = inputRefs[k]?.current;
+      // TODO: As any ??
+      const ref = (inputRefs as any)[k]?.current;
       if (ref) {
         ref.value = "";
       }
@@ -46,6 +58,7 @@ const useForm = <T,>() => {
       event.preventDefault();
 
       const data = Object.keys(inputRefs).reduce(
+      // TODO: do not add if == "" or undefined
         (result, key) => ({
           ...result,
           [key]: inputRefs[key as keyof T]?.current?.value || "",
