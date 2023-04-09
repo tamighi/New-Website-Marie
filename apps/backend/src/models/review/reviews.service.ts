@@ -18,6 +18,8 @@ export class ReviewsService extends MessagesService<Review, ReviewDto> {
   override entityToDto(review: Review): ReviewDto {
     const reviewDto: ReviewDto = super.entityToDto(review);
 
+    reviewDto.note = review.note;
+
     return reviewDto;
   }
 

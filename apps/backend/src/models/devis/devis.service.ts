@@ -17,6 +17,12 @@ export class DevisService extends MessagesService<Devis, DevisDto> {
   override entityToDto(devis: Devis): DevisDto {
     const devisDto: DevisDto = super.entityToDto(devis);
 
+    devisDto.service = devis.service;
+    devisDto.subService = devis.subService;
+    devisDto.nbCharacter = devis.nbCharacter;
+    devisDto.price = devis.price;
+    devisDto.endDate = devis.endDate;
+
     return devisDto;
   }
 }

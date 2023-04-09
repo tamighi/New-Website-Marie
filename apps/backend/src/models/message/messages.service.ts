@@ -21,6 +21,7 @@ export class MessagesService<
     messageDto.message = message.message;
     messageDto.name = message.name;
     messageDto.email = message.email;
+    messageDto.status = message.status;
     messageDto.date = message.date;
 
     return messageDto;
