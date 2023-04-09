@@ -1,4 +1,4 @@
-import { useStyles } from "library";
+import { useStyles } from "../../hooks";
 
 import CSSClasses from "./IconButton.css";
 

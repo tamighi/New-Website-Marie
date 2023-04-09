@@ -1,6 +1,6 @@
-import { Colors } from "library/providers";
 import { Paper } from "..";
 import { useStyles } from "../../hooks";
+import { Colors } from "../../providers";
 
 import CSSClasses from "./Appbar.css";
 

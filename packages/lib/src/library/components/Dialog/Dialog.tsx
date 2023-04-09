@@ -1,5 +1,5 @@
-import useDelayedClose from "library/hooks/useDelayedClose";
 import { Button, Card, Divider } from "..";
+import { useDelayedClose } from "../../hooks";
 import { Colors, IDialogState } from "../../providers";
 import { BlurryBackground } from "../utils";
 

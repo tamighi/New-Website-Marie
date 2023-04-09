@@ -1,10 +1,8 @@
-import BlurryBackground from "../utils/BlurryBackground";
-
-import { useStyles } from "../../hooks";
+import { Paper } from "../Paper";
+import { useDelayedClose, useStyles } from "../../hooks";
+import { BlurryBackground } from "../utils";
 
 import CSSClasses from "./Drawer.css";
-import { Paper } from "../Paper";
-import useDelayedClose from "library/hooks/useDelayedClose";
 
 const HiddenClasses = {
   left: "HiddenLeft",

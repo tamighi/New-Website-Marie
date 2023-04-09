@@ -1,6 +1,6 @@
 import { TestPage } from "./components/TestPage";
 
-import { useTheme } from "library";
+import { useTheme } from "../library";
 
 import styles from "./App.css";
 import "./Global.css";

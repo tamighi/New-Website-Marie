@@ -1,6 +1,5 @@
-import { Card, Input } from "library";
-import Select from "library/components/Select/Select";
 import React from "react";
+import { Card, Input, Select } from "../../library";
 import styles from "../styles/Page.css";
 
 export const TestPage = () => {

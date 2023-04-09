@@ -1,5 +1,6 @@
-import { Colors } from "library/providers";
 import { useStyles } from "../../hooks";
+import { Colors } from "../../providers";
+
 import CSSClasses from "./Divider.css";
 
 const directionsClasses = {

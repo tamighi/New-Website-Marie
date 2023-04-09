@@ -1,5 +1,5 @@
-import { Colors } from "library/providers";
 import { useStyles } from "../../hooks";
+import { Colors } from "../../providers";
 
 import CSSClasses from "./Card.css";
 

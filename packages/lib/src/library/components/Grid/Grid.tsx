@@ -1,5 +1,6 @@
-import { useCurrentBreakpoint } from "library/hooks";
 import React from "react";
+import { useCurrentBreakpoint } from "../../hooks";
+
 import CSSClasses from "./Grid.css";
 
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -1,6 +1,7 @@
 import React from "react";
-
-import { Colors, InputBase, useStyles } from "library";
+import { InputBase } from "..";
+import { useStyles } from "../../hooks";
+import { Colors } from "../../providers";
 
 import CSSClasses from "../Input/Input.css";
 

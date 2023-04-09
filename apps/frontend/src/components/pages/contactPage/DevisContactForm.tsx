@@ -29,11 +29,7 @@ export const DevisContactForm = () => {
         </p>
         <Input flex {...register("name")} label="Nom" />
         <Input flex {...register("email")} label="Email" />
-        <Input
-          flex
-          {...register("nbCharacter")}
-          label="Nombre de caractère"
-        />
+        <Input flex {...register("nbCharacter")} label="Nombre de caractère" />
         <Select flex label="Service désiré">
           <option value="">Non spécifié</option>
           {services.data?.map((service) => {
@@ -44,12 +40,7 @@ export const DevisContactForm = () => {
             );
           })}
         </Select>
-        <TextArea
-          flex
-          rows={12}
-          {...register("message")}
-          label="Message"
-        />
+        <TextArea flex rows={12} {...register("message")} label="Message" />
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>
             Envoyer
