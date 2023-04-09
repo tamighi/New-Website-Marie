@@ -1,4 +1,4 @@
-import { Button, Card, Grid, Input } from "library";
+import { Button, Card, Grid, Input, TextArea } from "library";
 import styles from "../styles/Page.css";
 
 export const TestPage = () => {
@@ -24,7 +24,10 @@ export const TestPage = () => {
             <Input placeholder={"test"} />
           </Grid>
           <Grid xs={12}>
-            <Input placeholder={"Name"} />
+            <Input  />
+          </Grid>
+          <Grid xs={12}>
+            <TextArea placeholder={"Name"} />
           </Grid>
         </Grid>
       </Card>

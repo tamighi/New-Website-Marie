@@ -10,12 +10,7 @@
   position: relative;
 }
 
-.Input:hover {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-}
-
 .Input:focus {
-  border: 1px solid rgba(0, 0, 0, 0.9);
   outline: none;
 }
 
@@ -32,7 +27,7 @@
   pointer-events: none;
   transition: transform 200ms;
   left: 4px;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .Input:focus ~ .Label,

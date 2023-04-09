@@ -10,6 +10,7 @@ export interface InputProps
   flex?: boolean;
 }
 
+// TODO: Base input for textArea and input
 const Input = (
   props: InputProps,
   ref: React.ForwardedRef<HTMLInputElement>

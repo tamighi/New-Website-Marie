@@ -19,6 +19,7 @@ const TextArea = (
     className,
     color = "text",
     flex = false,
+    placeholder,
     ...rest
   } = props;
 
@@ -32,7 +33,19 @@ const TextArea = (
     color,
   });
 
-  return <textarea style={styles} className={classNames} ref={ref} {...rest} />;
+  return (
+    <div className={CSSClasses.TextAreaContainer}>
+      <textarea
+        placeholder=""
+        style={styles}
+        className={classNames}
+        ref={ref}
+        {...rest}
+      />
+      <label style={{ color: styles.color }} className={CSSClasses.Label}>
+        {placeholder}
+      </label>
+    </div>)
 };
 
 export default React.forwardRef(TextArea);
