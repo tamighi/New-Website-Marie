@@ -1,3 +1,5 @@
 import { MessageDto } from "../contactPage/message";
 
-export type ReviewDto = MessageDto
+export interface ReviewDto extends MessageDto {
+  note: number;
+}

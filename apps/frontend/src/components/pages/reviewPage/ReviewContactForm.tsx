@@ -4,6 +4,7 @@ import { Button, Input, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
 import { ReviewDto } from "./review";
 
+// TODO: Rating component
 export const ReviewContactForm = () => {
   const { register, handleSubmit, reset } = useForm<ReviewDto>();
   const { mutate, isLoading, isError, isSuccess } =
@@ -18,6 +19,7 @@ export const ReviewContactForm = () => {
       <FormContent>
         <Input flex {...register("name")} placeholder="Nom" />
         <Input flex {...register("email")} placeholder="Email" />
+        <Input flex {...register("note")} placeholder="Votre note" />
         <TextArea
           flex
           rows={12}
