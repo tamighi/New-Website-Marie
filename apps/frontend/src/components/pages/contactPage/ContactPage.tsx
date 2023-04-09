@@ -6,8 +6,8 @@ import { DevisContactForm } from "./DevisContactForm";
 import { Tab, Tabs } from "../core";
 import { Title } from "components/typography/Title";
 
-// TODO: Add form inputs for other details
-// TODO: Style name placeholder input
+// TODO: Complete for inputs
+// TODO: Cache form inputs ?
 export const ContactPage = () => {
   const [tab, setTab] = React.useState(0);
   return (
