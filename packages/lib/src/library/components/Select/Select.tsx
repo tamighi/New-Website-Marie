@@ -4,24 +4,25 @@ import { Colors, InputBase, useStyles } from "library";
 
 import CSSClasses from "../Input/Input.css";
 
-export interface TextAreaProps
-  extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, "color"> {
+export interface SelectProps
+  extends React.InputHTMLAttributes<HTMLSelectElement> {
   color?: keyof Colors;
   flex?: boolean;
   label?: string;
 }
 
-const TextArea = (
-  props: TextAreaProps,
-  ref: React.ForwardedRef<HTMLTextAreaElement>
+// TODO: Possibility to select none
+const Select = (
+  props: SelectProps,
+  ref: React.ForwardedRef<HTMLSelectElement>
 ) => {
   const {
     style: customStyle,
     className = "",
     color = "text",
     flex = false,
-    placeholder = "",
     label,
+    children,
     ...rest
   } = props;
 
@@ -34,16 +35,17 @@ const TextArea = (
   });
 
   return (
-    <InputBase color={styles.color} flex={flex} label={label}>
-      <textarea
-        placeholder={placeholder}
+    <InputBase flex={flex} label={label} color={styles.color}>
+      <select
         style={styles}
         className={classNames}
         ref={ref}
         {...rest}
-      />
+      >
+        {children}
+      </select>
     </InputBase>
   );
 };
 
-export default React.forwardRef(TextArea);
+export default React.forwardRef(Select);

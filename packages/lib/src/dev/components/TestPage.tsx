@@ -1,7 +1,10 @@
-import { Button, Card, Grid, Input, TextArea } from "library";
+import { Card, Input } from "library";
+import Select from "library/components/Select/Select";
+import React from "react";
 import styles from "../styles/Page.css";
 
 export const TestPage = () => {
+  const [v, setV] = React.useState("");
   return (
     <div className={styles.Page}>
       <Card
@@ -14,31 +17,19 @@ export const TestPage = () => {
           height: "500px",
         }}
       >
-        <Grid container style={{ gap: "12px" }}>
-          <Grid xs={12} sm={8} md={6} lg={3}>
-            <Button variant="contained">Contained</Button>
-          </Grid>
-          <Grid xs={12} sm={8} md={6} lg={3}>
-            <Button variant="contained">Contained</Button>
-          </Grid>
-          <Grid xs={12} sm={8} md={6} lg={3}>
-            <Button variant="contained">Contained</Button>
-          </Grid>
-          <Grid xs={12} sm={8} md={6} lg={3}>
-            <Button variant="text">Outlined</Button>
-          </Grid>
-          <Grid xs={12}>
-            <Input flex placeholder={"test"} />
-          </Grid>
-          <Grid xs={12}>
-            <Input />
-          </Grid>
-          <Grid xs={12}>
-            <TextArea placeholder={"Name"} />
-          </Grid>
-        </Grid>
-        <Input flex placeholder="flex"/>
-        <TextArea flex placeholder={"flex"} />
+        <Input label="test" />
+        <Select
+          flex
+          label="Service"
+          value={v}
+          onChange={(e: any) => {
+            setV(e.target.value);
+          }}
+        >
+          <option value="">None</option>
+          <option value="test1">Test1</option>
+          <option value="test2">Test2</option>
+        </Select>
       </Card>
     </div>
   );

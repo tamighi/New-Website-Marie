@@ -1,17 +1,16 @@
 import React from "react";
 
-import { Colors, useStyles } from "library";
+import { Colors, InputBase, useStyles } from "library";
 
 import CSSClasses from "./Input.css";
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends React.HTMLAttributes<HTMLInputElement> {
   color?: keyof Colors;
   flex?: boolean;
+  label?: string;
 }
 
-// TODO: Base input for textArea and input
-// TODO: Flex better styles ? margin input is not working correctly
 const Input = (
   props: InputProps,
   ref: React.ForwardedRef<HTMLInputElement>
@@ -21,15 +20,12 @@ const Input = (
     className = "",
     color = "text",
     flex = false,
-    placeholder,
+    label,
+    placeholder = "",
     ...rest
   } = props;
 
-  const classNames =
-    `${CSSClasses.Input} ` + className;
-
-  const containerClassNames =
-    `${CSSClasses.InputContainer} ` + `${flex ? CSSClasses.InputFlex : ""}`;
+  const classNames = `${CSSClasses.Input} ` + className;
 
   const styles = useStyles({
     type: "surface",
@@ -38,18 +34,15 @@ const Input = (
   });
 
   return (
-    <div className={containerClassNames}>
+    <InputBase label={label} flex={flex} color={styles.color}>
       <input
-        placeholder=""
         style={styles}
+        placeholder={placeholder}
         className={classNames}
         ref={ref}
         {...rest}
       />
-      <label style={{ color: styles.color }} className={CSSClasses.Label}>
-        {placeholder}
-      </label>
-    </div>
+    </InputBase>
   );
 };
 
