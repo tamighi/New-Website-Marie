@@ -1,9 +1,12 @@
-.StrippedTable tr.Clickable:hover {
+.Clickable {
   cursor: pointer;
+}
+
+.Clickable:hover {
   background-image: linear-gradient(
     rgba(255, 255, 255, 0.3),
     rgba(255, 255, 255, 0.3)
-  );
+  ) !important;
 }
 
 .StrippedTable tr:nth-child(even) {
