@@ -11,6 +11,7 @@ export interface InputProps
 }
 
 // TODO: Base input for textArea and input
+// TODO: Flex better styles ? margin input is not working correctly
 const Input = (
   props: InputProps,
   ref: React.ForwardedRef<HTMLInputElement>

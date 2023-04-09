@@ -1,11 +1,13 @@
 .TextAreaContainer {
   position: relative;
+  padding: 4px;
 }
 
 .TextArea {
-  padding: 4px;
   border-radius: 3px;
   font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -13,19 +15,17 @@
   outline: none;
 }
 
-.TextAreaFlex {
+.InputFlex {
   min-width: 150px;
-  width: inherit;
-  flex: 1;
+  width: 100%;
   box-sizing: border-box;
 }
 
 .Label {
   position: absolute;
-  top: 4px;
   pointer-events: none;
   transition: transform 200ms;
-  left: 4px;
+  left: 0;
   opacity: 0.6;
 }
 

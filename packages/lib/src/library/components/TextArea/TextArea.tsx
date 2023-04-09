@@ -16,16 +16,17 @@ const TextArea = (
 ) => {
   const {
     style: customStyle,
-    className,
+    className = "",
     color = "text",
     flex = false,
     placeholder,
     ...rest
   } = props;
 
-  const classNames =
-    `${CSSClasses.TextArea} ${flex ? CSSClasses.TextAreaFlex : ""} ` +
-    (className || "");
+  const classNames = `${CSSClasses.TextArea} ` + className;
+
+  const containerClassNames =
+    `${CSSClasses.TextAreaContainer} ` + `${flex ? CSSClasses.InputFlex : ""}`;
 
   const styles = useStyles({
     type: "surface",
@@ -34,7 +35,7 @@ const TextArea = (
   });
 
   return (
-    <div className={CSSClasses.TextAreaContainer}>
+    <div className={containerClassNames}>
       <textarea
         placeholder=""
         style={styles}
@@ -45,7 +46,8 @@ const TextArea = (
       <label style={{ color: styles.color }} className={CSSClasses.Label}>
         {placeholder}
       </label>
-    </div>)
+    </div>
+  );
 };
 
 export default React.forwardRef(TextArea);

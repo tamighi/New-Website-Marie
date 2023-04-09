@@ -19,10 +19,16 @@ export const TestPage = () => {
             <Button variant="contained">Contained</Button>
           </Grid>
           <Grid xs={12} sm={8} md={6} lg={3}>
+            <Button variant="contained">Contained</Button>
+          </Grid>
+          <Grid xs={12} sm={8} md={6} lg={3}>
+            <Button variant="contained">Contained</Button>
+          </Grid>
+          <Grid xs={12} sm={8} md={6} lg={3}>
             <Button variant="text">Outlined</Button>
           </Grid>
           <Grid xs={12}>
-            <Input placeholder={"test"} />
+            <Input flex placeholder={"test"} />
           </Grid>
           <Grid xs={12}>
             <Input />
@@ -32,6 +38,7 @@ export const TestPage = () => {
           </Grid>
         </Grid>
         <Input flex placeholder="flex"/>
+        <TextArea flex placeholder={"flex"} />
       </Card>
     </div>
   );
