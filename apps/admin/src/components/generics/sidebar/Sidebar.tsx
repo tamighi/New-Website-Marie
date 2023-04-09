@@ -43,7 +43,11 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
 
   return (
     <>
-      <div className={`${styles.Sidebar} ${open ? styles.Open : styles.Close}`}>
+      <div
+        className={`${styles.Sidebar} ${
+          isSmall ? styles.HideSideBar : open ? styles.Open : styles.Close
+        }`}
+      >
         <ul>
           {pages.map((page, index) => (
             <li key={index}>

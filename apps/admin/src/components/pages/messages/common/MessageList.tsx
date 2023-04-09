@@ -7,6 +7,7 @@ import { useIsSmall } from "hooks";
 
 type MessageResourceString = "question" | "review" | "devis";
 
+// TODO: Desktop/mobile list !!
 const messageColumns: Column<ResourceType<MessageResourceString>>[] = [
   {
     accessor: "status",
