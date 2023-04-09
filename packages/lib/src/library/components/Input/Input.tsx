@@ -25,7 +25,10 @@ const Input = (
   } = props;
 
   const classNames =
-    `${CSSClasses.Input} ${flex ? CSSClasses.InputFlex : ""} ` + className;
+    `${CSSClasses.Input} ` + className;
+
+  const containerClassNames =
+    `${CSSClasses.InputContainer} ` + `${flex ? CSSClasses.InputFlex : ""}`;
 
   const styles = useStyles({
     type: "surface",
@@ -34,7 +37,7 @@ const Input = (
   });
 
   return (
-    <div className={CSSClasses.InputContainer}>
+    <div className={containerClassNames}>
       <input
         placeholder=""
         style={styles}

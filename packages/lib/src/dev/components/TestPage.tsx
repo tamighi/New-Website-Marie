@@ -8,6 +8,7 @@ export const TestPage = () => {
         style={{
           display: "flex",
           alignItems: "center",
+          flexDirection: "column",
           justifyContent: "center",
           width: "500px",
           height: "500px",
@@ -24,12 +25,13 @@ export const TestPage = () => {
             <Input placeholder={"test"} />
           </Grid>
           <Grid xs={12}>
-            <Input  />
+            <Input />
           </Grid>
           <Grid xs={12}>
             <TextArea placeholder={"Name"} />
           </Grid>
         </Grid>
+        <Input flex placeholder="flex"/>
       </Card>
     </div>
   );
