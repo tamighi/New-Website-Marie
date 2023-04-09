@@ -9,6 +9,23 @@ type MessageResourceString = "question" | "review" | "devis";
 
 const messageColumns: Column<ResourceType<MessageResourceString>>[] = [
   {
+    accessor: "status",
+    Header: "Status",
+    maxWidth: 50,
+    Cell: ({ value }) => (
+      <span
+        style={{
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          display: "block",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {value}
+      </span>
+    ),
+  },
+  {
     accessor: "name",
     Header: "Nom",
     maxWidth: 50,

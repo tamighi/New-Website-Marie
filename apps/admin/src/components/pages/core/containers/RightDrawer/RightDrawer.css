@@ -1,5 +1,5 @@
 .RightDrawer {
-  height: 100%;
+  height: fit-content;
   margin-top: 12px;
   width: 400px;
 }
