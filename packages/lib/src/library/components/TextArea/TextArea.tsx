@@ -2,7 +2,7 @@ import React from "react";
 
 import { Colors, useStyles } from "library";
 
-import CSSClasses from "./TextArea.css";
+import CSSClasses from "../Input/Input.css";
 
 export interface TextAreaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "color"> {
@@ -23,10 +23,10 @@ const TextArea = (
     ...rest
   } = props;
 
-  const classNames = `${CSSClasses.TextArea} ` + className;
+  const classNames = `${CSSClasses.Input} ` + className;
 
   const containerClassNames =
-    `${CSSClasses.TextAreaContainer} ` + `${flex ? CSSClasses.InputFlex : ""}`;
+    `${CSSClasses.InputContainer} ` + `${flex ? CSSClasses.InputFlex : ""}`;
 
   const styles = useStyles({
     type: "surface",
