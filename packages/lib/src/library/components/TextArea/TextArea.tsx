@@ -5,7 +5,7 @@ import { Colors, InputBase, useStyles } from "library";
 import CSSClasses from "../Input/Input.css";
 
 export interface TextAreaProps
-  extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, "color"> {
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "color"> {
   color?: keyof Colors;
   flex?: boolean;
   label?: string;

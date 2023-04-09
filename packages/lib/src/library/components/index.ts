@@ -28,4 +28,6 @@ export * from "./Input";
 
 export * from "./TextArea";
 
-export * from "./InputBase"
+export * from "./InputBase";
+
+export * from "./Select";

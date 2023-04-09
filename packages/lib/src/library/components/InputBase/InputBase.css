@@ -16,13 +16,13 @@
   opacity: 0.6;
 }
 
-.InputContainer input:focus ~ .Label,
-.InputContainer textara:focus ~ .Label,
-.InputContainer select:focus ~ .Label,
+.InputContainer input:focus ~ label,
+.InputContainer textara:focus ~ label,
+.InputContainer select:focus ~ label,
 /*TODO: Make it work*/
-.InputContainer select:not([value=""]) ~ .Label,
-.InputContainer input:not(:placeholder-shown) ~ .Label,
-.InputContainer textarea:not(:placeholder-shown) ~ .Label {
+.InputContainer select:not([value=""]) ~ label,
+.InputContainer input:not(:placeholder-shown) ~ label,
+.InputContainer textarea:not(:placeholder-shown) ~ label {
   transform: translateY(-15px) translateX(10px) scale(0.75);
 }
 

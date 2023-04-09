@@ -1,7 +1,7 @@
 import { Loader } from "components/utils/Loader";
 import { usePostMessage } from "hooks/usePostMessage";
-//import { useServices } from "hooks/useServices";
-import { Button, Input, TextArea, useForm } from "lib";
+import { useServices } from "hooks/useServices";
+import { Button, Input, Select, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
 import { DevisDto } from "./devis";
 
@@ -11,12 +11,12 @@ export const DevisContactForm = () => {
     usePostMessage<DevisDto>("devis");
 
   // TODO: Add select input (lib)
-  //const services = useServices()
+  const services = useServices();
 
   const onSubmit = (devis: Partial<DevisDto>) => {
     mutate(devis, {
-        onSuccess: reset
-      });
+      onSuccess: reset,
+    });
   };
 
   return (
@@ -29,7 +29,21 @@ export const DevisContactForm = () => {
         </p>
         <Input flex {...register("name")} placeholder="Nom" />
         <Input flex {...register("email")} placeholder="Email" />
-        <Input flex {...register("nbCharacter")} placeholder="Nombre de caractère" />
+        <Input
+          flex
+          {...register("nbCharacter")}
+          placeholder="Nombre de caractère"
+        />
+        <Select label="Service désiré">
+          <option value="">Non spécifié</option>
+          {services.data?.map((service) => {
+            return (
+              <option key={service.id} value={service.id}>
+                {service.name}
+              </option>
+            );
+          })}
+        </Select>
         <TextArea
           flex
           rows={12}
