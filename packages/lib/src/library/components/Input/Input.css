@@ -1,8 +1,13 @@
+.InputContainer {
+  position: relative;
+}
 .Input {
   padding: 4px;
   font-size: 16px;
   border-radius: 3px;
+  /*TODO: Border with correct color*/
   border: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .Input:hover {
@@ -19,4 +24,18 @@
   width: inherit;
   flex: 1;
   box-sizing: border-box;
+}
+
+.Label {
+  position: absolute;
+  top: 4px;
+  pointer-events: none;
+  transition: transform 200ms;
+  left: 4px;
+  opacity: 0.8;
+}
+
+.Input:focus ~ .Label,
+.Input:not(:placeholder-shown) ~ .Label {
+  transform: translateY(-15px) translateX(10px) scale(0.75);
 }

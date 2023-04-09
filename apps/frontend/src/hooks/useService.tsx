@@ -5,7 +5,7 @@ import { ServiceDto } from "resources/service";
 export const useService = (id: string) => {
   const queryClient = useQueryClient();
 
-  const { data } = useQuery<ServiceDto>(
+  const { data, isLoading, isError } = useQuery<ServiceDto>(
     ["services", id],
     () => getService(id),
     {
@@ -19,5 +19,5 @@ export const useService = (id: string) => {
     }
   );
 
-  return { data };
+  return { data, isLoading, isError };
 };

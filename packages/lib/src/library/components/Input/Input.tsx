@@ -19,6 +19,7 @@ const Input = (
     className = "",
     color = "text",
     flex = false,
+    placeholder,
     ...rest
   } = props;
 
@@ -31,7 +32,20 @@ const Input = (
     color,
   });
 
-  return <input style={styles} className={classNames} ref={ref} {...rest} />;
+  return (
+    <div className={CSSClasses.InputContainer}>
+      <input
+        placeholder=""
+        style={styles}
+        className={classNames}
+        ref={ref}
+        {...rest}
+      />
+      <label style={{ color: styles.color }} className={CSSClasses.Label}>
+        {placeholder}
+      </label>
+    </div>
+  );
 };
 
 export default React.forwardRef(Input);

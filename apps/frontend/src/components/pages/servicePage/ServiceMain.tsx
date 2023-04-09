@@ -1,9 +1,11 @@
 import { Title } from "components/typography/Title";
+import { Loader } from "components/utils/Loader";
 import { useServices } from "hooks/useServices";
 import { ServiceCard } from "./ServiceCard";
 
+// TODO: isError little person
 export const ServiceMain = () => {
-  const { data: services } = useServices();
+  const { data: services, isError, isLoading } = useServices();
 
   return (
     <>
@@ -23,9 +25,15 @@ export const ServiceMain = () => {
         <br />
         Cliquez sur un service afin de voir les tarifs proposés.
       </p>
-      {services?.map((service) => (
-        <ServiceCard service={service} key={service.id} />
-      ))}
+      {isLoading ? (
+        <Loader />
+      ) : !services || isError ? (
+        <div>Une erreur est survenue ...</div>
+      ) : (
+        services?.map((service) => (
+          <ServiceCard service={service} key={service.id} />
+        ))
+      )}
     </>
   );
 };
