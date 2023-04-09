@@ -22,13 +22,13 @@ export const QuestionContactForm = () => {
           <br />
           Une information vous manque ? Un cas particulier ? Contactez-moi !
         </p>
-        <Input flex {...register("name")} placeholder="Nom" />
-        <Input flex {...register("email")} placeholder="Email" />
+        <Input flex {...register("name")} label="Nom" />
+        <Input flex {...register("email")} label="Email" />
         <TextArea
           flex
           rows={12}
           {...register("message")}
-          placeholder="Message"
+          label="Message"
         />
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>

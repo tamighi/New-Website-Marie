@@ -17,14 +17,14 @@ export const ReviewContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
-        <Input flex {...register("name")} placeholder="Nom" />
-        <Input flex {...register("email")} placeholder="Email" />
-        <Input flex {...register("note")} placeholder="Votre note" />
+        <Input flex {...register("name")} label="Nom" />
+        <Input flex {...register("email")} label="Email" />
+        <Input flex {...register("note")} label="Votre note" />
         <TextArea
           flex
           rows={12}
           {...register("message")}
-          placeholder="Message"
+          label="Message"
         />
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>

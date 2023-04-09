@@ -27,14 +27,14 @@ export const DevisContactForm = () => {
           <br />
           Combien coûte la correction de votre texte ? Écrivez-moi !
         </p>
-        <Input flex {...register("name")} placeholder="Nom" />
-        <Input flex {...register("email")} placeholder="Email" />
+        <Input flex {...register("name")} label="Nom" />
+        <Input flex {...register("email")} label="Email" />
         <Input
           flex
           {...register("nbCharacter")}
-          placeholder="Nombre de caractère"
+          label="Nombre de caractère"
         />
-        <Select label="Service désiré">
+        <Select flex label="Service désiré">
           <option value="">Non spécifié</option>
           {services.data?.map((service) => {
             return (
@@ -48,7 +48,7 @@ export const DevisContactForm = () => {
           flex
           rows={12}
           {...register("message")}
-          placeholder="Message"
+          label="Message"
         />
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>
