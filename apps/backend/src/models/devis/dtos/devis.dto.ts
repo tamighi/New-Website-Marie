@@ -6,8 +6,8 @@ import { SubServiceDto } from "src/models/subService/dtos/subService.dto";
 
 export class DevisDto extends MessageDto {
   nbCharacter: number;
-  price: number;
+  price?: number;
   endDate?: Date;
   subService?: SubServiceDto;
-  service: ServiceDto;
+  service?: ServiceDto;
 }

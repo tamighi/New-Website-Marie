@@ -1,5 +1,6 @@
 import { Loader } from "components/utils/Loader";
 import { usePostMessage } from "hooks/usePostMessage";
+//import { useServices } from "hooks/useServices";
 import { Button, Input, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
 import { DevisDto } from "./devis";
@@ -9,9 +10,13 @@ export const DevisContactForm = () => {
   const { mutate, isLoading, isError, isSuccess } =
     usePostMessage<DevisDto>("devis");
 
+  // TODO: Add select input (lib)
+  //const services = useServices()
+
   const onSubmit = (devis: Partial<DevisDto>) => {
-    mutate(devis);
-    reset();
+    mutate(devis, {
+        onSuccess: reset
+      });
   };
 
   return (
@@ -24,6 +29,7 @@ export const DevisContactForm = () => {
         </p>
         <Input flex {...register("name")} placeholder="Nom" />
         <Input flex {...register("email")} placeholder="Email" />
+        <Input flex {...register("nbCharacter")} placeholder="Nombre de caractère" />
         <TextArea
           flex
           rows={12}

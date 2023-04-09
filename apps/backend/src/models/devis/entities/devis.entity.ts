@@ -8,8 +8,8 @@ export class Devis extends Message {
   @Column()
   nbCharacter: number;
 
-  @Column("decimal", { precision: 10, scale: 4 })
-  price: number;
+  @Column("decimal", { nullable: true, precision: 10, scale: 4 })
+  price?: number;
 
   @Column({ nullable: true })
   endDate?: Date;
@@ -17,8 +17,9 @@ export class Devis extends Message {
   @ManyToOne(() => Service, {
     onDelete: "SET NULL",
     eager: true,
+    nullable: true,
   })
-  service: Service;
+  service?: Service;
 
   @ManyToOne(() => SubService, {
     onDelete: "SET NULL",
