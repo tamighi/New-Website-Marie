@@ -12,10 +12,11 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
+import { DeepPartial } from "typeorm";
 import { AbstractService } from "./abstract.service";
 import { QueryDto } from "./dtos/query.dto";
 
-export abstract class AbstractController<T extends { id: number }, DTO> {
+export abstract class AbstractController<T extends { id: number }, DTO extends DeepPartial<T>> {
   constructor(protected readonly abstractService: AbstractService<T, DTO>) {}
 
   @UseGuards(JwtAuthGuard)

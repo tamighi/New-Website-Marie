@@ -1,11 +1,10 @@
 import { AbstractService } from "src/models/abstract/abstract.service";
 import { DeepPartial, Repository } from "typeorm";
-import { MessageDto } from "./dtos/messages.dto";
 import { Message } from "./entities/messages.entity";
 
 export class MessagesService<
   T extends Message,
-  DTO extends MessageDto
+  DTO extends DeepPartial<T>
 > extends AbstractService<T, DTO> {
   protected messageRepository: Repository<T>;
 

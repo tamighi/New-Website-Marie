@@ -11,8 +11,7 @@ interface ServiceOptions {
   relations?: string[];
 }
 
-// TODO : Dto to DeepPartial<T>
-export abstract class AbstractService<T extends { id: number }, DTO> {
+export abstract class AbstractService<T extends { id: number }, DTO extends DeepPartial<T>> {
   protected repository: Repository<T>;
   protected relations: string[];
 
@@ -74,9 +73,7 @@ export abstract class AbstractService<T extends { id: number }, DTO> {
   }
 
   async create(body: DTO) {
-    const updateBody = body as DeepPartial<T>;
-
-    const newData: T[] | T = this.repository.create(updateBody);
+    const newData: T[] | T = this.repository.create(body);
     const saved = await this.repository.save(newData);
 
     return { data: this.entityToDto(saved) };
