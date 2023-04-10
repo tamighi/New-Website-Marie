@@ -28,6 +28,7 @@ const Grid = (props: GridProps) => {
 
   const breakPoints = { xs, sm, md, lg, xl };
 
+  // TODO: useCurrentBreakpoint add an event listener. Should do that in useThemeContext ?
   const currentBreakPoint = useCurrentBreakpoint();
 
   const styles = {

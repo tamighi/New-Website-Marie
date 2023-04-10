@@ -110,8 +110,9 @@ const useForm = <T extends object>() => {
   const handleSubmit = (onSubmit: (data: Partial<T>) => void) => {
     return (event: React.FormEvent<HTMLFormElement | HTMLButtonElement>) => {
       event.preventDefault();
-      console.log("CONTROLLED INPUTS: ", controlledInputs);
 
+      console.log(controlledInputs);
+      // TODO: Add controlledInputs to data
       const data = Object.keys(inputRefs).reduce((result, key) => {
         const propNames = key.split(".");
 
