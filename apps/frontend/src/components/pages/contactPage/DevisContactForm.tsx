@@ -30,7 +30,7 @@ export const DevisContactForm = () => {
         <Input flex {...register("name")} label="Nom" />
         <Input flex {...register("email")} label="Email" />
         <Input flex {...register("nbCharacter")} label="Nombre de caractère" />
-        <Select flex label="Service désiré">
+        <Select flex {...register("service.id")} label="Service désiré">
           <option value="">Non spécifié</option>
           {services.data?.map((service) => {
             return (

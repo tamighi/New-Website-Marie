@@ -2,19 +2,47 @@ import React, { RefObject } from "react";
 
 type InputElements = HTMLInputElement & HTMLTextAreaElement & HTMLSelectElement;
 
-type Join<K, P> = K extends string | number ?
-    P extends string | number ?
-    `${K}${"" extends P ? "" : "."}${P}`
-    : never : never;
+// TODO: Understand + adapt
+type Join<K, P> = K extends string | number
+  ? P extends string | number
+    ? `${K}${"" extends P ? "" : "."}${P}`
+    : never
+  : never;
 
-type Prev = [never, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...0[]]
+type Prev = [
+  never,
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  ...0[]
+];
 
-type Leaves<T, D extends number = 2> = [D] extends [never] ? never : T extends object ?
-    { [K in keyof T]-?: Join<K, Leaves<T[K], Prev[D]>> }[keyof T] : "";
+type Leaves<T, D extends number = 2> = [D] extends [never]
+  ? never
+  : T extends object
+  ? { [K in keyof T]-?: Join<K, Leaves<T[K], Prev[D]>> }[keyof T]
+  : "";
 
 interface InputProps<T> {
-  name: Leaves<T>
+  name: Leaves<T>;
   ref: RefObject<InputElements>;
 }
 
@@ -57,14 +85,24 @@ const useForm = <T extends object>() => {
     return (event: React.FormEvent<HTMLFormElement | HTMLButtonElement>) => {
       event.preventDefault();
 
-      const data = Object.keys(inputRefs).reduce(
-      // TODO: do not add if == "" or undefined
-        (result, key) => ({
-          ...result,
-          [key]: inputRefs[key as keyof T]?.current?.value || "",
-        }),
-        {}
-      );
+      const data = Object.keys(inputRefs).reduce((result, key) => {
+        const propNames = key.split(".");
+
+        let nestedObject = result;
+
+        for (let i = 0; i < propNames.length - 1; i++) {
+          const propName = propNames[i];
+
+          (nestedObject as any)[propName] =
+            (nestedObject as any)[propName] || {};
+          nestedObject = (nestedObject as any)[propName];
+        }
+
+        (nestedObject as any)[propNames[propNames.length - 1]] =
+          inputRefs[key as keyof T]?.current?.value;
+
+        return result;
+      }, {});
       onSubmit(data);
     };
   };

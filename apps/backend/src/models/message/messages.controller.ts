@@ -8,9 +8,7 @@ export class MessagesController<
   T extends Message,
   DTO extends MessageDto
 > extends AbstractController<T, DTO> {
-  constructor(
-    private readonly messageService: MessagesService<T, DTO>
-  ) {
+  constructor(private readonly messageService: MessagesService<T, DTO>) {
     super(messageService);
   }
 
