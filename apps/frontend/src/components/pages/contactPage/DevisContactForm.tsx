@@ -5,12 +5,12 @@ import { Button, Input, Select, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
 import { DevisDto } from "./devis";
 
+// TODO: Need controlled form for service to show subservices when selected
 export const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
   const { mutate, isLoading, isError, isSuccess } =
     usePostMessage<DevisDto>("devis");
 
-  // TODO: Add select input (lib)
   const services = useServices();
 
   const onSubmit = (devis: Partial<DevisDto>) => {

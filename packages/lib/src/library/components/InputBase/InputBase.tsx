@@ -10,14 +10,9 @@ export interface BaseInputProps {
 }
 
 // TODO: Flex better styles ? margin input is not working correctly
-const BaseInput = (
-  props: BaseInputProps,
-) => {
-  const {
-    flex = false,
-    label,
-    children
-  } = props;
+// TODO: Add bg to label to make it better ? Like a rounded bg with secondary color
+const BaseInput = (props: BaseInputProps) => {
+  const { flex = false, label, children } = props;
 
   const containerClassNames =
     `${CSSClasses.InputContainer} ` + `${flex ? CSSClasses.InputFlex : ""}`;
@@ -25,9 +20,7 @@ const BaseInput = (
   return (
     <div className={containerClassNames}>
       {children}
-      <label className={CSSClasses.Label}>
-        {label}
-      </label>
+      <label className={CSSClasses.Label}>{label}</label>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import React from "react";
 import { Button, Card, Input, Select, useForm } from "../../library";
 import styles from "../styles/Page.css";
 
@@ -11,10 +12,16 @@ interface User {
 
 export const TestPage = () => {
   const { register, handleSubmit } = useForm<User>();
+  const [id, setId] = React.useState("");
 
   const onSubmit = (data: any) => {
     console.log(data);
+    console.log(id);
   };
+
+  React.useEffect(() => {
+    console.log(id);
+  }, [id]);
 
   return (
     <div className={styles.Page}>
@@ -31,7 +38,13 @@ export const TestPage = () => {
         >
           <Input label="name" {...register("name")} />
           <Input label="post title" {...register("post.title")} />
-          <Select flex label="post" {...register("post.id")}>
+          <Select
+            flex
+            label="post"
+            {...register("post.id", {
+              onChange: (value: string) => setId(value),
+            })}
+          >
             <option value="">None</option>
             <option value={1}>Test1</option>
             <option value={2}>Test2</option>

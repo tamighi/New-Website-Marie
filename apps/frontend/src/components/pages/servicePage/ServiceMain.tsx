@@ -3,7 +3,6 @@ import { Loader } from "components/utils/Loader";
 import { useServices } from "hooks/useServices";
 import { ServiceCard } from "./ServiceCard";
 
-// TODO: isError little person
 export const ServiceMain = () => {
   const { data: services, isError, isLoading } = useServices();
 

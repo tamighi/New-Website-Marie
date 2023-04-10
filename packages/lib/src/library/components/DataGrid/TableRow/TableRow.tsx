@@ -2,6 +2,7 @@ import CSSClasses from "./TableRow.css";
 
 export type TableRowProps = React.HTMLAttributes<HTMLTableRowElement>;
 
+// TODO: Header style if header=true in props
 const TableRow = (props: TableRowProps) => {
   const { children, className, style: customStyle, ...rest } = props;
 

@@ -3,7 +3,6 @@ import { InputBase } from "..";
 import { useStyles } from "../../hooks";
 import { Colors } from "../../providers";
 
-
 import CSSClasses from "../Input/Input.css";
 
 export interface SelectProps
@@ -13,7 +12,7 @@ export interface SelectProps
   label?: string;
 }
 
-// TODO: Possibility to select none
+// TODO: Possibility to select none, and hide it if value === "" + make select:not value work for InputBase
 const Select = (
   props: SelectProps,
   ref: React.ForwardedRef<HTMLSelectElement>
@@ -38,12 +37,7 @@ const Select = (
 
   return (
     <InputBase flex={flex} label={label} color={styles.color}>
-      <select
-        style={styles}
-        className={classNames}
-        ref={ref}
-        {...rest}
-      >
+      <select style={styles} className={classNames} ref={ref} {...rest}>
         {children}
       </select>
     </InputBase>
