@@ -9,35 +9,13 @@ type Join<K, P> = K extends string | number
     : never
   : never;
 
-type Prev = [
-  never,
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20,
-  ...0[]
-];
+// Prevent infinite type instanciation
+type Prev = [ never, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...0[] ];
 
 type Leaves<T, D extends number = 2> = [D] extends [never]
   ? never
   : T extends object
+  // What is "-?" ?
   ? { [K in keyof T]-?: Join<K, Leaves<T[K], Prev[D]>> }[keyof T]
   : "";
 
@@ -86,23 +64,30 @@ const useForm = <T extends object>() => {
       event.preventDefault();
 
       const data = Object.keys(inputRefs).reduce((result, key) => {
-        const propNames = key.split(".");
 
-        let nestedObject = result;
+        const propNames  = key.split(".");
 
+        // propNames is supposedly safe for indexing T (see Leaves<T>)
+        let nestedObject = result as any;
+        
+        // Does not enter if only one key
         for (let i = 0; i < propNames.length - 1; i++) {
           const propName = propNames[i];
 
-          (nestedObject as any)[propName] =
-            (nestedObject as any)[propName] || {};
-          nestedObject = (nestedObject as any)[propName];
-        }
+          nestedObject[propName] =
+            nestedObject[propName] || {};
 
-        (nestedObject as any)[propNames[propNames.length - 1]] =
-          inputRefs[key as keyof T]?.current?.value;
+          nestedObject = nestedObject[propName];
+        }
+          const value = inputRefs[key as keyof T]?.current?.value;
+
+        nestedObject[propNames[propNames.length - 1]] =
+          value === "" ? undefined : value
 
         return result;
-      }, {});
+
+      }, {} as Partial<T>);
+
       onSubmit(data);
     };
   };

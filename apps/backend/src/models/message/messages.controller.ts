@@ -17,6 +17,7 @@ export class MessagesController<
     try {
       return await this.messageService.postMessage(body);
     } catch (err) {
+      console.log(err)
       throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
   }

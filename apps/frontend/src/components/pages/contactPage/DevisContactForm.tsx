@@ -17,6 +17,7 @@ export const DevisContactForm = () => {
     mutate(devis, {
       onSuccess: reset,
     });
+    console.log(devis);
   };
 
   return (

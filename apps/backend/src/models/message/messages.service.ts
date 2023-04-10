@@ -27,10 +27,7 @@ export class MessagesService<
     return messageDto;
   }
 
-  async postMessage(message: DeepPartial<T>) {
-    const createdQuestion = this.messageRepository.create(message);
-    const saved = await this.messageRepository.save(createdQuestion);
-
-    return { data: this.entityToDto(saved) };
+  async postMessage(message: DTO) {
+    return super.create(message)
   }
 }

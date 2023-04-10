@@ -11,6 +11,7 @@ interface ServiceOptions {
   relations?: string[];
 }
 
+// TODO : Dto to DeepPartial<T>
 export abstract class AbstractService<T extends { id: number }, DTO> {
   protected repository: Repository<T>;
   protected relations: string[];

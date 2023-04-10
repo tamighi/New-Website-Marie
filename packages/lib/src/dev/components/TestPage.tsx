@@ -4,6 +4,7 @@ import styles from "../styles/Page.css";
 interface User {
   post: {
     id: 1;
+    title: string;
   };
   name: string;
 }
@@ -29,7 +30,8 @@ export const TestPage = () => {
           }}
         >
           <Input label="name" {...register("name")} />
-          <Select flex label="Service" {...register("post.id")}>
+          <Input label="post title" {...register("post.title")} />
+          <Select flex label="post" {...register("post.id")}>
             <option value="">None</option>
             <option value={1}>Test1</option>
             <option value={2}>Test2</option>
