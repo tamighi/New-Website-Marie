@@ -5,8 +5,8 @@ type InputElements = HTMLInputElement & HTMLTextAreaElement & HTMLSelectElement;
 // TODO: Understand + adapt
 type Join<K, P> = K extends string | number
   ? P extends string | number
-  ? `${K}${"" extends P ? "" : "."}${P}`
-  : never
+    ? `${K}${"" extends P ? "" : "."}${P}`
+    : never
   : never;
 
 // Prevent infinite type instanciation
@@ -36,12 +36,13 @@ type Prev = [
   ...0[]
 ];
 
+// TODO: There is a problem with the generated .d.ts file !!!
+// Makes the whole frontend go slow. See leaves an register. number = 10 can't compile
 type Leaves<T, D extends number = 2> = [D] extends [never]
   ? never
   : T extends object
   ? // TODO: What is "-?" ?
-  // TODO: There might be a problem with the generated .d.ts file ...
-  { [K in keyof T]-?: Join<K, Leaves<T[K], Prev[D]>> }[keyof T]
+    { [K in keyof T]-?: Join<K, Leaves<T[K], Prev[D]>> }[keyof T]
   : "";
 
 interface RegisterOptions {
