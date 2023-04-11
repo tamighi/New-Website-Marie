@@ -39,14 +39,10 @@ type Prev = [
 type Leaves<T, D extends number = 2> = [D] extends [never]
   ? never
   : T extends object
-  ? // What is "-?" ?
+  ? // TODO: What is "-?" ?
+  // TODO: There might be a problem with the generated .d.ts file ...
   { [K in keyof T]-?: Join<K, Leaves<T[K], Prev[D]>> }[keyof T]
   : "";
-
-interface InputProps<T> {
-  name: Leaves<T>;
-  ref: RefObject<InputElements>;
-}
 
 interface RegisterOptions {
   onChange?: (value: string) => void;
@@ -87,7 +83,7 @@ const useForm = <T extends object>() => {
         setInputRefs((prevInputRefs) => ({ ...prevInputRefs, [name]: ref }));
       }
 
-      const inputProps: InputProps<T> = {
+      const inputProps = {
         name: name,
         ref: ref,
       };
