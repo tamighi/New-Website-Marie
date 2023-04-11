@@ -19,10 +19,6 @@ export const TestPage = () => {
     console.log(id);
   };
 
-  React.useEffect(() => {
-    console.log(id);
-  }, [id]);
-
   return (
     <div className={styles.Page}>
       <form onSubmit={handleSubmit(onSubmit)}>

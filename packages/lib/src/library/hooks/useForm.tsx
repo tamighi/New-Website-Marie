@@ -5,8 +5,8 @@ type InputElements = HTMLInputElement & HTMLTextAreaElement & HTMLSelectElement;
 // TODO: Understand + adapt
 type Join<K, P> = K extends string | number
   ? P extends string | number
-    ? `${K}${"" extends P ? "" : "."}${P}`
-    : never
+  ? `${K}${"" extends P ? "" : "."}${P}`
+  : never
   : never;
 
 // Prevent infinite type instanciation
@@ -40,7 +40,7 @@ type Leaves<T, D extends number = 2> = [D] extends [never]
   ? never
   : T extends object
   ? // What is "-?" ?
-    { [K in keyof T]-?: Join<K, Leaves<T[K], Prev[D]>> }[keyof T]
+  { [K in keyof T]-?: Join<K, Leaves<T[K], Prev[D]>> }[keyof T]
   : "";
 
 interface InputProps<T> {
@@ -111,13 +111,15 @@ const useForm = <T extends object>() => {
     return (event: React.FormEvent<HTMLFormElement | HTMLButtonElement>) => {
       event.preventDefault();
 
-      console.log(controlledInputs);
-      // TODO: Add controlledInputs to data
-      const data = Object.keys(inputRefs).reduce((result, key) => {
+      // TODO: Better typing
+      const addValueToNestedObject = (
+        object: any,
+        key: string,
+        value: unknown
+      ) => {
         const propNames = key.split(".");
 
-        // propNames is supposedly safe for indexing T (see Leaves<T>)
-        let nestedObject = result as any;
+        let nestedObject = object as any;
 
         for (let i = 0; i < propNames.length - 1; i++) {
           const propName = propNames[i];
@@ -126,13 +128,22 @@ const useForm = <T extends object>() => {
 
           nestedObject = nestedObject[propName];
         }
-        const value = inputRefs[key as keyof T]?.current?.value;
 
         nestedObject[propNames[propNames.length - 1]] =
           value === "" ? undefined : value;
+      };
 
+      let data = Object.keys(inputRefs).reduce((result, key) => {
+        const value = inputRefs[key as Leaves<T>]?.current?.value;
+        addValueToNestedObject(result, key, value);
         return result;
       }, {} as Partial<T>);
+
+      data = Object.keys(controlledInputs).reduce((result, key) => {
+        const value = controlledInputs[key as Leaves<T>];
+        addValueToNestedObject(result, key, value);
+        return result;
+      }, data);
 
       onSubmit(data);
     };
