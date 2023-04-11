@@ -1,23 +1,37 @@
+import React from "react";
+
 import { Loader } from "components/utils/Loader";
 import { usePostMessage } from "hooks/usePostMessage";
 import { useServices } from "hooks/useServices";
 import { Button, Input, Select, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
 import { DevisDto } from "./devis";
+import { SubServiceDto } from "resources/service";
 
 // TODO: Need controlled form for service to show subservices when selected
 export const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
   const { mutate, isLoading, isError, isSuccess } =
     usePostMessage<DevisDto>("devis");
+  const [serviceId, setServiceId] = React.useState("");
+  const [subServices, setSubServices] = React.useState<SubServiceDto[]>();
 
   const services = useServices();
+
+  React.useEffect(() => {
+    const selectedService = services?.data?.find((service) => {
+      return service.id == serviceId;
+    });
+    if (selectedService) {
+      setSubServices(selectedService.subServices);
+      console.log(selectedService.subServices);
+    }
+  }, [serviceId]);
 
   const onSubmit = (devis: Partial<DevisDto>) => {
     mutate(devis, {
       onSuccess: reset,
     });
-    console.log(devis);
   };
 
   return (
@@ -31,7 +45,13 @@ export const DevisContactForm = () => {
         <Input flex {...register("name")} label="Nom" />
         <Input flex {...register("email")} label="Email" />
         <Input flex {...register("nbCharacter")} label="Nombre de caractère" />
-        <Select flex {...register("service.id")} label="Service désiré">
+        <Select
+          flex
+          {...register("service.id", {
+            onChange: (value) => setServiceId(value),
+          })}
+          label="Service désiré"
+        >
           <option value="">Non spécifié</option>
           {services.data?.map((service) => {
             return (
@@ -41,6 +61,19 @@ export const DevisContactForm = () => {
             );
           })}
         </Select>
+        {subServices ? (
+          <Select flex {...register("subService.id")} label="Type de texte">
+            {subServices.map((subService) => {
+              return (
+                <option key={subService.id} value={subService.id}>
+                  {subService.textType}
+                </option>
+              );
+            })}
+          </Select>
+        ) : (
+          ""
+        )}
         <TextArea flex rows={12} {...register("message")} label="Message" />
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>

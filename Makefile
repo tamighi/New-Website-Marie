@@ -21,6 +21,7 @@ start_db: docker_context
 stop_db: docker_context
 	docker stop postgres
 
+# TODO: stop using desktop-linux context
 docker_context:
 	docker context use desktop-linux
 

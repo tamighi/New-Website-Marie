@@ -3,7 +3,7 @@ import { typeRegister, ResourceString } from "./types";
 import { httpClient } from "./utils";
 import { TypeGuard } from "./utils/TypeGuard";
 
-const apiUrl = "http://192.168.1.50:8000";
+const apiUrl = "http://192.168.1.32:8000";
 
 export interface GetListParams {
   range?: string;
