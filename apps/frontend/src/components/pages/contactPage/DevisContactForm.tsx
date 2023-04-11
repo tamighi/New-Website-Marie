@@ -24,7 +24,6 @@ export const DevisContactForm = () => {
     });
     if (selectedService) {
       setSubServices(selectedService.subServices);
-      console.log(selectedService.subServices);
     }
   }, [serviceId]);
 
@@ -32,7 +31,6 @@ export const DevisContactForm = () => {
     mutate(devis, {
       onSuccess: reset,
     });
-    console.log(devis);
   };
 
   return (
