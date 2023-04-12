@@ -1,7 +1,13 @@
 import React from "react";
 import { Leaves } from "./types";
-import { ControlledRegisterReturn, useControlledForm } from "./useControlledForm";
-import { UncontrolledRegisterReturn, useUncontrolledForm } from "./useUncontrolledForm";
+import {
+  ControlledRegisterReturn,
+  useControlledForm,
+} from "./useControlledForm";
+import {
+  UncontrolledRegisterReturn,
+  useUncontrolledForm,
+} from "./useUncontrolledForm";
 
 interface RegisterOptions {
   onChange?: (value: string) => void;

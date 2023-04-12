@@ -3,7 +3,7 @@ import React from "react";
 import { Leaves } from "./types";
 import { addValueToData } from "./utils";
 
-interface ControlledRegisterOptions {
+type ControlledRegisterOptions = {
   onChange: (value: string) => void;
 }
 
@@ -25,7 +25,7 @@ type GetControlledInputs<T extends object> = (
   initial: Partial<T>
 ) => Partial<T>;
 
-export interface UseControlledFormReturn<T extends object> {
+export type UseControlledFormReturn<T extends object> = {
   register: ControlledRegisterFunction<T>;
   reset: () => void;
   mergeControlledInputs: GetControlledInputs<T>;

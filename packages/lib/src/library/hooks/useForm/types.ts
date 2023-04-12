@@ -30,7 +30,7 @@ type Prev = [
   ...0[]
 ];
 
-// TODO: Recursive type is too heavy. Need to split it into different Leaves
+// TODO: Recursive type is too heavy. Need to split it into different Leaves ?
 export type Leaves<T, D extends number = 2> = [D] extends [never]
   ? never
   : T extends object
