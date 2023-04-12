@@ -1,14 +1,7 @@
 import React from "react";
 import { Leaves } from "./types";
 
-type InputElements = HTMLInputElement & HTMLTextAreaElement & HTMLSelectElement;
-
-type UncontrolledRegisterOptions = {};
-
-type PartialMapToRefs<T extends object> = {
-  [k in Leaves<T>]?: React.RefObject<InputElements>;
-};
-
+// TODO: Same in controlled and uncontrolled
 type GetUncontrolledInputs<T extends object> = () => {
   [k in Leaves<T>]?: string;
 };
@@ -27,6 +20,14 @@ type UseUncontrolledFormReturn<T extends object> = {
   register: UncontrolledRegister<T>;
   reset: () => void;
   getUncontrolledInputs: GetUncontrolledInputs<T>;
+};
+
+type InputElements = HTMLInputElement & HTMLTextAreaElement & HTMLSelectElement;
+
+type UncontrolledRegisterOptions = {};
+
+type PartialMapToRefs<T extends object> = {
+  [k in Leaves<T>]?: React.RefObject<InputElements>;
 };
 
 export const useUncontrolledForm = <
