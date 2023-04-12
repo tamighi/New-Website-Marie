@@ -1,11 +1,10 @@
 import React from "react";
 
 import { Leaves } from "./types";
-import { addValueToData } from "./utils";
 
 type ControlledRegisterOptions = {
   onChange: (value: string) => void;
-}
+};
 
 type PartialMapToControlledInput<T extends object> = {
   [k in Leaves<T>]?: string;
@@ -21,15 +20,15 @@ type ControlledRegisterFunction<T extends object> = (
   options: ControlledRegisterOptions
 ) => ControlledRegisterReturn;
 
-type GetControlledInputs<T extends object> = (
-  initial: Partial<T>
-) => Partial<T>;
+type GetControlledInputs<T extends object> = () => {
+  [k in Leaves<T>]?: string;
+};
 
 export type UseControlledFormReturn<T extends object> = {
   register: ControlledRegisterFunction<T>;
   reset: () => void;
-  mergeControlledInputs: GetControlledInputs<T>;
-}
+  getControlledInputs: GetControlledInputs<T>;
+};
 
 export const useControlledForm = <
   T extends object
@@ -58,19 +57,14 @@ export const useControlledForm = <
   // TODO: keep onChanges for reset
   const reset = () => {};
 
-  // TODO: onSubmit and merge => get
-  const mergeControlledInputs = React.useCallback<GetControlledInputs<T>>(
-    (initial: Partial<T>) => {
-      const data = Object.keys(controlledInputs).reduce((result, key) => {
-        const value = controlledInputs[key as Leaves<T>];
-        addValueToData(result, key, value);
-        return result;
-      }, initial);
+  const getControlledInputs = () => {
+    return Object.keys(controlledInputs).reduce((data, key) => {
+      return {
+        ...data,
+        [key]: controlledInputs[key as Leaves<T>],
+      };
+    }, {});
+  };
 
-      return data;
-    },
-    [controlledInputs]
-  );
-
-  return { register, mergeControlledInputs, reset };
+  return { register, getControlledInputs, reset };
 };

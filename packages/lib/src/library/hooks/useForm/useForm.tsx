@@ -8,7 +8,9 @@ import {
   UncontrolledRegisterReturn,
   useUncontrolledForm,
 } from "./useUncontrolledForm";
+import { addValueToData } from "./utils";
 
+// TODO: Clean types
 interface RegisterOptions {
   onChange?: (value: string) => void;
 }
@@ -32,12 +34,12 @@ const useForm = <T extends object>(): UseFormReturn<T> => {
   const {
     register: uncontrolledRegister,
     reset: unControlledReset,
-    mergeUncontrolledInputs,
+    getUncontrolledInputs,
   } = useUncontrolledForm<T>();
   const {
     register: controlledRegister,
     reset: controlledReset,
-    mergeControlledInputs,
+    getControlledInputs,
   } = useControlledForm<T>();
 
   const register = React.useCallback<RegisterFunction<T>>(
@@ -49,7 +51,7 @@ const useForm = <T extends object>(): UseFormReturn<T> => {
         return uncontrolledRegister(name, options);
       }
     },
-    []
+    [uncontrolledRegister, controlledRegister]
   );
 
   const reset = () => {
@@ -61,8 +63,15 @@ const useForm = <T extends object>(): UseFormReturn<T> => {
     return (event: React.FormEvent<HTMLFormElement | HTMLButtonElement>) => {
       event.preventDefault();
 
-      let data = mergeUncontrolledInputs({});
-      data = mergeControlledInputs(data);
+      const inputs = {
+        ...getUncontrolledInputs(),
+        ...getControlledInputs(),
+      };
+
+      let data = Object.keys(inputs).reduce((result, key) => {
+        addValueToData(result, key, inputs[key as Leaves<T>]);
+        return result;
+      }, {});
 
       onSubmit(data);
     };

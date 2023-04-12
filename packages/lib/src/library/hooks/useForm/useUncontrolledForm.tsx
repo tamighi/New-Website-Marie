@@ -1,6 +1,5 @@
 import React from "react";
 import { Leaves } from "./types";
-import { addValueToData } from "./utils";
 
 type InputElements = HTMLInputElement & HTMLTextAreaElement & HTMLSelectElement;
 
@@ -10,14 +9,14 @@ type PartialMapToRefs<T extends object> = {
   [k in Leaves<T>]?: React.RefObject<InputElements>;
 };
 
-type MergeUncontrolledInputs<T extends object> = (
-  initial: Partial<T>
-) => Partial<T>;
+type GetUncontrolledInputs<T extends object> = () => {
+  [k in Leaves<T>]?: string;
+};
 
-export type UncontrolledRegisterReturn  ={
+export type UncontrolledRegisterReturn = {
   name: string;
   ref: React.RefObject<InputElements> | undefined;
-}
+};
 
 export type UncontrolledRegister<T extends object> = (
   name: Leaves<T>,
@@ -27,10 +26,9 @@ export type UncontrolledRegister<T extends object> = (
 type UseUncontrolledFormReturn<T extends object> = {
   register: UncontrolledRegister<T>;
   reset: () => void;
-  mergeUncontrolledInputs: MergeUncontrolledInputs<T>;
-}
+  getUncontrolledInputs: GetUncontrolledInputs<T>;
+};
 
-// TODO: Refactorisation
 export const useUncontrolledForm = <
   T extends object
 >(): UseUncontrolledFormReturn<T> => {
@@ -64,19 +62,14 @@ export const useUncontrolledForm = <
     }
   };
 
-  // TODO: onSubmit and merge => get
-  const mergeUncontrolledInputs = React.useCallback<MergeUncontrolledInputs<T>>(
-    (initial: Partial<T>) => {
-      const data = Object.keys(inputRefs).reduce((result, key) => {
-        const value = inputRefs[key as Leaves<T>]?.current?.value;
-        addValueToData(result, key, value);
-        return result;
-      }, initial);
+  const getUncontrolledInputs = () => {
+    return Object.keys(inputRefs).reduce((data, key) => {
+      return {
+        ...data,
+        [key]: inputRefs[key as Leaves<T>]?.current?.value,
+      };
+    }, {});
+  };
 
-      return data;
-    },
-    []
-  );
-
-  return { register, mergeUncontrolledInputs, reset };
+  return { register, getUncontrolledInputs, reset };
 };
