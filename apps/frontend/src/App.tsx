@@ -9,7 +9,7 @@ import { GoldenBookPage } from "./components/pages/goldenBookPage/GoldenBookPage
 import { HomePage } from "./components/pages/homePage/HomePage";
 import { ReviewPage } from "./components/pages/reviewPage/ReviewPage";
 import { ServicePage } from "components/pages/servicePage/ServicePage";
-import { ErrorPage } from "./ErrorPage";
+import { ErrorPage } from "./components/errors/ErrorPage";
 
 import styles from "./App.css";
 import "./Global.css";
