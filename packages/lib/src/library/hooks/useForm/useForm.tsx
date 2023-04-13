@@ -13,6 +13,7 @@ import {
 import { addValueToData } from "./utils";
 
 // TODO: Clean types
+// TODO: Error handling
 type RegisterOptions = ControlledRegisterOptions | UncontrolledRegisterOptions;
 
 type RegisterFunction<T extends object> = (

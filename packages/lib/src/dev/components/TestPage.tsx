@@ -32,7 +32,7 @@ export const TestPage = () => {
             height: "500px",
           }}
         >
-          <Input label="name" required {...register("name")} />
+          <Input label="name" minLength={5} required {...register("name")} />
           <Input label="post title" {...register("post.title")} />
           <Select
             flex

@@ -43,14 +43,23 @@ export const DevisContactForm = () => {
           <br />
           Combien coûte la correction de votre texte ? Écrivez-moi !
         </p>
-        <Input flex {...register("name")} label="Nom" />
-        <Input flex {...register("email")} label="Email" />
-        <Input flex {...register("nbCharacter")} label="Nombre de caractère" />
+
+        <Input required flex {...register("name")} label="Nom" />
+        <Input required flex {...register("email")} label="Email" />
+        <Input
+          required
+          flex
+          {...register("nbCharacter")}
+          label="Nombre de caractère"
+        />
+
         <Select
+          required
           flex
           {...register("service.id", {
             onChange: (value) => setServiceId(value),
           })}
+          value={serviceId}
           label="Service désiré"
         >
           <option value="">Non spécifié</option>
@@ -62,6 +71,7 @@ export const DevisContactForm = () => {
             );
           })}
         </Select>
+
         {subServices ? (
           <Select flex {...register("subService.id")} label="Type de texte">
             {subServices.map((subService) => {
@@ -72,10 +82,16 @@ export const DevisContactForm = () => {
               );
             })}
           </Select>
-        ) : (
-          ""
-        )}
-        <TextArea flex rows={12} {...register("message")} label="Message" />
+        ) : null}
+
+        <TextArea
+          required
+          flex
+          rows={12}
+          {...register("message")}
+          label="Message"
+        />
+
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>
             Envoyer
@@ -83,6 +99,7 @@ export const DevisContactForm = () => {
           {isLoading && <Loader size="small" />}
           {isError && <ApiErrorForm />}
         </div>
+
         {isSuccess && (
           <p>
             Votre message a bien été envoyé ! Je reviendrai vers vous dès que

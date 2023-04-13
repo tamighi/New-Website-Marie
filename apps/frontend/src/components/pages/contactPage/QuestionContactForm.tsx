@@ -18,14 +18,18 @@ export const QuestionContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
+
         <p>
           Formulaire de demande d'informations
           <br />
           Une information vous manque ? Un cas particulier ? Contactez-moi !
         </p>
-        <Input flex {...register("name")} label="Nom" />
-        <Input flex {...register("email")} label="Email" />
-        <TextArea flex rows={12} {...register("message")} label="Message" />
+
+        <Input required flex {...register("name")} label="Nom" />
+        <Input required flex {...register("email")} label="Email" />
+
+        <TextArea required flex rows={12} {...register("message")} label="Message" />
+
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>
             Envoyer
@@ -33,12 +37,14 @@ export const QuestionContactForm = () => {
           {isLoading && <Loader size="small" />}
           {isError && <ApiErrorForm />}
         </div>
+
         {isSuccess && (
           <p>
             Votre message a bien été envoyé ! Je reviendrai vers vous dès que
             possible.
           </p>
         )}
+
       </FormContent>
     </form>
   );

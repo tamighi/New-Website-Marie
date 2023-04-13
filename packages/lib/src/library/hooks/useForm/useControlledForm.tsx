@@ -2,7 +2,6 @@ import React from "react";
 
 import { Leaves } from "./types";
 
-// Use required ?
 export type ControlledRegisterOptions = {
   onChange: (value: string) => void;
   // required?: boolean
