@@ -11,12 +11,12 @@ interface User {
 }
 
 export const TestPage = () => {
-  const { register, handleSubmit } = useForm<User>();
+  const { register, handleSubmit, reset } = useForm<User>();
   const [id, setId] = React.useState("");
 
   const onSubmit = (data: any) => {
+    reset();
     console.log(data);
-    console.log(id);
   };
 
   return (
@@ -37,6 +37,7 @@ export const TestPage = () => {
           <Select
             flex
             label="post"
+            value={id}
             {...register("post.id", {
               onChange: (value: string) => setId(value),
             })}

@@ -1,8 +1,8 @@
 import { ReviewDto } from "../reviewPage/review";
 import { ReviewItem } from "./ReviewItem";
+import { EmptyData } from "components/errors/EmptyData";
 
 import styles from "./Review.css";
-import { EmptyData } from "components/errors/EmptyData";
 
 type Props = {
   reviews: ReviewDto[];
