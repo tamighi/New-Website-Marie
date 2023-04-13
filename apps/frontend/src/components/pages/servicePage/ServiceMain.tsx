@@ -1,3 +1,4 @@
+import { EmptyData } from "components/errors/EmptyData";
 import { Title } from "components/typography/Title";
 import { Loader } from "components/utils/Loader";
 import { useServices } from "hooks/useServices";
@@ -28,8 +29,10 @@ export const ServiceMain = () => {
         <Loader />
       ) : !services || isError ? (
         <div>Une erreur est survenue ...</div>
+      ) : services.length === 0 ? (
+        <EmptyData message="Aucun service pour le moment" />
       ) : (
-        services?.map((service) => (
+        services.map((service) => (
           <ServiceCard service={service} key={service.id} />
         ))
       )}
