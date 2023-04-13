@@ -1,7 +1,7 @@
 import { httpClient } from "./utils";
 
 // TODO: apiUrl in dotenv
-const apiUrl = "http://192.168.1.32:8000";
+const apiUrl = "http://192.168.1.50:8000";
 
 export interface ICredentials {
   username: string;
