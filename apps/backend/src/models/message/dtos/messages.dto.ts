@@ -8,7 +8,7 @@ export class MessageDto {
   id: number;
   message: string;
   name?: string;
-  email?: string;
+  email: string;
   status: Status;
   date: Date;
 }

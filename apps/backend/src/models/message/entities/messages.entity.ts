@@ -11,8 +11,8 @@ export class Message {
   @Column({ nullable: true })
   name?: string;
 
-  @Column({ nullable: true })
-  email?: string;
+  @Column()
+  email: string;
 
   @Column({
     type: "enum",
