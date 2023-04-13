@@ -3,11 +3,10 @@ import { InputBase } from "..";
 import { useStyles } from "../../hooks";
 import { Colors } from "../../providers";
 
-
 import CSSClasses from "./Input.css";
 
 export interface InputProps
-  extends React.HTMLAttributes<HTMLInputElement> {
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: keyof Colors;
   flex?: boolean;
   label?: string;

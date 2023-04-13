@@ -2,8 +2,10 @@ import React from "react";
 
 import { Leaves } from "./types";
 
-type ControlledRegisterOptions = {
+// Use required ?
+export type ControlledRegisterOptions = {
   onChange: (value: string) => void;
+  // required?: boolean
 };
 
 type InputStore = {
@@ -18,6 +20,7 @@ type PartialMapToInputStore<T extends object> = {
 export type ControlledRegisterReturn = {
   name: string;
   onChange: (event: any) => void;
+  // required?: boolean
 };
 
 type ControlledRegisterFunction<T extends object> = (
@@ -32,7 +35,7 @@ type GetControlledInputs<T extends object> = () => {
 export type UseControlledFormReturn<T extends object> = {
   register: ControlledRegisterFunction<T>;
   reset: () => void;
-  getControlledInputs: GetControlledInputs<T>;
+  getInputs: GetControlledInputs<T>;
 };
 
 export const useControlledForm = <
@@ -58,7 +61,7 @@ export const useControlledForm = <
     Object.keys(inputs).map((key) => inputs[key as Leaves<T>]?.onChange(""));
   };
 
-  const getControlledInputs = () => {
+  const getInputs = () => {
     return Object.keys(inputs).reduce((data, key) => {
       return {
         ...data,
@@ -67,5 +70,5 @@ export const useControlledForm = <
     }, {});
   };
 
-  return { register, getControlledInputs, reset };
+  return { register, getInputs, reset };
 };

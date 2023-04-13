@@ -19,15 +19,22 @@ export type UncontrolledRegister<T extends object> = (
 type UseUncontrolledFormReturn<T extends object> = {
   register: UncontrolledRegister<T>;
   reset: () => void;
-  getUncontrolledInputs: GetUncontrolledInputs<T>;
+  getInputs: GetUncontrolledInputs<T>;
 };
 
 type InputElements = HTMLInputElement & HTMLTextAreaElement & HTMLSelectElement;
 
-type UncontrolledRegisterOptions = {};
+export type UncontrolledRegisterOptions = {
+  //required?: boolean;
+};
+
+type InputStore = {
+  ref: React.RefObject<InputElements>;
+  // required?: boolean;
+};
 
 type PartialMapToRefs<T extends object> = {
-  [k in Leaves<T>]?: React.RefObject<InputElements>;
+  [k in Leaves<T>]?: InputStore;
 };
 
 export const useUncontrolledForm = <
@@ -37,10 +44,15 @@ export const useUncontrolledForm = <
 
   const register = React.useCallback<UncontrolledRegister<T>>(
     (name, _options = {}) => {
-      let ref = inputRefs[name];
+      // const { required } = options;
+
+      let ref = inputRefs[name]?.ref;
       if (!ref) {
         ref = React.createRef<InputElements>();
-        setInputRefs((prevInputRefs) => ({ ...prevInputRefs, [name]: ref }));
+        setInputRefs((prevInputRefs) => ({
+          ...prevInputRefs,
+          [name]: { ref },
+        }));
       }
 
       const inputProps = {
@@ -55,22 +67,33 @@ export const useUncontrolledForm = <
 
   const reset = () => {
     for (const k in inputRefs) {
-      // TODO: As any ??
-      const ref = (inputRefs as any)[k]?.current;
+      const ref = inputRefs[k as Leaves<T>]?.ref?.current;
       if (ref) {
         ref.value = "";
       }
     }
   };
 
-  const getUncontrolledInputs = () => {
+  /* const getErrors = () => {
+    const errors: { [k in Leaves<T>]?: string } = {};
+    for (const k in inputRefs) {
+      const input = inputRefs[k as Leaves<T>];
+      const value = input?.ref?.current?.value;
+      if (input?.required === true && (value === undefined || value === "")) {
+        errors[k as Leaves<T>] = "Required";
+      }
+    }
+    return errors;
+  }; */
+
+  const getInputs = () => {
     return Object.keys(inputRefs).reduce((data, key) => {
       return {
         ...data,
-        [key]: inputRefs[key as Leaves<T>]?.current?.value,
+        [key]: inputRefs[key as Leaves<T>]?.ref?.current?.value,
       };
     }, {});
   };
 
-  return { register, getUncontrolledInputs, reset };
+  return { register, getInputs, reset };
 };

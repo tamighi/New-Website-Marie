@@ -1,19 +1,19 @@
 import React from "react";
 import { Leaves } from "./types";
 import {
+  ControlledRegisterOptions,
   ControlledRegisterReturn,
   useControlledForm,
 } from "./useControlledForm";
 import {
+  UncontrolledRegisterOptions,
   UncontrolledRegisterReturn,
   useUncontrolledForm,
 } from "./useUncontrolledForm";
 import { addValueToData } from "./utils";
 
 // TODO: Clean types
-interface RegisterOptions {
-  onChange?: (value: string) => void;
-}
+type RegisterOptions = ControlledRegisterOptions | UncontrolledRegisterOptions;
 
 type RegisterFunction<T extends object> = (
   name: Leaves<T>,
@@ -28,28 +28,34 @@ interface UseFormReturn<T extends object> {
   register: RegisterFunction<T>;
   reset: () => void;
   handleSubmit: HandleSubmitFunction<T>;
+  // errors: { [k in Leaves<T>]?: string };
 }
 
 const useForm = <T extends object>(): UseFormReturn<T> => {
   const {
     register: uncontrolledRegister,
     reset: unControlledReset,
-    getUncontrolledInputs,
+    getInputs: getUncontrolledInputs,
   } = useUncontrolledForm<T>();
   const {
     register: controlledRegister,
     reset: controlledReset,
-    getControlledInputs,
+    getInputs: getControlledInputs,
   } = useControlledForm<T>();
 
-  const register: RegisterFunction<T> = (name, options = {}) => {
-    const { onChange } = options;
-    if (onChange) {
-      return controlledRegister(name, { onChange, ...options });
-    } else {
-      return uncontrolledRegister(name, options);
-    }
-  };
+  // const [errors, setErrors] = React.useState<{ [k in Leaves<T>]?: string }>({});
+
+  const register: RegisterFunction<T> = React.useCallback(
+    (name, options = {}) => {
+      // If there is onChange, it is a controlled input
+      if ("onChange" in options) {
+        return controlledRegister(name, options);
+      } else {
+        return uncontrolledRegister(name, options);
+      }
+    },
+    [uncontrolledRegister]
+  );
 
   const reset = () => {
     controlledReset();
@@ -59,6 +65,15 @@ const useForm = <T extends object>(): UseFormReturn<T> => {
   const handleSubmit = (onSubmit: (data: Partial<T>) => void) => {
     return (event: React.FormEvent<HTMLFormElement | HTMLButtonElement>) => {
       event.preventDefault();
+
+      /* const errors = {
+        ...getUncontrolledErrors(),
+      };
+
+      setErrors(errors);
+      if (Object.keys(errors).length > 0) {
+        return;
+      } */
 
       const inputs = {
         ...getUncontrolledInputs(),

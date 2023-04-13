@@ -32,11 +32,12 @@ export const TestPage = () => {
             height: "500px",
           }}
         >
-          <Input label="name" {...register("name")} />
+          <Input label="name" required {...register("name")} />
           <Input label="post title" {...register("post.title")} />
           <Select
             flex
             label="post"
+            required
             value={id}
             {...register("post.id", {
               onChange: (value: string) => setId(value),
