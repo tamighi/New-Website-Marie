@@ -40,22 +40,19 @@ export const useControlledForm = <
 >(): UseControlledFormReturn<T> => {
   const [inputs, setInputs] = React.useState<PartialMapToInputStore<T>>({});
 
-  const register = React.useCallback<ControlledRegisterFunction<T>>(
-    (name, options) => {
-      const { onChange } = options;
-      return {
-        name,
-        onChange: (event: any) => {
-          setInputs((prev) => ({
-            ...prev,
-            [event.target.name]: { input: event.target.value, onChange },
-          }));
-          onChange(event.target?.value);
-        },
-      };
-    },
-    []
-  );
+  const register: ControlledRegisterFunction<T> = (name, options) => {
+    const { onChange } = options;
+    return {
+      name,
+      onChange: (event: any) => {
+        setInputs((prev) => ({
+          ...prev,
+          [event.target.name]: { input: event.target.value, onChange },
+        }));
+        onChange(event.target?.value);
+      },
+    };
+  };
 
   const reset = () => {
     Object.keys(inputs).map((key) => inputs[key as Leaves<T>]?.onChange(""));

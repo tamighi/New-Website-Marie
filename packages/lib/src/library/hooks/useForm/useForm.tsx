@@ -42,17 +42,14 @@ const useForm = <T extends object>(): UseFormReturn<T> => {
     getControlledInputs,
   } = useControlledForm<T>();
 
-  const register = React.useCallback<RegisterFunction<T>>(
-    (name, options = {}) => {
-      const { onChange } = options;
-      if (onChange) {
-        return controlledRegister(name, { onChange, ...options });
-      } else {
-        return uncontrolledRegister(name, options);
-      }
-    },
-    [uncontrolledRegister, controlledRegister]
-  );
+  const register: RegisterFunction<T> = (name, options = {}) => {
+    const { onChange } = options;
+    if (onChange) {
+      return controlledRegister(name, { onChange, ...options });
+    } else {
+      return uncontrolledRegister(name, options);
+    }
+  };
 
   const reset = () => {
     controlledReset();
