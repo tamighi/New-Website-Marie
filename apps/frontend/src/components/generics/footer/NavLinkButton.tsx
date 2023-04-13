@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./Footer.css";
 
-// TODO: outlined 
 export const NavLinkButton = ({
   to,
   children,

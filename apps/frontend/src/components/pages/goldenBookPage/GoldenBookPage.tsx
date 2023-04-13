@@ -8,10 +8,6 @@ import { Loader } from "components/utils/Loader";
 
 const reviewPerPage = 10;
 
-// TODO: Error management => look at styled mini persons
-// TODO: correct way to handle params
-// TODO: style pagination
-// TODO: Disabled button style
 export const GoldenBookPage = () => {
   const [page, setPage] = React.useState(1);
 
@@ -37,7 +33,7 @@ export const GoldenBookPage = () => {
           >
             Prev
           </Button>
-          Page {page}
+          <span>Page {page}</span>
           <Button
             onClick={() => setPage((prevPage) => prevPage + 1)}
             disabled={page === Math.ceil(data.count / reviewPerPage)}

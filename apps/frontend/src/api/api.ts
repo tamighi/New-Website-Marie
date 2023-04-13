@@ -2,7 +2,7 @@ import query_string from "query-string";
 import { MessageDto } from "components/pages/contactPage/message";
 import { httpClient } from "./httpClient";
 
-const apiUrl = "http://192.168.1.32:8000";
+const apiUrl = "http://192.168.1.50:8000";
 
 // TODO: Type safe guard
 

@@ -10,8 +10,6 @@ type Props = {
   review: ReviewDto;
 };
 
-// TODO : Author should have a max width
-// TODO: Add breaklines
 export const ReviewItem = (props: Props) => {
   const { review } = props;
 
