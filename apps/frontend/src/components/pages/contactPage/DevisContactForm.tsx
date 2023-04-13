@@ -7,6 +7,7 @@ import { Button, Input, Select, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
 import { DevisDto } from "./devis";
 import { SubServiceDto } from "resources/service";
+import { ApiErrorForm } from "components/errors/ApiErrorForm";
 
 export const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
@@ -80,7 +81,7 @@ export const DevisContactForm = () => {
             Envoyer
           </Button>
           {isLoading && <Loader size="small" />}
-          {isError && <div>Une erreur est survenue ...</div>}
+          {isError && <ApiErrorForm />}
         </div>
         {isSuccess && (
           <p>

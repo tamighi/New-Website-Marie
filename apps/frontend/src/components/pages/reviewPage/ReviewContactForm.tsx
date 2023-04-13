@@ -1,3 +1,4 @@
+import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import { Loader } from "components/utils/Loader";
 import { usePostMessage } from "hooks/usePostMessage";
 import { Button, Input, TextArea, useForm } from "lib";
@@ -25,7 +26,7 @@ export const ReviewContactForm = () => {
             Envoyer
           </Button>
           {isLoading && <Loader size="small" />}
-          {isError && <div>Une erreur est survenue ...</div>}
+          {isError && <ApiErrorForm />}
         </div>
         {isSuccess && (
           <p>

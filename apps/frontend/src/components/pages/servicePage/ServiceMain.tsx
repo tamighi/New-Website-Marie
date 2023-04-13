@@ -1,3 +1,4 @@
+import { ApiErrorImage } from "components/errors/ApiErrorImage";
 import { EmptyData } from "components/errors/EmptyData";
 import { Title } from "components/typography/Title";
 import { Loader } from "components/utils/Loader";
@@ -28,7 +29,7 @@ export const ServiceMain = () => {
       {isLoading ? (
         <Loader />
       ) : !services || isError ? (
-        <div>Une erreur est survenue ...</div>
+        <ApiErrorImage />
       ) : services.length === 0 ? (
         <EmptyData message="Aucun service pour le moment" />
       ) : (

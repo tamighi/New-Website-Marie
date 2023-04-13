@@ -1,3 +1,4 @@
+import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import { Loader } from "components/utils/Loader";
 import { usePostMessage } from "hooks/usePostMessage";
 import { Button, Input, TextArea, useForm } from "lib";
@@ -24,18 +25,13 @@ export const QuestionContactForm = () => {
         </p>
         <Input flex {...register("name")} label="Nom" />
         <Input flex {...register("email")} label="Email" />
-        <TextArea
-          flex
-          rows={12}
-          {...register("message")}
-          label="Message"
-        />
+        <TextArea flex rows={12} {...register("message")} label="Message" />
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>
             Envoyer
           </Button>
           {isLoading && <Loader size="small" />}
-          {isError && <div>Une erreur est survenue ...</div>}
+          {isError && <ApiErrorForm />}
         </div>
         {isSuccess && (
           <p>
