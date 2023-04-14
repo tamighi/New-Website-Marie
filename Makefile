@@ -12,17 +12,13 @@ lib:
 backend: start_db
 	npx lerna run start:dev --scope=backend
 
-db: docker_context
+db:
 	docker run -h db --name postgres --env-file .env -p 5432:5432 -d postgres
 
-start_db: docker_context
+start_db:
 	docker start postgres
 
-stop_db: docker_context
+stop_db:
 	docker stop postgres
-
-# TODO: stop using desktop-linux context
-docker_context:
-	docker context use desktop-linux
 
 .PHONY: all frontend backend
