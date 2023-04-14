@@ -5,6 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Column } from "react-table";
 import { SubServiceDto } from "resources/service";
 
+import typography from "../../typography/Typography.css";
+
 const columns: Column<SubServiceDto>[] = [
   {
     accessor: "textType",
@@ -30,7 +32,7 @@ export const ServiceDetails = () => {
         <ArrowBackIcon />
       </IconButton>
       <Title>{service.name}</Title>
-      <p>{service.description}</p>
+      <p className={typography.Paragraph}>{service.description}</p>
       {service.subServices && (
         <DataGrid columns={columns} data={service.subServices} />
       )}

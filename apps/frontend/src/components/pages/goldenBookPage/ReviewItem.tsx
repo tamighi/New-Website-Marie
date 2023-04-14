@@ -5,6 +5,7 @@ import { Button, Paper } from "lib";
 import { ReviewDto } from "../reviewPage/review";
 
 import styles from "./Review.css";
+import typography from "../../typography/Typography.css";
 
 type Props = {
   review: ReviewDto;
@@ -17,7 +18,7 @@ export const ReviewItem = (props: Props) => {
   const [isReadMore, setIsReadMore] = React.useState(false);
   const isOverflow = useIsOverflow(ref, null);
 
-  const messageClassnames = `${styles.ReviewMessage} ${
+  const messageClassnames = `${typography.Paragraph} ${styles.ReviewMessage} ${
     isReadMore
       ? styles.ReviewMessageFull
       : isOverflow
@@ -28,7 +29,7 @@ export const ReviewItem = (props: Props) => {
   return (
     <Paper>
       <div className={styles.ReviewItemHead}>
-        <span>Auteur : {review.name || "anonyme"}</span>
+        <span>{review.name || "anonyme"}</span>
         <span>{`${new Date(review.date).toLocaleDateString()}`}</span>
       </div>
       <p ref={ref} className={messageClassnames} id="review-message">
