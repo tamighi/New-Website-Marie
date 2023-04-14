@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "customMatcher": "\\.css$"
+        }
+      }
+    ],
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "noImplicitAny": true,
