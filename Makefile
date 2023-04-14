@@ -13,12 +13,12 @@ backend: start_db
 	npx lerna run start:dev --scope=backend
 
 db:
-	docker run -h db --name postgres --env-file .env -p 5432:5432 -d postgres
+	sudo docker run -h db --name postgres --env-file .env -p 5432:5432 -d postgres
 
 start_db:
-	docker start postgres
+	sudo docker start postgres
 
 stop_db:
-	docker stop postgres
+	sudo docker stop postgres
 
 .PHONY: all frontend backend
