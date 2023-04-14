@@ -21,4 +21,7 @@ start_db:
 stop_db:
 	sudo docker stop postgres
 
+adminer:
+	sudo docker run --link postgres:db -p 8080:8080 adminer
+
 .PHONY: all frontend backend
