@@ -1,4 +1,5 @@
 import { ServiceDto } from "api/types";
+import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import { useEditForm } from "hooks";
 import { Button, Input, TextArea } from "lib";
 
@@ -28,7 +29,7 @@ export const ServiceEditForm = ({ data }: { data: ServiceDto }) => {
           rows={10}
           flex
         />
-        {error?.badEntry && "Bad entries ..."}
+        {error?.badEntry && <ApiErrorForm />}
       </FormContent>
       <FormAction>
         <Button type="submit" onClick={onSubmit}>

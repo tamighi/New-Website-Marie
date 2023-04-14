@@ -13,7 +13,7 @@ export const MessageDetails = <T extends ResourceType<MessageResourceString>>(
   const { message } = props;
 
   return (
-    <p>
+    <p style={{ whiteSpace: "break-spaces" }}>
       Email: {message.email}
       <br />
       <br />

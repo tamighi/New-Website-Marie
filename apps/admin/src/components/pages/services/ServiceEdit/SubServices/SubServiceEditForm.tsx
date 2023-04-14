@@ -1,4 +1,5 @@
 import { SubServiceDto } from "api/types";
+import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import { FormAction, FormContent, LoadingIcon } from "components/pages/core";
 import { useDeleteOneRef, useEditRefForm } from "hooks";
 import { Button, CloseIcon, IconButton, Input } from "lib";
@@ -9,7 +10,7 @@ export const SubServiceEditForm = ({
 }: {
   subService: SubServiceDto;
 }) => {
-  const { register, onSubmit, isLoading } = useEditRefForm<
+  const { register, onSubmit, isLoading, error } = useEditRefForm<
     Partial<SubServiceDto>
   >("subService", subService.id, { parentResource: "service" });
 
@@ -35,6 +36,7 @@ export const SubServiceEditForm = ({
           />
         </FormContent>
         <FormAction>
+          {error?.badEntry && <ApiErrorForm />}
           <Button type="submit" onClick={onSubmit}>
             Update
           </Button>

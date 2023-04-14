@@ -1,4 +1,5 @@
 import { SubServiceDto } from "api/types";
+import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import { FormAction, FormContent, LoadingIcon } from "components/pages/core";
 import { useCreateRefForm } from "hooks";
 import { Button, Input } from "lib";
@@ -24,7 +25,7 @@ export const SubServiceCreate = ({ serviceId }: { serviceId: number }) => {
           />
         </FormContent>
         <FormAction>
-          {error?.badEntry && "Bad entry"}
+          {error?.badEntry && <ApiErrorForm />}
           <Button onClick={onSubmit}>Create</Button>
           <LoadingIcon isLoading={isLoading} />
         </FormAction>
