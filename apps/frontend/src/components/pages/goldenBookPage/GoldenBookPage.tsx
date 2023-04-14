@@ -5,6 +5,7 @@ import { useReviews } from "hooks/useReviews";
 import { ReviewList } from "./ReviewList";
 import { Button } from "lib";
 import { Loader } from "components/utils/Loader";
+import { EmptyData } from "components/errors/EmptyData";
 
 const reviewPerPage = 10;
 
@@ -23,7 +24,7 @@ export const GoldenBookPage = () => {
       ) : !data || isError ? (
         <div>Error</div>
       ) : data.data.length === 0 ? (
-        <p>No reviews</p>
+        <EmptyData message="Aucun avis pour le moment" />
       ) : (
         <>
           <ReviewList reviews={data.data} />

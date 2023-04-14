@@ -52,6 +52,12 @@ export const DevisContactForm = () => {
           {...register("nbCharacter")}
           label="Nombre de caractère"
         />
+        <Input
+          required
+          flex
+          {...register("endDate")}
+          label="A faire pour"
+        />
 
         <Select
           required

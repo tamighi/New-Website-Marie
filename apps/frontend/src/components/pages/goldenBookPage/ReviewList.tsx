@@ -13,11 +13,9 @@ export const ReviewList = (props: Props) => {
 
   return (
     <div className={styles.ReviewList}>
-      {reviews.length === 0 ? (
-        <EmptyData message="Aucun avis pour le moment" />
-      ) : (
-        reviews.map((review) => <ReviewItem review={review} key={review.id} />)
-      )}
+      {reviews.map((review) => (
+        <ReviewItem review={review} key={review.id} />
+      ))}
     </div>
   );
 };
