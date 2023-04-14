@@ -1,4 +1,7 @@
 import { ResourceString, ResourceType } from "api/types";
+import { ApiErrorImage } from "components/errors/ApiErrorImage";
+import { EmptyData } from "components/errors/EmptyData";
+import { Loader } from "components/errors/Loader";
 import { useGetList, useGetSearchParams } from "hooks";
 import { Card } from "lib";
 import { useNavigate } from "react-router-dom";
@@ -29,15 +32,15 @@ export const CardLayout = <K extends ResourceString>({
   const navigate = useNavigate();
 
   if (isLoading) {
-    return <div>Fetching ...</div>;
+    return <Loader />
   }
 
   if (!data?.data || isError) {
-    return <div>Error !</div>;
+    return <ApiErrorImage />
   }
 
   if (data.count === 0) {
-    return <div>No data found ... </div>;
+    return <EmptyData />
   }
 
   return (

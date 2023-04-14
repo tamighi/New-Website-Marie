@@ -8,6 +8,9 @@ import { Column } from "react-table";
 import { ResourceString, ResourceType } from "api/types";
 import { useDeleteMany, useGetList, useGetSearchParams } from "hooks";
 import { SelectedOptions } from "../..";
+import { EmptyData } from "components/errors/EmptyData";
+import { Loader } from "components/errors/Loader";
+import { ApiErrorImage } from "components/errors/ApiErrorImage";
 
 const entryPerPage = 20;
 
@@ -16,7 +19,6 @@ export interface MyDatagridProps<R extends ResourceString> {
   columns: Column<ResourceType<R>>[];
 }
 
-// TODO: Set Search params when page changes
 export const MyDatagrid = <R extends ResourceString>({
   resource,
   columns,
@@ -42,15 +44,15 @@ export const MyDatagrid = <R extends ResourceString>({
   const navigate = useNavigate();
 
   if (isLoading) {
-    return <div>Fetching ...</div>;
+    return <Loader />;
   }
 
   if (!data?.data || isError) {
-    return <div>Error !</div>;
+    return <ApiErrorImage />;
   }
 
   if (data.count === 0) {
-    return <div>No data found ... </div>;
+    return <EmptyData />;
   }
 
   return (
