@@ -1,7 +1,6 @@
 import { httpClient } from "./utils";
 
-// TODO: apiUrl in dotenv
-const apiUrl = "http://192.168.1.50:8000";
+const apiUrl = process.env.BACKEND_URL;
 
 export interface ICredentials {
   username: string;
