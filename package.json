@@ -1,10 +1,13 @@
 {
   "name": "root",
   "scripts": {
-    "start": "lerna run start"
+    "start": "lerna run start -- -- -r ./.env"
   },
   "devDependencies": {
     "lerna": "^6.4.1"
   },
-  "workspaces": ["apps/*", "packages/*"]
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
