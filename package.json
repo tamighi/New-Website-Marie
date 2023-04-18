@@ -1,7 +1,7 @@
 {
   "name": "root",
   "scripts": {
-    "start": "lerna run start -- -- -r ./.env"
+    "start": "lerna run start"
   },
   "devDependencies": {
     "lerna": "^6.4.1"
