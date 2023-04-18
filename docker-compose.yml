@@ -5,6 +5,8 @@ services:
     build: .
     depends_on:
       - db
+    environment:
+      - POSTGRES_HOST=db
     ports:
       - "3000:8000"
     restart: always
