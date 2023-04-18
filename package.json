@@ -1,7 +1,8 @@
 {
   "name": "root",
   "scripts": {
-    "start": "lerna run start"
+    "build": "lerna run build",
+    "start:prod": "lerna run start:prod --scope=backend"
   },
   "devDependencies": {
     "lerna": "^6.4.1"

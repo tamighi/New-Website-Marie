@@ -4,8 +4,6 @@ import { httpClient } from "./httpClient";
 
 const apiUrl = process.env.BACKEND_URL;
 
-// TODO: Type safe guard
-
 export const getServices = async (): Promise<any> => {
   const url = `${apiUrl}/service/fetchServices`;
   return httpClient(url);
