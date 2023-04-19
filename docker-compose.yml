@@ -16,8 +16,6 @@ services:
 
   db:
     image: postgres
-    ports:
-      - "5432:5432"
     env_file:
       - .env
     container_name: database-docker
