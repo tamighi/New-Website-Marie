@@ -11,7 +11,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "framer-motion": "^8.4.3",
-    "lib": "file:../../packages/lib",
+    "lib": "^1.0.0",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
