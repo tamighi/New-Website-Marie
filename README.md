@@ -6,6 +6,8 @@ Full stack website with a react frontend with an admin and public section, and a
 
 ## How to run
 
+For now, a username and password is needed to access the admin with the backend, none are provided yet.
+
 ### Development
 
 - Install dependencies:
@@ -20,14 +22,16 @@ make start_db
 npm run dev
 ```
 
-- Frontend-public only
+Please note that frontend without the backend will result in fetching errors (they are handled but the functionnalities will be limited).
+
+- Frontend-public only (localhost:3000)
 ```sh
-make frontend #port 3000
+make frontend
 ```
 
-- Frontend-admin only
+- Frontend-admin only (localhost:4000/admin)
 ```sh
-make admin #port 4000
+make admin
 ```
 
 - Backend only (You need docker. The Makefile uses ```sudo docker```.):
@@ -37,7 +41,7 @@ make db
 make start_db
 ```
 
-### Production
+### Production (localhost:8000)
 
 Uses ```sudo docker compose up```
 ```sh
