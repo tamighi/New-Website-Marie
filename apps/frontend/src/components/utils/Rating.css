@@ -1,0 +1,20 @@
+.RatingContainer {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.RatingStar {
+  cursor: pointer;
+  font-size: 24px;
+  color: #ccc;
+  margin: 0 5px;
+  outline: none;
+  border: none;
+  background: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.RatingStar.active {
+  color: #ffbf00;
+}

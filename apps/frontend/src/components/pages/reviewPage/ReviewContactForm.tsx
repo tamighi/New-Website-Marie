@@ -1,5 +1,6 @@
 import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import { Loader } from "components/utils/Loader";
+import Rating from "components/utils/Rating";
 import { usePostMessage } from "hooks/usePostMessage";
 import { Button, Input, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
@@ -20,6 +21,7 @@ export const ReviewContactForm = () => {
         <Input required flex {...register("name")} label="Nom" />
         <Input required flex {...register("email")} label="Email" />
         <Input required flex {...register("note")} label="Votre note" />
+        <Rating onChange={() => {}}/>
 
         <TextArea
           required
