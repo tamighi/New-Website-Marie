@@ -1,15 +1,20 @@
 import React from "react";
 import styles from "./Rating.css";
 
-type RatingProps = React.InsHTMLAttributes<HTMLInputElement>
+type RatingProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-const Rating = (props: RatingProps, ref: React.ForwardedRef<HTMLInputElement>) => {
+const Rating = (
+  props: RatingProps,
+  ref: React.ForwardedRef<HTMLInputElement>
+) => {
   const [rating, setRating] = React.useState(0);
   const [hoverRating, setHoverRating] = React.useState(0);
 
   const handleRatingChange = (value: number) => {
     setRating(value);
-
+    if (ref && "current" in ref && ref.current) {
+      ref.current.value = value.toString();
+    }
   };
 
   const handleHoverRating = (value: number) => {
@@ -35,7 +40,11 @@ const Rating = (props: RatingProps, ref: React.ForwardedRef<HTMLInputElement>) =
           ★
         </span>
       ))}
-      <input type="hidden" {...props} ref={ref}/>
+      <input
+        {...props}
+        ref={ref}
+        className={styles.HiddenInput}
+      />
     </div>
   );
 };

@@ -11,8 +11,9 @@ export const ReviewContactForm = () => {
   const { mutate, isLoading, isError, isSuccess } =
     usePostMessage<ReviewDto>("review");
 
-  const onSubmit = (devis: Partial<ReviewDto>) => {
-    mutate(devis, { onSuccess: reset });
+  const onSubmit = (review: Partial<ReviewDto>) => {
+    mutate(review, { onSuccess: reset });
+    console.log(review)
   };
 
   return (
@@ -20,8 +21,7 @@ export const ReviewContactForm = () => {
       <FormContent>
         <Input required flex {...register("name")} label="Nom" />
         <Input required flex {...register("email")} label="Email" />
-        <Input required flex {...register("note")} label="Votre note" />
-        <Rating onChange={() => {}}/>
+        <Rating required {...register("note")} />
 
         <TextArea
           required

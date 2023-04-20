@@ -18,3 +18,9 @@
 .RatingStar.active {
   color: #ffbf00;
 }
+
+.HiddenInput {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
