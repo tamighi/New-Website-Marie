@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Leaves } from "./types";
+import { InputElements, Leaves } from "./types";
 
 export type ControlledRegisterOptions = {
   onChange: (value: string) => void;
@@ -8,7 +8,7 @@ export type ControlledRegisterOptions = {
 };
 
 type InputStore = {
-  value: string;
+  input: string;
   onChange: (event: any) => void;
 };
 
@@ -19,7 +19,6 @@ type PartialMapToInputStore<T extends object> = {
 export type ControlledRegisterReturn = {
   name: string;
   onChange: (event: any) => void;
-  value: string;
   // required?: boolean
 };
 
@@ -47,16 +46,16 @@ export const useControlledForm = <
     const { onChange } = options;
     return {
       name,
-      onChange: (event: any) => {
-        setInputs((prev) => ({
+      onChange: (event: React.ChangeEvent<InputElements>) => {
+        setInputs((prev) => {
+        return {
           ...prev,
-          [event.target.name]: { value: event.target.value, onChange },
-        }));
-        onChange(event.target?.value);
+          [event.target.name]: { input: event.target.value, onChange },
+        }});
+        onChange(event.target.value);
       },
-      value: inputs[name]?.value || ""
     };
-  };
+  }
 
   const reset = () => {
     Object.keys(inputs).map((key) => inputs[key as Leaves<T>]?.onChange(""));
@@ -66,7 +65,7 @@ export const useControlledForm = <
     return Object.keys(inputs).reduce((data, key) => {
       return {
         ...data,
-        [key]: inputs[key as Leaves<T>]?.value,
+        [key]: inputs[key as Leaves<T>]?.input,
       };
     }, {});
   };

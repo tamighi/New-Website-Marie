@@ -8,10 +8,8 @@
   "main": "build/bundle.js",
   "types": "build/library/index.d.ts",
   "scripts": {
-    "start": "webpack serve --config webpack/webpack.config.js --env env=dev",
-    "build": "webpack --config webpack/webpack.config.js --env env=prod",
-    "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
-    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+    "dev": "webpack serve --config webpack/webpack.config.js --env env=dev",
+    "build": "webpack --config webpack/webpack.config.js --env env=prod"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

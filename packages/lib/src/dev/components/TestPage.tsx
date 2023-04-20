@@ -17,6 +17,7 @@ export const TestPage = () => {
   const onSubmit = (data: any) => {
     reset();
     console.log(data);
+    console.log(id)
   };
 
   return (
@@ -32,16 +33,15 @@ export const TestPage = () => {
             height: "500px",
           }}
         >
-          <Input label="name" minLength={5} required {...register("name")} />
-          <Input label="post title" {...register("post.title")} />
+          <Input label="name" {...register("name")} />
+          <Input label="post title" {...register("post.title", {onChange: () => {}})} />
           <Select
             flex
             label="post"
-            required
-            value={id}
             {...register("post.id", {
               onChange: (value: string) => setId(value),
             })}
+            value={id}
           >
             <option value="">None</option>
             <option value={1}>Test1</option>
