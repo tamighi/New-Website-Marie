@@ -22,7 +22,6 @@ const Rating = (
         }
       } as React.ChangeEvent<HTMLInputElement>;
       props.onChange(event);
-      console.log(props.value)
     }
   };
 

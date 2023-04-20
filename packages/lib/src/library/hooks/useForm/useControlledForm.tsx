@@ -48,14 +48,16 @@ export const useControlledForm = <
       name,
       onChange: (event: React.ChangeEvent<InputElements>) => {
         setInputs((prev) => {
-        return {
-          ...prev,
-          [event.target.name]: { input: event.target.value, onChange },
-        }});
+          return {
+            ...prev,
+            [event.target.name]: { input: event.target.value, onChange: prev[name]?.onChange || onChange },
+          };
+        });
         onChange(event.target.value);
       },
+      value: inputs[name]?.input,
     };
-  }
+  };
 
   const reset = () => {
     Object.keys(inputs).map((key) => inputs[key as Leaves<T>]?.onChange(""));
