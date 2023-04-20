@@ -17,7 +17,7 @@ export const TestPage = () => {
   const onSubmit = (data: any) => {
     reset();
     console.log(data);
-    console.log(id)
+    console.log(id);
   };
 
   return (
@@ -34,8 +34,11 @@ export const TestPage = () => {
           }}
         >
           <Input label="name" {...register("name")} />
-          <Input label="post title" {...register("post.title", {onChange: () => {}})} />
-          <Select
+          <Input
+            label="post title"
+            {...register("post.title", { onChange: () => {} })}
+          />
+          {/* <Select
             flex
             label="post"
             {...register("post.id", {
@@ -46,7 +49,7 @@ export const TestPage = () => {
             <option value="">None</option>
             <option value={1}>Test1</option>
             <option value={2}>Test2</option>
-          </Select>
+          </Select> */}
         </Card>
         <Button type="submit">Submit</Button>
       </form>

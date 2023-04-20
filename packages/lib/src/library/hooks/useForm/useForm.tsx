@@ -55,7 +55,7 @@ const useForm = <T extends object>(): UseFormReturn<T> => {
         return uncontrolledRegister(name, options);
       }
     },
-    [uncontrolledRegister]
+    [uncontrolledRegister, controlledRegister]
   );
 
   const reset = () => {

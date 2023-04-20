@@ -19,6 +19,7 @@ type PartialMapToInputStore<T extends object> = {
 export type ControlledRegisterReturn = {
   name: string;
   onChange: (event: any) => void;
+  value: string;
   // required?: boolean
 };
 
@@ -47,15 +48,17 @@ export const useControlledForm = <
     return {
       name,
       onChange: (event: React.ChangeEvent<InputElements>) => {
-        setInputs((prev) => {
-          return {
-            ...prev,
-            [event.target.name]: { input: event.target.value, onChange: prev[name]?.onChange || onChange },
-          };
-        });
-        onChange(event.target.value);
+        const { name, value } = event.target;
+        setInputs((prev) => ({
+          ...prev,
+          [name]: {
+            onChange,
+            input: value,
+          },
+        }));
+        onChange(value);
       },
-      value: inputs[name]?.input,
+      value: inputs[name]?.input || "",
     };
   };
 
