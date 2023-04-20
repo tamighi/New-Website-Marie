@@ -13,15 +13,15 @@ export const ReviewContactForm = () => {
 
   const onSubmit = (review: Partial<ReviewDto>) => {
     mutate(review, { onSuccess: reset });
-    console.log(review)
+    console.log(review);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
         <Input required flex {...register("name")} label="Nom" />
-        <Input required flex {...register("email")} label="Email" />
-        <Rating required {...register("note")} />
+        <Input required flex {...register("email", {onChange:() => {}})} label="Email" />
+        <Rating required {...register("note", { onChange: () => {} })} />
 
         <TextArea
           required

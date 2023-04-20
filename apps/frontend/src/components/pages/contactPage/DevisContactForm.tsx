@@ -65,7 +65,6 @@ export const DevisContactForm = () => {
           {...register("service.id", {
             onChange: (value) => setServiceId(value),
           })}
-          value={serviceId}
           label="Service désiré"
         >
           <option value="">Non spécifié</option>

@@ -15,6 +15,15 @@ const Rating = (
     if (ref && "current" in ref && ref.current) {
       ref.current.value = value.toString();
     }
+    if (props.onChange) {
+      const event: React.ChangeEvent<HTMLInputElement> = {
+        target: {
+          value: value.toString()
+        }
+      } as React.ChangeEvent<HTMLInputElement>;
+      props.onChange(event);
+      console.log(props.value)
+    }
   };
 
   const handleHoverRating = (value: number) => {
@@ -40,11 +49,7 @@ const Rating = (
           ★
         </span>
       ))}
-      <input
-        {...props}
-        ref={ref}
-        className={styles.HiddenInput}
-      />
+      <input {...props} ref={ref} className={styles.HiddenInput} />
     </div>
   );
 };

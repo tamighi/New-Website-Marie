@@ -8,7 +8,7 @@ export type ControlledRegisterOptions = {
 };
 
 type InputStore = {
-  input: string;
+  value: string;
   onChange: (event: any) => void;
 };
 
@@ -19,6 +19,7 @@ type PartialMapToInputStore<T extends object> = {
 export type ControlledRegisterReturn = {
   name: string;
   onChange: (event: any) => void;
+  value: string;
   // required?: boolean
 };
 
@@ -49,10 +50,11 @@ export const useControlledForm = <
       onChange: (event: any) => {
         setInputs((prev) => ({
           ...prev,
-          [event.target.name]: { input: event.target.value, onChange },
+          [event.target.name]: { value: event.target.value, onChange },
         }));
         onChange(event.target?.value);
       },
+      value: inputs[name]?.value || ""
     };
   };
 
@@ -64,7 +66,7 @@ export const useControlledForm = <
     return Object.keys(inputs).reduce((data, key) => {
       return {
         ...data,
-        [key]: inputs[key as Leaves<T>]?.input,
+        [key]: inputs[key as Leaves<T>]?.value,
       };
     }, {});
   };
