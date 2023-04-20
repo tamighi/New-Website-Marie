@@ -18,11 +18,11 @@ const Rating = (
     if (props.onChange) {
       const event: React.ChangeEvent<HTMLInputElement> = {
         target: {
-          value: value.toString()
-        }
+          value: value.toString(),
+          name: props.name
+        },
       } as React.ChangeEvent<HTMLInputElement>;
       props.onChange(event);
-      console.log(props.value)
     }
   };
 

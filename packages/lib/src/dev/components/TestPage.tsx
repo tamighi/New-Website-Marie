@@ -38,7 +38,7 @@ export const TestPage = () => {
             label="post title"
             {...register("post.title", { onChange: () => {} })}
           />
-          {/* <Select
+          <Select
             flex
             label="post"
             {...register("post.id", {
@@ -49,7 +49,7 @@ export const TestPage = () => {
             <option value="">None</option>
             <option value={1}>Test1</option>
             <option value={2}>Test2</option>
-          </Select> */}
+          </Select>
         </Card>
         <Button type="submit">Submit</Button>
       </form>
