@@ -30,10 +30,9 @@ export const DevisContactForm = () => {
   }, [serviceId]);
 
   const onSubmit = (devis: Partial<DevisDto>) => {
-    console.log(devis);
-    /* mutate(devis, {
+    mutate(devis, {
       onSuccess: reset,
-    }); */
+    });
   };
 
   return (
