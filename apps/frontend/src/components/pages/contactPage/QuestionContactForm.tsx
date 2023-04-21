@@ -1,5 +1,5 @@
 import { ApiErrorForm } from "components/errors/ApiErrorForm";
-import { Loader } from "components/utils/Loader";
+import { Loader } from "components/utils/Loader/Loader";
 import { usePostMessage } from "hooks/usePostMessage";
 import { Button, Input, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";

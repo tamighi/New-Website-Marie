@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Loader } from "components/utils/Loader";
+import { Loader } from "components/utils/Loader/Loader";
 import { usePostMessage } from "hooks/usePostMessage";
 import { useServices } from "hooks/useServices";
 import { Button, Input, Select, TextArea, useForm } from "lib";
@@ -30,9 +30,10 @@ export const DevisContactForm = () => {
   }, [serviceId]);
 
   const onSubmit = (devis: Partial<DevisDto>) => {
-    mutate(devis, {
+    console.log(devis);
+    /* mutate(devis, {
       onSuccess: reset,
-    });
+    }); */
   };
 
   return (
@@ -52,15 +53,9 @@ export const DevisContactForm = () => {
           {...register("nbCharacter")}
           label="Nombre de caractère"
         />
-        <Input
-          required
-          flex
-          {...register("endDate")}
-          label="A faire pour"
-        />
+        <Input label="Delai" type="date" required {...register("endDate")} />
 
         <Select
-          required
           flex
           {...register("service.id", {
             onChange: (value) => setServiceId(value),

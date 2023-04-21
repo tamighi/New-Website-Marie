@@ -4,7 +4,7 @@ import { Title } from "components/typography/Title";
 import { useReviews } from "hooks/useReviews";
 import { ReviewList } from "./ReviewList";
 import { Button } from "lib";
-import { Loader } from "components/utils/Loader";
+import { Loader } from "components/utils/Loader/Loader";
 import { EmptyData } from "components/errors/EmptyData";
 
 const reviewPerPage = 10;
