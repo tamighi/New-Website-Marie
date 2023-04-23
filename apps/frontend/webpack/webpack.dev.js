@@ -10,7 +10,7 @@ module.exports = {
   },
   devServer: {
     port: 3000,
-    hot: "only",
+    hot: true,
     historyApiFallback: true,
   },
   module: {
