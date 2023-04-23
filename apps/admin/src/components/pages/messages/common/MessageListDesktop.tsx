@@ -10,20 +10,22 @@ type MessageResourceString = "question" | "review" | "devis";
 const desktopMessageColumns: Column<ResourceType<MessageResourceString>>[] = [
   {
     accessor: "status",
-    Header: "Status",
-    maxWidth: 50,
-    Cell: ({ value }) => (
-      <span
-        style={{
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          display: "block",
-          whiteSpace: "nowrap",
-        }}
-      >
-        {value}
-      </span>
-    ),
+    Cell: (props) => {
+      const { value } = props;
+      return (
+        <div
+          style={{
+            backgroundColor:
+              value == "pending"
+                ? "orange"
+                : value == "refused"
+                ? "red"
+                : "green",
+            minHeight: "17px"
+          }}
+        />
+      );
+    },
   },
   {
     accessor: "name",
