@@ -1,133 +1,25 @@
-import React from "react";
-
-import { ResourceType } from "api/types";
-import { MyDatagrid, SimpleGrid } from "components/pages/core";
-import { Column } from "react-table";
 import { useIsSmall } from "hooks";
+import { MessageListDesktop } from "./MessageListDesktop";
+import { MessageListMobile } from "./MessageListMobile";
 
 type MessageResourceString = "question" | "review" | "devis";
 
-// TODO: Desktop/mobile list !!
-const messageColumns: Column<ResourceType<MessageResourceString>>[] = [
-  {
-    accessor: "status",
-    Header: "Status",
-    maxWidth: 50,
-    Cell: ({ value }) => (
-      <span
-        style={{
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          display: "block",
-          whiteSpace: "nowrap",
-        }}
-      >
-        {value}
-      </span>
-    ),
-  },
-  {
-    accessor: "name",
-    Header: "Nom",
-    maxWidth: 50,
-    Cell: ({ value }) => (
-      <span
-        style={{
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          display: "block",
-          whiteSpace: "nowrap",
-        }}
-      >
-        {value}
-      </span>
-    ),
-  },
-  {
-    accessor: "email",
-    Header: "Email",
-    maxWidth: 50,
-    Cell: ({ value }) => (
-      <span
-        style={{
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          display: "block",
-          whiteSpace: "nowrap",
-        }}
-      >
-        {value}
-      </span>
-    ),
-  },
-  {
-    accessor: "message",
-    Header: "Message",
-    maxWidth: 50,
-    Cell: ({ value }) => (
-      <span
-        style={{
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          display: "block",
-          whiteSpace: "nowrap",
-        }}
-      >
-        {value}
-      </span>
-    ),
-  },
-  {
-    accessor: "date",
-    Header: "Date",
-    maxWidth: 50,
-    Cell: ({ value }) => {
-      if (!value) {
-        return null;
-      }
-      const date = new Date(value).toLocaleDateString();
-
-      return (
-        <span
-          style={{
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "block",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {date}
-        </span>
-      );
-    },
-  },
-];
-
 type MessageListProps<R extends MessageResourceString> = {
-  additionnalColumn?: Column<ResourceType<R>>[];
   resource: R;
 };
 
 export const MessageList = <R extends MessageResourceString>(
   props: MessageListProps<R>
 ) => {
-  const { additionnalColumn = [], resource } = props;
+  const { resource } = props;
   const isSmall = useIsSmall();
-
-  const columns = React.useMemo(
-    () => [
-      ...additionnalColumn,
-      ...(messageColumns as Column<ResourceType<R>>[]),
-    ],
-    []
-  );
 
   return (
     <>
       {isSmall ? (
-        <SimpleGrid columns={columns} resource={resource} />
+        <MessageListMobile resource={resource} />
       ) : (
-        <MyDatagrid columns={columns} resource={resource} />
+        <MessageListDesktop resource={resource} />
       )}
     </>
   );

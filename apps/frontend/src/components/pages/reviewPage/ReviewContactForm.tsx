@@ -13,25 +13,24 @@ export const ReviewContactForm = () => {
 
   const onSubmit = (review: Partial<ReviewDto>) => {
     mutate(review, { onSuccess: reset });
-    console.log(review);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
         <Input required flex {...register("name")} label="Nom" />
-        <Input required flex {...register("email", {onChange:() => {}})} label="Email" />
-        <Rating required {...register("note", { onChange: () => {} })} />
+        <Input required flex {...register("email")} label="Email" />
+        <Rating required {...register("note")} />
 
         <TextArea
           required
           flex
-          rows={12}
+          rows={13}
           {...register("message")}
           label="Message"
         />
 
-        <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
+        <div style={{ gap: "7px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>
             Envoyer
           </Button>
