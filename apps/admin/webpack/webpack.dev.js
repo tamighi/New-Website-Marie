@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "..", "build"),
     filename: "[name].bundle.js",
-    publicPath: "/admin",
+    publicPath: "/",
   },
   devServer: {
     port: 4000,
