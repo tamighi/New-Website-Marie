@@ -16,7 +16,7 @@ import { ReviewsModule } from "./models/review/reviews.module";
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, "../..", "admin", "build"),
-      serveRoot: "/admin"
+      serveRoot: "/admin",
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, "../..", "frontend", "build"),
