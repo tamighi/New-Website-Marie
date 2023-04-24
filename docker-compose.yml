@@ -2,7 +2,6 @@ version: "3.9"
 
 services:
   admin:
-    image: admin
     build:
       context: .
       dockerfile: ./apps/admin/Dockerfile
@@ -14,7 +13,9 @@ services:
       - mynetwork
 
   nginx:
-    image: nginx
+    build:
+      context: .
+      dockerfile: ./deploy/Dockerfile
     restart: always
     depends_on:
       - admin
