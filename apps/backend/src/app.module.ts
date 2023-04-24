@@ -13,6 +13,7 @@ import { DevisModule } from "./models/devis/devis.module";
 import { ReviewsModule } from "./models/review/reviews.module";
 
 @Module({
+  // TODO: serve static in nginx
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, "../..", "admin", "build"),
@@ -31,4 +32,4 @@ import { ReviewsModule } from "./models/review/reviews.module";
     ReviewsModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }

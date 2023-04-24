@@ -1,27 +1,15 @@
 version: "3.9"
 
 services:
-  app:
-    build: .
-    depends_on:
-      - db
-    environment:
-      - POSTGRES_HOST=db
+  admin:
+    build:
+      context: .
+      dockerfile: ./apps/admin/Dockerfile
     ports:
-      - "8000:8000"
+      - "3000:3000"
     restart: always
-    container_name: app
+    container_name: admin
     networks:
       - mynetwork
-
-  db:
-    image: postgres
-    env_file:
-      - .env
-    container_name: database-docker
-    restart: always
-    networks:
-      - mynetwork
-
 networks:
   mynetwork:
