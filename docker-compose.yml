@@ -5,11 +5,29 @@ services:
     build:
       context: .
       dockerfile: ./apps/admin/Dockerfile
+    env_file:
+      - .env
     ports:
       - "3000:3000"
     restart: always
     container_name: admin
     networks:
       - mynetwork
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/frontend/Dockerfile
+  #   restart: always
+  #   container_name: frontend
+  #   networks:
+  #     - mynetwork
+  # backend:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/backend/Dockerfile
+  #   restart: always
+  #   container_name: backend
+  #   networks:
+  #     - mynetwork
 networks:
   mynetwork:
