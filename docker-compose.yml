@@ -2,17 +2,28 @@ version: "3.9"
 
 services:
   admin:
+    image: admin
     build:
       context: .
       dockerfile: ./apps/admin/Dockerfile
     env_file:
       - .env
-    ports:
-      - "3000:3000"
     restart: always
     container_name: admin
     networks:
       - mynetwork
+
+  nginx:
+    image: nginx
+    restart: always
+    depends_on:
+      - admin
+    ports:
+      - "3000:80"
+    container_name: nginx
+    networks:
+      - mynetwork
+
   # frontend:
   #   build:
   #     context: .

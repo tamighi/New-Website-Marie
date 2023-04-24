@@ -6,12 +6,15 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "..", "build"),
     filename: "[name].bundle.js",
-    publicPath: "/",
+    publicPath: "/admin/",
   },
   devServer: {
+    allowedHosts: "all",
     port: 3000,
     hot: true,
-    historyApiFallback: true,
+    historyApiFallback: {
+      index: "/admin/index.html",
+    },
   },
   module: {
     rules: [

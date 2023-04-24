@@ -1,0 +1,12 @@
+FROM alpine:3.13
+
+RUN apk update\
+    && apk add nginx 
+
+RUN mkdir -p /run/nginx
+
+COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
