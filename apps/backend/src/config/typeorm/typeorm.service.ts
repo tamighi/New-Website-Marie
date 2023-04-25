@@ -9,14 +9,14 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     return {
       type: "postgres",
       host: process.env.POSTGRES_HOST,
-      port: parseInt(process.env.POSTGRES_PORT || ""),
+      port: parseInt(process.env.POSTGRES_PORT || "80"),
       database: process.env.POSTGRES_DB,
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
 
-      entities: ["dist/**/*.entity.{ts,js}"],
+      entities: ["build/**/*.entity.{ts,js}"],
 
-      migrations: ["dist/migrations/*.{ts,js}"],
+      migrations: ["build/migrations/*.{ts,js}"],
       migrationsTableName: "typeorm_migrations",
 
       synchronize: true,

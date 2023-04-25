@@ -1,16 +1,40 @@
 version: "3.9"
 
 services:
-  app:
-    build: .
+  admin:
+    build:
+      context: .
+      dockerfile: ./apps/admin/Dockerfile
+    env_file:
+      - .env
+    restart: always
+    container_name: admin
+    networks:
+      - mynetwork
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./apps/frontend/Dockerfile
+    env_file:
+      - .env
+    restart: always
+    container_name: frontend
+    networks:
+      - mynetwork
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
     depends_on:
       - db
-    environment:
-      - POSTGRES_HOST=db
-    ports:
-      - "8000:8000"
     restart: always
-    container_name: app
+    container_name: backend
     networks:
       - mynetwork
 
@@ -18,8 +42,33 @@ services:
     image: postgres
     env_file:
       - .env
-    container_name: database-docker
+    container_name: db
     restart: always
+    networks:
+      - mynetwork
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./deploy/Dockerfile
+    restart: always
+    depends_on:
+      - admin
+      - frontend
+      - backend
+    ports:
+      - 3000:80
+    container_name: nginx
+    networks:
+      - mynetwork
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    links:
+      - db:db
     networks:
       - mynetwork
 

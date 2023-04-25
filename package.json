@@ -1,16 +1,13 @@
 {
   "name": "root",
   "scripts": {
-    "prod": "sudo docker compose up",
-    "dev": "lerna run dev --scope={frontend,admin,backend}",
-    "build": "lerna run build",
-    "start:prod": "lerna run start:prod --scope=backend"
-  },
-  "devDependencies": {
-    "lerna": "^6.4.1"
+    "prod": "sudo docker compose up"
   },
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "turbo": "^1.9.3"
+  }
 }
