@@ -23,6 +23,28 @@ services:
     networks:
       - mynetwork
 
+  backend:
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: always
+    container_name: backend
+    networks:
+      - mynetwork
+
+  db:
+    image: postgres
+    env_file:
+      - .env
+    container_name: db
+    restart: always
+    networks:
+      - mynetwork
+
   nginx:
     build:
       context: .
@@ -31,19 +53,12 @@ services:
     depends_on:
       - admin
       - frontend
+      - backend
     ports:
       - "3000:80"
     container_name: nginx
     networks:
       - mynetwork
 
-  # backend:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/backend/Dockerfile
-  #   restart: always
-  #   container_name: backend
-  #   networks:
-  #     - mynetwork
 networks:
   mynetwork:
