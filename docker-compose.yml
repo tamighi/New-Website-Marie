@@ -9,6 +9,8 @@ services:
       - .env
     restart: always
     container_name: admin
+    volumes:
+      - ./apps/admin/src:/usr/src/app/apps/admin/src
     networks:
       - mynetwork
 
@@ -20,6 +22,8 @@ services:
       - .env
     restart: always
     container_name: frontend
+    volumes:
+      - ./apps/frontend/src:/usr/src/app/apps/frontend/src
     networks:
       - mynetwork
 
@@ -27,14 +31,14 @@ services:
     build:
       context: .
       dockerfile: ./apps/backend/Dockerfile
-    ports:
-      - 8000:8000
     env_file:
       - .env
     depends_on:
       - db
     restart: always
     container_name: backend
+    volumes:
+      - ./apps/backend/src:/usr/src/app/apps/backend/src
     networks:
       - mynetwork
 
