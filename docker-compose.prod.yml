@@ -5,12 +5,13 @@ services:
     build:
       context: .
       dockerfile: ./apps/backend/Dockerfile.prod
+    image: backend-prod
+    container_name: backend-prod
     env_file:
       - .env
     depends_on:
       - db
     restart: always
-    container_name: backend_prod
     volumes:
       - ./apps/backend/src:/usr/src/app/apps/backend/src
     networks:
@@ -18,9 +19,9 @@ services:
 
   db:
     image: postgres
+    container_name: db-prod
     env_file:
       - .env
-    container_name: db_prod
     restart: always
     networks:
       - mynetwork
@@ -31,14 +32,13 @@ services:
       dockerfile: ./deploy/Dockerfile.prod
       args:
         BACKEND_URL: "http://localhost:3000/api"
+    image: nginx-prod
+    container_name: nginx-prod
     restart: always
-    env_file:
-      - .env
     depends_on:
       - backend
     ports:
       - 3000:80
-    container_name: nginx_prod
     networks:
       - mynetwork
 

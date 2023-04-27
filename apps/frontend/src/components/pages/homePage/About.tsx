@@ -13,7 +13,7 @@ export const About = () => {
       }}
     >
       <Card style={{ padding: "12px", paddingTop: "0", margin: "8px" }}>
-        <Title>Bonjour a tous ! ENV: {process.env.BACKEND_URL}</Title>
+        <Title>Bonjour a tous !</Title>
         <br />
         Pour vos récits, articles, mémoires, supports publicitaires, magazines,
         presse d’entreprise, sites Internet..., particuliers, professionnels,
