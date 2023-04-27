@@ -29,7 +29,11 @@ services:
     build:
       context: .
       dockerfile: ./deploy/Dockerfile.prod
+      args:
+        BACKEND_URL: "http://localhost:3000/api"
     restart: always
+    env_file:
+      - .env
     depends_on:
       - backend
     ports:
