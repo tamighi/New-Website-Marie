@@ -5,10 +5,11 @@ services:
     build:
       context: .
       dockerfile: ./apps/admin/Dockerfile
-    env_file:
-      - .env
+    image: admin-dev
     restart: always
-    container_name: admin
+    container_name: admin-dev
+    volumes:
+      - ./apps/admin/src:/usr/src/app/apps/admin/src:ro
     networks:
       - mynetwork
 
@@ -16,25 +17,27 @@ services:
     build:
       context: .
       dockerfile: ./apps/frontend/Dockerfile
-    env_file:
-      - .env
+    image: frontend-dev
     restart: always
-    container_name: frontend
+    container_name: frontend-dev
+    volumes:
+      - ./apps/frontend/src:/usr/src/app/apps/frontend/src:ro
     networks:
       - mynetwork
 
   backend:
     build:
       context: .
-      dockerfile: ./apps/backend/Dockerfile
-    ports:
-      - 8000:8000
+      dockerfile: ./apps/backend/Dockerfile.dev
+    image: backend-dev
     env_file:
       - .env
     depends_on:
       - db
     restart: always
-    container_name: backend
+    container_name: backend-dev
+    volumes:
+      - ./apps/backend/src:/usr/src/app/apps/backend/src:ro
     networks:
       - mynetwork
 
@@ -42,7 +45,7 @@ services:
     image: postgres
     env_file:
       - .env
-    container_name: db
+    container_name: db-dev
     restart: always
     networks:
       - mynetwork
@@ -50,7 +53,8 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ./deploy/Dockerfile
+      dockerfile: ./deploy/Dockerfile.dev
+    image: nginx-dev
     restart: always
     depends_on:
       - admin
@@ -58,13 +62,14 @@ services:
       - backend
     ports:
       - 3000:80
-    container_name: nginx
+    container_name: nginx-dev
     networks:
       - mynetwork
 
   adminer:
     image: adminer
     restart: always
+    container_name: adminer
     ports:
       - 8080:8080
     links:

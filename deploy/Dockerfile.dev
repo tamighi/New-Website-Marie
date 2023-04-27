@@ -5,7 +5,7 @@ RUN apk update\
 
 RUN mkdir -p /run/nginx
 
-COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./deploy/nginx.dev.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 

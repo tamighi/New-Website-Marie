@@ -6,9 +6,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "nest start --watch",
+    "dev": "nest start --watch --preserveWatchOutput",
     "build": "nest build",
-    "start:prod": "node dist/main"
+    "start:prod": "node build/main"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",

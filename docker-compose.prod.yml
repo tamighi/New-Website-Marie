@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile.prod
+    image: backend-prod
+    container_name: backend-prod
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: always
+    volumes:
+      - ./apps/backend/src:/usr/src/app/apps/backend/src
+    networks:
+      - mynetwork
+
+  db:
+    image: postgres
+    container_name: db-prod
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - mynetwork
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./deploy/Dockerfile.prod
+      args:
+        BACKEND_URL: "http://localhost:3000/api"
+    image: nginx-prod
+    container_name: nginx-prod
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - 3000:80
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
