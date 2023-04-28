@@ -1,16 +1,19 @@
-import { Input, useClickOutside } from 'lib';
-import React from 'react';
-import styles from './DatePicker.css';
+import React from "react";
 
+import { Input, Paper, useClickOutside } from "lib";
+
+import styles from "./DatePicker.css";
+
+// TODO: Add props, correct style, ...
 const DatePicker = () => {
-  const [date, setDate] = React.useState('');
+  const [date, setDate] = React.useState("");
   const [month, setMonth] = React.useState(new Date().getMonth());
   const [year, setYear] = React.useState(new Date().getFullYear());
 
   const datePickerRef = useClickOutside(() => {
     const datePicker = document.querySelector(`.${styles.datePicker}`);
     datePicker?.classList.remove(styles.show);
-  })
+  });
 
   const handleChange = (day: number) => {
     setDate(`${month + 1}/${day}/${year}`);
@@ -52,7 +55,6 @@ const DatePicker = () => {
   return (
     <div className={styles.datePicker}>
       <Input
-        type="text"
         placeholder="Select a date"
         value={date}
         onClick={() => {
@@ -61,47 +63,46 @@ const DatePicker = () => {
         }}
         readOnly
       />
-      <div
-        className={styles.datePickerOverlay}
-        onClick={() => {
-          const datePicker = document.querySelector(`.${styles.datePicker}`);
-          datePicker?.classList.remove(styles.show);
-        }}
-      ></div>
       <div className={styles.datePickerDropdown} ref={datePickerRef}>
-        <div className={styles.datePickerHeader}>
-          <span className={styles.datePickerPrev} onClick={handlePrevMonth}>
-            &#10094;
-          </span>
-          <span className={styles.datePickerMonth}>
-            {new Date(year, month).toLocaleDateString('en-US', { month: 'long' })}
-          </span>
-          <span className={styles.datePickerYear}>{year}</span>
-          <span className={styles.datePickerNext} onClick={handleNextMonth}>
-            &#10095;
-          </span>
-        </div>
-        <div className={styles.datePickerDays}>
-          <span>Sun</span>
-          <span>Mon</span>
-          <span>Tue</span>
-          <span>Wed</span>
-          <span>Thu</span>
-          <span>Fri</span>
-          <span>Sat</span>
-          {days.map((day, index) => (
-            <span
-              key={index}
-              className={day ? styles.datePickerDay : styles.empty}
-              onClick={day ? () => handleChange(day) : undefined}
-            >
-              {day}
+        <Paper>
+          <div className={styles.datePickerHeader}>
+            <span className={styles.datePickerPrev} onClick={handlePrevMonth}>
+              &#10094;
             </span>
-          ))}
-        </div>
+            <span className={styles.datePickerHeaderTitle}>
+              {new Date(year, month).toLocaleDateString("en-US", {
+                month: "long",
+              })}
+              {' '}
+              {year}
+            </span>
+            <span className={styles.datePickerNext} onClick={handleNextMonth}>
+              &#10095;
+            </span>
+          </div>
+          <div className={styles.datePickerDays}>
+            <span>Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+            {days.map((day, index) => (
+              <Paper
+                key={index}
+                variant="primary"
+                className={day ? styles.datePickerDay : styles.empty}
+                onClick={day ? () => handleChange(day) : undefined}
+              >
+                {day}
+              </Paper>
+            ))}
+          </div>
+        </Paper>
       </div>
     </div>
   );
-}
+};
 
 export default DatePicker;

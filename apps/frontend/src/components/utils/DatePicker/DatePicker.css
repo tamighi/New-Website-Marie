@@ -3,52 +3,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: Arial, sans-serif;
-}
-
-.datePicker input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 200px;
 }
 
 .datePicker.show .datePickerDropdown {
   visibility: visible;
-  opacity: 1;
-  transition: visibility 0s, opacity 0.2s ease-in-out;
-}
-
-.datePickerOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.2s ease-in-out;
-}
-
-.datePicker.show + .datePickerOverlay {
-  z-index: 1;
-  visibility: visible;
-  opacity: 1;
 }
 
 .datePickerDropdown {
   position: absolute;
   top: 40px;
   left: 0;
-  z-index: 2;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
   visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.2s ease-in-out;
 }
 
 .datePickerHeader {
@@ -58,22 +24,14 @@
   padding: 10px;
 }
 
-.datePickerMonth {
+.datePickerHeaderTitle {
   font-size: 20px;
   font-weight: bold;
-  margin: 0 10px;
-}
-
-.datePickerYear {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0 10px;
+  margin: 10px;
 }
 
 .datePickerPrev,
 .datePickerNext {
-  background-color: transparent;
-  border: none;
   font-size: 20px;
   cursor: pointer;
 }
@@ -86,15 +44,12 @@
 }
 
 .datePickerDay {
-  background-color: #fff;
-  border: 1px solid #ccc;
   border-radius: 4px;
-  padding: 5px;
   cursor: pointer;
 }
 
 .datePickerDay:hover {
-  background-color: #f2f2f2;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
 }
 
 .empty {
