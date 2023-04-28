@@ -5,6 +5,29 @@
   align-items: center;
 }
 
+.datePicker input {
+  cursor: pointer;
+  pointer-events: none;
+  padding-right: 24px;
+}
+
+.DateIcon {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.ResetIcon {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
 .datePicker.show .datePickerDropdown {
   visibility: visible;
 }

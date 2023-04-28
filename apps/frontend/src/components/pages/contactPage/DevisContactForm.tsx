@@ -53,8 +53,7 @@ export const DevisContactForm = () => {
           {...register("nbCharacter")}
           label="Nombre de caractère"
         />
-        <Input label="Delai" type="date" required {...register("endDate")} />
-        <DatePicker />
+        <DatePicker label="Delai" required {...register("endDate")} />
 
         <Select
           flex

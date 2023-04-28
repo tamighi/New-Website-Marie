@@ -16,7 +16,7 @@ const Rating = (
       ref.current.value = value.toString();
     }
     if (props.onChange) {
-      const event: React.ChangeEvent<HTMLInputElement> = {
+      const event = {
         target: {
           value: value.toString(),
           name: props.name

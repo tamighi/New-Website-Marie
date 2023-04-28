@@ -1,12 +1,18 @@
 import React from "react";
 
-import { Input, Paper, useClickOutside } from "lib";
+import { Input, InputProps, Paper, useClickOutside } from "lib";
 
 import styles from "./DatePicker.css";
 
-// TODO: Add props, correct style, ...
-const DatePicker = () => {
-  const [date, setDate] = React.useState("");
+type DatePickerProps = InputProps;
+
+// TODO: Show as state instead of classList remove/add
+// TODO: required not working => useForm required
+// TODO: in fr
+const DatePicker = (
+  props: DatePickerProps,
+  ref: React.ForwardedRef<HTMLInputElement>
+) => {
   const [month, setMonth] = React.useState(new Date().getMonth());
   const [year, setYear] = React.useState(new Date().getFullYear());
 
@@ -15,8 +21,20 @@ const DatePicker = () => {
     datePicker?.classList.remove(styles.show);
   });
 
-  const handleChange = (day: number) => {
-    setDate(`${month + 1}/${day}/${year}`);
+  const handleChange = (day?: number) => {
+    const value = day === undefined ? "" : `${month + 1}/${day}/${year}`;
+    if (ref && "current" in ref && ref.current) {
+      ref.current.value = value;
+    }
+    if (props.onChange) {
+      const event = {
+        target: {
+          value: value,
+          name: props.name,
+        },
+      } as React.ChangeEvent<HTMLInputElement>;
+      props.onChange(event);
+    }
     const datePicker = document.querySelector(`.${styles.datePicker}`);
     datePicker?.classList.remove(styles.show);
   };
@@ -54,15 +72,24 @@ const DatePicker = () => {
 
   return (
     <div className={styles.datePicker}>
-      <Input
-        placeholder="Select a date"
-        value={date}
+      <Input readOnly ref={ref} {...props} />
+      <i
+        className={styles.DateIcon}
         onClick={() => {
           const datePicker = document.querySelector(`.${styles.datePicker}`);
           datePicker?.classList.add(styles.show);
         }}
-        readOnly
-      />
+      >
+        C
+      </i>
+      <i
+        className={styles.ResetIcon}
+        onClick={() => {
+          handleChange(undefined);
+        }}
+      >
+        X
+      </i>
       <div className={styles.datePickerDropdown} ref={datePickerRef}>
         <Paper>
           <div className={styles.datePickerHeader}>
@@ -72,8 +99,7 @@ const DatePicker = () => {
             <span className={styles.datePickerHeaderTitle}>
               {new Date(year, month).toLocaleDateString("en-US", {
                 month: "long",
-              })}
-              {' '}
+              })}{" "}
               {year}
             </span>
             <span className={styles.datePickerNext} onClick={handleNextMonth}>
@@ -105,4 +131,4 @@ const DatePicker = () => {
   );
 };
 
-export default DatePicker;
+export default React.forwardRef(DatePicker);
