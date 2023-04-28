@@ -1,0 +1,80 @@
+.datePicker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.datePicker input {
+  cursor: pointer;
+  pointer-events: none;
+  padding-right: 24px;
+}
+
+.DateIcon {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.ResetIcon {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+.datePicker.show .datePickerDropdown {
+  visibility: visible;
+}
+
+.datePickerDropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  z-index: 1;
+  visibility: hidden;
+}
+
+.datePickerHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.datePickerHeaderTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.datePickerPrev,
+.datePickerNext {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.datePickerDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 5px;
+  padding: 10px;
+}
+
+.datePickerDay {
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.datePickerDay:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+}
+
+.empty {
+  visibility: hidden;
+}

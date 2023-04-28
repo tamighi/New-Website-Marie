@@ -3,7 +3,6 @@ import React from "react";
 import CSSClasses from "./InputBase.css";
 
 export interface BaseInputProps {
-  color?: string;
   flex?: boolean;
   label?: string;
   children: React.ReactNode;

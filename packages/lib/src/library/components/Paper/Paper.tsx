@@ -13,6 +13,7 @@ const Paper = (props: PaperProps) => {
     variant: type = "surface",
     children,
     className,
+    ...rest
   } = props;
 
   const classNames = `${CSSClasses.Paper} ` + (className || "");
@@ -20,7 +21,7 @@ const Paper = (props: PaperProps) => {
   const styles = useStyles({ type, customStyle });
 
   return (
-    <div className={classNames} style={styles}>
+    <div className={classNames} style={styles} {...rest}>
       {children}
     </div>
   );

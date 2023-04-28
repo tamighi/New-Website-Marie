@@ -8,6 +8,7 @@ import { FormContent } from "../core/FormContent";
 import { DevisDto } from "./devis";
 import { SubServiceDto } from "resources/service";
 import { ApiErrorForm } from "components/errors/ApiErrorForm";
+import DatePicker from "components/utils/DatePicker/DatePicker";
 
 export const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
@@ -52,7 +53,7 @@ export const DevisContactForm = () => {
           {...register("nbCharacter")}
           label="Nombre de caractère"
         />
-        <Input label="Delai" type="date" required {...register("endDate")} />
+        <DatePicker label="Delai" required {...register("endDate")} />
 
         <Select
           flex
