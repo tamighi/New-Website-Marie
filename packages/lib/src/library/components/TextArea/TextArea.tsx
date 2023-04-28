@@ -35,7 +35,7 @@ const TextArea = (
   });
 
   return (
-    <InputBase color={styles.color} flex={flex} label={label}>
+    <InputBase flex={flex} label={label}>
       <textarea
         placeholder={placeholder}
         style={styles}

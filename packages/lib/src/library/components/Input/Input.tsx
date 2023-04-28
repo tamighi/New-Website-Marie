@@ -5,6 +5,7 @@ import { Colors } from "../../providers";
 
 import CSSClasses from "./Input.css";
 
+// TODO: Color present in InputHTMLAttributes<HTMLInputElement> as string.
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: keyof Colors;
@@ -35,7 +36,7 @@ const Input = (
   });
 
   return (
-    <InputBase label={label} flex={flex} color={styles.color}>
+    <InputBase label={label} flex={flex}>
       <input
         style={styles}
         placeholder={placeholder}

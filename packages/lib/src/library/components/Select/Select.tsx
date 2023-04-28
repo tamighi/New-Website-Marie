@@ -36,7 +36,7 @@ const Select = (
   });
 
   return (
-    <InputBase flex={flex} label={label} color={styles.color}>
+    <InputBase flex={flex} label={label}>
       <select style={styles} className={classNames} ref={ref} {...rest}>
         {children}
       </select>
