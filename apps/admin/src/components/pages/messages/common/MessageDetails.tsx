@@ -1,4 +1,5 @@
 import { ResourceType } from "api/types";
+import styles from "./Message.css";
 
 type MessageResourceString = "question" | "review" | "devis";
 
@@ -13,18 +14,8 @@ export const MessageDetails = <T extends ResourceType<MessageResourceString>>(
   const { message } = props;
 
   return (
-    <p style={{ whiteSpace: "break-spaces" }}>
-      Email: {message.email}
-      <br />
-      <br />
-      Nom : {message.name}
-      <br />
-      <br />
-      Status : {message.status}
-      <br />
-      <br />
-      Message : <br />
-      <br />
+    <p className={styles.MessageDetails}>
+      <span className={styles.MessageInfos}>{message.name}<br/>{message.email}</span>
       {message.message}
       <br />
     </p>
