@@ -4,10 +4,11 @@ import { ResourceType } from "api/types";
 import { MyDatagrid, SimpleGrid } from "components/pages/core";
 import { Column } from "react-table";
 import { useIsSmall } from "hooks";
+import { MessageDto } from "api/types/message";
 
 type MessageResourceString = "question" | "review" | "devis";
 
-const desktopMessageColumns: Column<ResourceType<MessageResourceString>>[] = [
+const desktopMessageColumns: Column<MessageDto>[] = [
   {
     accessor: "status",
     Cell: (props) => {

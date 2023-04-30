@@ -1,10 +1,11 @@
 import { ResourceType } from "api/types";
+import { MessageDto } from "api/types/message";
 import { SimpleGrid } from "components/pages/core";
 import { Column } from "react-table";
 
 type MessageResourceString = "question" | "review" | "devis";
 
-const mobileMessageColumns: Column<ResourceType<MessageResourceString>>[] = [
+const mobileMessageColumns: Column<MessageDto>[] = [
   {
     accessor: "status",
     Cell: (props) => {
@@ -18,7 +19,7 @@ const mobileMessageColumns: Column<ResourceType<MessageResourceString>>[] = [
                 : value == "refused"
                 ? "red"
                 : "green",
-            minHeight: "17px"
+            minHeight: "17px",
           }}
         />
       );
