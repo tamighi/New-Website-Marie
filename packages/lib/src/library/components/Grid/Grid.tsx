@@ -37,7 +37,8 @@ const Grid = (props: GridProps) => {
   };
 
   const classNames =
-    `${container ? CSSClasses.GridContainer : ""} ` + className;
+    `${container ? CSSClasses.GridContainer : CSSClasses.GridItem} ` +
+    className;
 
   return (
     <div className={classNames} style={styles} {...rest}>

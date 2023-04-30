@@ -1,3 +1,4 @@
+import { SimpleField } from "components/pages/core/fields/SimpleField";
 import { useGetOne } from "hooks";
 import { MessageDetails } from "../common/MessageDetails";
 
@@ -6,5 +7,24 @@ export const DevisDetails = ({ id }: { id: number | string }) => {
   if (!data) {
     return null;
   }
-  return <MessageDetails message={data.data} />
+  const devis = data.data;
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <SimpleField label="Nombre de characteres">
+        {devis.nbCharacter}
+      </SimpleField>
+
+      <SimpleField label="Service d'interet">
+        {devis.service ? `${devis.service.name}: ${devis.subService?.textType}` : "Non defini"}
+      </SimpleField>
+
+      <SimpleField label="Date voulue">{`${
+        devis.endDate
+          ? new Date(devis.endDate).toLocaleDateString()
+          : "Pas de date"
+      }`}</SimpleField>
+
+      <MessageDetails message={devis} />
+    </div>
+  );
 };

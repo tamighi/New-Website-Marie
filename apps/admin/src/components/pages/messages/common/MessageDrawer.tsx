@@ -15,7 +15,7 @@ export const MessageDrawer = (props: MessageDrawerProps) => {
 
   return (
     <RightDrawer open={open}>
-      <IconButton onClick={() => navigate("")}>
+      <IconButton onClick={() => navigate("")} style={{ marginBottom:"12px" }}>
         <ArrowForwardIcon />
       </IconButton>
       {children}
