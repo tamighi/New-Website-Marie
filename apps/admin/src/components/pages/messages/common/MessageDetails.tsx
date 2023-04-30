@@ -16,6 +16,11 @@ export const MessageDetails = <T extends ResourceType<MessageResourceString>>(
 
   return (
     <Grid container style={{ gap: "16px" }}>
+      <Grid xs={12}>
+        <SimpleField label="Recu le">
+          {new Date(message.date).toLocaleDateString()}
+        </SimpleField>
+      </Grid>
       <Grid xs={6}>
         <SimpleField label="Nom">{message.name}</SimpleField>
       </Grid>
