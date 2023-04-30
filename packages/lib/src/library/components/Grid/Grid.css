@@ -4,3 +4,7 @@
   justify-items: center;
   width: inherit;
 }
+
+.GridItem {
+  width: 100%;
+}
