@@ -11,6 +11,8 @@ Full stack website with
 
 ## How to run
 
+Ensure first that docker is installed.
+
 ### Development (port 3000)
 
 ```sh
