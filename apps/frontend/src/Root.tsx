@@ -1,7 +1,7 @@
 import { App } from "App";
-import { MyQueryClientProvider } from "providers/QueryClientProvider";
+import { MyQueryClientProvider } from "contexts/QueryClientProvider";
 import { BrowserRouter } from "react-router-dom";
-import { MyThemeProvider } from "./providers/ThemeContext/ThemeContext";
+import { MyThemeProvider } from "./contexts/ThemeContext";
 
 export const Root = () => {
   return (
