@@ -1,5 +1,6 @@
 .datePicker {
   position: relative;
+  width: 100%;
 }
 
 .datePicker input {
