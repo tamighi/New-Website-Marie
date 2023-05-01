@@ -7,7 +7,7 @@ import styles from "./DatePicker.css";
 type DatePickerProps = InputProps;
 
 // TODO: Show as state instead of classList remove/add
-// TODO: required not working => useForm required
+// TODO: required not working => useForm required (because of readOnly)
 // TODO: in fr
 const DatePicker = (
   props: DatePickerProps,
@@ -97,7 +97,7 @@ const DatePicker = (
               &#10094;
             </span>
             <span className={styles.datePickerHeaderTitle}>
-              {new Date(year, month).toLocaleDateString("en-US", {
+              {new Date(year, month).toLocaleDateString("fr", {
                 month: "long",
               })}{" "}
               {year}
@@ -107,13 +107,13 @@ const DatePicker = (
             </span>
           </div>
           <div className={styles.datePickerDays}>
-            <span>Sun</span>
-            <span>Mon</span>
-            <span>Tue</span>
-            <span>Wed</span>
-            <span>Thu</span>
-            <span>Fri</span>
-            <span>Sat</span>
+            <span>Di</span>
+            <span>Lu</span>
+            <span>Ma</span>
+            <span>Me</span>
+            <span>Je</span>
+            <span>Ve</span>
+            <span>Sa</span>
             {days.map((day, index) => (
               <Paper
                 key={index}
