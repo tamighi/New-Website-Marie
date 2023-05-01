@@ -14,5 +14,5 @@ export { default as ReviewIcon } from "./ReviewIcon";
 export { default as SnippetFolderIcon } from "./SnippetFolderIcon";
 export { default as SunIcon } from "./SunIcon";
 export { default as TableChartIcon } from "./TableChartIcon";
+export { default as CalendarIcon } from "./CalendarIcon";
 export * from "./SvgIconProps";
-
