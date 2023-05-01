@@ -3,7 +3,6 @@
   letter-spacing: inherit;
   font-weight: bold;
   border: none;
-  cursor: pointer;
   text-decoration: none;
   border-radius: 5%;
   padding: 6px;
@@ -12,9 +11,10 @@
 /*
  * TODO: better color on hover (depend on theme) => bg-color to animate
 */
-.Button:hover {
+.Button:not(:disabled):hover {
   background-image: linear-gradient(
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.1)
   );
+  cursor: pointer;
 }
