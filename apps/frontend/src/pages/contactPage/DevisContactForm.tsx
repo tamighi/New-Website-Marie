@@ -3,7 +3,7 @@ import React from "react";
 import { Loader } from "components/utils/Loader/Loader";
 import { usePostMessage, useServices } from "hooks";
 import { Button, Input, Select, TextArea, useForm } from "lib";
-import { FormContent } from "../core/FormContent";
+import { FormContent } from "components";
 import { DevisDto, SubServiceDto } from "types";
 import { ApiErrorForm } from "components/errors/ApiErrorForm";
 

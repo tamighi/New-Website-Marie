@@ -4,7 +4,7 @@ import Rating from "components/utils/Rating/Rating";
 import { usePostMessage } from "hooks";
 import { Button, Input, TextArea, useForm } from "lib";
 import { ReviewDto } from "types";
-import { FormContent } from "../core/FormContent";
+import { FormContent } from "components";
 
 const ReviewContactForm = () => {
   const { register, handleSubmit, reset } = useForm<ReviewDto>();

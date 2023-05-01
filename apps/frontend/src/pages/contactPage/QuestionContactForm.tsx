@@ -3,7 +3,7 @@ import { Loader } from "components/utils/Loader/Loader";
 import { usePostMessage } from "hooks";
 import { Button, Input, TextArea, useForm } from "lib";
 import { QuestionDto } from "types";
-import { FormContent } from "../core/FormContent";
+import { FormContent } from "components";
 
 const QuestionContactForm = () => {
   const { register, handleSubmit, reset } = useForm<QuestionDto>();

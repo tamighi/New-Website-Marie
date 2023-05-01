@@ -2,7 +2,7 @@ import React from "react";
 
 import { CenteredPage } from "components/generics/basePage/CenteredPage";
 import { Title } from "components/typography/Title";
-import { Tab, Tabs } from "../core";
+import { Tab, Tabs } from "components";
 
 import DevisContactForm from "./DevisContactForm";
 import QuestionContactForm from "./QuestionContactForm";
