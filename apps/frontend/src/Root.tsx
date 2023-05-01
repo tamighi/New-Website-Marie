@@ -1,16 +1,15 @@
 import { App } from "App";
-import { MyQueryClientProvider } from "providers/QueryClientProvider";
+import { QueryClientProvider, ThemeProvider } from "contexts";
 import { BrowserRouter } from "react-router-dom";
-import { MyThemeProvider } from "./providers/ThemeContext/ThemeContext";
 
 export const Root = () => {
   return (
     <BrowserRouter>
-      <MyThemeProvider>
-      <MyQueryClientProvider>
-        <App />
-        </MyQueryClientProvider>
-      </MyThemeProvider>
+      <ThemeProvider>
+        <QueryClientProvider>
+          <App />
+        </QueryClientProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 };

@@ -1,7 +1,8 @@
 import { useStyles } from "lib";
+
 import styles from "./Typography.css";
 
-export const Title = ({ children }: { children: React.ReactNode }) => {
+const Title = ({ children }: { children: React.ReactNode }) => {
   const themeStyle = useStyles({ color: "secondary" });
   return (
     <h2
@@ -12,3 +13,5 @@ export const Title = ({ children }: { children: React.ReactNode }) => {
     </h2>
   );
 };
+
+export default Title;

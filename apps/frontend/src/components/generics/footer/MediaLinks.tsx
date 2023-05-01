@@ -1,9 +1,8 @@
-import styles from "./Footer.css";
-import { FacebookIcon } from "./icons/FacebookIcon";
-import { InstagramIcon } from "./icons/InstagramIcon";
-import { LinkedinIcon } from "./icons/LinkedinIcon";
+import { FacebookIcon, InstagramIcon, LinkedinIcon } from "./MediaIcons";
 
-export const MediaLinks = () => {
+import styles from "./Footer.css";
+
+const MediaLinks = () => {
   return (
     <div className={`${styles.FooterSection} ${styles.FooterMediaSection}`}>
       <FacebookIcon />
@@ -12,3 +11,5 @@ export const MediaLinks = () => {
     </div>
   );
 };
+
+export default MediaLinks;

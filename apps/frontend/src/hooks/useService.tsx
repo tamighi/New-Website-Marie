@@ -1,8 +1,8 @@
-import { getService } from "api/api";
+import { getService } from "api";
 import { useQuery, useQueryClient } from "react-query";
-import { ServiceDto } from "resources/service";
+import { ServiceDto } from "types/service";
 
-export const useService = (id: string) => {
+const useService = (id: string) => {
   const queryClient = useQueryClient();
 
   const { data, isLoading, isError } = useQuery<ServiceDto>(
@@ -21,3 +21,5 @@ export const useService = (id: string) => {
 
   return { data, isLoading, isError };
 };
+
+export default useService;
