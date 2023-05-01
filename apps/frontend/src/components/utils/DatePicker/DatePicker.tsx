@@ -79,19 +79,21 @@ const DatePicker = (
   return (
     <div className={styles.datePicker}>
       <Input readOnly ref={ref} {...props} />
-      <CalendarIcon
-        className={styles.DateIcon}
-        onClick={() => {
-          const datePicker = document.querySelector(`.${styles.datePicker}`);
-          datePicker?.classList.add(styles.show);
-        }}
-      />
-      <CloseIcon
-        className={styles.ResetIcon}
-        onClick={() => {
-          handleChange(undefined);
-        }}
-      />
+      <div className={styles.DatePickerButtons}>
+        <CalendarIcon
+          className={styles.DatePickerButton}
+          onClick={() => {
+            const datePicker = document.querySelector(`.${styles.datePicker}`);
+            datePicker?.classList.add(styles.show);
+          }}
+        />
+        <CloseIcon
+          className={styles.DatePickerButton}
+          onClick={() => {
+            handleChange(undefined);
+          }}
+        />
+      </div>
       <div className={styles.datePickerDropdown} ref={datePickerRef}>
         <Paper>
           <div className={styles.datePickerHeader}>
