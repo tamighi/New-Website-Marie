@@ -4,7 +4,7 @@ import { ServiceDto } from "types/service";
 
 import styles from "./Service.css";
 
-export const ServiceCard = ({ service }: { service: ServiceDto }) => {
+const ServiceCard = ({ service }: { service: ServiceDto }) => {
   const navigate = useNavigate();
   const { color } = useStyles({ color: "secondary" });
 
@@ -22,3 +22,5 @@ export const ServiceCard = ({ service }: { service: ServiceDto }) => {
     </Card>
   );
 };
+
+export default ServiceCard;

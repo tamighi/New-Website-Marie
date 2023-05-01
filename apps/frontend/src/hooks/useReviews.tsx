@@ -1,6 +1,6 @@
 import { getReviews, GetReviewsParams } from "api";
-import { ReviewDto } from "components/pages/reviewPage/review";
 import { useQuery } from "react-query";
+import { ReviewDto } from "types";
 
 const useReviews = (params: GetReviewsParams) => {
   const { data, isLoading, isError } = useQuery<{

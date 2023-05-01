@@ -1,17 +1,17 @@
 import React from "react";
 
 import { Button, Paper } from "lib";
-import { ReviewDto } from "../reviewPage/review";
 import { useIsOverflow } from "hooks";
+import { ReviewDto } from "types";
 
 import styles from "./Review.css";
-import typography from "../../typography/Typography.css";
+import typography from "../../components/typography/Typography.css";
 
 type Props = {
   review: ReviewDto;
 };
 
-export const ReviewItem = (props: Props) => {
+const ReviewItem = (props: Props) => {
   const { review } = props;
 
   const ref = React.useRef<HTMLParagraphElement>(null);
@@ -43,3 +43,5 @@ export const ReviewItem = (props: Props) => {
     </Paper>
   );
 };
+
+export default ReviewItem;

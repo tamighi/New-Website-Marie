@@ -1,15 +1,17 @@
 import React from "react";
+
 import { CenteredPage } from "components/generics/basePage/CenteredPage";
 import { Title } from "components/typography/Title";
 import { useReviews } from "hooks";
-import { ReviewList } from "./ReviewList";
 import { Button } from "lib";
 import { Loader } from "components/utils/Loader/Loader";
 import { EmptyData } from "components/errors/EmptyData";
 
+import ReviewList from "./ReviewList";
+
 const reviewPerPage = 10;
 
-export const GoldenBookPage = () => {
+const GoldenBookPage = () => {
   const [page, setPage] = React.useState(1);
 
   const { data, isLoading, isError } = useReviews({
@@ -54,3 +56,5 @@ export const GoldenBookPage = () => {
     </CenteredPage>
   );
 };
+
+export default GoldenBookPage;

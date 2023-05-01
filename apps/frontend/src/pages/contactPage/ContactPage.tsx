@@ -1,12 +1,13 @@
 import React from "react";
 
 import { CenteredPage } from "components/generics/basePage/CenteredPage";
-import { QuestionContactForm } from "./QuestionContactForm";
-import { DevisContactForm } from "./DevisContactForm";
-import { Tab, Tabs } from "../core";
 import { Title } from "components/typography/Title";
+import { Tab, Tabs } from "../core";
 
-export const ContactPage = () => {
+import DevisContactForm from "./DevisContactForm";
+import QuestionContactForm from "./QuestionContactForm";
+
+const ContactPage = () => {
   const [tab, setTab] = React.useState(0);
   return (
     <CenteredPage>
@@ -24,3 +25,5 @@ export const ContactPage = () => {
     </CenteredPage>
   );
 };
+
+export default ContactPage;

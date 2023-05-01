@@ -3,7 +3,7 @@ import { Card } from "lib";
 
 import styles from "./SlideInLeft.css";
 
-export const About = () => {
+const About = () => {
   return (
     <div
       className={styles.slideInLeft}
@@ -32,3 +32,5 @@ export const About = () => {
     </div>
   );
 };
+
+export default About;

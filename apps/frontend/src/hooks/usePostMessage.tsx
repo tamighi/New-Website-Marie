@@ -1,6 +1,6 @@
 import { postMessage } from "api";
-import { MessageDto } from "components/pages/contactPage/message";
 import { useMutation } from "react-query";
+import { MessageDto } from "types";
 
 const usePostMessage = <T extends MessageDto>(
   resource: "question" | "devis" | "review"

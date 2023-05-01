@@ -1,12 +1,13 @@
 import { BasePage } from "components/generics/basePage/BasePage";
 import { Grid } from "lib";
-import { About } from "./About";
-import { HomeImage } from "./HomeImage";
 
-export const HomePage = () => {
+import About from "./About";
+import HomeImage from "./HomeImage";
+
+const HomePage = () => {
   return (
     <BasePage>
-      <Grid container >
+      <Grid container>
         <Grid xs={12} md={6}>
           <HomeImage />
         </Grid>
@@ -17,3 +18,4 @@ export const HomePage = () => {
     </BasePage>
   );
 };
+export default HomePage;

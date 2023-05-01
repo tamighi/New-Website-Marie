@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Column } from "react-table";
 import { SubServiceDto } from "types";
 
-import typography from "../../typography/Typography.css";
+import typography from "../../components/typography/Typography.css";
 
 const columns: Column<SubServiceDto>[] = [
   {
@@ -18,7 +18,7 @@ const columns: Column<SubServiceDto>[] = [
   },
 ];
 
-export const ServiceDetails = () => {
+const ServiceDetails = () => {
   const { id } = useParams() as { id: string };
   const { data: service } = useService(id);
   const navigate = useNavigate();
@@ -39,3 +39,5 @@ export const ServiceDetails = () => {
     </>
   );
 };
+
+export default ServiceDetails;

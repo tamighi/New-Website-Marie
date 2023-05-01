@@ -1,6 +1,6 @@
-import { ReviewDto } from "../reviewPage/review";
-import { ReviewItem } from "./ReviewItem";
-import { EmptyData } from "components/errors/EmptyData";
+import { ReviewDto } from "types";
+
+import ReviewItem from "./ReviewItem";
 
 import styles from "./Review.css";
 
@@ -8,7 +8,7 @@ type Props = {
   reviews: ReviewDto[];
 };
 
-export const ReviewList = (props: Props) => {
+const ReviewList = (props: Props) => {
   const { reviews } = props;
 
   return (
@@ -19,3 +19,5 @@ export const ReviewList = (props: Props) => {
     </div>
   );
 };
+
+export default ReviewList;

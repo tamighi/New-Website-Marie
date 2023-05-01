@@ -6,7 +6,7 @@ import { Button, Input, TextArea, useForm } from "lib";
 import { ReviewDto } from "types";
 import { FormContent } from "../core/FormContent";
 
-export const ReviewContactForm = () => {
+const ReviewContactForm = () => {
   const { register, handleSubmit, reset } = useForm<ReviewDto>();
   const { mutate, isLoading, isError, isSuccess } =
     usePostMessage<ReviewDto>("review");
@@ -48,3 +48,4 @@ export const ReviewContactForm = () => {
     </form>
   );
 };
+export default ReviewContactForm;

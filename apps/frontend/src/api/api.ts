@@ -1,5 +1,5 @@
 import query_string from "query-string";
-import { MessageDto } from "components/pages/contactPage/message";
+import { MessageDto } from "types";
 import { httpClient } from "./httpClient";
 
 const apiUrl = process.env.BACKEND_URL;

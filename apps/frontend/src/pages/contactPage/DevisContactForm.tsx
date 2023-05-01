@@ -6,9 +6,10 @@ import { Button, Input, Select, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
 import { DevisDto, SubServiceDto } from "types";
 import { ApiErrorForm } from "components/errors/ApiErrorForm";
+
 import DatePicker from "components/utils/DatePicker/DatePicker";
 
-export const DevisContactForm = () => {
+const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
   const { mutate, isLoading, isError, isSuccess } =
     usePostMessage<DevisDto>("devis");
@@ -109,3 +110,5 @@ export const DevisContactForm = () => {
     </form>
   );
 };
+
+export default DevisContactForm;

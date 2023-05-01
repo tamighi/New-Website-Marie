@@ -3,9 +3,10 @@ import { EmptyData } from "components/errors/EmptyData";
 import { Title } from "components/typography/Title";
 import { Loader } from "components/utils/Loader/Loader";
 import { useServices } from "hooks";
-import { ServiceCard } from "./ServiceCard";
 
-export const ServiceMain = () => {
+import ServiceCard from "./ServiceCard";
+
+const ServiceMain = () => {
   const { data: services, isError, isLoading } = useServices();
 
   return (
@@ -40,3 +41,5 @@ export const ServiceMain = () => {
     </>
   );
 };
+
+export default ServiceMain;

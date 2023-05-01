@@ -2,7 +2,7 @@ import portrait from "assets/images/cat.png";
 
 import styles from "./SlideInLeft.css";
 
-export const HomeImage = () => {
+const HomeImage = () => {
   return (
     <img
       className={styles.slideInLeft}
@@ -14,3 +14,5 @@ export const HomeImage = () => {
     />
   );
 };
+
+export default HomeImage;

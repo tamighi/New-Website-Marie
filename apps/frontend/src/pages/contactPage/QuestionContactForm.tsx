@@ -5,7 +5,7 @@ import { Button, Input, TextArea, useForm } from "lib";
 import { QuestionDto } from "types";
 import { FormContent } from "../core/FormContent";
 
-export const QuestionContactForm = () => {
+const QuestionContactForm = () => {
   const { register, handleSubmit, reset } = useForm<QuestionDto>();
   const { mutate, isLoading, isError, isSuccess } =
     usePostMessage<QuestionDto>("question");
@@ -53,3 +53,5 @@ export const QuestionContactForm = () => {
     </form>
   );
 };
+
+export default QuestionContactForm;
