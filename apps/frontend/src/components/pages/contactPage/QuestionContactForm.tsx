@@ -1,9 +1,9 @@
 import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import { Loader } from "components/utils/Loader/Loader";
-import { usePostMessage } from "hooks/usePostMessage";
+import { usePostMessage } from "hooks";
 import { Button, Input, TextArea, useForm } from "lib";
+import { QuestionDto } from "types";
 import { FormContent } from "../core/FormContent";
-import { QuestionDto } from "./questions";
 
 export const QuestionContactForm = () => {
   const { register, handleSubmit, reset } = useForm<QuestionDto>();
@@ -18,7 +18,6 @@ export const QuestionContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
-
         <p>
           Formulaire de demande d'informations
           <br />
@@ -28,7 +27,13 @@ export const QuestionContactForm = () => {
         <Input required flex {...register("name")} label="Nom" />
         <Input required flex {...register("email")} label="Email" />
 
-        <TextArea required flex rows={12} {...register("message")} label="Message" />
+        <TextArea
+          required
+          flex
+          rows={12}
+          {...register("message")}
+          label="Message"
+        />
 
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>
@@ -44,7 +49,6 @@ export const QuestionContactForm = () => {
             possible.
           </p>
         )}
-
       </FormContent>
     </form>
   );

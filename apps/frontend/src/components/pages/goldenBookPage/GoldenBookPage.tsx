@@ -1,7 +1,7 @@
 import React from "react";
 import { CenteredPage } from "components/generics/basePage/CenteredPage";
 import { Title } from "components/typography/Title";
-import { useReviews } from "hooks/useReviews";
+import { useReviews } from "hooks";
 import { ReviewList } from "./ReviewList";
 import { Button } from "lib";
 import { Loader } from "components/utils/Loader/Loader";

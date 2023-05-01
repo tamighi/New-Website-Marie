@@ -1,4 +1,4 @@
-import { MessageDto } from "../contactPage/message";
+import { MessageDto } from "types";
 
 export interface ReviewDto extends MessageDto {
   note: number;

@@ -1,8 +1,13 @@
-import { getServices } from "api/api";
+import { getServices } from "api";
 import { useQuery } from "react-query";
-import { ServiceDto } from "resources/service";
+import { ServiceDto } from "types/service";
 
-export const useServices = () => {
-  const { data, isLoading, isError } = useQuery<ServiceDto[]>("services", getServices);
+const useServices = () => {
+  const { data, isLoading, isError } = useQuery<ServiceDto[]>(
+    "services",
+    getServices
+  );
   return { data, isLoading, isError };
 };
+
+export default useServices;

@@ -1,9 +1,9 @@
 import { Title } from "components/typography/Title";
-import { useService } from "hooks/useService";
+import { useService } from "hooks";
 import { ArrowBackIcon, DataGrid, IconButton } from "lib";
 import { useNavigate, useParams } from "react-router-dom";
 import { Column } from "react-table";
-import { SubServiceDto } from "resources/service";
+import { SubServiceDto } from "types";
 
 import typography from "../../typography/Typography.css";
 

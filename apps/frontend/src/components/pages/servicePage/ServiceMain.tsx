@@ -2,7 +2,7 @@ import { ApiErrorImage } from "components/errors/ApiErrorImage";
 import { EmptyData } from "components/errors/EmptyData";
 import { Title } from "components/typography/Title";
 import { Loader } from "components/utils/Loader/Loader";
-import { useServices } from "hooks/useServices";
+import { useServices } from "hooks";
 import { ServiceCard } from "./ServiceCard";
 
 export const ServiceMain = () => {

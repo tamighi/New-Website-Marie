@@ -8,11 +8,7 @@ export const useToggleTheme = () => {
   return React.useContext(ToggleThemeContext);
 };
 
-export const MyThemeProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+const MyThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [darkMode, setDarkMode] = React.useState(
     localStorage.getItem("dark") === "light" ? false : true
   );
@@ -49,3 +45,4 @@ export const MyThemeProvider = ({
     </ThemeProvider>
   );
 };
+export default MyThemeProvider;

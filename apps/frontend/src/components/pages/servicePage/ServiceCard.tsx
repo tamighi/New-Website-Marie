@@ -1,6 +1,6 @@
 import { Card, useStyles } from "lib";
 import { useNavigate } from "react-router-dom";
-import { ServiceDto } from "resources/service";
+import { ServiceDto } from "types/service";
 
 import styles from "./Service.css";
 

@@ -1,4 +1,4 @@
-import { MessageDto } from "./message";
+import { MessageDto } from "types";
 
 export interface DevisDto extends MessageDto {
   nbCharacter: number;

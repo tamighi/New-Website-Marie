@@ -1,8 +1,8 @@
-import { postMessage } from "api/api";
+import { postMessage } from "api";
 import { MessageDto } from "components/pages/contactPage/message";
 import { useMutation } from "react-query";
 
-export const usePostMessage = <T extends MessageDto>(
+const usePostMessage = <T extends MessageDto>(
   resource: "question" | "devis" | "review"
 ) => {
   const { mutate, isLoading, isError, isSuccess } = useMutation(
@@ -10,3 +10,5 @@ export const usePostMessage = <T extends MessageDto>(
   );
   return { mutate, isError, isLoading, isSuccess };
 };
+
+export default usePostMessage;

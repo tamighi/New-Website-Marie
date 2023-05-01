@@ -1,8 +1,8 @@
 import React from "react";
 
-import useIsOverflow from "hooks/useIsOverflow";
 import { Button, Paper } from "lib";
 import { ReviewDto } from "../reviewPage/review";
+import { useIsOverflow } from "hooks";
 
 import styles from "./Review.css";
 import typography from "../../typography/Typography.css";

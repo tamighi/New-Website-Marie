@@ -1,12 +1,10 @@
 import React from "react";
 
 import { Loader } from "components/utils/Loader/Loader";
-import { usePostMessage } from "hooks/usePostMessage";
-import { useServices } from "hooks/useServices";
+import { usePostMessage, useServices } from "hooks";
 import { Button, Input, Select, TextArea, useForm } from "lib";
 import { FormContent } from "../core/FormContent";
-import { DevisDto } from "./devis";
-import { SubServiceDto } from "resources/service";
+import { DevisDto, SubServiceDto } from "types";
 import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import DatePicker from "components/utils/DatePicker/DatePicker";
 
