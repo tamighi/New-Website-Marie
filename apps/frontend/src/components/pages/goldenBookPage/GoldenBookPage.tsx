@@ -28,19 +28,27 @@ export const GoldenBookPage = () => {
       ) : (
         <>
           <ReviewList reviews={data.data} />
-          <Button
-            onClick={() => setPage((prevPage) => prevPage - 1)}
-            disabled={page === 1}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginTop: "8px",
+            }}
           >
-            Prev
-          </Button>
-          <span>Page {page}</span>
-          <Button
-            onClick={() => setPage((prevPage) => prevPage + 1)}
-            disabled={page === Math.ceil(data.count / reviewPerPage)}
-          >
-            Next
-          </Button>
+            <Button
+              onClick={() => setPage((prevPage) => prevPage - 1)}
+              disabled={page === 1}
+            >
+              Prev
+            </Button>
+            <span>Page {page}</span>
+            <Button
+              onClick={() => setPage((prevPage) => prevPage + 1)}
+              disabled={page === Math.ceil(data.count / reviewPerPage)}
+            >
+              Next
+            </Button>
+          </div>
         </>
       )}
     </CenteredPage>
