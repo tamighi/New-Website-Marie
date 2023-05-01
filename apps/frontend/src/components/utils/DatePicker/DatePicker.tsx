@@ -1,6 +1,13 @@
 import React from "react";
 
-import { Input, InputProps, Paper, useClickOutside } from "lib";
+import {
+  CalendarIcon,
+  CloseIcon,
+  Input,
+  InputProps,
+  Paper,
+  useClickOutside,
+} from "lib";
 
 import styles from "./DatePicker.css";
 
@@ -8,7 +15,6 @@ type DatePickerProps = InputProps;
 
 // TODO: Show as state instead of classList remove/add
 // TODO: required not working => useForm required (because of readOnly)
-// TODO: in fr
 const DatePicker = (
   props: DatePickerProps,
   ref: React.ForwardedRef<HTMLInputElement>
@@ -73,23 +79,19 @@ const DatePicker = (
   return (
     <div className={styles.datePicker}>
       <Input readOnly ref={ref} {...props} />
-      <i
+      <CalendarIcon
         className={styles.DateIcon}
         onClick={() => {
           const datePicker = document.querySelector(`.${styles.datePicker}`);
           datePicker?.classList.add(styles.show);
         }}
-      >
-        C
-      </i>
-      <i
+      />
+      <CloseIcon
         className={styles.ResetIcon}
         onClick={() => {
           handleChange(undefined);
         }}
-      >
-        X
-      </i>
+      />
       <div className={styles.datePickerDropdown} ref={datePickerRef}>
         <Paper>
           <div className={styles.datePickerHeader}>
