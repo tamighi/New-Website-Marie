@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CenteredPage } from "components/generics/basePage/CenteredPage";
+import { CenteredPage } from "../core";
 import { Title } from "components/typography/Title";
 import { Tab, Tabs } from "components";
 

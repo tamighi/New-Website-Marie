@@ -1,9 +1,8 @@
-import React from "react";
-
 import { Paper, Grid } from "lib";
-import { BasePage } from "./BasePage";
 
-export const CenteredPage = ({ children }: { children: React.ReactNode }) => {
+import BasePage from "./BasePage";
+
+const CenteredPage = ({ children }: { children: React.ReactNode }) => {
   return (
     <BasePage>
       <Grid container>
@@ -20,3 +19,5 @@ export const CenteredPage = ({ children }: { children: React.ReactNode }) => {
     </BasePage>
   );
 };
+
+export default CenteredPage;

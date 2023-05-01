@@ -1,4 +1,4 @@
-import { CenteredPage } from "components/generics/basePage/CenteredPage";
+import { CenteredPage } from "../core";
 
 import ReviewContactForm from "./ReviewContactForm";
 

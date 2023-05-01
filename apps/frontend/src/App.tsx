@@ -4,10 +4,10 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { Appbar } from "./components/generics/appbar/Appbar";
 import { Background } from "./components/generics/background/Background";
 import { Footer } from "./components/generics/footer/Footer";
-import { ErrorPage } from "./components/errors/ErrorPage";
 
 import {
   ContactPage,
+  ErrorPage,
   GoldenBookPage,
   HomePage,
   ReviewPage,

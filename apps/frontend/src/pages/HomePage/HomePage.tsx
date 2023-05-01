@@ -1,5 +1,5 @@
-import { BasePage } from "components/generics/basePage/BasePage";
 import { Grid } from "lib";
+import { BasePage } from "../core";
 
 import About from "./About";
 import HomeImage from "./HomeImage";
