@@ -74,6 +74,7 @@ export const DevisContactForm = () => {
 
         {subServices ? (
           <Select flex {...register("subService.id")} label="Type de texte">
+            <option value="">Non spécifié</option>
             {subServices.map((subService) => {
               return (
                 <option key={subService.id} value={subService.id}>
