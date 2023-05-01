@@ -4,9 +4,11 @@ interface LoaderProps {
   size?: "small" | "big";
 }
 
-export const Loader = (props: LoaderProps) => {
+const Loader = (props: LoaderProps) => {
   const { size = "big" } = props;
   return (
     <div className={size === "small" ? styles.SmallLoader : styles.Loader} />
   );
 };
+
+export default Loader;

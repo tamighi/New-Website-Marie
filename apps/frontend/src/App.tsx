@@ -1,10 +1,6 @@
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router-dom";
 
-import { Appbar } from "./components/generics/appbar/Appbar";
-import { Background } from "./components/generics/background/Background";
-import { Footer } from "./components/generics/footer/Footer";
-
 import {
   ContactPage,
   ErrorPage,
@@ -13,6 +9,8 @@ import {
   ReviewPage,
   ServicePage,
 } from "pages";
+
+import { Appbar, Background, Footer } from "components";
 
 import styles from "./App.css";
 import "./Global.css";

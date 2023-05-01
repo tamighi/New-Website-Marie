@@ -1,6 +1,6 @@
-import { BaseIcon } from "./BaseIcon";
+import BaseIcon from "./BaseIcon";
 
-export const FacebookIcon = () => {
+const FacebookIcon = () => {
   return (
     <BaseIcon>
       <path
@@ -10,3 +10,4 @@ export const FacebookIcon = () => {
     </BaseIcon>
   );
 };
+export default FacebookIcon;

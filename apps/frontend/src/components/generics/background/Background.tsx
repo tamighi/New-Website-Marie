@@ -1,10 +1,11 @@
 import { useTheme } from "lib";
+
 import winter from "assets/backgrounds/winter.jpg";
 import autumn from "assets/backgrounds/autumn.jpg";
 
 import styles from "./Background.css";
 
-export const Background = () => {
+const Background = () => {
   const theme = useTheme();
   const darkMode = theme?.palette?.darkMode;
 
@@ -15,3 +16,5 @@ export const Background = () => {
     </div>
   );
 };
+
+export default Background;

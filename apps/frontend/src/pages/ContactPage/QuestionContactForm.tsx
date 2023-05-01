@@ -1,9 +1,8 @@
-import { ApiErrorForm } from "components/errors/ApiErrorForm";
-import { Loader } from "components/utils/Loader/Loader";
-import { usePostMessage } from "hooks";
 import { Button, Input, TextArea, useForm } from "lib";
+
+import { usePostMessage } from "hooks";
 import { QuestionDto } from "types";
-import { FormContent } from "components";
+import { FormContent, Loader, ApiErrorForm } from "components";
 
 const QuestionContactForm = () => {
   const { register, handleSubmit, reset } = useForm<QuestionDto>();

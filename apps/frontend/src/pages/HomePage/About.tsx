@@ -1,5 +1,6 @@
-import { Title } from "components/typography/Title";
 import { Card } from "lib";
+
+import { Title } from "components";
 
 import styles from "./SlideInLeft.css";
 

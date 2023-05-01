@@ -1,6 +1,6 @@
-import { BaseIcon } from "./BaseIcon";
+import BaseIcon from "./BaseIcon";
 
-export const InstagramIcon = () => {
+const InstagramIcon = () => {
   return (
     <BaseIcon>
       <path
@@ -10,3 +10,5 @@ export const InstagramIcon = () => {
     </BaseIcon>
   );
 };
+
+export default InstagramIcon;

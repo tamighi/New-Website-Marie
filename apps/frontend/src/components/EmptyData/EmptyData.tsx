@@ -1,4 +1,4 @@
-export const EmptyData = (props: { message: string }) => {
+const EmptyData = (props: { message: string }) => {
   const { message } = props;
   return (
     <div
@@ -12,3 +12,4 @@ export const EmptyData = (props: { message: string }) => {
     </div>
   );
 };
+export default EmptyData;

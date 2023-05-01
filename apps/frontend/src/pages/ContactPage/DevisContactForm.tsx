@@ -1,13 +1,10 @@
 import React from "react";
 
-import { Loader } from "components/utils/Loader/Loader";
-import { usePostMessage, useServices } from "hooks";
 import { Button, Input, Select, TextArea, useForm } from "lib";
-import { FormContent } from "components";
-import { DevisDto, SubServiceDto } from "types";
-import { ApiErrorForm } from "components/errors/ApiErrorForm";
 
-import DatePicker from "components/utils/DatePicker/DatePicker";
+import { usePostMessage, useServices } from "hooks";
+import { DatePicker, FormContent, Loader, ApiErrorForm } from "components";
+import { DevisDto, SubServiceDto } from "types";
 
 const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();

@@ -1,5 +1,5 @@
 // TODO: Add image
-export const ApiErrorImage = () => {
+const ApiErrorImage = () => {
   return (
     <div
       style={{
@@ -12,3 +12,5 @@ export const ApiErrorImage = () => {
     </div>
   );
 };
+
+export default ApiErrorImage;

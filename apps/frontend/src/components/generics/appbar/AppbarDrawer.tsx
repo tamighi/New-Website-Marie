@@ -12,7 +12,7 @@ interface AppbarDrawerProps {
   navItems: { name: string; to: string }[];
 }
 
-export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
+const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,7 +37,11 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
           </li>
           {navItems.map((button, id) => (
             <li key={id}>
-              <Button color={"text"} onClick={() => onClick(button.to)} className="DrawerLink">
+              <Button
+                color={"text"}
+                onClick={() => onClick(button.to)}
+                className="DrawerLink"
+              >
                 {button.name}
                 <img
                   alt=""
@@ -56,3 +60,4 @@ export const AppbarDrawer = ({ navItems }: AppbarDrawerProps) => {
     </div>
   );
 };
+export default AppbarDrawer;

@@ -1,6 +1,6 @@
 import { useStyles } from "lib";
 
-export const BaseIcon = ({ children }: { children: React.ReactNode }) => {
+const BaseIcon = ({ children }: { children: React.ReactNode }) => {
   const { color } = useStyles();
   return (
     <svg
@@ -14,3 +14,5 @@ export const BaseIcon = ({ children }: { children: React.ReactNode }) => {
     </svg>
   );
 };
+
+export default BaseIcon;

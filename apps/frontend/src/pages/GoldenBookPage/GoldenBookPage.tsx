@@ -1,11 +1,10 @@
 import React from "react";
 
-import { CenteredPage } from "../core";
-import { Title } from "components/typography/Title";
-import { useReviews } from "hooks";
 import { Button } from "lib";
-import { Loader } from "components/utils/Loader/Loader";
-import { EmptyData } from "components/errors/EmptyData";
+
+import { CenteredPage } from "../core";
+import { useReviews } from "hooks";
+import { EmptyData, Loader, Title } from "components";
 
 import ReviewList from "./ReviewList";
 

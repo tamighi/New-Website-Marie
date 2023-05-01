@@ -1,4 +1,4 @@
-export const ApiErrorForm = () => {
+const ApiErrorForm = () => {
   return (
     <div
       style={{
@@ -11,3 +11,5 @@ export const ApiErrorForm = () => {
     </div>
   );
 };
+
+export default ApiErrorForm;

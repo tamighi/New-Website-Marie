@@ -1,6 +1,6 @@
-import { BaseIcon } from "./BaseIcon";
+import BaseIcon from "./BaseIcon";
 
-export const LinkedinIcon = () => {
+const LinkedinIcon = () => {
   return (
     <BaseIcon>
       <path
@@ -10,3 +10,5 @@ export const LinkedinIcon = () => {
     </BaseIcon>
   );
 };
+
+export default LinkedinIcon;

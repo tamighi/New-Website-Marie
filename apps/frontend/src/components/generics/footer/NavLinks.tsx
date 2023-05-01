@@ -1,7 +1,8 @@
-import { NavLinkButton } from "./NavLinkButton";
+import NavLinkButton from "./NavLinkButton";
+
 import styles from "./Footer.css";
 
-export const NavLinks = () => {
+const NavLinks = () => {
   return (
     <div className={`${styles.FooterSection} ${styles.FooterLinkSection}`}>
       <NavLinkButton to="/">Home</NavLinkButton>
@@ -12,3 +13,5 @@ export const NavLinks = () => {
     </div>
   );
 };
+
+export default NavLinks;

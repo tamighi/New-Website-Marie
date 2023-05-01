@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./Footer.css";
 
-export const NavLinkButton = ({
+const NavLinkButton = ({
   to,
   children,
 }: {
@@ -22,3 +22,5 @@ export const NavLinkButton = ({
     </Button>
   );
 };
+
+export default NavLinkButton;

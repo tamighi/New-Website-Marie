@@ -1,8 +1,7 @@
 import React from "react";
 
 import { CenteredPage } from "../core";
-import { Title } from "components/typography/Title";
-import { Tab, Tabs } from "components";
+import { Tab, Tabs, Title } from "components";
 
 import DevisContactForm from "./DevisContactForm";
 import QuestionContactForm from "./QuestionContactForm";

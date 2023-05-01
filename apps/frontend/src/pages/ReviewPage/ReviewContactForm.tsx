@@ -1,10 +1,8 @@
-import { ApiErrorForm } from "components/errors/ApiErrorForm";
-import { Loader } from "components/utils/Loader/Loader";
-import Rating from "components/utils/Rating/Rating";
-import { usePostMessage } from "hooks";
 import { Button, Input, TextArea, useForm } from "lib";
+
+import { usePostMessage } from "hooks";
 import { ReviewDto } from "types";
-import { FormContent } from "components";
+import { ApiErrorForm, FormContent, Loader, Rating } from "components";
 
 const ReviewContactForm = () => {
   const { register, handleSubmit, reset } = useForm<ReviewDto>();

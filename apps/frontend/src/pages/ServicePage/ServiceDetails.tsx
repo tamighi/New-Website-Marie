@@ -1,11 +1,13 @@
-import { Title } from "components/typography/Title";
-import { useService } from "hooks";
 import { ArrowBackIcon, DataGrid, IconButton } from "lib";
+
+import { useService } from "hooks";
+import { SubServiceDto } from "types";
+import { Title } from "components";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { Column } from "react-table";
-import { SubServiceDto } from "types";
 
-import typography from "../../components/typography/Typography.css";
+import styles from "./Service.css"
 
 const columns: Column<SubServiceDto>[] = [
   {
@@ -32,7 +34,7 @@ const ServiceDetails = () => {
         <ArrowBackIcon />
       </IconButton>
       <Title>{service.name}</Title>
-      <p className={typography.Paragraph}>{service.description}</p>
+      <p className={styles.ServiceDescription}>{service.description}</p>
       {service.subServices && (
         <DataGrid columns={columns} data={service.subServices} />
       )}

@@ -2,8 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { Appbar as LibAppbar, Button, Navbar } from "lib";
 
-import { AppbarDrawer } from "./AppbarDrawer";
-import { ThemeToggleIcon } from "./ThemeToggleIcon";
+import AppbarDrawer from "./AppbarDrawer";
+import ThemeToggleIcon from "./ThemeToggleIcon";
 
 import feather from "assets/images/feather.png";
 
@@ -28,7 +28,7 @@ const navItems = [
   },
 ];
 
-export const Appbar = () => {
+const Appbar = () => {
   const location = useLocation();
   const navigation = useNavigate();
 
@@ -65,3 +65,4 @@ export const Appbar = () => {
     </LibAppbar>
   );
 };
+export default Appbar;
