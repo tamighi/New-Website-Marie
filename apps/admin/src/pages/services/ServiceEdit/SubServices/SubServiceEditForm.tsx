@@ -1,7 +1,7 @@
 import { Button, CloseIcon, IconButton, Input } from "lib";
 
 import { SubServiceDto } from "types";
-import { FormAction, FormContent, LoadingIcon, ApiErrorForm } from "components";
+import { FormAction, FormContent, Loader, ApiErrorForm } from "components";
 import { useDeleteOneRef, useEditRefForm } from "hooks";
 
 import { SubServiceFormContainer } from "./SubServiceFormContainer";
@@ -41,7 +41,7 @@ export const SubServiceEditForm = ({
           <Button type="submit" onClick={onSubmit}>
             Update
           </Button>
-          <LoadingIcon isLoading={isLoading} />
+          {isLoading && <Loader size="small" />}
         </FormAction>
         <IconButton
           type="button"

@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
 
-import { MainCard, SecondaryCard } from "components";
+import { MainCard } from "components";
 import { ServiceEditForm } from "./ServiceEditForm";
 import { ServiceEditHeader } from "./ServiceEditHeader";
 import { SubServiceEdit } from "./SubServices";
 
 import { useGetOne } from "hooks";
+import { Card } from "lib";
 
+// TODO: Work on styles
 export const ServiceEdit = () => {
   const { id = "1" } = useParams();
 
@@ -30,15 +32,35 @@ export const ServiceEdit = () => {
           flexWrap: "wrap",
         }}
       >
-        <SecondaryCard>
+        <Card
+          style={{
+            flex: 1,
+            margin: "12px",
+            padding: "12px",
+            display: "grid",
+            alignContent: "flex-start",
+            gap: "12px",
+            minWidth: "300px",
+          }}
+        >
           <ServiceEditForm data={data.data} />
-        </SecondaryCard>
-        <SecondaryCard>
+        </Card>
+        <Card
+          style={{
+            flex: 1,
+            margin: "12px",
+            padding: "12px",
+            display: "grid",
+            alignContent: "flex-start",
+            gap: "12px",
+            minWidth: "300px",
+          }}
+        >
           <SubServiceEdit
             serviceId={data.data.id}
             subServices={data.data.subServices}
           />
-        </SecondaryCard>
+        </Card>
       </div>
     </MainCard>
   );

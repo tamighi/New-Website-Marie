@@ -2,7 +2,7 @@ import { Card } from "lib";
 
 import styles from "./SelectedOptions.css";
 
-export const SelectedOptions = <T,>({
+const SelectedOptions = <T,>({
   selected,
   children,
 }: {
@@ -20,3 +20,5 @@ export const SelectedOptions = <T,>({
     </Card>
   );
 };
+
+export default SelectedOptions;

@@ -1,12 +1,12 @@
-import { Header, SecondaryCard } from "components";
+import { Header, MainCard } from "components";
 
 const Dashboard = () => {
   return (
-    <SecondaryCard>
+    <MainCard>
       <Header>
         <h2>Dashboard</h2>
       </Header>
-    </SecondaryCard>
+    </MainCard>
   );
 };
 

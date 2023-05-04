@@ -7,12 +7,11 @@ import { Column } from "react-table";
 
 import { ResourceString, ResourceType } from "types";
 import { useDeleteMany, useGetList, useGetSearchParams } from "hooks";
-import { ApiErrorImage, EmptyData, Loader } from "components";
-
-import { SelectedOptions } from "../..";
+import { ApiErrorImage, EmptyData, Loader, SelectedOptions } from "components";
 
 const entryPerPage = 20;
 
+//TODO: SelectedOptions only used in DataGrid
 export interface MyDatagridProps<R extends ResourceString> {
   resource: R;
   columns: Column<ResourceType<R>>[];

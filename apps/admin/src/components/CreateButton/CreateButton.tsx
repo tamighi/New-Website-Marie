@@ -1,7 +1,7 @@
 import { AddIcon, IconButton } from "lib";
 import { useNavigate } from "react-router-dom";
 
-export const CreateButton = () => {
+const CreateButton = () => {
   const navigate = useNavigate();
 
   return (
@@ -10,3 +10,5 @@ export const CreateButton = () => {
     </IconButton>
   );
 };
+
+export default CreateButton;
