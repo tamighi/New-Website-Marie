@@ -1,10 +1,9 @@
-import { ResourceString, ResourceType } from "types";
-import { ApiErrorImage } from "components/errors/ApiErrorImage";
-import { EmptyData } from "components/errors/EmptyData";
-import { Loader } from "components/errors/Loader";
-import { useGetList, useGetSearchParams } from "hooks";
 import { Card } from "lib";
 import { useNavigate } from "react-router-dom";
+
+import { ResourceString, ResourceType } from "types";
+import { useGetList, useGetSearchParams } from "hooks";
+import { ApiErrorImage, EmptyData, Loader } from "components";
 
 import styles from "./CardLayout.css";
 

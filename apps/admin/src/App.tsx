@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 
 import { Appbar, Sidebar } from "components";
 
-import { ErrorPage } from "components/errors/ErrorPage";
 
 import {
   Dashboard,
@@ -13,6 +12,7 @@ import {
   ServiceCreate,
   ServiceEdit,
   ServicePage,
+  ErrorPage
 } from "pages";
 
 import styles from "./App.css";

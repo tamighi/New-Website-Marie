@@ -7,10 +7,9 @@ import { Column } from "react-table";
 
 import { ResourceString, ResourceType } from "types";
 import { useDeleteMany, useGetList, useGetSearchParams } from "hooks";
+import { ApiErrorImage, EmptyData, Loader } from "components";
+
 import { SelectedOptions } from "../..";
-import { EmptyData } from "components/errors/EmptyData";
-import { Loader } from "components/errors/Loader";
-import { ApiErrorImage } from "components/errors/ApiErrorImage";
 
 const entryPerPage = 20;
 

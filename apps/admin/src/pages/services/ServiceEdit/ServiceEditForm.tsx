@@ -2,8 +2,7 @@ import { Button, Input, TextArea } from "lib";
 
 import { ServiceDto } from "types";
 import { useEditForm } from "hooks";
-import { FormAction, FormContent } from "components";
-import { ApiErrorForm } from "components/errors/ApiErrorForm";
+import { ApiErrorForm, FormAction, FormContent } from "components";
 
 export const ServiceEditForm = ({ data }: { data: ServiceDto }) => {
   const { register, onSubmit, error } = useEditForm<Partial<ServiceDto>>(
