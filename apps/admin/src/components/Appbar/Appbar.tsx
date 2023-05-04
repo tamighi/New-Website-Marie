@@ -8,7 +8,7 @@ interface AppbarProps {
   toggleSideBar: () => void;
 }
 
-export const Appbar = ({ toggleSideBar }: AppbarProps) => {
+const Appbar = ({ toggleSideBar }: AppbarProps) => {
   const { logout } = useAuth();
   return (
     <LibAppbar className={styles.Appbar}>
@@ -17,7 +17,9 @@ export const Appbar = ({ toggleSideBar }: AppbarProps) => {
           <MenuIcon />
         </IconButton>
         <div style={{ flexGrow: 1, textAlign: "center" }}>Appbar</div>
-        <Button onClick={logout} color={"secondary"}>Logout</Button>
+        <Button onClick={logout} color={"secondary"}>
+          Logout
+        </Button>
         <a href="/">
           <HomeIcon />
         </a>
@@ -25,3 +27,5 @@ export const Appbar = ({ toggleSideBar }: AppbarProps) => {
     </LibAppbar>
   );
 };
+
+export default Appbar;

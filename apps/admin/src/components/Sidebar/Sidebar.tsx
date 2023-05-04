@@ -31,7 +31,7 @@ interface SidebarProps {
   toggleSideBar: () => void;
 }
 
-export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
+const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
   const isSmall = useIsSmall();
 
   const navigate = useNavigate();
@@ -87,3 +87,5 @@ export const Sidebar = ({ open, toggleSideBar }: SidebarProps) => {
     </>
   );
 };
+
+export default Sidebar;

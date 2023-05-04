@@ -2,7 +2,7 @@ import { Card, IDialogState } from "lib";
 import React from "react";
 import styles from "./Alert.css";
 
-export const Alert = ({
+const Alert = ({
   dialogState,
   closeDialog,
 }: {
@@ -28,3 +28,5 @@ export const Alert = ({
     </Card>
   );
 };
+
+export default Alert;

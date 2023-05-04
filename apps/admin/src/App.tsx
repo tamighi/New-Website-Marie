@@ -1,8 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { Appbar } from "./components/generics/appbar/Appbar";
-import { Sidebar } from "./components/generics/sidebar/Sidebar";
+import { Appbar, Sidebar } from "components";
 
 import { ErrorPage } from "components/errors/ErrorPage";
 
