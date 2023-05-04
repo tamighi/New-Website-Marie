@@ -1,10 +1,9 @@
 import { DialogProvider } from "lib";
 import { Alert } from "./components/generics/alert/Alert";
-import { AuthProvider } from "./providers/AuthProvider";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { MyQueryClientProvider } from "./providers/QueryClientProvider";
 import { App } from "App";
 import { BrowserRouter } from "react-router-dom";
+import { AuthProvider, MyQueryClientProvider } from "contexts";
 
 export const Root = () => {
   return (
