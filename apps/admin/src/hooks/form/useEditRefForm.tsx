@@ -2,7 +2,7 @@ import React from "react";
 import { HttpError } from "api/utils";
 import { useDialog, useForm } from "lib";
 import { useFormErrorHandler } from "hooks";
-import { useUpdateOneRef } from "hooks/data/useUpdateOneRef";
+import { useUpdateOneRef } from "hooks";
 import { ResourceString } from "api/types";
 
 interface EditRefFormOptions {
