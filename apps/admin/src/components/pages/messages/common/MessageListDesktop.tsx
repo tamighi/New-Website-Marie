@@ -1,10 +1,9 @@
 import React from "react";
 
-import { ResourceType } from "api/types";
+import { ResourceType, MessageDto } from "types";
 import { MyDatagrid, SimpleGrid } from "components/pages/core";
 import { Column } from "react-table";
 import { useIsSmall } from "hooks";
-import { MessageDto } from "api/types/message";
 
 type MessageResourceString = "question" | "review" | "devis";
 
@@ -22,7 +21,7 @@ const desktopMessageColumns: Column<MessageDto>[] = [
                 : value == "refused"
                 ? "red"
                 : "green",
-            minHeight: "17px"
+            minHeight: "17px",
           }}
         />
       );

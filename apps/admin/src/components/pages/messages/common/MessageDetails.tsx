@@ -1,4 +1,4 @@
-import { ResourceType } from "api/types";
+import { ResourceType } from "types";
 import { SimpleField } from "components/pages/core/fields/SimpleField";
 import { Grid } from "lib";
 

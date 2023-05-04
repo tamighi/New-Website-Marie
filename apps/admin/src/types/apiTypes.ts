@@ -1,4 +1,4 @@
-import { TypeGuardRegister } from "../utils";
+import { TypeGuardRegister } from "../services/utils";
 import { devisDto } from "./devis";
 import { questionDto } from "./question";
 import { reviewDto } from "./review";

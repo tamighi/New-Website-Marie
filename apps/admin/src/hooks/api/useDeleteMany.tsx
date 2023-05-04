@@ -1,4 +1,4 @@
-import { dataProvider, DeleteManyParams } from "api/dataProvider";
+import { dataProvider, DeleteManyParams } from "services/api";
 import { useGetSearchParams } from "hooks";
 import { useMutation, useQueryClient } from "react-query";
 

@@ -1,4 +1,4 @@
-import { ResourceString, ResourceType } from "api/types";
+import { ResourceString, ResourceType } from "types";
 
 type NestedTypeGuardRegister<T extends object | undefined> = { instance: T } & {
   [K in keyof T]?: T[K] extends object

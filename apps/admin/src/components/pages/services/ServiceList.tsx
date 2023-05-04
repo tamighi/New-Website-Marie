@@ -1,4 +1,4 @@
-import { ResourceType } from "api/types";
+import { ResourceType } from "types";
 import { CardLayout, Row } from "../core/content/CardLayout";
 
 const columns: Row<ResourceType<"service">>[] = [
@@ -18,7 +18,5 @@ const columns: Row<ResourceType<"service">>[] = [
 ];
 
 export const ServiceList = () => {
-  return (
-    <CardLayout rows={columns} resource="service"/>
-  );
+  return <CardLayout rows={columns} resource="service" />;
 };

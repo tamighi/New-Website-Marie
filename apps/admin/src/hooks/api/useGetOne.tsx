@@ -1,5 +1,5 @@
-import { dataProvider, GetOneParams } from "api/dataProvider";
-import { ResourceString, ResourceType } from "api/types";
+import { dataProvider, GetOneParams } from "services/api";
+import { ResourceString, ResourceType } from "types";
 import { useGetSearchParams } from "hooks";
 import { useQuery, useQueryClient } from "react-query";
 

@@ -5,7 +5,7 @@ import { Button, DataGrid } from "lib";
 import { useNavigate } from "react-router-dom";
 import { Column } from "react-table";
 
-import { ResourceString, ResourceType } from "api/types";
+import { ResourceString, ResourceType } from "types";
 import { useGetList, useGetSearchParams } from "hooks";
 
 const entryPerPage = 20;

@@ -1,5 +1,5 @@
 import React from "react";
-import { authProvider, ICredentials } from "api/authProvider";
+import { authProvider, ICredentials } from "services/auth";
 import { useAuthContext } from "contexts";
 
 export const useAuth = () => {

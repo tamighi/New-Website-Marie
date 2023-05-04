@@ -1,4 +1,4 @@
-import { SubServiceDto } from "api/types";
+import { SubServiceDto } from "types";
 import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import { FormAction, FormContent, LoadingIcon } from "components/pages/core";
 import { useDeleteOneRef, useEditRefForm } from "hooks";

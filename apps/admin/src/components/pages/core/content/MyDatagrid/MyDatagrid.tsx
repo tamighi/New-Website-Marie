@@ -5,7 +5,7 @@ import { Button, DataGrid, DeleteIcon, IconButton, useDialog } from "lib";
 import { useNavigate } from "react-router-dom";
 import { Column } from "react-table";
 
-import { ResourceString, ResourceType } from "api/types";
+import { ResourceString, ResourceType } from "types";
 import { useDeleteMany, useGetList, useGetSearchParams } from "hooks";
 import { SelectedOptions } from "../..";
 import { EmptyData } from "components/errors/EmptyData";

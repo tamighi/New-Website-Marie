@@ -1,4 +1,4 @@
-import { ICredentials } from "api/authProvider";
+import { ICredentials } from "services/auth";
 import { useAuth } from "hooks/useAuth";
 import { Card, Input, useForm } from "lib";
 

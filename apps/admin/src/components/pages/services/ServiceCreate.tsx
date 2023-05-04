@@ -1,9 +1,8 @@
-import { ServiceDto } from "api/types";
+import { ServiceDto } from "types";
 import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import { useCreateForm } from "hooks";
 import { Button, Input, TextArea } from "lib";
 import { FormAction, FormContent, Header, MainCard } from "../core";
-
 
 export const ServiceCreate = () => {
   const { register, onSubmit, error, isLoading } =
@@ -27,9 +26,9 @@ export const ServiceCreate = () => {
           />
         </FormContent>
         <FormAction>
-        <Button type="submit" onClick={onSubmit}>
-          Create
-        </Button>
+          <Button type="submit" onClick={onSubmit}>
+            Create
+          </Button>
           {isLoading && "Loading ..."}
           {error?.badEntry && <ApiErrorForm />}
         </FormAction>

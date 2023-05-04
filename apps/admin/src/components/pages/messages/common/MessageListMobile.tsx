@@ -1,5 +1,4 @@
-import { ResourceType } from "api/types";
-import { MessageDto } from "api/types/message";
+import { MessageDto, ResourceType } from "types";
 import { SimpleGrid } from "components/pages/core";
 import { Column } from "react-table";
 

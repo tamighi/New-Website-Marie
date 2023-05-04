@@ -1,4 +1,4 @@
-import { ServiceDto } from "api/types";
+import { ServiceDto } from "types";
 import { ApiErrorForm } from "components/errors/ApiErrorForm";
 import { useEditForm } from "hooks";
 import { Button, Input, TextArea } from "lib";

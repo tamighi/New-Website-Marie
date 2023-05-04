@@ -1,4 +1,4 @@
-import { ResourceString, ResourceType } from "api/types";
+import { ResourceString, ResourceType } from "types";
 import { ApiErrorImage } from "components/errors/ApiErrorImage";
 import { EmptyData } from "components/errors/EmptyData";
 import { Loader } from "components/errors/Loader";
@@ -32,15 +32,15 @@ export const CardLayout = <K extends ResourceString>({
   const navigate = useNavigate();
 
   if (isLoading) {
-    return <Loader />
+    return <Loader />;
   }
 
   if (!data?.data || isError) {
-    return <ApiErrorImage />
+    return <ApiErrorImage />;
   }
 
   if (data.count === 0) {
-    return <EmptyData />
+    return <EmptyData />;
   }
 
   return (

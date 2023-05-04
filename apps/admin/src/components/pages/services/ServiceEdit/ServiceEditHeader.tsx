@@ -1,4 +1,4 @@
-import { ServiceDto } from "api/types";
+import { ServiceDto } from "types";
 import { useDeleteOne } from "hooks";
 import { ArrowBackIcon, DeleteIcon, IconButton } from "lib";
 import { useNavigate } from "react-router-dom";

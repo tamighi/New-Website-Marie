@@ -1,5 +1,5 @@
-import { dataProvider, GetListParams } from "api/dataProvider";
-import { ResourceString } from "api/types";
+import { dataProvider, GetListParams } from "services/api";
+import { ResourceString } from "types";
 import { useQuery } from "react-query";
 
 export const useGetList = <R extends ResourceString>(

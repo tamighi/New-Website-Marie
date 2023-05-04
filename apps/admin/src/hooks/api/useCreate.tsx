@@ -1,4 +1,4 @@
-import { CreateParams, dataProvider } from "api/dataProvider";
+import { CreateParams, dataProvider } from "services/api";
 import { useMutation, useQueryClient } from "react-query";
 
 interface CreateOptions {
