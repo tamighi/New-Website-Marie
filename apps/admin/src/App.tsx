@@ -1,19 +1,19 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { Appbar } from "./components/generics/appbar/Appbar";
-import { Sidebar } from "./components/generics/sidebar/Sidebar";
-import { Dashboard } from "./components/pages/dashboard/Dashboard";
+import { Appbar, Sidebar } from "components";
 
-import { DevisPage } from "components/pages/messages/devis/DevisPage";
-import { QuestionPage } from "components/pages/messages/questions/QuestionPage";
-import { ReviewPage } from "components/pages/messages/reviews/ReviewPage";
+
 import {
+  Dashboard,
+  DevisPage,
+  QuestionPage,
+  ReviewPage,
   ServiceCreate,
   ServiceEdit,
   ServicePage,
-} from "./components/pages/services";
-import { ErrorPage } from "components/errors/ErrorPage";
+  ErrorPage
+} from "pages";
 
 import styles from "./App.css";
 import "./Global.css";

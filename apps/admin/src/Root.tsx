@@ -1,9 +1,9 @@
 import { DialogProvider } from "lib";
-import { Alert } from "./components/generics/alert/Alert";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { App } from "App";
 import { BrowserRouter } from "react-router-dom";
+
+import { App } from "./App";
 import { AuthProvider, MyQueryClientProvider } from "contexts";
+import { Alert } from "components";
 
 export const Root = () => {
   return (
@@ -13,7 +13,6 @@ export const Root = () => {
           <DialogProvider Component={Alert}>
             <App />
           </DialogProvider>
-          <ReactQueryDevtools />
         </MyQueryClientProvider>
       </AuthProvider>
     </BrowserRouter>

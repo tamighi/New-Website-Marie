@@ -1,8 +1,8 @@
 import React from "react";
-import { HttpError } from "api/utils";
+import { HttpError } from "services/utils";
 import { useDialog, useForm } from "lib";
 import { useFormErrorHandler, useUpdateOne } from "hooks";
-import { ResourceString } from "api/types";
+import { ResourceString } from "types";
 
 export const useEditForm = <T extends object>(
   ressource: ResourceString,

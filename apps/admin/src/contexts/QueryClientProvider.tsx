@@ -1,4 +1,4 @@
-import { HttpError } from "api/utils";
+import { HttpError } from "services/utils";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useAuthContext } from "./AuthProvider";
 
