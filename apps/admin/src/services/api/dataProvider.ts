@@ -1,14 +1,14 @@
 import query_string from "query-string";
-import { typeRegister, ResourceString } from "types";
+import { typeRegister, ResourceString, ResourceType } from "types";
 import { httpClient } from "../utils";
 import { TypeGuard } from "../utils";
 
 const apiUrl = process.env.BACKEND_URL;
 
-export interface GetListParams {
-  range?: string;
-  sort?: string;
-  filter?: string;
+export interface GetListParams<T> {
+  range?: number[];
+  sort?: { [K in keyof T]?: "ASC" | "DESC" };
+  filter?: Partial<T>;
 }
 
 export interface GetOneParams {
@@ -54,9 +54,20 @@ const tGS = new TypeGuard(typeRegister);
 export const dataProvider = {
   getList: async <R extends ResourceString>(
     resource: ResourceString,
-    query: GetListParams
+    params: GetListParams<ResourceType<R>> = {}
   ) => {
+    const { sort, filter, range } = params;
+
+    const query = {
+      sort: JSON.stringify(sort),
+      range: JSON.stringify(range),
+      filter: JSON.stringify(filter),
+    };
+
+    console.log(query);
+
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
+    console.log(url);
 
     const resp = await httpClient(url);
 

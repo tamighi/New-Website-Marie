@@ -2,7 +2,7 @@ import { Card } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { ResourceString, ResourceType } from "types";
-import { useGetList, useGetSearchParams } from "hooks";
+import { useGetList } from "hooks";
 import { ApiErrorImage, EmptyData, Loader } from "components";
 
 import styles from "./CardLayout.css";
@@ -24,9 +24,9 @@ export const CardLayout = <K extends ResourceString>({
   resource,
   rows,
 }: CardLayoutProps<K>) => {
-  const params = useGetSearchParams();
+  //const params = useGetSearchParams();
 
-  const { data, isLoading, isError } = useGetList<K>(resource, params);
+  const { data, isLoading, isError } = useGetList<K>(resource, {});
 
   const navigate = useNavigate();
 

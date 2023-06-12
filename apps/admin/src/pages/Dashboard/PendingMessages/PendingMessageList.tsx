@@ -15,7 +15,7 @@ const PendingMessageList = () => {
     <div>
       {messages.map((message) => {
         return (
-          <div>
+          <div key={message.name}>
             <p>{message.name}</p>
             <p>{message.message}</p>
           </div>

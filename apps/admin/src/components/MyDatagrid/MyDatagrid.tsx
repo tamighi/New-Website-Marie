@@ -24,7 +24,10 @@ export const MyDatagrid = <R extends ResourceString>({
   const [page, setPage] = React.useState(1);
   const [selected, setSelected] = React.useState<ResourceType<R>[]>([]);
 
-  const params = useGetSearchParams();
+  //const params = useGetSearchParams();
+  const params = {
+    range: [(page - 1) * entryPerPage, page * entryPerPage - 1],
+  };
 
   const { data, isLoading, isError } = useGetList<R>(resource, params);
 

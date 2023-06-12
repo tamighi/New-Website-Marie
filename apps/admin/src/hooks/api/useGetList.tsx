@@ -1,10 +1,10 @@
 import { dataProvider, GetListParams } from "services/api";
-import { ResourceString } from "types";
+import { ResourceString, ResourceType } from "types";
 import { useQuery } from "react-query";
 
 export const useGetList = <R extends ResourceString>(
   resource: ResourceString,
-  params: GetListParams
+  params: GetListParams<ResourceType<R>>
 ) => {
   const queryResult = useQuery([resource, params], () =>
     dataProvider.getList<R>(resource, params)
