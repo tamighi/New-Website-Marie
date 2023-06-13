@@ -16,20 +16,24 @@ const PendingQuestions = () => {
 
   return (
     <Card className={styles.PendingMessagesCard}>
-      <PendingMessageHeader Icon={HelpIcon} title="Questions en attentes" />
+      <PendingMessageHeader Icon={HelpIcon} title="Questions en attente" />
       <Divider />
-      {data?.data.map((question) => {
-        return (
-          <div
-            key={question.name}
-            className={styles.PendingMessage}
-            onClick={() => navigate(`/question/${question.id}`)}
-          >
-            <p className={styles.PendingMessageTitle}>{question.name}</p>
-            <p className={styles.PendingMessageText}>{question.message}</p>
-          </div>
-        );
-      })}
+      {data && data.data.length > 0 ? (
+        data.data.map((question) => {
+          return (
+            <div
+              key={question.name}
+              className={styles.PendingMessage}
+              onClick={() => navigate(`/question/${question.id}`)}
+            >
+              <p className={styles.PendingMessageTitle}>{question.name}</p>
+              <p className={styles.PendingMessageText}>{question.message}</p>
+            </div>
+          );
+        })
+      ) : (
+        <p>Aucune question en attente</p>
+      )}
     </Card>
   );
 };

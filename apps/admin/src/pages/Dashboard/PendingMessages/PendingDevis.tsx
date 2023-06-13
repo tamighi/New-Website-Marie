@@ -16,20 +16,24 @@ const PendingDevis = () => {
 
   return (
     <Card className={styles.PendingMessagesCard}>
-      <PendingMessageHeader Icon={HelpIcon} title="Devis en attentes" />
+      <PendingMessageHeader Icon={HelpIcon} title="Devis en attente" />
       <Divider />
-      {data?.data.map((devis) => {
-        return (
-          <div
-            key={devis.name}
-            className={styles.PendingMessage}
-            onClick={() => navigate(`/devis/${devis.id}`)}
-          >
-            <p className={styles.PendingMessageTitle}>{devis.name}</p>
-            <p className={styles.PendingMessageText}>{devis.message}</p>
-          </div>
-        );
-      })}
+      {data && data.data.length > 0 ? (
+        data.data.map((devis) => {
+          return (
+            <div
+              key={devis.name}
+              className={styles.PendingMessage}
+              onClick={() => navigate(`/devis/${devis.id}`)}
+            >
+              <p className={styles.PendingMessageTitle}>{devis.name}</p>
+              <p className={styles.PendingMessageText}>{devis.message}</p>
+            </div>
+          );
+        })
+      ) : (
+        <p>Aucune demande de devis en attente</p>
+      )}
     </Card>
   );
 };

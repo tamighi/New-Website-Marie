@@ -16,20 +16,24 @@ const PendingReviews = () => {
 
   return (
     <Card className={styles.PendingMessagesCard}>
-      <PendingMessageHeader Icon={HelpIcon} title="Avis en attentes" />
+      <PendingMessageHeader Icon={HelpIcon} title="Avis en attente" />
       <Divider />
-      {data?.data.map((review) => {
-        return (
-          <div
-            key={review.name}
-            className={styles.PendingMessage}
-            onClick={() => navigate(`/review/${review.id}`)}
-          >
-            <p className={styles.PendingMessageTitle}>{review.name}</p>
-            <p className={styles.PendingMessageText}>{review.message}</p>
-          </div>
-        );
-      })}
+      {data && data.data.length > 0 ? (
+        data.data.map((review) => {
+          return (
+            <div
+              key={review.name}
+              className={styles.PendingMessage}
+              onClick={() => navigate(`/review/${review.id}`)}
+            >
+              <p className={styles.PendingMessageTitle}>{review.name}</p>
+              <p className={styles.PendingMessageText}>{review.message}</p>
+            </div>
+          );
+        })
+      ) : (
+        <p>Aucun avis en attente</p>
+      )}
     </Card>
   );
 };
