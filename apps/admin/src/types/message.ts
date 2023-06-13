@@ -1,13 +1,7 @@
-export enum Status {
-  PENDING = "pending",
-  ACCEPTED = "accepted",
-  REFUSED = "refused",
-}
-
 export interface MessageDto {
   id: number;
   message: string;
-  status: Status;
+  status: "pending" | "accepted" | "refused";
   date: string;
   name?: string;
   email?: string;
@@ -16,6 +10,6 @@ export interface MessageDto {
 export const messageDto: MessageDto = {
   id: 1,
   message: "",
-  status: Status.PENDING,
+  status: "pending",
   date: new Date().toLocaleDateString(),
 } as const;

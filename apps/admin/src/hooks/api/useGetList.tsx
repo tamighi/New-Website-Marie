@@ -3,7 +3,7 @@ import { ResourceString, ResourceType } from "types";
 import { useQuery } from "react-query";
 
 export const useGetList = <R extends ResourceString>(
-  resource: ResourceString,
+  resource: R,
   params: GetListParams<ResourceType<R>>
 ) => {
   const queryResult = useQuery([resource, params], () =>
