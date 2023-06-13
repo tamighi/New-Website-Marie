@@ -16,7 +16,6 @@ export const StatusField = <R extends MessageResourceString>(
 
   const { showDialog } = useDialog();
 
-  const query = useGetCurrentQuery();
   const { mutate } = useUpdateOne<R>(
     resource,
     {
@@ -24,26 +23,27 @@ export const StatusField = <R extends MessageResourceString>(
         showDialog?.({ content: "Item updated !" });
       },
     },
-    query
   );
+
   const onChange = (newStatus: "pending" | "refused" | "accepted") => {
     mutate({
       id: message.id,
       data: { status: newStatus } as Partial<ResourceType<R>>,
     });
   };
+
   return (
     <div style={{ display: "flex", gap: "2px" }}>
       {message.status === "pending" ? (
         <>
           <p style={{ flex: 1 }}>Pending</p>
-          <Button>Accepter</Button>
-          <Button>Refuser</Button>
+          <Button onClick={() => onChange("accepted")}>Accepter</Button>
+          <Button onClick={() => onChange("refused")}>Refuser</Button>
         </>
       ) : (
         <>
           <p style={{ flex: 1 }}>{message.status}</p>
-          <Button>Annuler</Button>
+          <Button onClick={() => onChange("pending")}>Annuler</Button>
         </>
       )}
     </div>
