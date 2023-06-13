@@ -1,5 +1,5 @@
 import { dataProvider, UpdateParams } from "services/api";
-import { ResourceString } from "types";
+import { ResourceString, ResourceType } from "types";
 import { useMutation, useQueryClient } from "react-query";
 
 interface UpdateOneOptions {
@@ -8,7 +8,7 @@ interface UpdateOneOptions {
   parentResource: string;
 }
 
-export const useUpdateOneRef = (
+export const useUpdateOneRef = <R extends ResourceString>(
   resource: ResourceString,
   options: UpdateOneOptions
 ) => {
@@ -17,7 +17,8 @@ export const useUpdateOneRef = (
   const { onError, parentResource, onSuccess } = options;
 
   const mutation = useMutation(
-    (params: UpdateParams) => dataProvider.update(resource, params),
+    (params: UpdateParams<ResourceType<R>>) =>
+      dataProvider.update(resource, params),
     {
       onSuccess: () => {
         onSuccess?.();

@@ -1,5 +1,6 @@
 import { CreateParams, dataProvider } from "services/api";
 import { useMutation, useQueryClient } from "react-query";
+import { ResourceString, ResourceType } from "types";
 
 interface CreateRefOptions {
   onSuccess?: () => void;
@@ -7,7 +8,10 @@ interface CreateRefOptions {
   parentResource: string;
 }
 
-export const useCreateRef = (resource: string, options: CreateRefOptions) => {
+export const useCreateRef = <R extends ResourceString>(
+  resource: ResourceString,
+  options: CreateRefOptions
+) => {
   const queryClient = useQueryClient();
 
   const { onError, onSuccess: onSuccessCallback, parentResource } = options;
@@ -18,7 +22,8 @@ export const useCreateRef = (resource: string, options: CreateRefOptions) => {
   };
 
   const mutation = useMutation(
-    (params: CreateParams) => dataProvider.create(resource, params),
+    (params: CreateParams<ResourceType<R>>) =>
+      dataProvider.create(resource, params),
     {
       onSuccess,
       onError,

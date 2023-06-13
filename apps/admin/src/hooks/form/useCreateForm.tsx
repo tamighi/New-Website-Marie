@@ -1,8 +1,9 @@
 import { useCreate } from "hooks";
 import { useDialog, useForm } from "lib";
+import { ResourceString } from "types";
 import { useFormErrorHandler } from "./useFormErrorHandler";
 
-export const useCreateForm = <T extends object>(resource: string) => {
+export const useCreateForm = <T extends object>(resource: ResourceString) => {
   const { errors, setError, resetErrors } = useFormErrorHandler();
   const { showDialog } = useDialog();
   const { register, handleSubmit, reset } = useForm<T>();

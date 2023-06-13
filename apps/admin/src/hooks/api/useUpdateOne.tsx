@@ -1,5 +1,5 @@
 import { dataProvider, UpdateParams } from "services/api";
-import { ResourceString } from "types";
+import { ResourceString, ResourceType } from "types";
 import { useGetSearchParams } from "hooks";
 import { useMutation, useQueryClient } from "react-query";
 
@@ -19,7 +19,8 @@ export const useUpdateOne = <R extends ResourceString>(
   const { onError, ...rest } = options;
 
   const mutation = useMutation(
-    (params: UpdateParams) => dataProvider.update<R>(resource, params),
+    (params: UpdateParams<ResourceType<R>>) =>
+      dataProvider.update<R>(resource, params),
     {
       onMutate: async (newData) => {
         await queryClient.cancelQueries([resource, query]);

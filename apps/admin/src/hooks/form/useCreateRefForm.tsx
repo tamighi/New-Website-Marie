@@ -1,5 +1,6 @@
 import { useCreateRef } from "hooks";
 import { useDialog, useForm } from "lib";
+import { ResourceString } from "types";
 import { useFormErrorHandler } from "./useFormErrorHandler";
 
 //TODO: Default data should be from createDto !
@@ -11,7 +12,7 @@ interface CreateRefOptions<T extends object> {
 }
 
 export const useCreateRefForm = <T extends object>(
-  resource: string,
+  resource: ResourceString,
   options: CreateRefOptions<T>
 ) => {
   const { errors, setError, resetErrors } = useFormErrorHandler();

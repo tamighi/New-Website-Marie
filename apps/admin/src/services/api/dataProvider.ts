@@ -15,30 +15,18 @@ export interface GetOneParams {
   id: string | number;
 }
 
-export interface GetManyParams {
-  ids: (string | number)[];
-}
-
-export interface GetManyReferenceParams {
-  pagination: { page: number; perPage: number };
-  sort: { field: string; order: "ASC" | "DESC" };
-  filter: object;
-  target: string;
+export interface UpdateParams<T> {
   id: string | number;
+  data: Partial<T>;
 }
 
-export interface UpdateParams {
-  id: string | number;
-  data: object;
-}
-
-export interface UpdateManyParams {
+export interface UpdateManyParams<T> {
   ids: (string | number)[];
-  data: object;
+  data: Partial<T>;
 }
 
-export interface CreateParams {
-  data: object;
+export interface CreateParams<T> {
+  data: Partial<T>;
 }
 
 export interface DeleteParams {
@@ -64,10 +52,7 @@ export const dataProvider = {
       filter: JSON.stringify(filter),
     };
 
-    console.log(query);
-
     const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
-    console.log(url);
 
     const resp = await httpClient(url);
 
@@ -101,44 +86,9 @@ export const dataProvider = {
     return { data };
   },
 
-  getMany: async (resource: string, params: GetManyParams) => {
-    const query = {
-      filter: JSON.stringify({ id: params.ids }),
-    };
-
-    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
-    const resp = await httpClient(url);
-    if (tGS.hasCount(resp) && tGS.hasData(resp)) {
-      return resp;
-    }
-    throw Error("Unexpected response object");
-  },
-
-  getManyReference: async (
-    resource: string,
-    params: GetManyReferenceParams
-  ) => {
-    const { page, perPage } = params.pagination;
-    const { field, order } = params.sort;
-    const query = {
-      sort: JSON.stringify([field, order]),
-      range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
-      filter: JSON.stringify({
-        ...params.filter,
-        [params.target]: params.id,
-      }),
-    };
-    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
-    const resp = await httpClient(url);
-    if (tGS.hasCount(resp) && tGS.hasData(resp)) {
-      return resp;
-    }
-    throw Error("Unexpected response object");
-  },
-
   update: async <R extends ResourceString>(
     resource: ResourceString,
-    params: UpdateParams
+    params: UpdateParams<ResourceType<R>>
   ) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const resp = await httpClient(url, {
@@ -159,7 +109,10 @@ export const dataProvider = {
     return { data };
   },
 
-  updateMany: async (resource: string, params: UpdateManyParams) => {
+  updateMany: async <R extends ResourceString>(
+    resource: string,
+    params: UpdateManyParams<ResourceType<R>>
+  ) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
@@ -174,7 +127,10 @@ export const dataProvider = {
     throw Error("Unexpected response object");
   },
 
-  create: async (resource: string, params: CreateParams) => {
+  create: async <R extends ResourceString>(
+    resource: string,
+    params: CreateParams<ResourceType<R>>
+  ) => {
     const url = `${apiUrl}/${resource}`;
     const resp = await httpClient(url, {
       method: "POST",
