@@ -1,18 +1,14 @@
 import { Card, Divider, HelpIcon } from "lib";
 
+import PendingMessageHeader from "./PendingMessageHeader";
 import PendingMessageList from "./PendingMessageList";
-
-import styles from "./PendingMessages.css"
 
 const PendingMessages = () => {
   return (
     <Card>
-      <div className={styles.PendingMessages}>
-        <HelpIcon />
-        <h2>Messages en attente</h2>
-      </div>
+      <PendingMessageHeader Icon={HelpIcon} title="Messages en attentes" />
       <Divider />
-      <PendingMessageList/>
+      <PendingMessageList />
     </Card>
   );
 };
