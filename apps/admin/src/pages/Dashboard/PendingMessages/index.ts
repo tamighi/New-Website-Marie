@@ -1,1 +1,1 @@
-  export { default as PendingMessages } from "./PendingMessages";
+  export { default as PendingQuestions } from "./PendingQuestions";
