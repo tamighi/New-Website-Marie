@@ -22,14 +22,14 @@ const MessageDetails = <T extends ResourceType<MessageResourceString>>(
           {new Date(message.date).toLocaleDateString()}
         </SimpleField>
       </Grid>
-      <Grid xs={12}>
-        <StatusField message={message} resource={resource}/>
-      </Grid>
       <Grid xs={6}>
         <SimpleField label="Nom">{message.name}</SimpleField>
       </Grid>
       <Grid xs={6}>
         <SimpleField label="Email">{message.email}</SimpleField>
+      </Grid>
+      <Grid xs={12}>
+        <StatusField message={message} resource={resource} />
       </Grid>
       <Grid xs={12}>
         <SimpleField label="Message">{message.message}</SimpleField>
