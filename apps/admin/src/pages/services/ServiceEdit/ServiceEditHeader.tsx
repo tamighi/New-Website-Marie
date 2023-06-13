@@ -2,7 +2,7 @@ import { ArrowBackIcon, DeleteIcon, IconButton } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { ServiceDto } from "types";
-import { useDeleteOne } from "hooks";
+import { useDeleteOne, useGetCurrentQuery } from "hooks";
 import { Header } from "components";
 
 export const ServiceEditHeader = ({
@@ -12,7 +12,8 @@ export const ServiceEditHeader = ({
 }) => {
   const navigate = useNavigate();
 
-  const { mutate } = useDeleteOne("service");
+  const query = useGetCurrentQuery();
+  const { mutate } = useDeleteOne("service", query);
 
   return (
     <Header>

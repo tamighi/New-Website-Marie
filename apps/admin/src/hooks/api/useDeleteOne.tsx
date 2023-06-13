@@ -1,13 +1,16 @@
-import { dataProvider, DeleteParams } from "services/api";
-import { useGetSearchParams } from "hooks";
+import { dataProvider, DeleteParams, GetListParams } from "services/api";
 import { useDialog } from "lib";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { ResourceString, ResourceType } from "types";
 
-export const useDeleteOne = (resource: string) => {
+export const useDeleteOne = <R extends ResourceString>(
+  resource: string,
+  query?: GetListParams<ResourceType<R>>
+) => {
   const queryClient = useQueryClient();
 
-  const query = useGetSearchParams();
+  const queryKey = query ? [resource, query] : [resource];
 
   const { showDialog } = useDialog();
   const navigate = useNavigate();
@@ -16,13 +19,13 @@ export const useDeleteOne = (resource: string) => {
     (params: DeleteParams) => dataProvider.delete(resource, params),
     {
       onMutate: async (params) => {
-        await queryClient.cancelQueries([resource, query]);
+        await queryClient.cancelQueries(queryKey);
 
         const oldData = queryClient.getQueryData<{
           data: { id: number | string }[];
-        }>([resource, query]);
+        }>(queryKey);
         if (oldData) {
-          queryClient.setQueryData([resource, query], () => {
+          queryClient.setQueryData(queryKey, () => {
             return {
               ...oldData,
               data: oldData.data.filter((object) => params.id !== object.id),
@@ -32,10 +35,10 @@ export const useDeleteOne = (resource: string) => {
         return { oldData };
       },
       onError: (_, __, context) => {
-        queryClient.setQueryData([resource, query], context?.oldData);
+        queryClient.setQueryData(queryKey, context?.oldData);
       },
       onSettled: () => {
-        queryClient.invalidateQueries({ queryKey: [resource, query] });
+        queryClient.invalidateQueries(queryKey);
       },
       onSuccess: () => {
         showDialog?.({ content: "Item deleted !" });
