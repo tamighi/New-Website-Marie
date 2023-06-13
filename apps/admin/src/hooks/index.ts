@@ -4,3 +4,4 @@ export * from "./useAuth";
 export * from "./useIsSmall";
 export * from "./useGetSearchParams";
 export * from "./useSetSearchParams";
+export * from "./useGetCurrentQuery";

@@ -1,6 +1,5 @@
 import { SimpleField } from "components";
-import { useGetOne } from "hooks";
-import { useGetCurrentQuery } from "hooks/useGetCurrentQuery";
+import { useGetCurrentQuery, useGetOne } from "hooks";
 import { MessageDetails } from "../common";
 
 const DevisDetails = ({ id }: { id: number | string }) => {

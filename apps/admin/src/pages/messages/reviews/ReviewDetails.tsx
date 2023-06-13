@@ -1,5 +1,4 @@
-import { useGetOne } from "hooks";
-import { useGetCurrentQuery } from "hooks/useGetCurrentQuery";
+import { useGetCurrentQuery, useGetOne } from "hooks";
 import { MessageDetails } from "../common";
 
 const ReviewDetails = ({ id }: { id: number | string }) => {

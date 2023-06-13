@@ -5,14 +5,15 @@ import { ServiceEditForm } from "./ServiceEditForm";
 import { ServiceEditHeader } from "./ServiceEditHeader";
 import { SubServiceEdit } from "./SubServices";
 
-import { useGetOne } from "hooks";
+import { useGetCurrentQuery, useGetOne } from "hooks";
 import { Card } from "lib";
 
 // TODO: Work on styles
 export const ServiceEdit = () => {
-  const { id = "1" } = useParams();
+  const { id } = useParams() as { id: string };
+  const query = useGetCurrentQuery();
 
-  const { data, isLoading } = useGetOne("service", { id });
+  const { data, isLoading } = useGetOne("service", { id }, query);
 
   if (isLoading) {
     return <div>Loading...</div>;
