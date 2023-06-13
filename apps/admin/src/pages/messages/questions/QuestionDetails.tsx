@@ -7,7 +7,7 @@ const QuestionDetails = ({ id }: { id: number | string }) => {
   if (!data) {
     return null;
   }
-  return <MessageDetails message={data.data} />;
+  return <MessageDetails resource="question" message={data.data} />;
 };
 
 export default QuestionDetails;

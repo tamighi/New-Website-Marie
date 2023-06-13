@@ -27,7 +27,7 @@ const DevisDetails = ({ id }: { id: number | string }) => {
           : "Pas de date"
       }`}</SimpleField>
 
-      <MessageDetails message={devis} />
+      <MessageDetails resource="devis" message={devis} />
     </div>
   );
 };

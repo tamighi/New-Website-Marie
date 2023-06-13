@@ -11,10 +11,8 @@ const ReviewDetails = ({ id }: { id: number | string }) => {
   const review = data.data;
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-    <SimpleField label="Note">
-      {review.note}
-    </SimpleField>
-      <MessageDetails message={review} />
+      <SimpleField label="Note">{review.note}</SimpleField>
+      <MessageDetails resource="review" message={review} />
     </div>
   );
 };

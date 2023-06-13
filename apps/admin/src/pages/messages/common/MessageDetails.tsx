@@ -1,17 +1,19 @@
 import { ResourceType } from "types";
 import { SimpleField } from "components";
 import { Grid } from "lib";
+import { StatusField } from "./StatusField";
 
 type MessageResourceString = "question" | "review" | "devis";
 
 type MessageDetailsProps<T extends ResourceType<MessageResourceString>> = {
   message: T;
+  resource: MessageResourceString;
 };
 
 const MessageDetails = <T extends ResourceType<MessageResourceString>>(
   props: MessageDetailsProps<T>
 ) => {
-  const { message } = props;
+  const { message, resource } = props;
 
   return (
     <Grid container style={{ gap: "16px" }}>
@@ -19,6 +21,9 @@ const MessageDetails = <T extends ResourceType<MessageResourceString>>(
         <SimpleField label="Recu le">
           {new Date(message.date).toLocaleDateString()}
         </SimpleField>
+      </Grid>
+      <Grid xs={12}>
+        <StatusField message={message} resource={resource}/>
       </Grid>
       <Grid xs={6}>
         <SimpleField label="Nom">{message.name}</SimpleField>
