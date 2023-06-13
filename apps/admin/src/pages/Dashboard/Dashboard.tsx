@@ -1,5 +1,5 @@
 import { Header, MainCard } from "components";
-import { PendingQuestions } from "./PendingMessages";
+import { PendingQuestions, PendingReviews } from "./PendingMessages";
 
 const Dashboard = () => {
   return (
@@ -7,7 +7,10 @@ const Dashboard = () => {
       <Header>
         <h2>Dashboard</h2>
       </Header>
-      <PendingQuestions />
+      <div style={{ display: "flex", gap: "18px" }}>
+        <PendingQuestions />
+        <PendingReviews />
+      </div>
     </MainCard>
   );
 };
