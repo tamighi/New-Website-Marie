@@ -14,7 +14,7 @@ export const useUpdateOne = <R extends ResourceString>(
 ) => {
   const queryClient = useQueryClient();
 
-  const queryKey = query ? [resource, query] : resource;
+  const queryKey = query ? [resource, query] : [resource];
 
   const { onError, ...rest } = options;
 

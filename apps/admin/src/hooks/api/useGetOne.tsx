@@ -9,7 +9,7 @@ export const useGetOne = <R extends ResourceString>(
 ) => {
   const { id } = params;
 
-  const queryKey = query ? [resource, query] : resource;
+  const queryKey = query ? [resource, query] : [resource];
 
   const queryClient = useQueryClient();
 
