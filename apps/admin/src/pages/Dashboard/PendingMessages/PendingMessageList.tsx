@@ -1,19 +1,16 @@
+import { useGetList } from "hooks";
+import { Status } from "types";
+
 const PendingMessageList = () => {
-  // TODO: useGetList should take an object as parameters (filter)
-  const messages = [
-    {
-      message: "lorem ...",
-      name: "Name1",
+  const { data } = useGetList<"question">("question", {
+    filter: {
+      status: Status.PENDING,
     },
-    {
-      message: "lorem ...",
-      name: "Name2",
-    },
-  ];
+  });
 
   return (
     <div>
-      {messages.map((message) => {
+      {data?.data.map((message) => {
         return (
           <div key={message.name}>
             <p>{message.name}</p>
