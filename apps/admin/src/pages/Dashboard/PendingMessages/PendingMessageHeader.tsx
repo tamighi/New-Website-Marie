@@ -8,7 +8,7 @@ interface PendingMessageHeaderProps {
 const PendingMessageHeader = (props: PendingMessageHeaderProps) => {
   const { Icon, title } = props;
   return (
-    <div className={styles.PendingMessages}>
+    <div className={styles.PendingMessagesHeader}>
       <Icon />
       <h2>{title}</h2>
     </div>
