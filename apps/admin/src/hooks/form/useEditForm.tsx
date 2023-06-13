@@ -1,7 +1,7 @@
 import React from "react";
 import { HttpError } from "services/utils";
 import { useDialog, useForm } from "lib";
-import { useFormErrorHandler, useUpdateOne } from "hooks";
+import { useFormErrorHandler, useGetCurrentQuery, useUpdateOne } from "hooks";
 import { ResourceString } from "types";
 
 export const useEditForm = <T extends object>(
@@ -27,12 +27,17 @@ export const useEditForm = <T extends object>(
     [setError]
   );
 
-  const { mutate } = useUpdateOne(ressource, {
-    onSuccess: () => {
-      showDialog?.({ content: "Item updated !" });
+  const query = useGetCurrentQuery();
+  const { mutate } = useUpdateOne(
+    ressource,
+    {
+      onSuccess: () => {
+        showDialog?.({ content: "Item updated !" });
+      },
+      onError,
     },
-    onError,
-  });
+    query
+  );
 
   const onSubmit = handleSubmit(async (data: Partial<T>) => {
     mutate({ data, id });

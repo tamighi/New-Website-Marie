@@ -1,6 +1,5 @@
-import { dataProvider, UpdateParams } from "services/api";
+import { dataProvider, GetListParams, UpdateParams } from "services/api";
 import { ResourceString, ResourceType } from "types";
-import { useGetSearchParams } from "hooks";
 import { useMutation, useQueryClient } from "react-query";
 
 interface UpdateOneOptions {
@@ -10,11 +9,12 @@ interface UpdateOneOptions {
 
 export const useUpdateOne = <R extends ResourceString>(
   resource: ResourceString,
-  options: UpdateOneOptions = {}
+  options: UpdateOneOptions = {},
+  query?: GetListParams<ResourceType<R>>
 ) => {
   const queryClient = useQueryClient();
 
-  const query = useGetSearchParams();
+  const queryKey = query ? [resource, query] : resource;
 
   const { onError, ...rest } = options;
 
@@ -23,14 +23,15 @@ export const useUpdateOne = <R extends ResourceString>(
       dataProvider.update<R>(resource, params),
     {
       onMutate: async (newData) => {
-        await queryClient.cancelQueries([resource, query]);
+        // Mutate old data list
+        await queryClient.cancelQueries(queryKey);
 
         const oldData = queryClient.getQueryData<{
           data: { id: number | string }[];
-        }>([resource, query]);
+        }>([resource, queryKey]);
 
         if (oldData) {
-          queryClient.setQueryData([resource, query], () => {
+          queryClient.setQueryData(queryKey, () => {
             return {
               ...oldData,
               data: [
@@ -44,6 +45,7 @@ export const useUpdateOne = <R extends ResourceString>(
           });
         }
 
+        // Mutate old data entity
         const updated = queryClient.getQueryData<{
           data: { id: number | string };
         }>([resource, { id: newData.id.toString() }]);
@@ -70,7 +72,7 @@ export const useUpdateOne = <R extends ResourceString>(
           );
         }
         if (context?.oldData) {
-          queryClient.setQueryData([resource, query], context.oldData);
+          queryClient.setQueryData(queryKey, context.oldData);
         }
       },
       onSettled: (data) => {
@@ -78,7 +80,7 @@ export const useUpdateOne = <R extends ResourceString>(
           resource,
           { id: data?.data.id.toString() },
         ]);
-        queryClient.invalidateQueries([resource, query]);
+        queryClient.invalidateQueries(queryKey);
       },
       ...rest,
     }
