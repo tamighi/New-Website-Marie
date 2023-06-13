@@ -109,24 +109,6 @@ export const dataProvider = {
     return { data };
   },
 
-  updateMany: async <R extends ResourceString>(
-    resource: string,
-    params: UpdateManyParams<ResourceType<R>>
-  ) => {
-    const query = {
-      filter: JSON.stringify({ id: params.ids }),
-    };
-    const url = `${apiUrl}/${resource}?${query_string.stringify(query)}`;
-    const resp = await httpClient(url, {
-      method: "PUT",
-      body: JSON.stringify(params.data),
-    });
-    if (tGS.hasData(resp)) {
-      return resp;
-    }
-    throw Error("Unexpected response object");
-  },
-
   create: async <R extends ResourceString>(
     resource: string,
     params: CreateParams<ResourceType<R>>

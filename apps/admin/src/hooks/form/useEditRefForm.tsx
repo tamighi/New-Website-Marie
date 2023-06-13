@@ -1,12 +1,12 @@
 import React from "react";
 import { HttpError } from "services/utils";
 import { useDialog, useForm } from "lib";
-import { useFormErrorHandler } from "hooks";
+import { useFormErrorHandler, useGetCurrentQuery } from "hooks";
 import { useUpdateOneRef } from "hooks";
 import { ResourceString } from "types";
 
 interface EditRefFormOptions {
-  parentResource: string;
+  parentResource: ResourceString;
 }
 
 export const useEditRefForm = <T extends object>(
@@ -33,13 +33,18 @@ export const useEditRefForm = <T extends object>(
     [setError]
   );
 
-  const { mutate, isLoading } = useUpdateOneRef(ressource, {
-    onSuccess: () => {
-      showDialog?.({ content: "Item updated !" });
+  const query = useGetCurrentQuery();
+  const { mutate, isLoading } = useUpdateOneRef(
+    ressource,
+    {
+      onSuccess: () => {
+        showDialog?.({ content: "Item updated !" });
+      },
+      onError,
+      parentResource: options.parentResource,
     },
-    onError,
-    parentResource: options.parentResource,
-  });
+    query
+  );
 
   const onSubmit = handleSubmit(async (data: Partial<T>) => {
     mutate({ data, id });
