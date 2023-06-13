@@ -1,5 +1,5 @@
 import { useGetList } from "hooks";
-import { Card, Divider, HelpIcon } from "lib";
+import { Card, Divider, ReviewIcon } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import PendingMessageHeader from "./PendingMessageHeader";
@@ -16,7 +16,7 @@ const PendingReviews = () => {
 
   return (
     <Card className={styles.PendingMessagesCard}>
-      <PendingMessageHeader Icon={HelpIcon} title="Avis en attente" />
+      <PendingMessageHeader Icon={ReviewIcon} title="Avis en attente" />
       <Divider />
       {data && data.data.length > 0 ? (
         data.data.map((review) => {

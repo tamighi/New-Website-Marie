@@ -1,9 +1,9 @@
 import { useIsSmall } from "hooks";
 import {
   Button,
-  ContactSupportIcon,
   Divider,
   Drawer,
+  HelpIcon,
   HomeIcon,
   MessageIcon,
   ReviewIcon,
@@ -22,7 +22,7 @@ const pages = [
     divider: true,
   },
   { name: "Devis", to: "/devis", logo: <MessageIcon /> },
-  { name: "Questions", to: "/question", logo: <ContactSupportIcon /> },
+  { name: "Questions", to: "/question", logo: <HelpIcon /> },
   { name: "Avis", to: "/review", logo: <ReviewIcon /> },
 ];
 
