@@ -1,19 +1,21 @@
-import { dataProvider, DeleteManyParams } from "services/api";
+import { dataProvider, DeleteManyParams, GetListParams } from "services/api";
 import { useGetSearchParams } from "hooks";
 import { useMutation, useQueryClient } from "react-query";
+import { ResourceString, ResourceType } from "types";
 
 interface DeleteManyOptions {
   onSuccess?: () => void;
   onError?: (error: unknown) => void;
 }
 
-export const useDeleteMany = (
-  resource: string,
-  options: DeleteManyOptions = {}
+export const useDeleteMany = <R extends ResourceString>(
+  resource: ResourceString,
+  options: DeleteManyOptions = {},
+  query?: GetListParams<ResourceType<R>>
 ) => {
   const queryClient = useQueryClient();
 
-  const query = useGetSearchParams();
+  const queryKey = query ? [resource, query] : [resource];
 
   const { onError, onSuccess } = options;
 
@@ -21,14 +23,14 @@ export const useDeleteMany = (
     (params: DeleteManyParams) => dataProvider.deleteMany(resource, params),
     {
       onMutate: async (params) => {
-        await queryClient.cancelQueries([resource, query]);
+        await queryClient.cancelQueries(queryKey);
 
         const oldData = queryClient.getQueryData<{
           data: { id: number | string }[];
-        }>([resource, query]);
+        }>(queryKey);
 
         if (oldData) {
-          queryClient.setQueryData([resource, query], () => {
+          queryClient.setQueryData(queryKey, () => {
             return {
               ...oldData,
               data: oldData.data.filter(
@@ -40,11 +42,11 @@ export const useDeleteMany = (
         return { oldData };
       },
       onError: (error, _, context) => {
-        queryClient.setQueryData([resource, query], context?.oldData);
+        queryClient.setQueryData(queryKey, context?.oldData);
         onError?.(error);
       },
       onSettled: () => {
-        queryClient.invalidateQueries({ queryKey: [resource, query] });
+        queryClient.invalidateQueries(queryKey);
       },
       onSuccess,
     }

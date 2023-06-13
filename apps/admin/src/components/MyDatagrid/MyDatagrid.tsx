@@ -6,7 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { Column } from "react-table";
 
 import { ResourceString, ResourceType } from "types";
-import { useDeleteMany, useGetList, useGetSearchParams } from "hooks";
+import {
+  useDeleteMany,
+  useGetCurrentQuery,
+  useGetList,
+  useGetSearchParams,
+} from "hooks";
 import { ApiErrorImage, EmptyData, Loader, SelectedOptions } from "components";
 
 const entryPerPage = 20;
@@ -24,22 +29,20 @@ export const MyDatagrid = <R extends ResourceString>({
   const [page, setPage] = React.useState(1);
   const [selected, setSelected] = React.useState<ResourceType<R>[]>([]);
 
-  const params = useGetSearchParams();
-
-  const query = {
-    sort: JSON.parse(params.sort),
-    range: JSON.parse(params.range),
-    filter: JSON.parse(params.filter),
-  };
+  const query = useGetCurrentQuery();
 
   const { data, isLoading, isError } = useGetList<R>(resource, query);
 
   const { showDialog } = useDialog();
 
-  const { mutate } = useDeleteMany(resource, {
-    onSuccess: () =>
-      showDialog?.({ content: `${selected.length} item(s) deleted` }),
-  });
+  const { mutate } = useDeleteMany(
+    resource,
+    {
+      onSuccess: () =>
+        showDialog?.({ content: `${selected.length} item(s) deleted` }),
+    },
+    query
+  );
 
   const onDeleteClick = async () => {
     mutate({ ids: selected.map((value) => value.id) });
