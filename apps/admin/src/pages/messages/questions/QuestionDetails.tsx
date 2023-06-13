@@ -1,8 +1,10 @@
 import { useGetOne } from "hooks";
+import { useGetCurrentQuery } from "hooks/useGetCurrentQuery";
 import { MessageDetails } from "../common";
 
 const QuestionDetails = ({ id }: { id: number | string }) => {
-  const { data } = useGetOne("question", { id });
+  const query = useGetCurrentQuery();
+  const { data } = useGetOne("question", { id }, query);
   if (!data) {
     return null;
   }

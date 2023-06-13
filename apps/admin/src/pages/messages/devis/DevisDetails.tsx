@@ -1,9 +1,11 @@
 import { SimpleField } from "components";
 import { useGetOne } from "hooks";
+import { useGetCurrentQuery } from "hooks/useGetCurrentQuery";
 import { MessageDetails } from "../common";
 
 const DevisDetails = ({ id }: { id: number | string }) => {
-  const { data } = useGetOne("devis", { id });
+  const query = useGetCurrentQuery();
+  const { data } = useGetOne("devis", { id }, query);
   if (!data) {
     return null;
   }
