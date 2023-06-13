@@ -15,7 +15,7 @@ const PendingReviews = () => {
   });
 
   return (
-    <Card style={{ maxWidth: "500px", padding: 0 }}>
+    <Card className={styles.PendingMessagesCard}>
       <PendingMessageHeader Icon={HelpIcon} title="Avis en attentes" />
       <Divider />
       {data?.data.map((review) => {

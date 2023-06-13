@@ -6,6 +6,11 @@
   margin: 8px;
 }
 
+.PendingMessagesCard {
+  width: 500px;
+  padding: 0;
+}
+
 .PendingMessage {
   padding: 3px;
   cursor: pointer;

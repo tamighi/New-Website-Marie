@@ -15,7 +15,7 @@ const PendingQuestions = () => {
   });
 
   return (
-    <Card style={{ maxWidth: "500px", padding: 0 }}>
+    <Card className={styles.PendingMessagesCard}>
       <PendingMessageHeader Icon={HelpIcon} title="Questions en attentes" />
       <Divider />
       {data?.data.map((question) => {

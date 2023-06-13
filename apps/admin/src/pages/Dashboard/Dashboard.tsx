@@ -11,7 +11,7 @@ const Dashboard = () => {
       <Header>
         <h2>Dashboard</h2>
       </Header>
-      <div style={{ display: "flex", gap: "18px" }}>
+      <div style={{ display: "flex", gap: "18px", flexWrap: "wrap" }}>
         <PendingQuestions />
         <PendingReviews />
         <PendingDevis />
