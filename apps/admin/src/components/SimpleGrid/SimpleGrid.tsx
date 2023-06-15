@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Column } from "react-table";
 
 import { ResourceString, ResourceType } from "types";
-import { useGetList, useGetSearchParams } from "hooks";
+import { useGetCurrentQuery, useGetList } from "hooks";
 
 const entryPerPage = 20;
 
@@ -21,13 +21,7 @@ export const SimpleGrid = <R extends ResourceString>({
 }: SimpleGridProps<R>) => {
   const [page, setPage] = React.useState(1);
 
-  const params = useGetSearchParams();
-
-  const query = {
-    sort: JSON.parse(params.sort),
-    range: JSON.parse(params.range),
-    filter: JSON.parse(params.filter),
-  };
+  const query = useGetCurrentQuery();
 
   const { data, isLoading, isError } = useGetList<R>(resource, query);
 

@@ -2,7 +2,7 @@ import { Card } from "lib";
 import { useNavigate } from "react-router-dom";
 
 import { ResourceString, ResourceType } from "types";
-import { useGetCurrentQuery, useGetList, useGetSearchParams } from "hooks";
+import { useGetCurrentQuery, useGetList } from "hooks";
 import { ApiErrorImage, EmptyData, Loader } from "components";
 
 import styles from "./CardLayout.css";

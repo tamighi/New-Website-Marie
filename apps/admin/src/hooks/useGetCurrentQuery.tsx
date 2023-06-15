@@ -1,12 +1,23 @@
-import { useGetSearchParams } from "./useGetSearchParams";
+import { useSearchParams } from "react-router-dom";
+
+const baseParams = {
+  filter: "{}",
+  range: "[0, 3]",
+  sort: '["id", "DESC"]',
+};
 
 export const useGetCurrentQuery = () => {
-  const { sort, range, filter } = useGetSearchParams();
+  const [currentParams] = useSearchParams();
+
+  const params = {
+    ...baseParams,
+    ...Object.fromEntries(currentParams),
+  };
 
   const query = {
-    sort: JSON.parse(sort),
-    range: JSON.parse(range),
-    filter: JSON.parse(filter),
+    sort: JSON.parse(params.sort),
+    filter: JSON.parse(params.filter),
+    range: JSON.parse(params.range),
   };
 
   return query;

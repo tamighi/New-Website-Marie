@@ -10,11 +10,10 @@ import {
   useDeleteMany,
   useGetCurrentQuery,
   useGetList,
-  useGetSearchParams,
 } from "hooks";
 import { ApiErrorImage, EmptyData, Loader, SelectedOptions } from "components";
 
-const entryPerPage = 20;
+const entryPerPage = 4;
 
 //TODO: SelectedOptions only used in DataGrid
 export interface MyDatagridProps<R extends ResourceString> {
@@ -77,11 +76,11 @@ export const MyDatagrid = <R extends ResourceString>({
         clickable
         onRowClick={(value: ResourceType<R>) => navigate(`${value.id}`)}
       />
-      <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
+      <Button disabled={page <= 1} onClick={() => setPage(page - 1)}>
         Previous
       </Button>
       <Button
-        disabled={page === Math.ceil(data.count / entryPerPage)}
+        disabled={data.count < query.range[1]}
         onClick={() => setPage(page + 1)}
       >
         Next

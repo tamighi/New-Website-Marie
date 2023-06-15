@@ -1,5 +1,4 @@
 import { dataProvider, DeleteManyParams, GetListParams } from "services/api";
-import { useGetSearchParams } from "hooks";
 import { useMutation, useQueryClient } from "react-query";
 import { ResourceString, ResourceType } from "types";
 
