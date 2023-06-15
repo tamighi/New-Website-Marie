@@ -9,4 +9,5 @@ export interface DevisDto extends MessageDto {
     id: number;
   };
   endDate: number;
+  file: File;
 }

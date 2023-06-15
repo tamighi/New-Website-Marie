@@ -10,8 +10,10 @@ const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
   const { mutate, isLoading, isError, isSuccess } =
     usePostMessage<DevisDto>("devis");
+
   const [serviceId, setServiceId] = React.useState("");
   const [subServices, setSubServices] = React.useState<SubServiceDto[]>();
+  const [file, setFile] = React.useState<File>();
 
   const services = useServices();
 
@@ -27,6 +29,7 @@ const DevisContactForm = () => {
   }, [serviceId]);
 
   const onSubmit = (devis: Partial<DevisDto>) => {
+    devis.file = file;
     mutate(devis, {
       onSuccess: reset,
     });
@@ -87,6 +90,14 @@ const DevisContactForm = () => {
           rows={12}
           {...register("message")}
           label="Message"
+        />
+
+        <Input
+          type="file"
+          name="file"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setFile(e.target.files ? e.target.files[0] : undefined);
+          }}
         />
 
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
