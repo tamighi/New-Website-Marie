@@ -38,7 +38,7 @@ const GoldenBookPage = () => {
           >
             <Button
               onClick={() => setPage((prevPage) => prevPage - 1)}
-              disabled={page === 1}
+              disabled={page <= 1}
             >
               Prev
             </Button>
