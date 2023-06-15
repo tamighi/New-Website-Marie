@@ -28,11 +28,13 @@ export class DevisService extends MessagesService<Devis, DevisDto> {
   override postMessage(body: DevisDto): Promise<{ data: DevisDto }> {
     const service = body.service?.id ? body.service : undefined;
     const subService = body.subService?.id ? body.subService : undefined;
+    const endDate = body.endDate ? new Date(body.endDate) : undefined;
 
     const correctBody = {
       ...body,
       service,
       subService,
+      endDate,
     };
     return super.postMessage(correctBody);
   }
