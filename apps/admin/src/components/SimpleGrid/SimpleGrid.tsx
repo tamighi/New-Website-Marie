@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { Column } from "react-table";
 
 import { ResourceString, ResourceType } from "types";
-import { useGetCurrentQuery, useGetList } from "hooks";
+import { useGetCurrentQuery, useGetList, useSetQuery } from "hooks";
+import { ApiErrorImage, EmptyData, Loader } from "components";
 
 const entryPerPage = 20;
 
@@ -22,21 +23,27 @@ export const SimpleGrid = <R extends ResourceString>({
   const [page, setPage] = React.useState(1);
 
   const query = useGetCurrentQuery();
+  const setQuery = useSetQuery();
+
+  React.useEffect(() => {
+    setQuery({range: [(page - 1) * entryPerPage, page * entryPerPage - 1]})
+    }, [page])
+
 
   const { data, isLoading, isError } = useGetList<R>(resource, query);
 
   const navigate = useNavigate();
 
   if (isLoading) {
-    return <div>Fetching ...</div>;
+    return <Loader />;
   }
 
   if (!data?.data || isError) {
-    return <div>Error !</div>;
+    return <ApiErrorImage />;
   }
 
   if (data.count === 0) {
-    return <div>No data found ... </div>;
+    return <EmptyData />;
   }
 
   return (

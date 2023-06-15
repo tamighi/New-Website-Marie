@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 
 const baseParams = {
   filter: "{}",
-  range: "[0, 3]",
+  range: "[0, 19]",
   sort: '["id", "DESC"]',
 };
 

@@ -10,12 +10,12 @@ import {
   useDeleteMany,
   useGetCurrentQuery,
   useGetList,
+  useSetQuery,
 } from "hooks";
 import { ApiErrorImage, EmptyData, Loader, SelectedOptions } from "components";
 
-const entryPerPage = 4;
+const entryPerPage = 20;
 
-//TODO: SelectedOptions only used in DataGrid
 export interface MyDatagridProps<R extends ResourceString> {
   resource: R;
   columns: Column<ResourceType<R>>[];
@@ -29,6 +29,11 @@ export const MyDatagrid = <R extends ResourceString>({
   const [selected, setSelected] = React.useState<ResourceType<R>[]>([]);
 
   const query = useGetCurrentQuery();
+  const setQuery = useSetQuery();
+
+  React.useEffect(() => {
+    setQuery({range: [(page - 1) * entryPerPage, page * entryPerPage - 1]})
+    }, [page])
 
   const { data, isLoading, isError } = useGetList<R>(resource, query);
 
