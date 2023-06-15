@@ -16,7 +16,7 @@ const Appbar = ({ toggleSideBar }: AppbarProps) => {
         <IconButton onClick={toggleSideBar || undefined}>
           <MenuIcon />
         </IconButton>
-        <div style={{ flexGrow: 1, textAlign: "center" }}>Appbar</div>
+        <div style={{ flexGrow: 1 }} />
         <Button onClick={logout} color={"secondary"}>
           Logout
         </Button>
