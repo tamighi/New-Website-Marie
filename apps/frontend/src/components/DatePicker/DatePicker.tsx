@@ -77,7 +77,13 @@ const DatePicker = (
   }
 
   return (
-    <div className={styles.datePicker}>
+    <div
+      className={styles.datePicker}
+      onClick={() => {
+        const datePicker = document.querySelector(`.${styles.datePicker}`);
+        datePicker?.classList.add(styles.show);
+      }}
+    >
       <Input readOnly ref={ref} {...props} />
       <div className={styles.DatePickerButtons}>
         <CalendarIcon
@@ -89,8 +95,9 @@ const DatePicker = (
         />
         <CloseIcon
           className={styles.DatePickerButton}
-          onClick={() => {
+          onClick={(e: React.MouseEvent) => {
             handleChange(undefined);
+            e.stopPropagation();
           }}
         />
       </div>
@@ -123,7 +130,14 @@ const DatePicker = (
                 key={index}
                 variant="primary"
                 className={day ? styles.datePickerDay : styles.empty}
-                onClick={day ? () => handleChange(day) : undefined}
+                onClick={
+                  day
+                    ? (e: React.MouseEvent) => {
+                        handleChange(day);
+                        e.stopPropagation();
+                      }
+                    : undefined
+                }
               >
                 {day}
               </Paper>
