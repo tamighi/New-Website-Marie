@@ -26,9 +26,14 @@ export class DevisService extends MessagesService<Devis, DevisDto> {
   }
 
   override postMessage(body: DevisDto): Promise<{ data: DevisDto }> {
-    const checkNullService = body.service?.id
-      ? body
-      : { ...body, service: undefined };
-    return super.postMessage(checkNullService);
+    const service = body.service?.id ? body.service : undefined;
+    const subService = body.subService?.id ? body.subService : undefined;
+
+    const correctBody = {
+      ...body,
+      service,
+      subService,
+    };
+    return super.postMessage(correctBody);
   }
 }
