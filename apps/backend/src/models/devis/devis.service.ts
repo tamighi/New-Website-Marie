@@ -20,7 +20,6 @@ export class DevisService extends MessagesService<Devis, DevisDto> {
     devisDto.service = devis.service;
     devisDto.subService = devis.subService;
     devisDto.nbCharacter = devis.nbCharacter;
-    devisDto.price = devis.price;
     devisDto.endDate = devis.endDate;
 
     return devisDto;
