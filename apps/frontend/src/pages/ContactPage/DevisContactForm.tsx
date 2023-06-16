@@ -2,14 +2,13 @@ import React from "react";
 
 import { Button, Input, Select, TextArea, useForm } from "lib";
 
-import { usePostMessage, useServices } from "hooks";
+import { usePostFormData, useServices } from "hooks";
 import { DatePicker, FormContent, Loader, ApiErrorForm } from "components";
 import { DevisDto, SubServiceDto } from "types";
 
 const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
-  const { mutate, isLoading, isError, isSuccess } =
-    usePostMessage<DevisDto>("devis");
+  const { mutate, isLoading, isError, isSuccess } = usePostFormData("devis");
 
   const [serviceId, setServiceId] = React.useState("");
   const [subServices, setSubServices] = React.useState<SubServiceDto[]>();
@@ -29,8 +28,10 @@ const DevisContactForm = () => {
   }, [serviceId]);
 
   const onSubmit = (devis: Partial<DevisDto>) => {
-    devis.file = file;
-    mutate(devis, {
+    const data = new FormData();
+    data.append("file", file as Blob);
+    data.append("devis", JSON.stringify(devis));
+    mutate(data, {
       onSuccess: reset,
     });
   };

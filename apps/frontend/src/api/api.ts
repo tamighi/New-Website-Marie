@@ -22,6 +22,17 @@ export const postMessage = async <T extends MessageDto>(
   return httpClient(url, { method: "POST", body: JSON.stringify(message) });
 };
 
+export const postFormData = async (
+  message: FormData,
+  resource: string
+): Promise<any> => {
+  const url = `${apiUrl}/${resource}/postMessage`;
+  const headers = new Headers({ "Content-Type": "multipart/form-data" });
+  console.log(message);
+
+  return httpClient(url, { method: "POST", body: message, headers });
+};
+
 export interface GetReviewsParams {
   pagination: { page: number; perPage: number };
 }

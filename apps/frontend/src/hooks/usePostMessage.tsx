@@ -6,7 +6,7 @@ const usePostMessage = <T extends MessageDto>(
   resource: "question" | "devis" | "review"
 ) => {
   const { mutate, isLoading, isError, isSuccess } = useMutation(
-    (question: Partial<T>) => postMessage(question, resource)
+    (message: Partial<T>) => postMessage(message, resource)
   );
   return { mutate, isError, isLoading, isSuccess };
 };
