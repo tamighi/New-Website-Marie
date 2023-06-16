@@ -26,11 +26,9 @@ export const postFormData = async (
   message: FormData,
   resource: string
 ): Promise<any> => {
-  const url = `${apiUrl}/${resource}/postMessage`;
-  const headers = new Headers({ "Content-Type": "multipart/form-data" });
-  console.log(message);
+  const url = `${apiUrl}/${resource}/postFormData`;
 
-  return httpClient(url, { method: "POST", body: message, headers });
+  return httpClient(url, { method: "POST", body: message });
 };
 
 export interface GetReviewsParams {
