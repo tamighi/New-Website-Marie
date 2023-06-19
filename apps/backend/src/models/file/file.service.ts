@@ -20,4 +20,11 @@ export class FileService {
 
     return entity;
   }
+
+  async getFile(id: number) {
+    const entity = this.fileRepository.findOneOrFail({
+      where: { id: id },
+    });
+    return entity;
+  }
 }

@@ -1,10 +1,14 @@
 import {
   Body,
   Controller,
+  Get,
   HttpException,
   HttpStatus,
+  Param,
   Post,
+  Res,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
 import { DevisDto } from "./dtos/devis.dto";
@@ -13,6 +17,8 @@ import { DevisService } from "./devis.service";
 import { MessagesController } from "../message/messages.controller";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
+import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
+import { Response } from "express";
 
 const multerConfig = {
   storage: diskStorage({
@@ -44,6 +50,17 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
         JSON.parse(body.devis),
         file
       );
+    } catch (err) {
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get("getFile/:id")
+  async getFile(@Param() param: { id: number }, @Res() res: Response) {
+    try {
+      const file = await this.devisService.getFile(param.id);
+      res.download(`./uploads/${file.storedFilename}`, file.originalFilename);
     } catch (err) {
       throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }

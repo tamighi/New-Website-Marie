@@ -43,9 +43,13 @@ export class DevisService extends MessagesService<Devis, DevisDto> {
       service,
       subService,
       endDate,
-      file: storedFile
+      file: storedFile,
     };
 
     return super.postMessage(correctBody);
+  }
+
+  async getFile(fileId: number) {
+    return this.fileService.getFile(fileId);
   }
 }
