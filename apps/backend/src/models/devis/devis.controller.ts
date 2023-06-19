@@ -55,11 +55,13 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get("getFile/:id")
   async getFile(@Param() param: { id: number }, @Res() res: Response) {
     try {
       const file = await this.devisService.getFile(param.id);
       res.download(`./uploads/${file.storedFilename}`, file.originalFilename);
+      return { status: "ok" }
     } catch (err) {
       throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }

@@ -140,4 +140,12 @@ export const dataProvider = {
       method: "DELETE",
     });
   },
+
+  simpleRequest: async (url: string) => {
+    return fetch(url, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+    });
+  },
 };

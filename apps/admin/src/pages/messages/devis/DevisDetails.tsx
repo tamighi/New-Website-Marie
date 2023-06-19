@@ -1,14 +1,20 @@
 import { SimpleField } from "components";
 import { useGetCurrentQuery, useGetOne } from "hooks";
 import { Button } from "lib";
+import { dataProvider } from "services/api";
 import { MessageDetails } from "../common";
 
 const DevisDetails = ({ id }: { id: number | string }) => {
   const query = useGetCurrentQuery();
   const { data } = useGetOne("devis", { id }, query);
 
+  if (!data) {
+    return null;
+  }
+  const devis = data.data;
+
   const handleDownload = async () => {
-    const res = await fetch(
+    const res = await dataProvider.simpleRequest(
       `${process.env.BACKEND_URL}/devis/getFile/${devis.file?.id}`
     );
     const blob = await res.blob();
@@ -16,7 +22,7 @@ const DevisDetails = ({ id }: { id: number | string }) => {
     const link = document.createElement("a");
 
     link.href = url;
-    link.download = "test2.txt"
+    link.download = devis.file?.originalFilename || "NoFilename"
 
     // Append to html link element page
     document.body.appendChild(link);
@@ -28,16 +34,8 @@ const DevisDetails = ({ id }: { id: number | string }) => {
     link.parentNode?.removeChild(link);
   };
 
-  if (!data) {
-    return null;
-  }
-  const devis = data.data;
-  console.log(devis.file);
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <Button onClick={handleDownload}>
-        File: {devis.file?.originalFilename}
-      </Button>
       <SimpleField label="Nombre de characteres">
         {devis.nbCharacter}
       </SimpleField>
@@ -55,6 +53,9 @@ const DevisDetails = ({ id }: { id: number | string }) => {
       }`}</SimpleField>
 
       <MessageDetails resource="devis" message={devis} />
+      <Button onClick={devis.file && handleDownload}>
+        File: {devis.file?.originalFilename || "Pas de fichiers joints"}
+      </Button>
     </div>
   );
 };
