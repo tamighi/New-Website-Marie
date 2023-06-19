@@ -1,7 +1,9 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
   HttpException,
   HttpStatus,
   Param,
@@ -49,15 +51,18 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
     @UploadedFile() file: Express.Multer.File,
     @Body() body: any
   ) {
+    let storedFile = undefined;
+    if (file) {
+      storedFile = await this.fileService.storeFilename(file);
+    }
     try {
-      let storedFile = undefined;
-      if (file) {
-        storedFile = await this.fileService.storeFilename(file);
-      }
       const devis = JSON.parse(body.devis);
       devis.file = storedFile;
       return await this.devisService.postMessage(devis);
     } catch (err) {
+      if (storedFile) {
+        this.fileService.deleteFile(storedFile.id);
+      }
       throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
   }
@@ -72,5 +77,16 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
     } catch (err) {
       throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
     }
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete("/:id")
+  @HttpCode(204)
+  async deleteOne(@Param() id: { id: number }) {
+    const devis = await this.devisService.getOneById(id)
+    if (devis.data.file) {
+      this.fileService.deleteFile(devis.data.file.id)
+    }
+    super.deleteOne(id);
   }
 }

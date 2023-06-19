@@ -3,6 +3,8 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { File } from "./entity/file.entity";
 
+import * as fs from 'fs';
+
 @Injectable()
 export class FileService {
   private fileRepository: Repository<File>;
@@ -26,5 +28,14 @@ export class FileService {
       where: { id: id },
     });
     return entity;
+  }
+
+  async deleteFile(id: number) {
+    const entity = await this.fileRepository.findOneOrFail({
+      where: { id: id },
+    });
+
+    this.fileRepository.delete(entity.id)
+    fs.unlinkSync(`uploads/${entity.storedFilename}`);
   }
 }
