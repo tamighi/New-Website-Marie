@@ -45,7 +45,7 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
     super(devisService);
   }
 
-  @Post("postFormData")
+  @Post("postFile")
   @UseInterceptors(FileInterceptor("file", multerConfig))
   async postMessageWithFile(
     @UploadedFile() file: Express.Multer.File,

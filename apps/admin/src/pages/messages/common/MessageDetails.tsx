@@ -22,6 +22,9 @@ const MessageDetails = <T extends ResourceType<MessageResourceString>>(
   return (
     <Grid container style={{ gap: "16px" }}>
       <Grid xs={12}>
+        <StatusField message={message} resource={resource} />
+      </Grid>
+      <Grid xs={12}>
         <SimpleField label="Recu le">
           {new Date(message.date).toLocaleDateString()}
         </SimpleField>
@@ -31,9 +34,6 @@ const MessageDetails = <T extends ResourceType<MessageResourceString>>(
       </Grid>
       <Grid xs={6}>
         <SimpleField label="Email">{message.email}</SimpleField>
-      </Grid>
-      <Grid xs={12}>
-        <StatusField message={message} resource={resource} />
       </Grid>
       <Grid xs={12}>
         <SimpleField label="Message">{message.message}</SimpleField>

@@ -26,7 +26,7 @@ export const postFormData = async (
   message: FormData,
   resource: string
 ): Promise<any> => {
-  const url = `${apiUrl}/${resource}/postFormData`;
+  const url = `${apiUrl}/${resource}/postFile`;
 
   return httpClient(url, { method: "POST", body: message });
 };
