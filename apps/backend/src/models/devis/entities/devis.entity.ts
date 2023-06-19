@@ -11,6 +11,9 @@ export class Devis extends Message {
   @Column({ nullable: true })
   endDate?: Date;
 
+  @Column({ nullable: true })
+  fileName?: string;
+
   @ManyToOne(() => Service, {
     onDelete: "SET NULL",
     eager: true,

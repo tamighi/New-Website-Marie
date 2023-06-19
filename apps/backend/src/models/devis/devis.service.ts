@@ -21,21 +21,28 @@ export class DevisService extends MessagesService<Devis, DevisDto> {
     devisDto.subService = devis.subService;
     devisDto.nbCharacter = devis.nbCharacter;
     devisDto.endDate = devis.endDate;
+    devisDto.fileName = devis.fileName;
 
     return devisDto;
   }
 
-  override postMessage(body: DevisDto): Promise<{ data: DevisDto }> {
+  postMessageWithFile(
+    body: DevisDto,
+    file: Express.Multer.File
+  ): Promise<{ data: DevisDto }> {
     const service = body.service?.id ? body.service : undefined;
     const subService = body.subService?.id ? body.subService : undefined;
     const endDate = body.endDate ? new Date(body.endDate) : undefined;
+    const fileName = file.filename;
 
     const correctBody = {
       ...body,
       service,
       subService,
       endDate,
+      fileName
     };
+
     return super.postMessage(correctBody);
   }
 }
