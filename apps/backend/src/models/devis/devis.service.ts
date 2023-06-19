@@ -36,7 +36,11 @@ export class DevisService extends MessagesService<Devis, DevisDto> {
     const subService = body.subService?.id ? body.subService : undefined;
     const endDate = body.endDate ? new Date(body.endDate) : undefined;
 
-    const storedFile = await this.fileService.storeFilename(file);
+    let storedFile = undefined;
+
+    if (file) {
+      storedFile = await this.fileService.storeFilename(file);
+    }
 
     const correctBody = {
       ...body,

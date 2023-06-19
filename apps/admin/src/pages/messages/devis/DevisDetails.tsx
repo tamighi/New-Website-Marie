@@ -53,7 +53,7 @@ const DevisDetails = ({ id }: { id: number | string }) => {
       }`}</SimpleField>
 
       <MessageDetails resource="devis" message={devis} />
-      <Button onClick={devis.file && handleDownload}>
+      <Button disabled={!devis.file} onClick={devis.file && handleDownload}>
         File: {devis.file?.originalFilename || "Pas de fichiers joints"}
       </Button>
     </div>
