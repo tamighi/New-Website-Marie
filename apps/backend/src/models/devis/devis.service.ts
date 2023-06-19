@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
+import { FileService } from "../file/file.service";
 import { MessagesService } from "../message/messages.service";
 import { DevisDto } from "./dtos/devis.dto";
 import { Devis } from "./entities/devis.entity";
@@ -9,7 +10,8 @@ import { Devis } from "./entities/devis.entity";
 export class DevisService extends MessagesService<Devis, DevisDto> {
   constructor(
     @InjectRepository(Devis)
-    protected readonly devisRepository: Repository<Devis>
+    protected readonly devisRepository: Repository<Devis>,
+    private readonly fileService: FileService
   ) {
     super(devisRepository);
   }
@@ -21,26 +23,27 @@ export class DevisService extends MessagesService<Devis, DevisDto> {
     devisDto.subService = devis.subService;
     devisDto.nbCharacter = devis.nbCharacter;
     devisDto.endDate = devis.endDate;
-    devisDto.fileName = devis.fileName;
+    devisDto.file = devis.file;
 
     return devisDto;
   }
 
-  postMessageWithFile(
+  async postMessageWithFile(
     body: DevisDto,
     file: Express.Multer.File
   ): Promise<{ data: DevisDto }> {
     const service = body.service?.id ? body.service : undefined;
     const subService = body.subService?.id ? body.subService : undefined;
     const endDate = body.endDate ? new Date(body.endDate) : undefined;
-    const fileName = file.filename;
+
+    const storedFile = await this.fileService.storeFilename(file);
 
     const correctBody = {
       ...body,
       service,
       subService,
       endDate,
-      fileName
+      file: storedFile
     };
 
     return super.postMessage(correctBody);

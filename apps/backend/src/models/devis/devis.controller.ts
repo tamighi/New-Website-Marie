@@ -39,7 +39,6 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
     @UploadedFile() file: Express.Multer.File,
     @Body() body: any
   ) {
-    console.log(file)
     try {
       return await this.devisService.postMessageWithFile(
         JSON.parse(body.devis),
