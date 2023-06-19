@@ -5,6 +5,7 @@
   padding-top: 10px;
   border-radius: 5px;
   word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .SimpleFieldLabel {

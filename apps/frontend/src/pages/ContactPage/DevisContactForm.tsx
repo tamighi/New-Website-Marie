@@ -13,6 +13,7 @@ const DevisContactForm = () => {
   const [serviceId, setServiceId] = React.useState("");
   const [subServices, setSubServices] = React.useState<SubServiceDto[]>();
   const [file, setFile] = React.useState<File>();
+  const fileRef = React.useRef<HTMLInputElement>(null);
 
   const services = useServices();
 
@@ -32,7 +33,12 @@ const DevisContactForm = () => {
     data.append("file", file as Blob);
     data.append("devis", JSON.stringify(devis));
     mutate(data, {
-      onSuccess: reset,
+      onSuccess: () => {
+        reset();
+        if (fileRef.current) {
+          fileRef.current.value = "";
+        }
+      },
     });
   };
 
@@ -99,6 +105,7 @@ const DevisContactForm = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setFile(e.target.files ? e.target.files[0] : undefined);
           }}
+          ref={fileRef}
         />
 
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
