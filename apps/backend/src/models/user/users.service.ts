@@ -12,6 +12,17 @@ export class UsersService extends AbstractService<User, UserDto> {
     protected readonly userRepository: Repository<User>
   ) {
     super(userRepository);
+
+    this.createDefaultUser();
+  }
+
+  async createDefaultUser() {
+    const [_, count] = await this.userRepository.findAndCount();
+
+    if (count === 0) {
+      const user = this.userRepository.create({ identifier: "123", password: "123" });
+      await this.userRepository.save(user);
+    }
   }
 
   entityToDto(user: User): UserDto {
