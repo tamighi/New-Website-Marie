@@ -55,7 +55,6 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get("getFile/:id")
   async getFile(@Param() param: { id: number }, @Res() res: Response) {
     try {
