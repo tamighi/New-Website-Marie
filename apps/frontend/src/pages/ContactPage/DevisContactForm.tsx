@@ -5,6 +5,7 @@ import { Button, Input, Select, TextArea, useForm } from "lib";
 import { usePostFormData, useServices } from "hooks";
 import { DatePicker, FormContent, Loader, ApiErrorForm } from "components";
 import { DevisDto, SubServiceDto } from "types";
+import { CustomFileInput } from "./CustomFileInput";
 
 const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
@@ -99,14 +100,7 @@ const DevisContactForm = () => {
           label="Message"
         />
 
-        <Input
-          type="file"
-          name="file"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setFile(e.target.files ? e.target.files[0] : undefined);
-          }}
-          ref={fileRef}
-        />
+        <CustomFileInput onChange={setFile} />
 
         <div style={{ gap: "6px", display: "flex", alignItems: "flex-start" }}>
           <Button type="submit" variant="contained" disabled={isLoading}>
