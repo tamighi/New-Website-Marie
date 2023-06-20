@@ -7,7 +7,7 @@ const Rating = (
   props: RatingProps,
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
-  const [rating, setRating] = React.useState(0);
+  const [rating, setRating] = React.useState(props.value || 0);
   const [hoverRating, setHoverRating] = React.useState(0);
 
   const handleRatingChange = (value: number) => {
@@ -19,7 +19,7 @@ const Rating = (
       const event = {
         target: {
           value: value.toString(),
-          name: props.name
+          name: props.name,
         },
       } as React.ChangeEvent<HTMLInputElement>;
       props.onChange(event);
@@ -35,16 +35,18 @@ const Rating = (
   };
 
   return (
-    <div className={styles.RatingContainer}>
+    <div className={`${styles.RatingContainer}`}>
       {[1, 2, 3, 4, 5].map((value) => (
         <span
           key={value}
           className={`${styles.RatingStar} ${
             value <= (hoverRating || rating) ? styles.active : ""
-          }`}
-          onClick={() => handleRatingChange(value)}
-          onMouseEnter={() => handleHoverRating(value)}
-          onMouseLeave={() => handleMouseLeave()}
+          } ${props.disabled ? "" : styles.NotDisabled}`}
+          onClick={props.disabled ? undefined : () => handleRatingChange(value)}
+          onMouseEnter={
+            props.disabled ? undefined : () => handleHoverRating(value)
+          }
+          onMouseLeave={props.disabled ? undefined : () => handleMouseLeave()}
         >
           ★
         </span>
