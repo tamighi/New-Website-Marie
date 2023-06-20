@@ -17,7 +17,13 @@ const ReviewContactForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
         <Input required flex {...register("name")} label="Nom" />
-        <Input required flex {...register("email")} label="Email" />
+        <Input
+          type="email"
+          required
+          flex
+          {...register("email")}
+          label="Email"
+        />
         <Rating required {...register("note")} />
 
         <TextArea
