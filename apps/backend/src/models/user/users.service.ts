@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { comparePwd, hashPwd } from "src/helper/bcrypt";
 import { AbstractService } from "src/models/abstract/abstract.service";
 import { Repository } from "typeorm";
 import { UserDto } from "./dtos/user.dto";
@@ -16,11 +17,24 @@ export class UsersService extends AbstractService<User, UserDto> {
     this.createDefaultUser();
   }
 
+  async validateUser(identifier: string, password: string) {
+    const user: User | null = await this.repository.findOneBy({
+      identifier: identifier,
+    });
+    if (!user || !(await comparePwd(password, user.password))) {
+      return null;
+    }
+    return this.entityToDto(user);
+  }
+
   async createDefaultUser() {
     const [_, count] = await this.userRepository.findAndCount();
 
     if (count === 0) {
-      const user = this.userRepository.create({ identifier: "123", password: "123" });
+      const user = this.userRepository.create({
+        identifier: "123",
+        password: await hashPwd("123"),
+      });
       await this.userRepository.save(user);
     }
   }
@@ -30,7 +44,6 @@ export class UsersService extends AbstractService<User, UserDto> {
 
     userDto.id = user.id;
     userDto.identifier = user.identifier;
-    userDto.password = user.password;
 
     return userDto;
   }

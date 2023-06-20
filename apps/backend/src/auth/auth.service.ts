@@ -14,11 +14,7 @@ export class AuthService {
     identifier: string,
     password: string
   ): Promise<UserDto | null> {
-    const user = await this.userService.findOneByIdentifier(identifier);
-    if (!user || user.password !== password) {
-      return null;
-    }
-    return user;
+    return this.userService.validateUser(identifier, password)
   }
 
   async login(user: any) {
