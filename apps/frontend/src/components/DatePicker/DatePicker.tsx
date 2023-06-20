@@ -19,6 +19,10 @@ const DatePicker = (
   props: DatePickerProps,
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1;
+  const currentYear = currentDate.getFullYear();
+
   const [month, setMonth] = React.useState(new Date().getMonth());
   const [year, setYear] = React.useState(new Date().getFullYear());
 
@@ -104,9 +108,11 @@ const DatePicker = (
       <div className={styles.datePickerDropdown} ref={datePickerRef}>
         <Paper>
           <div className={styles.datePickerHeader}>
-            <span className={styles.datePickerPrev} onClick={handlePrevMonth}>
-              &#10094;
-            </span>
+            {currentYear < year || currentMonth <= month ? (
+              <span className={styles.datePickerPrev} onClick={handlePrevMonth}>
+                &#10094;
+              </span>
+            ) : null}
             <span className={styles.datePickerHeaderTitle}>
               {new Date(year, month).toLocaleDateString("fr", {
                 month: "long",
