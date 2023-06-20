@@ -20,6 +20,7 @@ const DatePicker = (
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
   const currentDate = new Date();
+  const currentDay = currentDate.getDate();
   const currentMonth = currentDate.getMonth() + 1;
   const currentYear = currentDate.getFullYear();
 
@@ -80,6 +81,12 @@ const DatePicker = (
     days.push(i);
   }
 
+  const isDayPassed = (day: number) => {
+    return (
+      day <= currentDay && year === currentYear && month + 1 === currentMonth
+    );
+  };
+
   return (
     <div
       className={styles.datePicker}
@@ -135,7 +142,9 @@ const DatePicker = (
               <Paper
                 key={index}
                 variant="primary"
-                className={day ? styles.datePickerDay : styles.empty}
+                className={
+                  day && !isDayPassed(day) ? styles.datePickerDay : styles.empty
+                }
                 onClick={
                   day
                     ? (e: React.MouseEvent) => {
