@@ -23,6 +23,8 @@ export const SubServiceCreate = ({ serviceId }: { serviceId: number }) => {
             {...register("pricePerCharacter")}
             placeholder="Prix par caractere"
             flex
+            type="number"
+            step={0.001}
           />
         </FormContent>
         <FormAction>

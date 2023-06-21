@@ -7,6 +7,8 @@ import { DatePicker, FormContent, Loader, ApiErrorForm } from "components";
 import { DevisDto, SubServiceDto } from "types";
 import { CustomFileInput } from "./CustomFileInput";
 
+import styles from "./NumberInput.css"
+
 const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
   const { mutate, isLoading, isError, isSuccess } = usePostFormData("devis");
@@ -65,6 +67,8 @@ const DevisContactForm = () => {
           flex
           {...register("nbCharacter")}
           label="Nombre de caractère"
+          type="number"
+          className={styles.NumberInput}
         />
         <DatePicker flex label="Delai" required {...register("endDate")} />
 

@@ -34,6 +34,8 @@ export const SubServiceEditForm = ({
             defaultValue={subService.pricePerCharacter}
             placeholder="Prix par caractere"
             flex
+            type="number"
+            step={0.001}
           />
         </FormContent>
         <FormAction>

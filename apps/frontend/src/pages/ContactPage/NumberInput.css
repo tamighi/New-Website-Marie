@@ -1,0 +1,11 @@
+.NumberInput::-webkit-outer-spin-button,
+.NumberInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.NumberInput[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
