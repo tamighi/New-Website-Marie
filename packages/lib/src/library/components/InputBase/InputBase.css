@@ -25,5 +25,3 @@
 .InputContainer textarea:not(:placeholder-shown) ~ .Label {
   transform: translateY(-15px) translateX(10px) scale(0.75);
 }
-
-
