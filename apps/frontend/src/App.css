@@ -4,6 +4,7 @@
   flex-direction: column;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   letter-spacing: 0.00938em;
-  font-size: 18px; overflow-x: hidden;
+  font-size: 18px;
+  overflow-x: hidden;
   font-weight: 400;
 }
