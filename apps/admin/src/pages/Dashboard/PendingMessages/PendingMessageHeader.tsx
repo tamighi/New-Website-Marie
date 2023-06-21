@@ -10,7 +10,7 @@ const PendingMessageHeader = (props: PendingMessageHeaderProps) => {
   return (
     <div className={styles.PendingMessagesHeader}>
       <Icon />
-      <h2>{title}</h2>
+      <h2 style={{ textAlign: "right" }}>{title}</h2>
     </div>
   );
 };

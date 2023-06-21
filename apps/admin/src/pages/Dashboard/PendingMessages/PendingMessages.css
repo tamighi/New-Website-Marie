@@ -1,13 +1,14 @@
+.PendingMessagesCard {
+  padding: 0;
+  flex: 1 1 400px;
+  max-width: 100%;
+}
+
 .PendingMessagesHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 8px;
-}
-
-.PendingMessagesCard {
-  width: 500px;
-  padding: 0;
 }
 
 .PendingMessage {
