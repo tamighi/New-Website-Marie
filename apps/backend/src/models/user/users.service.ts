@@ -32,8 +32,8 @@ export class UsersService extends AbstractService<User, UserDto> {
 
     if (count === 0) {
       const user = this.userRepository.create({
-        identifier: "123",
-        password: await hashPwd("123"),
+        identifier: process.env.DEFAULT_USER_ID,
+        password: await hashPwd(process.env.DEFAULT_USER_PWD as string),
       });
       await this.userRepository.save(user);
     }
