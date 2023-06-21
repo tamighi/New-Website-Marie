@@ -23,6 +23,8 @@ services:
     env_file:
       - .env
     restart: always
+    volumes:
+      - db:/var/lib/postgresql/data
     networks:
       - mynetwork
 
@@ -41,6 +43,9 @@ services:
       - 80:80
     networks:
       - mynetwork
+
+volumes:
+  db:
 
 networks:
   mynetwork:
