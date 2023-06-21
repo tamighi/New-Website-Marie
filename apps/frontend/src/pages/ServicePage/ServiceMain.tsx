@@ -8,7 +8,7 @@ const ServiceMain = () => {
 
   return (
     <>
-      <Title>Les services proposés ...</Title>
+      <Title>Les services proposés</Title>
       <p>
         Avoir recours à un service de relecture-correction implique
         naturellement d’y consacrer un budget. Vous pourrez cependant vite
