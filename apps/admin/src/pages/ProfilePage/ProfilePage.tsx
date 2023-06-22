@@ -23,10 +23,12 @@ const ProfilePage = () => {
         { method: "POST", body: data, json: true }
       ),
     {
-      onSuccess: () => {
+      onSuccess: async (data) => {
         reset();
         showDialog?.({ content: "Mot de passe modifié avec succès" });
         setError("");
+        const resp = await data.json();
+        localStorage.setItem("access_token", resp.access_token as string);
       },
       onError: () => setError("Mot de passe incorrect")
     }
@@ -42,7 +44,7 @@ const ProfilePage = () => {
 
   return (
     <MainCard>
-      <p>Changement de mot de passe</p>
+      <h3>Changement de mot de passe</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormContent>
           <Input

@@ -44,6 +44,7 @@ export class UsersService extends AbstractService<User, UserDto> {
 
     userDto.id = user.id;
     userDto.identifier = user.identifier;
+    userDto.lastModified = user.lastModified
 
     return userDto;
   }
@@ -62,8 +63,13 @@ export class UsersService extends AbstractService<User, UserDto> {
   async changePassword(id: number, newPassword: string) {
     const hashedPwd = await hashPwd(newPassword)
 
+    const lastModified = new Date();
+
+    lastModified.setMilliseconds(0);
+
     await this.userRepository.update(id, {
       password: hashedPwd,
+      lastModified
     });
   }
 }

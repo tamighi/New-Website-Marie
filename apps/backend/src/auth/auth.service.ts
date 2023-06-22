@@ -27,13 +27,27 @@ export class AuthService {
     });
   }
 
-  isTokenInvalid(token: string) {
-    const isInvalid = this.invalidatedTokenRepository.exist({
+  async isTokenInvalid(token: string, payload: any) {
+    const isInvalidated = await this.invalidatedTokenRepository.exist({
       where: {
         token,
       },
     });
-    return isInvalid;
+
+    try {
+      const decodedToken = this.jwtService.verify(token);
+      const creationDate = new Date(decodedToken.iat * 1000);
+
+      const user = await this.userService.getOneById(payload.sub);
+
+      const isNewPassword = user.data.lastModified
+        ? user.data.lastModified > creationDate
+        : false;
+
+      return isInvalidated || isNewPassword;
+    } catch {
+      throw new UnauthorizedException();
+    }
   }
 
   async validateUser(

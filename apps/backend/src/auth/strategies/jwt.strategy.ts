@@ -22,7 +22,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
 
     const token = authorizationHeader.split(" ")[1];
-    if (await this.authService.isTokenInvalid(token)) {
+    if (await this.authService.isTokenInvalid(token, payload)) {
       throw new UnauthorizedException();
     }
     
