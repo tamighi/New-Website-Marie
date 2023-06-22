@@ -9,7 +9,7 @@ import { Request } from "express"
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly authService: AuthService) {
     super({
-      secretOrKey: "secret",
+      secretOrKey: process.env.JWT_SECRET,
       ignoreExpiration: false,
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       passReqToCallback: true

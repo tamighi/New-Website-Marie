@@ -13,7 +13,7 @@ import { InvalidatedToken } from "./entities/invalidatedToken.entity";
   imports: [
     UsersModule,
     PassportModule,
-    JwtModule.register({ secret: "secret", signOptions: { expiresIn: "1d" } }),
+    JwtModule.register({ secret: process.env.JWT_SECRET, signOptions: { expiresIn: "1d" } }),
     TypeOrmModule.forFeature([InvalidatedToken]),
   ],
   controllers: [AuthController],
