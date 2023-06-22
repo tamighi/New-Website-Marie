@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 
 import { Appbar, Sidebar } from "components";
 
-
 import {
   Dashboard,
   DevisPage,
@@ -12,7 +11,8 @@ import {
   ServiceCreate,
   ServiceEdit,
   ServicePage,
-  ErrorPage
+  ErrorPage,
+  ProfilePage,
 } from "pages";
 
 import styles from "./App.css";
@@ -44,6 +44,7 @@ export const App = () => {
           <Route path="question/*" element={<QuestionPage />} />
           <Route path="devis/*" element={<DevisPage />} />
           <Route path="review/*" element={<ReviewPage />} />
+          <Route path="profile" element={<ProfilePage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
