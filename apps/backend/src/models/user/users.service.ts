@@ -58,4 +58,12 @@ export class UsersService extends AbstractService<User, UserDto> {
 
     return this.entityToDto(user);
   }
+
+  async changePassword(id: number, newPassword: string) {
+    const hashedPwd = await hashPwd(newPassword)
+
+    await this.userRepository.update(id, {
+      password: hashedPwd,
+    });
+  }
 }

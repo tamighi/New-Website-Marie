@@ -1,6 +1,6 @@
 import query_string from "query-string";
 import { typeRegister, ResourceString, ResourceType } from "types";
-import { httpClient } from "../utils";
+import { httpClient, HttpError } from "../utils";
 import { TypeGuard } from "../utils";
 
 const apiUrl = process.env.BACKEND_URL;
@@ -35,6 +35,12 @@ export interface DeleteParams {
 
 export interface DeleteManyParams {
   ids: (string | number)[];
+}
+
+interface SimpleRequestOptions {
+  method?: "POST" | "GET";
+  body?: any;
+  json?: boolean;
 }
 
 const tGS = new TypeGuard(typeRegister);
@@ -141,11 +147,29 @@ export const dataProvider = {
     });
   },
 
-  simpleRequest: async (url: string) => {
-    return fetch(url, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      },
+  simpleRequest: async (url: string, options: SimpleRequestOptions = {}) => {
+    const { method = "GET", body, json = false } = options;
+
+    const headers = new Headers();
+
+    const accessToken = localStorage.getItem("access_token");
+    if (accessToken) {
+      headers.set("Authorization", `Bearer ${accessToken}`);
+    }
+
+    if (json) {
+      headers.set("Content-Type", "application/json");
+    }
+
+    const resp = await fetch(url, {
+      headers,
+      method,
+      body: body ? JSON.stringify(body) : undefined,
     });
+
+    if (resp.ok) {
+      return resp;
+    }
+    throw new HttpError(resp.status, await resp.text());
   },
 };

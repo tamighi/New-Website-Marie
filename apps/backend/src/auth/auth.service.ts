@@ -30,9 +30,9 @@ export class AuthService {
   isTokenInvalid(token: string) {
     const isInvalid = this.invalidatedTokenRepository.exist({
       where: {
-        token
-      }
-    })
+        token,
+      },
+    });
     return isInvalid;
   }
 
@@ -52,7 +52,7 @@ export class AuthService {
   }
 
   async invalidateToken(token: string) {
-    const invalidatedToken = this.invalidatedTokenRepository.create()
+    const invalidatedToken = this.invalidatedTokenRepository.create();
 
     invalidatedToken.token = token;
     try {
@@ -63,7 +63,6 @@ export class AuthService {
       invalidatedToken.expires = expirationDate;
 
       return this.invalidatedTokenRepository.save(invalidatedToken);
-
     } catch (error) {
       throw new UnauthorizedException();
     }
@@ -72,5 +71,22 @@ export class AuthService {
   async logout(user: any, token: string) {
     this.invalidateToken(token);
     return user;
+  }
+
+  async changePassword(user: any, body: any) {
+    const validation = await this.validateUser(
+      user.identifier,
+      body.oldPassword
+    );
+    if (!validation) {
+      throw new UnauthorizedException();
+    }
+    await this.userService.changePassword(validation.id, body.newPassword);
+
+    const payload = { identifier: validation.identifier, sub: validation.id };
+
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
   }
 }

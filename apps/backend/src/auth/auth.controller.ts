@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Req, UnauthorizedException, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Post, Req, UnauthorizedException, UseGuards } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { LocalAuthGuard } from "./guards/local-auth.guard";
@@ -31,5 +31,11 @@ export class AuthController {
     const token = authorizationHeader.split(" ")[1];
 
     return this.authService.logout(req.user, token);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post("changePassword")
+  async changePassword(@Req() req: Request, @Body() body: any) {
+    return this.authService.changePassword(req.user, body);
   }
 }

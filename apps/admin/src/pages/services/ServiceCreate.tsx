@@ -7,6 +7,7 @@ import {
   FormAction,
   FormContent,
   Header,
+  Loader,
   MainCard,
 } from "components";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +41,7 @@ export const ServiceCreate = () => {
           <Button type="submit" onClick={onSubmit}>
             Create
           </Button>
-          {isLoading && "Loading ..."}
+          {isLoading && <Loader size="small" />}
           {error?.badEntry && <ApiErrorForm />}
         </FormAction>
       </form>
