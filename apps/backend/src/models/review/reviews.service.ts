@@ -24,6 +24,9 @@ export class ReviewsService extends MessagesService<Review, ReviewDto> {
   }
 
   async fetchReviews(query: QueryDto) {
+    query.filter = {
+      status: "accepted"
+    }
     const [data, count]: [Review[], number] = await this.repository.findAndCount({
       where: query.filter as FindOptionsWhere<Review>,
       ...(query.sort && { order: query.sort }),
