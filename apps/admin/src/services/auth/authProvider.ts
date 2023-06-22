@@ -23,5 +23,6 @@ export const authProvider = {
     httpClient(url, {
       method: "post",
     });
+    localStorage.removeItem("access_token")
   },
 };
