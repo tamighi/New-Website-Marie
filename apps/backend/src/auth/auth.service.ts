@@ -27,6 +27,15 @@ export class AuthService {
     });
   }
 
+  isTokenInvalid(token: string) {
+    const isInvalid = this.invalidatedTokenRepository.exist({
+      where: {
+        token
+      }
+    })
+    return isInvalid;
+  }
+
   async validateUser(
     identifier: string,
     password: string
