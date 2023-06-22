@@ -7,7 +7,7 @@ import { DatePicker, FormContent, Loader, ApiErrorForm } from "components";
 import { DevisDto, SubServiceDto } from "types";
 import { CustomFileInput } from "./CustomFileInput";
 
-import styles from "./NumberInput.css"
+import styles from "./NumberInput.css";
 
 const DevisContactForm = () => {
   const { register, handleSubmit, reset } = useForm<DevisDto>();
@@ -72,22 +72,26 @@ const DevisContactForm = () => {
         />
         <DatePicker flex label="Delai" required {...register("endDate")} />
 
-        <Select
-          flex
-          {...register("service.id", {
-            onChange: (value) => setServiceId(value),
-          })}
-          label="Service désiré"
-        >
-          <option value="">Non spécifié</option>
-          {services.data?.map((service) => {
-            return (
-              <option key={service.id} value={service.id}>
-                {service.name}
-              </option>
-            );
-          })}
-        </Select>
+        <div style={{ display: "flex", width: "100%", gap: "10px" }}>
+          <Select
+            flex
+            {...register("service.id", {
+              onChange: (value) => setServiceId(value),
+            })}
+            label="Service désiré"
+          >
+            <option value="">Non spécifié</option>
+            {services.data?.map((service) => {
+              return (
+                <option key={service.id} value={service.id}>
+                  {service.name}
+                </option>
+              );
+            })}
+          </Select>
+
+          {services.data ? "" : <Loader size="small" />}
+        </div>
 
         {subServices ? (
           <Select flex {...register("subService.id")} label="Type de texte">
