@@ -6,12 +6,15 @@ import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { JwtStrategy } from "./strategies/jwt.strategy";
 import { LocalStrategy } from "./strategies/local.strategy";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { InvalidatedToken } from "./entities/invalidatedToken.entity";
 
 @Module({
   imports: [
     UsersModule,
     PassportModule,
     JwtModule.register({ secret: "secret", signOptions: { expiresIn: "1d" } }),
+    TypeOrmModule.forFeature([InvalidatedToken]),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, LocalStrategy],

@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Req, UseGuards } from "@nestjs/common";
+import { Controller, Get, Post, Req, UnauthorizedException, UseGuards } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { LocalAuthGuard } from "./guards/local-auth.guard";
-import { Request } from "express"
+import { Request } from "express";
 
 @Controller("auth")
 export class AuthController {
@@ -23,6 +23,13 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Post("logout")
   async logout(@Req() req: Request) {
-    return this.authService.logout(req.user);
+    const authorizationHeader = req.headers.authorization;
+    if (!authorizationHeader) {
+      throw new UnauthorizedException();
+    }
+
+    const token = authorizationHeader.split(" ")[1];
+
+    return this.authService.logout(req.user, token);
   }
 }
