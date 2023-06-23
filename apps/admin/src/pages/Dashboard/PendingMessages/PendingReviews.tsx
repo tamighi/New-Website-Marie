@@ -12,6 +12,7 @@ const PendingReviews = () => {
     filter: {
       status: "pending",
     },
+    range: [0, 2]
   });
 
   return (

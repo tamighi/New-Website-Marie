@@ -12,6 +12,7 @@ const PendingDevis = () => {
     filter: {
       status: "pending",
     },
+    range: [0, 2],
   });
 
   return (
