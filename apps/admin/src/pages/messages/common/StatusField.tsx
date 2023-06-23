@@ -40,7 +40,7 @@ export const StatusField = <R extends MessageResourceString>(
       ) : (
         <>
           <p style={{ flex: 1 }}>
-            {message.status === "accepted" ? "Accepte" : "Refuse"}
+            {message.status === "accepted" ? "Accepté" : "Refusé"}
           </p>
           <Button onClick={() => onChange("pending")}>Annuler</Button>
         </>
