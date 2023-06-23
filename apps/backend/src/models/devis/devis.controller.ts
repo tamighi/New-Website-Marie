@@ -22,8 +22,9 @@ import { diskStorage } from "multer";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { Response } from "express";
 import { FileService } from "../file/file.service";
+import { MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
 
-const multerConfig = {
+const multerConfig: MulterOptions = {
   storage: diskStorage({
     destination: "./uploads",
     filename: (_, file, callback) => {
@@ -34,6 +35,13 @@ const multerConfig = {
       callback(null, filename);
     },
   }),
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith("text/")) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only text documents are allowed."), false);
+    }
+  },
 };
 
 @Controller("devis")
@@ -52,6 +60,10 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
     @Body() body: any
   ) {
     let storedFile = undefined;
+
+    if (file instanceof Error) {
+      throw new HttpException(file.message, HttpStatus.BAD_REQUEST);
+    }
     if (file) {
       storedFile = await this.fileService.storeFilename(file);
     }
@@ -83,9 +95,9 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
   @Delete("/:id")
   @HttpCode(204)
   async deleteOne(@Param() id: { id: number }) {
-    const devis = await this.devisService.getOneById(id)
+    const devis = await this.devisService.getOneById(id);
     if (devis.data.file) {
-      this.fileService.deleteFile(devis.data.file.id)
+      this.fileService.deleteFile(devis.data.file.id);
     }
     super.deleteOne(id);
   }

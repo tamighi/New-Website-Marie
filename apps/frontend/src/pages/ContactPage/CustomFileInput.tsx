@@ -40,7 +40,7 @@ export const CustomFileInput = (props: CustomFileInputProps) => {
         ref={hiddenFileInput}
         onChange={handleChange}
         style={{ display: "none" }}
-        accept="text/plain"
+        accept="text/*"
       />
     </div>
   );
