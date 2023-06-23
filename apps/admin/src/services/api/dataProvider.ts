@@ -38,7 +38,7 @@ export interface DeleteManyParams {
 }
 
 interface SimpleRequestOptions {
-  method?: "POST" | "GET";
+  method?: "POST" | "GET" | "DELETE";
   body?: any;
   json?: boolean;
 }

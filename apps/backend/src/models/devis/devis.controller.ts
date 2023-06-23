@@ -92,6 +92,18 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Delete("deleteFile/:id")
+  @HttpCode(204)
+  async deleteFile(@Param() id: { id: number }) {
+    console.log(id)
+    const devis = await this.devisService.getOneById(id);
+
+    if (devis.data.file) {
+      this.fileService.deleteFile(devis.data.file.id);
+    }
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Delete("/:id")
   @HttpCode(204)
   async deleteOne(@Param() id: { id: number }) {

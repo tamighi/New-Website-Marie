@@ -14,7 +14,7 @@ const DevisDetails = ({ id }: { id: number | string }) => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <FileDownloadField file={devis.file} />
+      <FileDownloadField file={devis.file} id={id} />
       <SimpleField label="Nombre de characteres">
         {devis.nbCharacter}
       </SimpleField>
