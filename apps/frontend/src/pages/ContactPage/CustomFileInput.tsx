@@ -14,6 +14,7 @@ export const CustomFileInput = (props: CustomFileInputProps) => {
   const handleClick = () => {
     hiddenFileInput.current?.click();
   };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const fileUploaded = event.target.files[0];
@@ -39,6 +40,7 @@ export const CustomFileInput = (props: CustomFileInputProps) => {
         ref={hiddenFileInput}
         onChange={handleChange}
         style={{ display: "none" }}
+        accept="text/plain"
       />
     </div>
   );
