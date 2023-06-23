@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button, DataGrid } from "lib";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Column } from "react-table";
 
 import { ResourceString, ResourceType } from "types";
@@ -24,15 +24,18 @@ export const SimpleGrid = <R extends ResourceString>({
 
   const query = useGetCurrentQuery();
   const setQuery = useSetQuery();
-
-  React.useEffect(() => {
-    setQuery({range: [(page - 1) * entryPerPage, page * entryPerPage - 1]})
-    }, [page])
-
+  const [params] = useSearchParams();
 
   const { data, isLoading, isError } = useGetList<R>(resource, query);
 
   const navigate = useNavigate();
+
+  const onSetPageClick = (newPage: number) => {
+    setPage(newPage);
+    setQuery({
+      range: [(newPage - 1) * entryPerPage, newPage * entryPerPage - 1],
+    });
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -52,14 +55,16 @@ export const SimpleGrid = <R extends ResourceString>({
         data={data.data}
         columns={columns}
         clickable
-        onRowClick={(value: ResourceType<R>) => navigate(`${value.id}`)}
+        onRowClick={(value: ResourceType<R>) =>
+          navigate(`${value.id}/?${params}`)
+        }
       />
-      <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
+      <Button disabled={page <= 1} onClick={() => onSetPageClick(page - 1)}>
         Previous
       </Button>
       <Button
-        disabled={page === Math.ceil(data.count / entryPerPage)}
-        onClick={() => setPage(page + 1)}
+        disabled={data.count <= query.range[1] + 1}
+        onClick={() => onSetPageClick(page + 1)}
       >
         Next
       </Button>

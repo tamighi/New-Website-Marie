@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button, DataGrid, DeleteIcon, IconButton, useDialog } from "lib";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Column } from "react-table";
 
 import { ResourceString, ResourceType } from "types";
@@ -30,10 +30,7 @@ export const MyDatagrid = <R extends ResourceString>({
 
   const query = useGetCurrentQuery();
   const setQuery = useSetQuery();
-
-  React.useEffect(() => {
-    setQuery({range: [(page - 1) * entryPerPage, page * entryPerPage - 1]})
-    }, [page])
+  const [params] = useSearchParams();
 
   const { data, isLoading, isError } = useGetList<R>(resource, query);
 
@@ -53,6 +50,13 @@ export const MyDatagrid = <R extends ResourceString>({
   };
 
   const navigate = useNavigate();
+
+  const onSetPageClick = (newPage: number) => {
+    setPage(newPage);
+    setQuery({
+      range: [(newPage - 1) * entryPerPage, newPage * entryPerPage - 1],
+    });
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -79,14 +83,14 @@ export const MyDatagrid = <R extends ResourceString>({
         selection
         setSelected={setSelected}
         clickable
-        onRowClick={(value: ResourceType<R>) => navigate(`${value.id}`)}
+        onRowClick={(value: ResourceType<R>) => navigate(`${value.id}/?${params}`)}
       />
-      <Button disabled={page <= 1} onClick={() => setPage(page - 1)}>
+      <Button disabled={page <= 1} onClick={() => onSetPageClick(page - 1)}>
         Previous
       </Button>
       <Button
-        disabled={data.count < query.range[1]}
-        onClick={() => setPage(page + 1)}
+        disabled={data.count <= query.range[1] + 1}
+        onClick={() => onSetPageClick(page + 1)}
       >
         Next
       </Button>

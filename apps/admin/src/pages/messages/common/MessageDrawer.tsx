@@ -7,7 +7,6 @@ export interface MessageDrawerProps {
   open: boolean;
 }
 
-// TODO: Possible to expand right drawer ?
 const MessageDrawer = (props: MessageDrawerProps) => {
   const { open, children } = props;
 
