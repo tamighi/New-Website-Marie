@@ -1,9 +1,21 @@
+const path = require("path");
+
 module.exports = {
   entry: "./src/library/index.ts",
   mode: "production",
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
   externals: {
     react: "react",
     "react-dom": "react-dom",
+  },
+  output: {
+    path: path.resolve(__dirname, "build"),
+    filename: "bundle.js",
+    library: {
+      type: "umd",
+    },
   },
   module: {
     rules: [
@@ -22,6 +34,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+      },
     ],
   },
-}
+};
