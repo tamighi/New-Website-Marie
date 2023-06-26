@@ -1,8 +1,9 @@
 import { dataProvider, DeleteParams, GetListParams } from "services/api";
-import { useDialog } from "lib";
+import { useAlert } from "lib";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { ResourceString, ResourceType } from "types";
+import { Alert } from "components";
 
 export const useDeleteOne = <R extends ResourceString>(
   resource: string,
@@ -12,7 +13,8 @@ export const useDeleteOne = <R extends ResourceString>(
 
   const queryKey = query ? [resource, query] : [resource];
 
-  const { showDialog } = useDialog();
+  const alert = useAlert();
+
   const navigate = useNavigate();
 
   const mutation = useMutation(
@@ -41,7 +43,7 @@ export const useDeleteOne = <R extends ResourceString>(
         queryClient.invalidateQueries(queryKey);
       },
       onSuccess: () => {
-        showDialog?.({ content: "Item deleted !" });
+        alert.show({ render: <Alert message="Item deleted !" /> });
         navigate(-1);
       },
     }

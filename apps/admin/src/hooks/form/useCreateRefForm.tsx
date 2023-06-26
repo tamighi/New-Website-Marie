@@ -1,5 +1,6 @@
+import { Alert } from "components";
 import { useCreateRef } from "hooks";
-import { useDialog, useForm } from "lib";
+import { useAlert, useForm } from "lib";
 import { ResourceString } from "types";
 import { useFormErrorHandler } from "./useFormErrorHandler";
 
@@ -16,12 +17,12 @@ export const useCreateRefForm = <T extends object>(
   options: CreateRefOptions<T>
 ) => {
   const { errors, setError, resetErrors } = useFormErrorHandler();
-  const { showDialog } = useDialog();
   const { register, handleSubmit, reset } = useForm<T>();
+  const alert = useAlert();
 
   const { mutate, isLoading } = useCreateRef(resource, {
     onSuccess: () => {
-      showDialog?.({ content: "Item created !" });
+      alert.show({ render: <Alert message="Item created !" /> });
       reset();
       resetErrors();
     },

@@ -1,7 +1,7 @@
 import React from "react";
 
-import { FormContent, Loader, MainCard } from "components";
-import { Button, Input, useDialog, useForm } from "lib";
+import { Alert, FormContent, Loader, MainCard } from "components";
+import { Button, Input, useAlert, useForm } from "lib";
 import { useMutation } from "react-query";
 import { dataProvider } from "services/api";
 
@@ -12,9 +12,9 @@ interface ChangePwdForm {
 }
 
 const ProfilePage = () => {
-  const [error, setError] = React.useState("")
+  const [error, setError] = React.useState("");
   const { register, reset, handleSubmit } = useForm<ChangePwdForm>();
-  const { showDialog } = useDialog();
+  const alert = useAlert();
 
   const { mutate, isLoading } = useMutation(
     (data: Partial<ChangePwdForm>) =>
@@ -25,18 +25,20 @@ const ProfilePage = () => {
     {
       onSuccess: async (data) => {
         reset();
-        showDialog?.({ content: "Mot de passe modifié avec succès" });
+        alert.show({
+          render: <Alert message="Mot de passe modifié avec succès" />,
+        });
         setError("");
         const resp = await data.json();
         localStorage.setItem("access_token", resp.access_token as string);
       },
-      onError: () => setError("Mot de passe incorrect")
+      onError: () => setError("Mot de passe incorrect"),
     }
   );
 
   const onSubmit = (data: Partial<ChangePwdForm>) => {
     if (data.newPassword !== data.confirmPassword) {
-      setError("Les mots de passe ne sont pas identiques.")
+      setError("Les mots de passe ne sont pas identiques.");
       return;
     }
     mutate(data);

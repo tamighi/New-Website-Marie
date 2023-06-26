@@ -1,16 +1,17 @@
+import { Alert } from "components";
 import { useCreate } from "hooks";
-import { useDialog, useForm } from "lib";
+import { useAlert, useForm } from "lib";
 import { ResourceString } from "types";
 import { useFormErrorHandler } from "./useFormErrorHandler";
 
 export const useCreateForm = <T extends object>(resource: ResourceString) => {
   const { errors, setError, resetErrors } = useFormErrorHandler();
-  const { showDialog } = useDialog();
+  const alert = useAlert();
   const { register, handleSubmit, reset } = useForm<T>();
 
   const { mutate, isLoading } = useCreate(resource, {
     onSuccess: () => {
-      showDialog?.({ content: "Item created !" });
+      alert.show({ render: <Alert message="Item créé !" /> });
       reset();
       resetErrors();
     },

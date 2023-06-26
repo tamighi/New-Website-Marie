@@ -1,4 +1,5 @@
-import { Button, DeleteIcon, IconButton, useDialog } from "lib";
+import { Alert } from "components";
+import { Button, DeleteIcon, IconButton, useAlert } from "lib";
 import { useQueryClient } from "react-query";
 import { dataProvider } from "services/api";
 
@@ -13,7 +14,7 @@ interface FileDownloadFieldProps {
 
 export const FileDownloadField = (props: FileDownloadFieldProps) => {
   const { file, id } = props;
-  const { showDialog } = useDialog();
+  const alert = useAlert();
   const queryClient = useQueryClient();
 
   const handleDownload = async () => {
@@ -44,7 +45,9 @@ export const FileDownloadField = (props: FileDownloadFieldProps) => {
     );
 
     if (res.ok) {
-      showDialog?.({ content: "File deleted successfully" });
+      alert.show({
+        render: <Alert message="File deleted successfully" />,
+      });
       queryClient.invalidateQueries(["devis", { id: id.toString() }]);
     }
   };

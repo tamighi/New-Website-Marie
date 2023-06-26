@@ -1,30 +1,16 @@
-import { Card, IDialogState } from "lib";
-import React from "react";
-import styles from "./Alert.css";
+import { Button, Card } from "lib";
 
-const Alert = ({
-  dialogState,
-  closeDialog,
-}: {
-  dialogState: IDialogState;
-  closeDialog: () => void;
-}) => {
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      if (dialogState.open) {
-        closeDialog();
-      }
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [dialogState, closeDialog]);
+interface AlertComponentProps {
+  message: string;
+  onUndo?: () => void;
+}
 
+const Alert = (props: AlertComponentProps) => {
+  const { message, onUndo } = props;
   return (
-    <Card
-      className={`${styles.Alert} ${
-        dialogState.open ? styles.Open : styles.Close
-      }`}
-    >
-      {dialogState.content}
+    <Card>
+      {message}
+      {!!onUndo && <Button onClick={onUndo}>Undo</Button>}
     </Card>
   );
 };

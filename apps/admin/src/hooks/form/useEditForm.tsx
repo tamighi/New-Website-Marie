@@ -1,15 +1,16 @@
 import React from "react";
 import { HttpError } from "services/utils";
-import { useDialog, useForm } from "lib";
+import { useAlert, useForm } from "lib";
 import { useFormErrorHandler, useGetCurrentQuery, useUpdateOne } from "hooks";
 import { ResourceString } from "types";
+import { Alert } from "components";
 
 export const useEditForm = <T extends object>(
   ressource: ResourceString,
   id: number | string
 ) => {
   const { errors, resetErrors, setError } = useFormErrorHandler();
-  const { showDialog } = useDialog();
+  const alert = useAlert();
   const { register, handleSubmit } = useForm<T>();
 
   React.useEffect(() => {
@@ -32,7 +33,7 @@ export const useEditForm = <T extends object>(
     ressource,
     {
       onSuccess: () => {
-        showDialog?.({ content: "Item updated !" });
+        alert.show({ render: <Alert message="Item updated !" /> });
       },
       onError,
     },

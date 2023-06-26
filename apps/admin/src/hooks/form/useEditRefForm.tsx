@@ -1,9 +1,11 @@
 import React from "react";
+
 import { HttpError } from "services/utils";
-import { useDialog, useForm } from "lib";
+import { useAlert, useForm } from "lib";
 import { useFormErrorHandler, useGetCurrentQuery } from "hooks";
 import { useUpdateOneRef } from "hooks";
 import { ResourceString } from "types";
+import { Alert } from "components";
 
 interface EditRefFormOptions {
   parentResource: ResourceString;
@@ -15,7 +17,7 @@ export const useEditRefForm = <T extends object>(
   options: EditRefFormOptions
 ) => {
   const { errors, resetErrors, setError } = useFormErrorHandler();
-  const { showDialog } = useDialog();
+  const alert = useAlert();
   const { register, handleSubmit } = useForm<T>();
 
   React.useEffect(() => {
@@ -38,7 +40,7 @@ export const useEditRefForm = <T extends object>(
     ressource,
     {
       onSuccess: () => {
-        showDialog?.({ content: "Item updated !" });
+        alert.show({ render: <Alert message="Item updated !" /> });
       },
       onError,
       parentResource: options.parentResource,

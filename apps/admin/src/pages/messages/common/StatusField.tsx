@@ -1,5 +1,6 @@
-import { useGetCurrentQuery, useUpdateOne } from "hooks";
-import { Button, useDialog } from "lib";
+import { Alert } from "components";
+import { useUpdateOne } from "hooks";
+import { Button, useAlert } from "lib";
 import { ResourceType } from "types";
 
 type MessageResourceString = "question" | "review" | "devis";
@@ -14,11 +15,11 @@ export const StatusField = <R extends MessageResourceString>(
 ) => {
   const { message, resource } = props;
 
-  const { showDialog } = useDialog();
+  const alert = useAlert();
 
   const { mutate } = useUpdateOne<R>(resource, {
     onSuccess: () => {
-      showDialog?.({ content: "Item updated !" });
+      alert.show({ render: <Alert message="Status updated !" /> });
     },
   });
 

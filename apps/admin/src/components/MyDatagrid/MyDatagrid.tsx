@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, DataGrid, DeleteIcon, IconButton, useDialog } from "lib";
+import { Button, DataGrid, DeleteIcon, IconButton, useAlert } from "lib";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Column } from "react-table";
@@ -12,7 +12,13 @@ import {
   useGetList,
   useSetQuery,
 } from "hooks";
-import { ApiErrorImage, EmptyData, Loader, SelectedOptions } from "components";
+import {
+  Alert,
+  ApiErrorImage,
+  EmptyData,
+  Loader,
+  SelectedOptions,
+} from "components";
 
 const entryPerPage = 20;
 
@@ -34,13 +40,17 @@ export const MyDatagrid = <R extends ResourceString>({
 
   const { data, isLoading, isError } = useGetList<R>(resource, query);
 
-  const { showDialog } = useDialog();
+  const alert = useAlert();
 
   const { mutate } = useDeleteMany(
     resource,
     {
       onSuccess: () =>
-        showDialog?.({ content: `${selected.length} item(s) deleted` }),
+        alert.show({
+          render: (
+            <Alert message={`${selected.length} item(s) deleted`} />
+          ),
+        }),
     },
     query
   );
@@ -83,7 +93,9 @@ export const MyDatagrid = <R extends ResourceString>({
         selection
         setSelected={setSelected}
         clickable
-        onRowClick={(value: ResourceType<R>) => navigate(`${value.id}/?${params}`)}
+        onRowClick={(value: ResourceType<R>) =>
+          navigate(`${value.id}/?${params}`)
+        }
       />
       <Button disabled={page <= 1} onClick={() => onSetPageClick(page - 1)}>
         Previous
