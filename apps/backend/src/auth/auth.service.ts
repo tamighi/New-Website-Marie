@@ -19,6 +19,7 @@ export class AuthService {
     this.invalidatedTokenRepository = repository;
   }
 
+  // TODO: Make it work
   @Cron("0 * * * *")
   async deleteExpiredTokens() {
     const currentDateTime = new Date();
