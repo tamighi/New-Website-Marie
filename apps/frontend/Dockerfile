@@ -6,6 +6,7 @@ RUN turbo prune --scope=frontend --docker
 
 FROM node AS runner
 WORKDIR /usr/src/app
+COPY .env .env
 COPY --from=builder /usr/src/app/out/json/ .
 RUN npm install
 

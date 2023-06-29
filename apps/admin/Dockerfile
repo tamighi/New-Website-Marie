@@ -7,6 +7,7 @@ RUN turbo prune --scope=admin --docker
 FROM node AS runner
 WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app/out/json/ .
+COPY .env .env
 RUN npm install
 
 EXPOSE 3000

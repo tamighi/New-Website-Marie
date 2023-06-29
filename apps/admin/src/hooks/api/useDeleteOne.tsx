@@ -47,7 +47,7 @@ export const useDeleteOne = <R extends ResourceString>(
     {
       onMutate: async (params) => {
         alert.show({
-          render: <Alert message="Item deleted !" onUndo={onUndo} />,
+          render: <Alert message="Item supprimé !" onUndo={onUndo} />,
         });
 
         // TODO: Necessary ? Or page item deleted ?
@@ -72,7 +72,7 @@ export const useDeleteOne = <R extends ResourceString>(
       },
       onError: (_, __, context) => {
         alert.show({
-          render: <Alert message="An error has occured on the deletion." />,
+          render: <Alert message="Une erreur est survenue ..." />,
         });
         queryClient.setQueryData(queryKey, context?.oldData);
       },

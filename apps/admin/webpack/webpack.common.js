@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 
-require("dotenv").config({ path: "./.env" });
+require("dotenv").config({ path: "../../.env" });
 
 module.exports = {
   entry: {
@@ -28,7 +28,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
-      publicPath: "/admin"
+      publicPath: "/admin",
     }),
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env),
