@@ -6,11 +6,11 @@ RUN turbo prune --scope=frontend --docker
 
 FROM node AS runner
 WORKDIR /usr/src/app
-COPY .env .env
 COPY --from=builder /usr/src/app/out/json/ .
 RUN npm install
 
 EXPOSE 3000
 
 COPY --from=builder /usr/src/app/out/full/ .
+COPY .env .env
 CMD npx turbo dev --filter=frontend
