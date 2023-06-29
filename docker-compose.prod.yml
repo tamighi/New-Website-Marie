@@ -33,7 +33,7 @@ services:
       context: .
       dockerfile: ./deploy/Dockerfile.prod
       args:
-        BACKEND_URL: "http://localhost/api"
+        BACKEND_URL: "https://localhost/api"
     image: nginx-prod
     container_name: nginx-prod
     restart: always
@@ -41,6 +41,7 @@ services:
       - backend
     ports:
       - 80:80
+      - 443:443
     networks:
       - mynetwork
 

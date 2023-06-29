@@ -2,7 +2,8 @@
 
 ## Description
 
-Full stack website with 
+Full stack website with
+
 - A react frontend (public and admin).
 - A nestjs backend that serves a postgres database.
 - A custom ui/utils library.
@@ -19,7 +20,7 @@ Ensure first that docker is installed.
 docker compose -f docker-compose.dev.yml up
 ```
 
-### Production (port 3000 for now)
+### Production
 
 ```sh
 docker compose -f docker-compose.prod.yml up

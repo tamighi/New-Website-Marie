@@ -62,6 +62,7 @@ services:
       - backend
     ports:
       - 3000:80
+      - 443:443
     container_name: nginx-dev
     networks:
       - mynetwork
