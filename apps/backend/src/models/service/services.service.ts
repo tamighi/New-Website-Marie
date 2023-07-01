@@ -1,7 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { AbstractService } from "src/models/abstract/abstract.service";
 import { FindOptionsWhere, Repository } from "typeorm";
+
+import { AbstractService } from "../core";
+
 import { ServiceDto } from "./dtos/service.dto";
 import { Service } from "./entities/service.entity";
 

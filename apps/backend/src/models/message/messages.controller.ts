@@ -1,6 +1,8 @@
 import { Body, HttpException, HttpStatus, Post } from "@nestjs/common";
-import { AbstractController } from "src/models/abstract/abstract.controller";
 import { DeepPartial } from "typeorm";
+
+import { AbstractController } from "../core";
+
 import { Message } from "./entities/messages.entity";
 import { MessagesService } from "./messages.service";
 

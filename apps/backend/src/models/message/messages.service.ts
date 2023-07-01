@@ -1,5 +1,7 @@
-import { AbstractService } from "src/models/abstract/abstract.service";
 import { DeepPartial, Repository } from "typeorm";
+
+import { AbstractService } from "../core";
+
 import { Message } from "./entities/messages.entity";
 
 export class MessagesService<
@@ -27,6 +29,6 @@ export class MessagesService<
   }
 
   async postMessage(message: DTO) {
-    return super.create(message)
+    return super.create(message);
   }
 }

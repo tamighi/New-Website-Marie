@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { AbstractService } from "src/models/abstract/abstract.service";
 import { Repository } from "typeorm";
+import { AbstractService } from "../core";
+
 import { SubServiceDto } from "./dtos/subService.dto";
 import { SubService } from "./entities/subService.entity";
 

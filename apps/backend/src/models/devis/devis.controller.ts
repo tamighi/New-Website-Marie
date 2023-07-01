@@ -13,16 +13,18 @@ import {
   UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
+import { Response } from "express";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
+import { MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
+
+import { JwtAuthGuard } from "src/auth";
+import { FileService } from "../core";
+
 import { DevisDto } from "./dtos/devis.dto";
 import { Devis } from "./entities/devis.entity";
 import { DevisService } from "./devis.service";
 import { MessagesController } from "../message/messages.controller";
-import { FileInterceptor } from "@nestjs/platform-express";
-import { diskStorage } from "multer";
-import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
-import { Response } from "express";
-import { FileService } from "../file/file.service";
-import { MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
 
 const multerConfig: MulterOptions = {
   storage: diskStorage({
@@ -35,7 +37,7 @@ const multerConfig: MulterOptions = {
       callback(null, filename);
     },
   }),
-  fileFilter: (req, file, cb) => {
+  fileFilter: (_, file, cb) => {
     if (file.mimetype.startsWith("text/")) {
       cb(null, true);
     } else {

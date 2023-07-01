@@ -1,8 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { comparePwd, hashPwd } from "src/helper/bcrypt";
-import { AbstractService } from "src/models/abstract/abstract.service";
 import { Repository } from "typeorm";
+
+import { comparePwd, hashPwd } from "src/helper";
+import { AbstractService } from "../core";
+
 import { UserDto } from "./dtos/user.dto";
 import { User } from "./entities/user.entity";
 

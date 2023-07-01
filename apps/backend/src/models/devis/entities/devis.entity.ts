@@ -1,8 +1,10 @@
-import { File } from "src/models/file/entity/file.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
+
+import { File } from "../../core";
+
 import { Message } from "src/models/message/entities/messages.entity";
 import { Service } from "src/models/service/entities/service.entity";
 import { SubService } from "src/models/subService/entities/subService.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
 
 @Entity()
 export class Devis extends Message {

@@ -5,7 +5,9 @@ import {
   HttpStatus,
   Param,
 } from "@nestjs/common";
-import { AbstractController } from "src/models/abstract/abstract.controller";
+
+import { AbstractController } from "../core";
+
 import { ServiceDto } from "./dtos/service.dto";
 import { Service } from "./entities/service.entity";
 import { ServicesService } from "./services.service";

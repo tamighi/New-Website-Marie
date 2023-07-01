@@ -4,7 +4,7 @@ import {
   parseRange,
   parseSort,
   parseFilter,
-} from "src/models/abstract/helper/queryCast.helper";
+} from "../helper";
 
 export class QueryDto {
   @Transform(({ value }) => parseFilter(value))

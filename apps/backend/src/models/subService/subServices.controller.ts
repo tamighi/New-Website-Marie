@@ -1,5 +1,5 @@
 import { Controller } from "@nestjs/common";
-import { AbstractController } from "src/models/abstract/abstract.controller";
+import { AbstractController } from "../core";
 import { SubServiceDto } from "./dtos/subService.dto";
 import { SubService } from "./entities/subService.entity";
 import { SubServicesService } from "./subServices.service";

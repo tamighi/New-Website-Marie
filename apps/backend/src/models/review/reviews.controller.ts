@@ -5,7 +5,9 @@ import {
   HttpStatus,
   Query,
 } from "@nestjs/common";
-import { QueryDto } from "../abstract/dtos/query.dto";
+
+import { QueryDto } from "../core";
+
 import { MessagesController } from "../message/messages.controller";
 import { ReviewDto } from "./dtos/review.dto";
 import { Review } from "./entities/review.entity";
