@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { TypeOrmConfigService } from "./config/typeorm/typeorm.service";
 
+import { AppConfigModule } from "./config/app/config.module";
+import { TypeOrmConfigModule } from "./config/typeorm/typeorm.module";
 import { FileModule } from "./models/core";
 import { AuthModule } from "./auth";
 import { InvalidatedAuthTokenModule } from "./models/core/invalidatedAuthToken/invalidatedAuthToken.module";
@@ -15,7 +15,8 @@ import { ReviewsModule } from "./models/review/reviews.module";
 
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    AppConfigModule,
+    TypeOrmConfigModule,
     FileModule,
     AuthModule,
     InvalidatedAuthTokenModule,
