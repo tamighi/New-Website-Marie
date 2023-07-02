@@ -1,7 +1,8 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { AppConfigModule } from "../app/config.module";
-import { TypeOrmConfigService } from "./typeorm.service";
+
+import { AppConfigModule } from "..";
+import { TypeOrmConfigService } from "./config.service";
 
 @Module({
   imports: [

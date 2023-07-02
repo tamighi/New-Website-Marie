@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 
-import { AppConfigModule } from "./config/app/config.module";
-import { TypeOrmConfigModule } from "./config/typeorm/typeorm.module";
+import { AppConfigModule, TypeOrmConfigModule } from "./config";
 import { FileModule } from "./models/core";
 import { AuthModule } from "./auth";
 import { InvalidatedAuthTokenModule } from "./models/core/invalidatedAuthToken/invalidatedAuthToken.module";
