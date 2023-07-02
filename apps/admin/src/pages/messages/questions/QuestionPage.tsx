@@ -13,7 +13,9 @@ const QuestionPage = () => {
     <>
       <QuestionCard openDrawer={!!match} />
       <MessageDrawer open={!!match}>
-        {!!match && <QuestionDetails id={match.params.id as string} />}
+        {!!match && (
+          <QuestionDetails id={parseInt(match.params.id as string)} />
+        )}
       </MessageDrawer>
     </>
   );

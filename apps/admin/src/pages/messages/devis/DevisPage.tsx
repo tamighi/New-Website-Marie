@@ -13,7 +13,7 @@ const DevisPage = () => {
     <>
       <DevisCard openDrawer={!!match} />
       <MessageDrawer open={!!match}>
-        {!!match && <DevisDetails id={match.params.id as string} />}
+        {!!match && <DevisDetails id={parseInt(match.params.id as string)} />}
       </MessageDrawer>
     </>
   );

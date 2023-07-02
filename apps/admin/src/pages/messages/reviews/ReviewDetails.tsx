@@ -1,12 +1,13 @@
-import { SimpleField } from "components";
+import { EmptyData, SimpleField } from "components";
 import { useGetCurrentQuery, useGetOne } from "hooks";
 import { MessageDetails } from "../common";
 
-const ReviewDetails = ({ id }: { id: number | string }) => {
+const ReviewDetails = ({ id }: { id: number }) => {
   const query = useGetCurrentQuery();
   const { data } = useGetOne("review", { id }, query);
-  if (!data) {
-    return null;
+
+  if (!data?.data) {
+    return <EmptyData />;
   }
   const review = data.data;
   return (

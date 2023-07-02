@@ -12,7 +12,7 @@ export interface GetListParams<T> {
 }
 
 export interface GetOneParams {
-  id: string | number;
+  id: number;
 }
 
 export interface UpdateParams<T> {

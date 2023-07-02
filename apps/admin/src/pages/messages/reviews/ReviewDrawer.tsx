@@ -3,7 +3,7 @@ import ReviewDetails from "./ReviewDetails";
 
 interface Match {
   open: true;
-  id: number | string;
+  id: number;
 }
 
 interface NoMatch {

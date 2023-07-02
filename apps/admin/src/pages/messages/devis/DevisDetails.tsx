@@ -1,15 +1,16 @@
-import { SimpleField } from "components";
+import { EmptyData, SimpleField } from "components";
 import { useGetCurrentQuery, useGetOne } from "hooks";
 import { MessageDetails } from "../common";
 import { FileDownloadField } from "./FileDownloadField";
 
-const DevisDetails = ({ id }: { id: number | string }) => {
+const DevisDetails = ({ id }: { id: number }) => {
   const query = useGetCurrentQuery();
   const { data } = useGetOne("devis", { id }, query);
 
-  if (!data) {
-    return null;
+  if (!data?.data) {
+    return <EmptyData />;
   }
+
   const devis = data.data;
 
   return (

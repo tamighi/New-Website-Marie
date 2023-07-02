@@ -3,7 +3,6 @@ import React from "react";
 import { useAlert } from "lib";
 
 import { useMutation, useQueryClient } from "react-query";
-import { useNavigate } from "react-router-dom";
 
 import { dataProvider, DeleteParams, GetListParams } from "services/api";
 import { ResourceString, ResourceType } from "types";
@@ -20,8 +19,6 @@ export const useDeleteOne = <R extends ResourceString>(
   const undoRef = React.useRef<() => void>();
 
   const alert = useAlert();
-
-  const navigate = useNavigate();
 
   const onUndo = React.useCallback(() => undoRef.current?.(), [undoRef]);
 
@@ -51,7 +48,6 @@ export const useDeleteOne = <R extends ResourceString>(
         });
 
         // TODO: Necessary ? Or page item deleted ?
-        navigate(-1);
 
         // TODO: What is this ?
         await queryClient.cancelQueries(queryKey);
@@ -68,15 +64,25 @@ export const useDeleteOne = <R extends ResourceString>(
             };
           });
         }
-        return { oldData };
+
+        const oldOne = queryClient.getQueryData([resource, params]);
+        queryClient.setQueryData([resource, params], () => {
+          return {
+            ...oldData,
+            data: null,
+          };
+        });
+
+        return { oldData, oldOne };
       },
-      onError: (_, __, context) => {
+      onError: (_, params, context) => {
         alert.show({
           render: <Alert message="Une erreur est survenue ..." />,
         });
         queryClient.setQueryData(queryKey, context?.oldData);
+        queryClient.setQueryData([resource, params], context?.oldOne);
       },
-      onSuccess: (data, _, context) => {
+      onSuccess: (data, params, context) => {
         if (
           data &&
           typeof data === "object" &&
@@ -84,6 +90,7 @@ export const useDeleteOne = <R extends ResourceString>(
           data.message === "Undo"
         ) {
           queryClient.setQueryData(queryKey, context?.oldData);
+          queryClient.setQueryData([resource, params], context?.oldOne);
         } else {
           queryClient.invalidateQueries(queryKey);
         }

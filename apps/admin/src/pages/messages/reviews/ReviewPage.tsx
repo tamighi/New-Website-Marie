@@ -12,7 +12,7 @@ const ReviewPage = () => {
     <>
       <ReviewCard openDrawer={!!match} />
       <MessageDrawer open={!!match}>
-        {!!match && <ReviewDetails id={match.params.id as string} />}
+        {!!match && <ReviewDetails id={parseInt(match.params.id as string)} />}
       </MessageDrawer>
     </>
   );

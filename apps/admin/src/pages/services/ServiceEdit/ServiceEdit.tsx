@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { MainCard } from "components";
+import { EmptyData, MainCard } from "components";
 import { ServiceEditForm } from "./ServiceEditForm";
 import { ServiceEditHeader } from "./ServiceEditHeader";
 import { SubServiceEdit } from "./SubServices";
@@ -8,19 +8,26 @@ import { SubServiceEdit } from "./SubServices";
 import { useGetCurrentQuery, useGetOne } from "hooks";
 import { Card } from "lib";
 
-// TODO: Work on styles
 export const ServiceEdit = () => {
   const { id } = useParams() as { id: string };
   const query = useGetCurrentQuery();
 
-  const { data, isLoading } = useGetOne("service", { id }, query);
+  const { data, isLoading, isError } = useGetOne(
+    "service",
+    { id: parseInt(id) },
+    query
+  );
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (!data) {
+  if (isError) {
     return <div>Unkown error...</div>;
+  }
+
+  if (!data?.data) {
+    return <EmptyData />;
   }
 
   return (
