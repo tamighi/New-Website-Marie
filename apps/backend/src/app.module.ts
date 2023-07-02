@@ -4,6 +4,7 @@ import { TypeOrmConfigService } from "./config/typeorm/typeorm.service";
 
 import { FileModule } from "./models/core";
 import { AuthModule } from "./auth";
+import { InvalidatedAuthTokenModule } from "./models/core/invalidatedAuthToken/invalidatedAuthToken.module";
 
 import { ServicesModule } from "./models/service/services.module";
 import { UsersModule } from "./models/user/users.module";
@@ -17,6 +18,7 @@ import { ReviewsModule } from "./models/review/reviews.module";
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     FileModule,
     AuthModule,
+    InvalidatedAuthTokenModule,
     UsersModule,
     ServicesModule,
     SubServicesModule,

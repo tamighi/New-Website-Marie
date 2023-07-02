@@ -1,54 +1,40 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { Cron } from "@nestjs/schedule";
-import { InjectRepository } from "@nestjs/typeorm";
+import { InvalidatedAuthTokenService } from "src/models/core/invalidatedAuthToken/invalidatedAuthToken.service";
 import { UserDto } from "src/models/user/dtos/user.dto";
 import { UsersService } from "src/models/user/users.service";
-import { LessThan, Repository } from "typeorm";
-import { InvalidatedToken } from "./entities/invalidatedToken.entity";
 
 @Injectable()
 export class AuthService {
-  private invalidatedTokenRepository: Repository<InvalidatedToken>;
   constructor(
     private readonly userService: UsersService,
     private readonly jwtService: JwtService,
-    @InjectRepository(InvalidatedToken)
-    repository: Repository<InvalidatedToken>
-  ) {
-    this.invalidatedTokenRepository = repository;
-  }
+    private readonly invalidatedAuthTokenService: InvalidatedAuthTokenService
+  ) {}
 
-  // TODO: Make it work
-  @Cron("0 * * * *")
-  async deleteExpiredTokens() {
-    const currentDateTime = new Date();
-    await this.invalidatedTokenRepository.delete({
-      expires: LessThan(currentDateTime),
-    });
-  }
-
-  async isTokenInvalid(token: string, payload: any) {
-    const isInvalidated = await this.invalidatedTokenRepository.exist({
-      where: {
-        token,
-      },
-    });
-
+  async checkPasswordChanged(token: string, sub: { id: number }) {
     try {
       const decodedToken = this.jwtService.verify(token);
       const creationDate = new Date(decodedToken.iat * 1000);
 
-      const user = await this.userService.getOneById(payload.sub);
+      const user = await this.userService.getOneById(sub);
 
       const isNewPassword = user.data.lastModified
         ? user.data.lastModified > creationDate
         : false;
 
-      return isInvalidated || isNewPassword;
+      return isNewPassword;
     } catch {
       throw new UnauthorizedException();
     }
+  }
+
+  async isTokenInvalid(token: string, payload: any) {
+    const isInvalidated = await this.invalidatedAuthTokenService.exist(token);
+
+    const passwordChanged = await this.checkPasswordChanged(token, payload.sub);
+
+    return isInvalidated || passwordChanged;
   }
 
   async validateUser(
@@ -67,17 +53,17 @@ export class AuthService {
   }
 
   async invalidateToken(token: string) {
-    const invalidatedToken = this.invalidatedTokenRepository.create();
-
-    invalidatedToken.token = token;
     try {
       const decodedToken = this.jwtService.verify(token);
 
       const expirationDate = new Date(decodedToken.exp * 1000);
 
-      invalidatedToken.expires = expirationDate;
+      const invalidatedToken = {
+        expires: expirationDate,
+        token,
+      };
 
-      return this.invalidatedTokenRepository.save(invalidatedToken);
+      return this.invalidatedAuthTokenService.create(invalidatedToken);
     } catch (error) {
       throw new UnauthorizedException();
     }
