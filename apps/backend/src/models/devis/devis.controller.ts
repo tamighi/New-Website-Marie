@@ -18,8 +18,8 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
 
-import { JwtAuthGuard } from "src/auth";
 import { FileService } from "../core";
+import { JwtAuthGuard } from "src/common";
 
 import { DevisDto } from "./dtos/devis.dto";
 import { Devis } from "./entities/devis.entity";
@@ -97,7 +97,7 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
   @Delete("deleteFile/:id")
   @HttpCode(204)
   async deleteFile(@Param() id: { id: number }) {
-    console.log(id)
+    console.log(id);
     const devis = await this.devisService.getOneById(id);
 
     if (devis.data.file) {
