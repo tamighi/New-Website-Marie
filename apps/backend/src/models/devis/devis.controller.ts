@@ -15,36 +15,15 @@ import {
 } from "@nestjs/common";
 import { Response } from "express";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { diskStorage } from "multer";
-import { MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
 
 import { FileService } from "../core";
 import { JwtAuthGuard } from "src/common";
+import { multerConfig } from "src/config";
 
 import { DevisDto } from "./dtos/devis.dto";
 import { Devis } from "./entities/devis.entity";
 import { DevisService } from "./devis.service";
 import { MessagesController } from "../message/messages.controller";
-
-const multerConfig: MulterOptions = {
-  storage: diskStorage({
-    destination: "./uploads",
-    filename: (_, file, callback) => {
-      const originalName = file.originalname;
-      const fileExtension = originalName.split(".").pop();
-      const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-      const filename = `file-${uniqueSuffix}.${fileExtension}`;
-      callback(null, filename);
-    },
-  }),
-  fileFilter: (_, file, cb) => {
-    if (file.mimetype.startsWith("text/")) {
-      cb(null, true);
-    } else {
-      cb(new Error("Only text documents are allowed."), false);
-    }
-  },
-};
 
 @Controller("devis")
 export class DevisController extends MessagesController<Devis, DevisDto> {

@@ -4,10 +4,10 @@ import { Repository } from "typeorm";
 
 import { comparePwd, hashPwd } from "src/helper";
 import { AbstractService } from "../core";
+import { AppConfigService } from "src/config";
 
 import { UserDto } from "./dtos/user.dto";
 import { User } from "./entities/user.entity";
-import { AppConfigService } from "src/config/app/config.service";
 
 @Injectable()
 export class UsersService extends AbstractService<User, UserDto> {
@@ -51,17 +51,6 @@ export class UsersService extends AbstractService<User, UserDto> {
     userDto.lastModified = user.lastModified
 
     return userDto;
-  }
-
-  async findOneByIdentifier(identifier: string) {
-    const user: User | null = await this.repository.findOneBy({
-      identifier: identifier,
-    });
-    if (!user) {
-      return null;
-    }
-
-    return this.entityToDto(user);
   }
 
   async changePassword(id: number, newPassword: string) {
