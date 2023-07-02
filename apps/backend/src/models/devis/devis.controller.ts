@@ -18,7 +18,6 @@ import { FileInterceptor } from "@nestjs/platform-express";
 
 import { FileService } from "../core";
 import { JwtAuthGuard } from "src/common";
-import { multerConfig } from "src/config";
 
 import { DevisDto } from "./dtos/devis.dto";
 import { Devis } from "./entities/devis.entity";
@@ -35,7 +34,7 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
   }
 
   @Post("postFile")
-  @UseInterceptors(FileInterceptor("file", multerConfig))
+  @UseInterceptors(FileInterceptor("file"))
   async postMessageWithFile(
     @UploadedFile() file: Express.Multer.File,
     @Body() body: any
@@ -76,7 +75,6 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
   @Delete("deleteFile/:id")
   @HttpCode(204)
   async deleteFile(@Param() id: { id: number }) {
-    console.log(id);
     const devis = await this.devisService.getOneById(id);
 
     if (devis.data.file) {
