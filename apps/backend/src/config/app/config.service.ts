@@ -20,4 +20,13 @@ export class AppConfigService {
   get db_password(): string | undefined {
     return this.configService.get<string>("app.db_password");
   }
+  get default_user_id(): string | undefined {
+    return this.configService.get<string>("app.default_user_id");
+  }
+  get default_user_pwd(): string | undefined {
+    return this.configService.get<string>("app.default_user_pwd");
+  }
+  get jwt_secret(): string | undefined {
+    return this.configService.get<string>("app.jwt_secret");
+  }
 }

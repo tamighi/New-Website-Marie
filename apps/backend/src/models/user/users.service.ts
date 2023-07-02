@@ -7,12 +7,14 @@ import { AbstractService } from "../core";
 
 import { UserDto } from "./dtos/user.dto";
 import { User } from "./entities/user.entity";
+import { AppConfigService } from "src/config/app/config.service";
 
 @Injectable()
 export class UsersService extends AbstractService<User, UserDto> {
   constructor(
     @InjectRepository(User)
-    protected readonly userRepository: Repository<User>
+    protected readonly userRepository: Repository<User>,
+    protected readonly appConfigService: AppConfigService
   ) {
     super(userRepository);
 
@@ -30,12 +32,12 @@ export class UsersService extends AbstractService<User, UserDto> {
   }
 
   async createDefaultUser() {
-    const [_, count] = await this.userRepository.findAndCount();
+    const count = await this.userRepository.count();
 
     if (count === 0) {
       const user = this.userRepository.create({
-        identifier: process.env.DEFAULT_USER_ID,
-        password: await hashPwd(process.env.DEFAULT_USER_PWD as string),
+        identifier: this.appConfigService.default_user_id,
+        password: await hashPwd(this.appConfigService.default_user_pwd as string),
       });
       await this.userRepository.save(user);
     }

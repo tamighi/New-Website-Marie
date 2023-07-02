@@ -12,7 +12,10 @@ import { InvalidatedAuthTokenModule } from "src/models/core/invalidatedAuthToken
   imports: [
     UsersModule,
     PassportModule,
-    JwtModule.register({ secret: process.env.JWT_SECRET, signOptions: { expiresIn: "1d" } }),
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: "1d" },
+    }),
     InvalidatedAuthTokenModule,
   ],
   controllers: [AuthController],
