@@ -11,7 +11,10 @@ interface ServiceOptions {
   relations?: string[];
 }
 
-export abstract class AbstractService<T extends { id: number }, DTO extends DeepPartial<T>> {
+export abstract class AbstractService<
+  T extends { id: number },
+  DTO extends DeepPartial<T>
+> {
   protected repository: Repository<T>;
   protected relations: string[];
 
@@ -22,7 +25,10 @@ export abstract class AbstractService<T extends { id: number }, DTO extends Deep
     this.relations = relations;
   }
 
-  abstract entityToDto(entity: T): DTO;
+  entityToDto(entity: T): DTO {
+    const dto: DTO = entity as DTO;
+    return dto;
+  }
 
   async getList(query: QueryDto): Promise<{ data: DTO[]; count: number }> {
     const [data, count]: [T[], number] = await this.repository.findAndCount({
