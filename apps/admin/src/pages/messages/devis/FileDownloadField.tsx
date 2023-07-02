@@ -19,7 +19,7 @@ export const FileDownloadField = (props: FileDownloadFieldProps) => {
 
   const handleDownload = async () => {
     const res = await dataProvider.simpleRequest(
-      `${process.env.BACKEND_URL}/devis/getFile/${file?.id}`
+      `${process.env.BACKEND_URL}/file/${file?.id}`
     );
     const blob = await res.blob();
     const url = window.URL.createObjectURL(new Blob([blob]));
@@ -40,7 +40,7 @@ export const FileDownloadField = (props: FileDownloadFieldProps) => {
 
   const handleDelete = async () => {
     const res = await dataProvider.simpleRequest(
-      `${process.env.BACKEND_URL}/devis/deleteFile/${id}`,
+      `${process.env.BACKEND_URL}/file/${file?.id}`,
       { method: "DELETE" }
     );
 

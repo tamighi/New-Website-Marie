@@ -2,18 +2,15 @@ import {
   Body,
   Controller,
   Delete,
-  Get,
   HttpCode,
   HttpException,
   HttpStatus,
   Param,
   Post,
-  Res,
   UploadedFile,
   UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
-import { Response } from "express";
 import { FileInterceptor } from "@nestjs/platform-express";
 
 import { FileService } from "../core";
@@ -56,29 +53,6 @@ export class DevisController extends MessagesController<Devis, DevisDto> {
         this.fileService.deleteFile(storedFile.id);
       }
       throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
-    }
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Get("getFile/:id")
-  async getFile(@Param() param: { id: number }, @Res() res: Response) {
-    try {
-      const file = await this.fileService.getFile(param.id);
-      res.download(`./uploads/${file.storedFilename}`, file.originalFilename);
-      return { status: "ok" };
-    } catch (err) {
-      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
-    }
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Delete("deleteFile/:id")
-  @HttpCode(204)
-  async deleteFile(@Param() id: { id: number }) {
-    const devis = await this.devisService.getOneById(id);
-
-    if (devis.data.file) {
-      this.fileService.deleteFile(devis.data.file.id);
     }
   }
 
