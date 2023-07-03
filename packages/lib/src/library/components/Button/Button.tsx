@@ -37,17 +37,19 @@ const Button = (
           backgroundColor: disabled
             ? palette.actions.disabledBackground
             : palette.colors[color],
-          backgroundImage: (hover && !disabled) ? palette.actions.hoverImage : undefined
+          backgroundImage:
+            hover && !disabled ? palette.actions.hoverImage : undefined,
         }
       : {
+          color: disabled ? palette.actions.disabled : palette.colors[color],
           backgroundColor: "transparent",
-          color: disabled ? palette.actions.disabled : color,
-          backgroundImage: (hover && !disabled) ? palette.actions.hoverImage : undefined
+          backgroundImage:
+            hover && !disabled ? palette.actions.hoverImage : undefined,
         }),
     transition,
   };
 
-  const mergedStyle = mergeStyles(customStyle, baseStyle)
+  const mergedStyle = mergeStyles(customStyle, baseStyle);
 
   return (
     <button
