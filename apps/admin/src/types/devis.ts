@@ -3,7 +3,6 @@ import { ServiceDto, SubServiceDto } from "./service";
 
 export type DevisDto = MessageDto & {
   nbCharacter: number;
-  price?: number;
   endDate?: Date;
   subService?: SubServiceDto;
   service?: ServiceDto;
