@@ -2,12 +2,12 @@ import React from "react";
 
 import { Colors, useStyles } from "../..";
 
-import CSSClasses from "./Button.css";
+import CSSClasses from "./Button.module.css";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: keyof Colors;
-  variant?: "text" | "contained"
+  variant?: "text" | "contained";
 }
 
 const Button = (
@@ -28,7 +28,7 @@ const Button = (
   const styles = useStyles({
     type: variant === "contained" ? color : "transparent",
     customStyle,
-    color: variant === "contained"? "text" : color,
+    color: variant === "contained" ? "text" : color,
   });
 
   return (
