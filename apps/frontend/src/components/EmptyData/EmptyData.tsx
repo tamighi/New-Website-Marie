@@ -8,14 +8,14 @@ const EmptyData = (props: { message: string }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "column"
+        flexDirection: "column",
       }}
     >
       <img
         src={leaf}
         alt=""
         style={{
-          width: "50%",
+          width: "30%",
         }}
       />
       {message}
