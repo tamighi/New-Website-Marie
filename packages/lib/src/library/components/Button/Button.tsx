@@ -26,7 +26,7 @@ const Button = (
   const classNames = `${CSSClasses.Button} ` + (className || "");
 
   const styles = useStyles({
-    type: variant === "contained" ? color : "transparent",
+    background: variant === "contained" ? color : "transparent",
     customStyle,
     color: variant === "contained" ? "text" : color,
   });

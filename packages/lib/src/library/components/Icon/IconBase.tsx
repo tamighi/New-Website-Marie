@@ -10,7 +10,7 @@ const IconBase = (props: IconProps) => {
   const classNames = `${CSSClasses.IconBase} ` + (className || "");
 
   const styles = useStyles({
-    type: "transparent",
+    background: "transparent",
     customStyle,
     themeTransition: false,
   });

@@ -9,7 +9,7 @@ const TableHead = (props: TableHeadProps) => {
 
   const classNames = `${CSSClasses.TableHead} ` + (className || "");
 
-  const styles = useStyles({ type: "primary", customStyle });
+  const styles = useStyles({ background: "primary", customStyle });
 
   return (
     <thead {...rest} style={styles} className={classNames}>

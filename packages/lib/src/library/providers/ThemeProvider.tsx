@@ -9,7 +9,7 @@ export interface Colors {
   text: string;
 }
 
-export type Palette <P extends string> = {
+export type Palette <P extends string = "dark" | "light"> = {
   [K in P]: Colors
 } & { mode: P }
 

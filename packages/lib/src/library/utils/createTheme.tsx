@@ -13,7 +13,7 @@ const createColor = (userColor: DeepPartial<Colors>, baseColor: Colors) => {
 };
 
 const createPalette = (
-  userPalette: DeepPartial<Palette<"dark" | "light">> | undefined
+  userPalette: DeepPartial<Palette> | undefined
 ) => {
   const palette = baseTheme.palette;
 

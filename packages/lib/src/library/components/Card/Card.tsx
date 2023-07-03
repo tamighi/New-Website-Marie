@@ -18,7 +18,7 @@ const Card = (props: CardProps) => {
 
   const classNames = `${CSSClasses.Card} ` + (className || "");
 
-  const styles = useStyles({ type, customStyle });
+  const styles = useStyles({ background: type, customStyle });
 
   return (
     <div className={classNames} style={styles} {...rest}>

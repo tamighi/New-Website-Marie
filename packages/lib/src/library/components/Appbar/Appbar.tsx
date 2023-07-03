@@ -19,7 +19,7 @@ const Appbar = (props: AppbarProps) => {
 
   const classNames = `${CSSClasses.Appbar} ` + (className || "");
 
-  const styles = useStyles({ type, customStyle });
+  const styles = useStyles({ background: type, customStyle });
 
   return (
     <Paper style={styles} className={classNames} {...rest}>

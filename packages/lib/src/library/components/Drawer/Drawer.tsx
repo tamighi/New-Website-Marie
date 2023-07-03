@@ -51,7 +51,7 @@ const Drawer = (props: DrawerProps) => {
       variant === "persistent" ? CSSClasses.Persistent : CSSClasses.Temporary
     } ` + (className || "");
 
-  const styles = useStyles({ type: "surface", customStyle });
+  const styles = useStyles({ background: "surface", customStyle });
 
   styles.transition = styles.transition
     ? styles.transition + ", transform 225ms"

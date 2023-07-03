@@ -3,7 +3,7 @@ import { Colors, useTheme } from "../providers";
 
 interface StyleOptions {
   customStyle?: React.CSSProperties;
-  type?: keyof Colors | "transparent";
+  background?: keyof Colors | "transparent";
   color?: keyof Colors;
   themeTransition?: boolean;
 }
@@ -11,7 +11,7 @@ interface StyleOptions {
 const useStyles = (styleOptions: StyleOptions = {}) => {
   const {
     customStyle = {},
-    type = "primary",
+    background: type = "primary",
     color = "text",
     themeTransition: transition = true,
   } = styleOptions;

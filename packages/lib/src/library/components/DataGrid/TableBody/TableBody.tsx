@@ -9,7 +9,7 @@ const TableBody = (props: TableBodyProps) => {
 
   const classNames = `${CSSClasses.TableBody} ` + (className || "");
 
-  const styles = useStyles({ type: "surface", customStyle });
+  const styles = useStyles({ background: "surface", customStyle });
 
   return (
     <tbody {...rest} style={styles} className={classNames}>

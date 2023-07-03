@@ -9,7 +9,7 @@ const IconButton = (props: IconButtonProps) => {
 
   const classNames = `${CSSClasses.IconButton} ` + (className || "");
 
-  const styles = useStyles({ type: "transparent", customStyle });
+  const styles = useStyles({ background: "transparent", customStyle });
 
   styles.transition = styles.transition
     ? styles.transition + ", background-color 225ms"

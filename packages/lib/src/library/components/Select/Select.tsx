@@ -30,7 +30,7 @@ const Select = (
   const classNames = `${CSSClasses.Input} ` + className;
 
   const styles = useStyles({
-    type: "surface",
+    background: "surface",
     customStyle,
     color,
   });

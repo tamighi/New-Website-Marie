@@ -26,7 +26,7 @@ const Divider = (props: DividerProps) => {
     `${CSSClasses.Divider} ${CSSClasses[directionsClasses[direction]]} ` +
     (className || "");
 
-  const styles = useStyles({ type, customStyle });
+  const styles = useStyles({ background: type, customStyle });
 
   return <hr className={classNames} style={styles} {...rest} />;
 };
