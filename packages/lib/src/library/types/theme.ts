@@ -7,7 +7,7 @@ export type Colors = {
 
 export type Actions = {
   disabled: string;
-  hover: string;
+  hoverImage: string;
 };
 
 export interface Palette {

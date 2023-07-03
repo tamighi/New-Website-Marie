@@ -11,7 +11,7 @@ export const lightTheme: Theme = {
     },
     actions: {
       disabled: "grey",
-      hover: "grey",
+      hoverImage: "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))",
     },
   },
   transition: undefined,
@@ -28,7 +28,8 @@ export const darkTheme: Theme = {
     },
     actions: {
       disabled: "grey",
-      hover: "grey",
+      hoverImage:
+        "linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1))",
     },
   },
   transition: undefined,

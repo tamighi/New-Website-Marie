@@ -33,17 +33,16 @@ const Button = (
   const baseStyle: React.CSSProperties = {
     ...(variant === "contained"
       ? {
-          background: disabled
+          color: palette.colors.text,
+          backgroundColor: disabled
             ? palette.actions.disabled
-            : hover
-            ? palette.actions.hover
             : palette.colors[color],
-          color: "text",
+          backgroundImage: (hover && !disabled) ? palette.actions.hoverImage : undefined
         }
       : {
-          background:
-            hover && !disabled ? palette.actions.hover : "transparent",
+          backgroundColor: "transparent",
           color: disabled ? palette.actions.disabled : color,
+          backgroundImage: (hover && !disabled) ? palette.actions.hoverImage : undefined
         }),
     transition,
   };
