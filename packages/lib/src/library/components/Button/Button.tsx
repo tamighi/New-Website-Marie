@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Color, useStyles } from "../..";
+import {  Color, useStyles } from "../..";
 
 import CSSClasses from "./Button.module.css";
 

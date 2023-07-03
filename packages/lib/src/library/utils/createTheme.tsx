@@ -1,5 +1,5 @@
 import { lightTheme, darkTheme } from "../constants";
-import { Palette, Theme } from "../providers";
+import { Palette, Theme } from "../types";
 
 type DeepPartial<T> = T extends object
   ? { [Key in keyof T]?: DeepPartial<T[Key]> }

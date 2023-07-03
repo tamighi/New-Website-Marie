@@ -1,5 +1,4 @@
-import { useStyles } from "../../hooks";
-import { Colors } from "../../providers";
+import { Colors, useStyles } from "../..";
 
 import CSSClasses from "./Paper.css";
 

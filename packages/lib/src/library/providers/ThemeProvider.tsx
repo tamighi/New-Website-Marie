@@ -1,26 +1,7 @@
 import React from "react";
 
 import { lightTheme } from "../constants";
-
-export type Color = "primary" | "secondary" | "text" | "surface";
-
-export type Action = "disabled" | "hover";
-
-export type Colors = {
-  [K in Color]: string;
-} & {
-  [K in Action]: string;
-};
-
-export interface Palette {
-  mode: "dark" | "light";
-  colors: Colors;
-}
-
-export interface Theme {
-  palette: Palette;
-  transition?: string;
-}
+import { Theme } from "../types";
 
 const ThemeContext = React.createContext<Theme | null>(null);
 

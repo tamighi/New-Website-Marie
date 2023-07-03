@@ -1,6 +1,5 @@
 import { Button, Card, Divider } from "..";
-import { useDelayedClose } from "../../hooks";
-import { Colors, IDialogState } from "../../providers";
+import { Colors, IDialogState, useDelayedClose } from "../..";
 import { BlurryBackground } from "../utils";
 
 import styles from "./Dialog.css";

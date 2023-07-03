@@ -1,7 +1,6 @@
 import React from "react";
 
-import { useTheme } from "../providers";
-import type { Colors } from "../providers/";
+import { Colors, useTheme } from "..";
 
 interface StyleOptions {
   customStyle?: React.CSSProperties;

@@ -1,12 +1,11 @@
-import { useStyles } from "../../hooks";
-import { Colors } from "../../providers";
+import { Colors, useStyles } from "../..";
 
 import CSSClasses from "./Divider.css";
 
 const directionsClasses = {
   vertical: "Vertical",
   horizontal: "Horizontal",
-};
+} as const;
 
 export interface DividerProps extends React.HTMLAttributes<HTMLHRElement> {
   variant?: keyof Colors;
