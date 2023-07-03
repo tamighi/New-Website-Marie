@@ -1,12 +1,12 @@
 import React from "react";
 
-import {  Color, useStyles } from "../..";
+import { Colors, mergeStyles, useTheme } from "../..";
 
 import CSSClasses from "./Button.module.css";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  color?: Color;
+  color?: keyof Colors;
   variant?: "text" | "contained";
 }
 
@@ -15,7 +15,7 @@ const Button = (
   ref: React.ForwardedRef<HTMLButtonElement>
 ) => {
   const {
-    style: customStyle,
+    style: customStyle = {},
     color = "primary",
     children,
     className,
@@ -28,20 +28,31 @@ const Button = (
 
   const classNames = `${CSSClasses.Button} ` + (className || "");
 
-  const styles = useStyles({
-      customStyle,
-    ...(variant === "contained" ? {
-      background: disabled ? "disabled" : hover ? "hover" : color,
-      color: "text"
-    } : {
-      background: (hover && !disabled)? "hover" : "transparent",
-      color: disabled ? "disabled" : color,
-    }),
-  });
+  const { palette, transition } = useTheme();
+
+  const baseStyle: React.CSSProperties = {
+    ...(variant === "contained"
+      ? {
+          background: disabled
+            ? palette.actions.disabled
+            : hover
+            ? palette.actions.hover
+            : palette.colors[color],
+          color: "text",
+        }
+      : {
+          background:
+            hover && !disabled ? palette.actions.hover : "transparent",
+          color: disabled ? palette.actions.disabled : color,
+        }),
+    transition,
+  };
+
+  const mergedStyle = mergeStyles(customStyle, baseStyle)
 
   return (
     <button
-      style={styles}
+      style={mergedStyle}
       className={classNames}
       ref={ref}
       onMouseEnter={() => setHover(true)}

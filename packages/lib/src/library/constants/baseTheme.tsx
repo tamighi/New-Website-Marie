@@ -8,6 +8,8 @@ export const lightTheme: Theme = {
       secondary: "#03cac6",
       surface: "#ffffff",
       text: "black",
+    },
+    actions: {
       disabled: "grey",
       hover: "grey",
     },
@@ -23,6 +25,8 @@ export const darkTheme: Theme = {
       secondary: "#144272",
       surface: "#202121",
       text: "white",
+    },
+    actions: {
       disabled: "grey",
       hover: "grey",
     },

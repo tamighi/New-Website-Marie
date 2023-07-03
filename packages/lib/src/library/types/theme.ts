@@ -1,16 +1,19 @@
-export type Color = "primary" | "secondary" | "text" | "surface";
-
-export type Action = "disabled" | "hover";
-
 export type Colors = {
-  [K in Color]: string;
-} & {
-  [K in Action]: string;
+  primary: string;
+  secondary: string;
+  surface: string;
+  text: string;
+};
+
+export type Actions = {
+  disabled: string;
+  hover: string;
 };
 
 export interface Palette {
   mode: "dark" | "light";
   colors: Colors;
+  actions: Actions;
 }
 
 export interface Theme {
