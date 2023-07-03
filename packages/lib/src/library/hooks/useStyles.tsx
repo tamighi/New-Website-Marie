@@ -6,22 +6,31 @@ interface StyleOptions {
   background?: keyof Colors | "transparent";
   color?: keyof Colors;
   themeTransition?: boolean;
+  hover?: boolean;
 }
 
 const useStyles = (styleOptions: StyleOptions = {}) => {
   const {
     customStyle = {},
-    background: type = "primary",
+    background = "primary",
     color = "text",
     themeTransition: transition = true,
+    hover = false,
   } = styleOptions;
 
   const theme = useTheme();
-  const palette = theme.palette[theme.palette.mode]
+  const palette = theme.palette[theme.palette.mode];
 
   const defaultStyles: React.CSSProperties = {
-    backgroundColor: (type !== "transparent" && palette[type]) || "transparent",
+    backgroundColor:
+      (background !== "transparent" && palette[background]) || "transparent",
     color: palette[color],
+    ...(hover
+      ? {
+          backgroundImage:
+            "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))",
+        }
+      : {}),
   };
 
   const mergedStyles: React.CSSProperties = {

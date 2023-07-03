@@ -23,16 +23,26 @@ const Button = (
     ...rest
   } = props;
 
+  const [hover, setHover] = React.useState(false);
+
   const classNames = `${CSSClasses.Button} ` + (className || "");
 
   const styles = useStyles({
     background: variant === "contained" ? color : "transparent",
     customStyle,
     color: variant === "contained" ? "text" : color,
+    hover,
   });
 
   return (
-    <button style={styles} className={classNames} ref={ref} {...rest}>
+    <button
+      style={styles}
+      className={classNames}
+      ref={ref}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      {...rest}
+    >
       {children}
     </button>
   );
