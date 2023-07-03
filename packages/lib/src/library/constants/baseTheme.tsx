@@ -10,7 +10,8 @@ export const lightTheme: Theme = {
       text: "black",
     },
     actions: {
-      disabled: "grey",
+      disabled: "rgba(0, 0, 0, 0.26)",
+      disabledBackground: "rgba(0, 0, 0, 0.12)",
       hoverImage: "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))",
     },
   },
@@ -27,7 +28,8 @@ export const darkTheme: Theme = {
       text: "white",
     },
     actions: {
-      disabled: "grey",
+      disabled: "rgba(255, 255, 255, 0.3)",
+      disabledBackground: "rgba(255, 255, 255, 0.12)",
       hoverImage:
         "linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1))",
     },
