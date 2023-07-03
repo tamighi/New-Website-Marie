@@ -14,3 +14,15 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   render: () => <Button color="primary">Primary</Button>,
 };
+
+export const Contained: Story = {
+  render: () => <Button variant="contained">Contained Primary</Button>,
+};
+
+export const Disabled: Story = {
+  render: () => <Button disabled>disabled</Button>,
+};
+
+export const ContainedDisabled: Story = {
+  render: () => <Button disabled variant="contained">Contained disabled</Button>,
+};

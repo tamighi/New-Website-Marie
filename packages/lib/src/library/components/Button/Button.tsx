@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Colors, useStyles } from "../..";
+import { Color, useStyles } from "../..";
 
 import CSSClasses from "./Button.module.css";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  color?: keyof Colors;
+  color?: Color;
   variant?: "text" | "contained";
 }
 
@@ -20,6 +20,7 @@ const Button = (
     children,
     className,
     variant = "text",
+    disabled = false,
     ...rest
   } = props;
 
@@ -28,10 +29,14 @@ const Button = (
   const classNames = `${CSSClasses.Button} ` + (className || "");
 
   const styles = useStyles({
-    background: variant === "contained" ? color : "transparent",
-    customStyle,
-    color: variant === "contained" ? "text" : color,
-    hover,
+      customStyle,
+    ...(variant === "contained" ? {
+      background: disabled ? "disabled" : hover ? "hover" : color,
+      color: "text"
+    } : {
+      background: (hover && !disabled)? "hover" : "transparent",
+      color: disabled ? "disabled" : color,
+    }),
   });
 
   return (
@@ -41,6 +46,7 @@ const Button = (
       ref={ref}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      disabled={disabled}
       {...rest}
     >
       {children}

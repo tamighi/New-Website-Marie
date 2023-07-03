@@ -1,27 +1,31 @@
 import React from "react";
 
-import { baseTheme } from "../constants";
+import { lightTheme } from "../constants";
 
-export interface Colors {
-  primary: string;
-  secondary: string;
-  surface: string;
-  text: string;
+export type Color = "primary" | "secondary" | "text" | "surface";
+
+export type Action = "disabled" | "hover";
+
+export type Colors = {
+  [K in Color]: string;
+} & {
+  [K in Action]: string;
+};
+
+export interface Palette {
+  mode: "dark" | "light";
+  colors: Colors;
 }
 
-export type Palette <P extends string = "dark" | "light"> = {
-  [K in P]: Colors
-} & { mode: P }
-
-export interface Theme <P extends string = "dark" | "light"> {
-  palette: Palette<P>;
+export interface Theme {
+  palette: Palette;
   transition?: string;
 }
 
 const ThemeContext = React.createContext<Theme | null>(null);
 
 export const useTheme = () => {
-  return React.useContext(ThemeContext) || baseTheme;
+  return React.useContext(ThemeContext) || lightTheme;
 };
 
 const ThemeProvider = ({
