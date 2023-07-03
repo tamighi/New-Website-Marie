@@ -7,7 +7,7 @@ import styles from "./Background.css";
 
 const Background = () => {
   const theme = useTheme();
-  const darkMode = theme?.palette?.darkMode;
+  const darkMode = theme.palette.mode === "dark";
 
   return (
     <div className={styles.Background}>

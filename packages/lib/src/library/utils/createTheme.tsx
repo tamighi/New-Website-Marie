@@ -12,10 +12,13 @@ const createColor = (userColor: DeepPartial<Colors>, baseColor: Colors) => {
   };
 };
 
-const createPalette = (userPalette: DeepPartial<Palette> | undefined) => {
+const createPalette = (
+  userPalette: DeepPartial<Palette<"dark" | "light">> | undefined
+) => {
   const palette = baseTheme.palette;
-  if (userPalette?.darkMode !== undefined) {
-    palette.darkMode = userPalette.darkMode;
+
+  if (userPalette?.mode !== undefined) {
+    palette.mode = userPalette.mode;
   }
   if (userPalette?.light) {
     palette.light = createColor(userPalette.light, palette.light);

@@ -9,18 +9,19 @@ export const useToggleTheme = () => {
 };
 
 const MyThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [darkMode, setDarkMode] = React.useState(
-    localStorage.getItem("dark") === "light" ? false : true
+  const [mode, setMode] = React.useState<"dark" | "light">(
+    localStorage.getItem("dark") === "dark" ? "dark" : "light"
   );
 
   const toggleTheme = () => {
-    localStorage.setItem("dark", darkMode ? "light" : "dark");
-    setDarkMode(!darkMode);
+    localStorage.setItem("dark", mode === "dark" ? "dark" : "light");
+
+    setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
   };
 
   const theme = createTheme({
     palette: {
-      darkMode: darkMode,
+      mode,
       light: {
         primary: "rgba(248, 195, 115, 0.8)",
         secondary: "rgba(165, 30, 30, 0.8)",

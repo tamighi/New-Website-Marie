@@ -17,9 +17,7 @@ const useStyles = (styleOptions: StyleOptions = {}) => {
   } = styleOptions;
 
   const theme = useTheme();
-  const palette = theme.palette.darkMode
-    ? theme.palette.dark
-    : theme.palette.light;
+  const palette = theme.palette[theme.palette.mode]
 
   const defaultStyles: React.CSSProperties = {
     backgroundColor: (type !== "transparent" && palette[type]) || "transparent",

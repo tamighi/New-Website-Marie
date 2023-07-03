@@ -9,14 +9,12 @@ export interface Colors {
   text: string;
 }
 
-export interface Palette {
-  darkMode: boolean;
-  dark: Colors;
-  light: Colors;
-}
+export type Palette <P extends string> = {
+  [K in P]: Colors
+} & { mode: P }
 
-export interface Theme {
-  palette: Palette;
+export interface Theme <P extends string = "dark" | "light"> {
+  palette: Palette<P>;
   transition?: string;
 }
 

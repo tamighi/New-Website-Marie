@@ -2,7 +2,7 @@ import { Theme } from "../providers";
 
 const baseTheme: Theme = {
   palette: {
-    darkMode: false,
+    mode: "light",
     light: {
       primary: "#6200ee",
       secondary: "#03cac6",

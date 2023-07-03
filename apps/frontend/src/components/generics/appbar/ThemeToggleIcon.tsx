@@ -5,7 +5,7 @@ import { useToggleTheme } from "contexts";
 const ThemeToggleIcon = () => {
   const toggleTheme = useToggleTheme();
   const theme = useTheme();
-  const darkMode = theme?.palette.darkMode;
+  const darkMode = theme.palette.mode === "dark";
 
   return (
     <IconButton onClick={toggleTheme || undefined}>
