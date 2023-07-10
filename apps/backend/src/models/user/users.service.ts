@@ -59,6 +59,7 @@ export class UsersService extends AbstractService<User, UserDto> {
 
     userDto.id = user.id;
     userDto.identifier = user.identifier;
+    userDto.status = user.status;
     userDto.lastModified = user.lastModified;
 
     return userDto;

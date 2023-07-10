@@ -45,7 +45,11 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { identifier: user.identifier, sub: user.id };
+    const payload = {
+      identifier: user.identifier,
+      sub: user.id,
+      status: user.status,
+    };
 
     return {
       access_token: this.jwtService.sign(payload),
@@ -84,7 +88,11 @@ export class AuthService {
     }
     await this.userService.changePassword(validation.id, body.newPassword);
 
-    const payload = { identifier: validation.identifier, sub: validation.id };
+    const payload = {
+      identifier: validation.identifier,
+      sub: validation.id,
+      status: user.status,
+    };
 
     return {
       access_token: this.jwtService.sign(payload),

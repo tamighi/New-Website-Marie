@@ -13,7 +13,7 @@ import {
 } from "@nestjs/common";
 import { DeepPartial } from "typeorm";
 
-import { JwtAuthGuard } from "src/common";
+import { JwtAdminAuthGuard, JwtAuthGuard } from "src/common";
 
 import { AbstractService } from "./abstract.service";
 import { QueryDto } from "./dtos/query.dto";
@@ -46,7 +46,7 @@ export abstract class AbstractController<
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAdminAuthGuard)
   @Put("/:id")
   async updateOne(
     @Param() id: { id: number },
@@ -59,7 +59,7 @@ export abstract class AbstractController<
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAdminAuthGuard)
   @Put()
   async updateMany(
     @Body() body: DTO[],
@@ -72,7 +72,7 @@ export abstract class AbstractController<
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAdminAuthGuard)
   @Post()
   async create(@Body() body: DTO): Promise<{ data: DTO }> {
     try {
@@ -82,7 +82,7 @@ export abstract class AbstractController<
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAdminAuthGuard)
   @Delete("/:id")
   @HttpCode(204)
   async deleteOne(@Param() id: { id: number }) {
@@ -93,7 +93,7 @@ export abstract class AbstractController<
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAdminAuthGuard)
   @Delete()
   @HttpCode(204)
   async deleteMany(@Query() query: QueryDto) {

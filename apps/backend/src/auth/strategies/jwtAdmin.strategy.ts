@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { ForbiddenException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { AuthService } from "../auth.service";
@@ -7,7 +7,7 @@ import { Request } from "express";
 import { AppConfigService } from "src/config/app/config.service";
 
 @Injectable()
-export class JwtAdminStrategy extends PassportStrategy(Strategy) {
+export class JwtAdminStrategy extends PassportStrategy(Strategy, "jwt-admin") {
   constructor(
     private readonly authService: AuthService,
     private readonly appConfigService: AppConfigService
@@ -30,9 +30,14 @@ export class JwtAdminStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException();
     }
 
+    if (payload.status !== "admin") {
+      throw new ForbiddenException();
+    }
+
     return {
       id: payload.sub,
       identifier: payload.identifier,
+      status: payload.status,
     };
   }
 }
