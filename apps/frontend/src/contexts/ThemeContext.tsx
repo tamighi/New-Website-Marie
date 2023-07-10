@@ -14,7 +14,7 @@ const MyThemeProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   const toggleTheme = () => {
-    localStorage.setItem("dark", mode === "dark" ? "dark" : "light");
+    localStorage.setItem("dark", mode === "dark" ? "light" : "dark");
 
     setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
   };
