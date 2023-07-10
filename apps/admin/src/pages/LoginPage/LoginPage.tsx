@@ -22,17 +22,21 @@ const LoginPage = () => {
 
   return (
     <div className={styles.LoginPage}>
-      <Card>
+      <Card style={{ maxWidth: "300px"}}>
         <h3>Login</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input {...register("username")} placeholder="Identifiant" />
           <Input
             {...register("password")}
+            type="password"
             placeholder="Mot de passe"
           />
           {error && <p>Identifiant ou mot de passe incorrect</p>}
           <Button type="submit">Submit</Button>
         </form>
+        <div>
+          To try the demo, login with "user" as username and "user" as password
+        </div>
       </Card>
     </div>
   );
