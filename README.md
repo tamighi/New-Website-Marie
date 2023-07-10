@@ -24,6 +24,6 @@ docker compose -f docker-compose.dev.yml up
 
 ```sh
 mkdir ./deploy/ssl
-openssl req -newkey rsa:2048 -nodes -keyout ./deploy/ssl/example.key -out ./deploy/ssl/example.crt
+openssl req -x509 -nodes -newkey rsa:2048 -keyout ./deploy/ssl/example.key -out ./deploy/ssl/example.crt -days 365
 docker compose -f docker-compose.prod.yml up
 ```
