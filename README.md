@@ -10,6 +10,24 @@ Full stack website with
 - An nginx configuration to serve static react bundles and redirect to backend.
 - A docker containerization for development and production.
 
+## Examples
+
+### Frontend Homepage
+
+<img src="readme_files/frontend-homepage.png" width="600"></img>
+
+### Frontend Goldenbook
+
+<img src="readme_files/frontend-goldenbook.png" width="600"></img>
+
+### Admin
+
+<img src="readme_files/admin.png" width="600"></img>
+
+### Video
+
+![Alt Text](https://github.com/tamighi/correction-service-website/blob/master/readme_files/example.gif)
+
 ## How to run
 
 Ensure first that docker is installed.
