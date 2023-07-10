@@ -5,7 +5,6 @@ import { ServiceDto } from "src/models/service/dtos/service.dto";
 import { SubServiceDto } from "src/models/subService/dtos/subService.dto";
 
 export class DevisDto extends MessageDto {
-  nbCharacter: number;
   file?: File;
   endDate?: Date;
   subService?: SubServiceDto;

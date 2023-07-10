@@ -8,9 +8,6 @@ import { SubService } from "src/models/subService/entities/subService.entity";
 
 @Entity()
 export class Devis extends Message {
-  @Column()
-  nbCharacter: number;
-
   @Column({ nullable: true })
   endDate?: Date;
 

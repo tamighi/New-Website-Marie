@@ -9,7 +9,7 @@ import { Devis } from "./entities/devis.entity";
 export class DevisService extends MessagesService<Devis, DevisDto> {
   constructor(
     @InjectRepository(Devis)
-    protected readonly devisRepository: Repository<Devis>,
+    protected readonly devisRepository: Repository<Devis>
   ) {
     super(devisRepository);
   }
@@ -19,7 +19,6 @@ export class DevisService extends MessagesService<Devis, DevisDto> {
 
     devisDto.service = devis.service;
     devisDto.subService = devis.subService;
-    devisDto.nbCharacter = devis.nbCharacter;
     devisDto.endDate = devis.endDate;
     devisDto.file = devis.file;
 

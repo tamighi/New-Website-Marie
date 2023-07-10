@@ -39,16 +39,24 @@ export const FileDownloadField = (props: FileDownloadFieldProps) => {
   };
 
   const handleDelete = async () => {
-    const res = await dataProvider.simpleRequest(
-      `${process.env.BACKEND_URL}/file/${file?.id}`,
-      { method: "DELETE" }
-    );
+    try {
+      const res = await dataProvider.simpleRequest(
+        `${process.env.BACKEND_URL}/file/${file?.id}`,
+        { method: "DELETE" }
+      );
 
-    if (res.ok) {
+      if (res.ok) {
+        alert.show({
+          render: <Alert message="File deleted successfully" />,
+        });
+        queryClient.invalidateQueries(["devis", { id: id.toString() }]);
+      }
+    } catch {
       alert.show({
-        render: <Alert message="File deleted successfully" />,
+        render: (
+          <Alert message="This is a demo. Regular users cannot delete instances for safety reasons." />
+        ),
       });
-      queryClient.invalidateQueries(["devis", { id: id.toString() }]);
     }
   };
 

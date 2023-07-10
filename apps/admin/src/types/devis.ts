@@ -2,7 +2,6 @@ import { messageDto, MessageDto } from "./message";
 import { ServiceDto, SubServiceDto } from "./service";
 
 export type DevisDto = MessageDto & {
-  nbCharacter: number;
   endDate?: Date;
   subService?: SubServiceDto;
   service?: ServiceDto;
@@ -13,4 +12,4 @@ export type DevisDto = MessageDto & {
   };
 };
 
-export const devisDto: DevisDto = { ...messageDto, nbCharacter: 1 };
+export const devisDto: DevisDto = { ...messageDto };
