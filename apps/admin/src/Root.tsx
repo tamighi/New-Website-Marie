@@ -4,8 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
 import { AuthProvider, MyQueryClientProvider } from "contexts";
 
-import { ReactQueryDevtools } from "react-query/devtools";
-
 export const Root = () => {
   return (
     <BrowserRouter basename="admin">
@@ -14,7 +12,6 @@ export const Root = () => {
           <AlertProvider>
             <App />
           </AlertProvider>
-          <ReactQueryDevtools />
         </MyQueryClientProvider>
       </AuthProvider>
     </BrowserRouter>

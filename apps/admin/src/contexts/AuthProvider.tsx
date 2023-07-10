@@ -14,7 +14,9 @@ export const useAuthContext = () => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [authenticated, setAuthenticated] = React.useState<boolean>(true);
+  const [authenticated, setAuthenticated] = React.useState<boolean>(
+    localStorage.getItem("access_token") === null ? false : true
+  );
 
   return (
     <AuthContext.Provider value={{ authenticated, setAuthenticated }}>
