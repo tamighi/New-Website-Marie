@@ -13,10 +13,14 @@ export const multerConfig: MulterOptions = {
     },
   }),
   fileFilter: (_, file, cb) => {
-    if (file.mimetype.startsWith("text/")) {
+    const allowedMimeTypes = ["application/pdf", "text/plain"];
+    if (allowedMimeTypes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(new Error("Only text documents are allowed."), false);
+      cb(new Error("Only PDF and TXT documents are allowed."), false);
     }
+  },
+  limits: {
+    fileSize: 1024 * 1024 * 5,
   },
 };

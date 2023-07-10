@@ -12,7 +12,6 @@ import {
   ServiceEdit,
   ServicePage,
   ErrorPage,
-  ProfilePage,
 } from "pages";
 
 import styles from "./App.css";
@@ -44,7 +43,6 @@ export const App = () => {
           <Route path="question/*" element={<QuestionPage />} />
           <Route path="devis/*" element={<DevisPage />} />
           <Route path="review/*" element={<ReviewPage />} />
-          <Route path="profile" element={<ProfilePage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>

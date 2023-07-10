@@ -3,4 +3,3 @@ export * from "./LoginPage";
 export * from "./services";
 export * from "./messages";
 export * from "./ErrorPage";
-export * from "./ProfilePage";

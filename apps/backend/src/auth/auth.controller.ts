@@ -1,5 +1,4 @@
 import {
-  Body,
   Controller,
   Get,
   Post,
@@ -42,9 +41,9 @@ export class AuthController {
     return this.authService.logout(req.user, token);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Post("changePassword")
-  async changePassword(@Req() req: Request, @Body() body: any) {
-    return this.authService.changePassword(req.user, body);
-  }
+  // @UseGuards(JwtAuthGuard)
+  // @Post("changePassword")
+  // async changePassword(@Req() req: Request, @Body() body: any) {
+  //   return this.authService.changePassword(req.user, body);
+  // }
 }
