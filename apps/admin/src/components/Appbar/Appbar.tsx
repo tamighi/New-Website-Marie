@@ -20,10 +20,10 @@ const Appbar = ({ toggleSideBar }: AppbarProps) => {
           <MenuIcon />
         </IconButton>
         <div style={{ flexGrow: 1 }} />
-        <Button onClick={() => navigate("/profile")} color={"secondary"}>
+        <Button onClick={() => navigate("/profile")} color={"text"}>
           Profile
         </Button>
-        <Button onClick={logout} color={"secondary"}>
+        <Button onClick={logout} color={"text"}>
           Logout
         </Button>
         <a href="/">
