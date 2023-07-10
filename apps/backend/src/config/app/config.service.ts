@@ -3,7 +3,7 @@ import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class AppConfigService {
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService) { }
 
   get db_host(): string | undefined {
     return this.configService.get<string>("app.db_host");
@@ -25,6 +25,12 @@ export class AppConfigService {
   }
   get default_user_pwd(): string | undefined {
     return this.configService.get<string>("app.default_user_pwd");
+  }
+  get default_admin_id(): string | undefined {
+    return this.configService.get<string>("app.default_admin_id");
+  }
+  get default_admin_pwd(): string | undefined {
+    return this.configService.get<string>("app.default_admin_pwd");
   }
   get jwt_secret(): string | undefined {
     return this.configService.get<string>("app.jwt_secret");

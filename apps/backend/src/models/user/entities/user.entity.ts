@@ -11,6 +11,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column()
+  status: "admin" | "user";
+
   @Column({ nullable: true })
   lastModified: Date;
 }

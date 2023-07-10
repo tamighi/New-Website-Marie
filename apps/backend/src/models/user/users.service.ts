@@ -37,9 +37,20 @@ export class UsersService extends AbstractService<User, UserDto> {
     if (count === 0) {
       const user = this.userRepository.create({
         identifier: this.appConfigService.default_user_id,
-        password: await hashPwd(this.appConfigService.default_user_pwd as string),
+        status: "user",
+        password: await hashPwd(
+          this.appConfigService.default_user_pwd as string
+        ),
+      });
+      const admin = this.userRepository.create({
+        identifier: this.appConfigService.default_admin_id,
+        status: "admin",
+        password: await hashPwd(
+          this.appConfigService.default_admin_pwd as string
+        ),
       });
       await this.userRepository.save(user);
+      await this.userRepository.save(admin);
     }
   }
 
@@ -48,13 +59,13 @@ export class UsersService extends AbstractService<User, UserDto> {
 
     userDto.id = user.id;
     userDto.identifier = user.identifier;
-    userDto.lastModified = user.lastModified
+    userDto.lastModified = user.lastModified;
 
     return userDto;
   }
 
   async changePassword(id: number, newPassword: string) {
-    const hashedPwd = await hashPwd(newPassword)
+    const hashedPwd = await hashPwd(newPassword);
 
     const lastModified = new Date();
 
@@ -62,7 +73,7 @@ export class UsersService extends AbstractService<User, UserDto> {
 
     await this.userRepository.update(id, {
       password: hashedPwd,
-      lastModified
+      lastModified,
     });
   }
 }
