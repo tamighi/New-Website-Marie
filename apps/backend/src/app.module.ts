@@ -1,4 +1,5 @@
 import { Module } from "@nestjs/common";
+import { ScheduleModule } from "@nestjs/schedule";
 
 import { AppConfigModule, TypeOrmConfigModule } from "./config";
 import { FileModule } from "./models/core";
@@ -14,6 +15,7 @@ import { ReviewsModule } from "./models/review/reviews.module";
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     AppConfigModule,
     TypeOrmConfigModule,
     FileModule,

@@ -23,5 +23,7 @@ docker compose -f docker-compose.dev.yml up
 ### Production
 
 ```sh
+mkdir ./deploy/ssl
+openssl req -newkey rsa:2048 -nodes -keyout ./deploy/ssl/example.key -out ./deploy/ssl/example.crt
 docker compose -f docker-compose.prod.yml up
 ```

@@ -20,14 +20,13 @@ export class InvalidatedAuthTokenService extends AbstractService<
   }
 
   // TODO: Make it work
-  @Cron("0 * * * *")
+  @Cron("0 0 * * *")
   async deleteExpiredTokens() {
     const currentDateTime = new Date();
     await this.IATrepository.delete({
       expires: LessThan(currentDateTime),
     });
   }
-
 
   async exist(token: string) {
     const isInvalidated = this.IATrepository.exist({
