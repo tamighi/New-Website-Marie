@@ -11,7 +11,7 @@ import {
 } from "@nestjs/common";
 import { Response } from "express";
 
-import { JwtAuthGuard } from "src/common";
+import { JwtAdminAuthGuard, JwtAuthGuard } from "src/common";
 
 import { FileService } from "./file.service";
 
@@ -31,7 +31,7 @@ export class FileController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAdminAuthGuard)
   @Delete("/:id")
   @HttpCode(204)
   async deleteFile(@Param("id") id: number) {
