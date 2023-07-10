@@ -39,7 +39,7 @@ const Appbar = () => {
       <Navbar>
         <AppbarDrawer navItems={navItems} />
         <ThemeToggleIcon />
-        <div className={styles.Logo}>Marie Somville</div>
+        <a href="/admin" className={styles.Logo}>{"Go to admin"}</a>
         <ul className={styles.LinkList}>
           {navItems.map((button, id) => (
             <li key={id}>
