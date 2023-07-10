@@ -26,7 +26,7 @@ Full stack website with
 
 ### Video
 
-![Alt Text](https://github.com/tamighi/correction-service-website/blob/master/readme_files/example.gif)
+![Alt Text](https://github.com/tamighi/correction-service-website/blob/main/readme_files/example.gif)
 
 ## How to run
 
