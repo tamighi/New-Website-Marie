@@ -1,6 +1,9 @@
 import { dataProvider, DeleteManyParams, GetListParams } from "services/api";
 import { useMutation, useQueryClient } from "react-query";
 import { ResourceString, ResourceType } from "types";
+import { useAlert } from "lib";
+import { HttpError } from "services/utils";
+import { Alert } from "components";
 
 interface DeleteManyOptions {
   onSuccess?: () => void;
@@ -13,6 +16,7 @@ export const useDeleteMany = <R extends ResourceString>(
   query?: GetListParams<ResourceType<R>>
 ) => {
   const queryClient = useQueryClient();
+  const alert = useAlert();
 
   const queryKey = query ? [resource, query] : [resource];
 
@@ -41,6 +45,15 @@ export const useDeleteMany = <R extends ResourceString>(
         return { oldData };
       },
       onError: (error, _, context) => {
+        if (error instanceof HttpError) {
+          if (error.status === 403) {
+            alert.show({
+              render: (
+                <Alert message="This is a demo. Regular users cannot delete instances for safety reasons." />
+              ),
+            });
+          }
+        }
         queryClient.setQueryData(queryKey, context?.oldData);
         onError?.(error);
       },

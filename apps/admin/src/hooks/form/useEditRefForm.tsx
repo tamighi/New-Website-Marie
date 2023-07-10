@@ -27,7 +27,15 @@ export const useEditRefForm = <T extends object>(
   const onError = React.useCallback(
     (error: unknown) => {
       if (error instanceof HttpError) {
-        setError("badEntry");
+        if (error.status === 403) {
+          alert.show({
+            render: (
+              <Alert message="This is a demo. Regular users cannot modify instances for safety reasons." />
+            ),
+          });
+        } else {
+          setError("badEntry");
+        }
       } else {
         setError("unknownError");
       }

@@ -1,6 +1,7 @@
 import { Alert } from "components";
 import { useUpdateOne } from "hooks";
 import { Button, useAlert } from "lib";
+import { HttpError } from "services/utils";
 import { ResourceType } from "types";
 
 type MessageResourceString = "question" | "review" | "devis";
@@ -20,6 +21,14 @@ export const StatusField = <R extends MessageResourceString>(
   const { mutate } = useUpdateOne<R>(resource, {
     onSuccess: () => {
       alert.show({ render: <Alert message="Status updated !" /> });
+    },
+    onError: (error) => {
+      if (error instanceof HttpError && error.status === 403)
+        alert.show({
+          render: (
+            <Alert message="This is a demo. Regular users cannot modify instances for safety reasons" />
+          ),
+        });
     },
   });
 

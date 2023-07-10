@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { dataProvider, DeleteParams, GetListParams } from "services/api";
 import { ResourceString, ResourceType } from "types";
 import { Alert } from "components";
+import { HttpError } from "services/utils";
 
 export const useDeleteOne = <R extends ResourceString>(
   resource: string,
@@ -75,10 +76,18 @@ export const useDeleteOne = <R extends ResourceString>(
 
         return { oldData, oldOne };
       },
-      onError: (_, params, context) => {
-        alert.show({
-          render: <Alert message="Une erreur est survenue ..." />,
-        });
+      onError: (error, params, context) => {
+        if (error instanceof HttpError && error.status === 403) {
+          alert.show({
+            render: (
+              <Alert message="This is a demo. Regular users cannot delete items for safety reasons." />
+            ),
+          });
+        } else {
+          alert.show({
+            render: <Alert message="Une erreur est survenue ..." />,
+          });
+        }
         queryClient.setQueryData(queryKey, context?.oldData);
         queryClient.setQueryData([resource, params], context?.oldOne);
       },
