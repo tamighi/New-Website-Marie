@@ -1,3 +1,4 @@
+import { Paragraph } from "components";
 import { Card, useStyles } from "lib";
 import { useNavigate } from "react-router-dom";
 import { ServiceDto } from "types/service";
@@ -18,7 +19,9 @@ const ServiceCard = ({ service }: { service: ServiceDto }) => {
       }}
     >
       <h3>{service.name}</h3>
-      <p className={styles.DescriptionClamp}>{service.description}</p>
+      <Paragraph className={styles.DescriptionClamp}>
+        {service.description}
+      </Paragraph>
     </Card>
   );
 };

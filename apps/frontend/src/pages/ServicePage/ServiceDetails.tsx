@@ -2,21 +2,29 @@ import { ArrowBackIcon, DataGrid, IconButton } from "lib";
 
 import { useService } from "hooks";
 import { SubServiceDto } from "types";
-import { EmptyData, Title } from "components";
+import { EmptyData, Paragraph, Title } from "components";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { Column } from "react-table";
 
-import styles from "./Service.css";
-
 const columns: Column<SubServiceDto>[] = [
   {
     accessor: "textType",
-    Header: "Type de texte",
+    Header: () => {
+      return <span style={{fontSize: "22px", fontWeight: "bold"}}>Type de texte</span>
+    },
+    Cell: (props) => {
+      return <span style={{fontSize: "22px" }}>{props.cell.value}</span>
+    }
   },
   {
     accessor: "pricePerCharacter",
-    Header: "Prix par caractere",
+    Header: () => {
+      return <span style={{fontSize: "22px", fontWeight: "bold"}}>Prix par caractere</span>
+    },
+    Cell: (props) => {
+      return <span style={{fontSize: "22px" }}>{props.cell.value}</span>
+    },
   },
 ];
 
@@ -34,7 +42,7 @@ const ServiceDetails = () => {
         <ArrowBackIcon />
       </IconButton>
       <Title>{service.name}</Title>
-      <p className={styles.ServiceDescription}>{service.description}</p>
+      <Paragraph>{service.description}</Paragraph>
       {service.subServices && service.subServices.length !== 0 ? (
         <DataGrid columns={columns} data={service.subServices} />
       ) : (

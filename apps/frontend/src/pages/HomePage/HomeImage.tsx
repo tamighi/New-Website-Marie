@@ -1,4 +1,4 @@
-import portrait from "assets/images/cat.png";
+import portrait from "assets/images/portrait.png";
 
 import styles from "./SlideInLeft.css";
 
@@ -7,9 +7,10 @@ const HomeImage = () => {
     <img
       className={styles.slideInLeft}
       src={portrait}
-      alt=""
+      alt="portrait"
       style={{
-        width: "100%",
+        width: "70%",
+        objectFit:"contain"
       }}
     />
   );

@@ -1,4 +1,4 @@
-import { ApiErrorImage, EmptyData, Loader, Title } from "components";
+import { ApiErrorImage, EmptyData, Loader, Paragraph, Title } from "components";
 import { useServices } from "hooks";
 
 import ServiceCard from "./ServiceCard";
@@ -9,7 +9,7 @@ const ServiceMain = () => {
   return (
     <>
       <Title>Les services proposés</Title>
-      <p>
+      <Paragraph>
         Avoir recours à un service de relecture-correction implique
         naturellement d’y consacrer un budget. Vous pourrez cependant vite
         constater que cette dépense est minime, au regard du travail induit et
@@ -23,7 +23,7 @@ const ServiceMain = () => {
         <br />
         <br />
         Cliquez sur un service afin de voir les tarifs proposés.
-      </p>
+      </Paragraph>
       {isLoading ? (
         <Loader />
       ) : !services || isError ? (

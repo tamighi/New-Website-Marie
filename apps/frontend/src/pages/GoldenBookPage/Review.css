@@ -1,7 +1,7 @@
 .ReviewList {
   display: flex;
   flex-direction: column;
-  gap: 6px
+  gap: 6px;
 }
 
 .ReviewItemHead {
@@ -9,10 +9,14 @@
   justify-content: space-between;
 }
 
+.ReviewName {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .ReviewMessage {
   overflow: hidden;
   max-height: 5rem;
-  font-size: 14px;
 }
 
 .ReviewMessageOverflow {

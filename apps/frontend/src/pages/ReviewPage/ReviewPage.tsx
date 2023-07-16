@@ -1,3 +1,4 @@
+import { Title } from "components";
 import { CenteredPage } from "../core";
 
 import ReviewContactForm from "./ReviewContactForm";
@@ -5,7 +6,7 @@ import ReviewContactForm from "./ReviewContactForm";
 const ReviewPage = () => {
   return (
     <CenteredPage>
-      <h2>Laissez moi un avis !</h2>
+      <Title>Laissez moi un avis !</Title>
       <ReviewContactForm />
     </CenteredPage>
   );

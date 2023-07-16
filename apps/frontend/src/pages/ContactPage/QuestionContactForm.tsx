@@ -2,7 +2,7 @@ import { Button, Input, TextArea, useForm } from "lib";
 
 import { usePostMessage } from "hooks";
 import { QuestionDto } from "types";
-import { FormContent, Loader, ApiErrorForm } from "components";
+import { FormContent, Loader, ApiErrorForm, Paragraph } from "components";
 
 const QuestionContactForm = () => {
   const { register, handleSubmit, reset } = useForm<QuestionDto>();
@@ -17,11 +17,11 @@ const QuestionContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
-        <p>
+        <Paragraph>
           Formulaire de demande d'informations
           <br />
           Une information vous manque ? Un cas particulier ? Contactez-moi !
-        </p>
+        </Paragraph>
 
         <Input required flex {...register("name")} label="Nom" />
         <Input

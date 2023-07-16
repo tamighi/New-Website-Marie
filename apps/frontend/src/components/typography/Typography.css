@@ -1,4 +1,5 @@
 .Title {
+  font-size: 42px;
   border-bottom-width: 3px;
   border-bottom-style: groove;
   display: inline-block;
@@ -9,4 +10,9 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-top: 10px;
+}
+
+.Paragraph {
+  font-size: 20px;
+  white-space: break-spaces;
 }

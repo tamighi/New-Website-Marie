@@ -3,7 +3,13 @@ import React from "react";
 import { Button, Input, Select, TextArea, useForm } from "lib";
 
 import { usePostFormData, useServices } from "hooks";
-import { DatePicker, FormContent, Loader, ApiErrorForm } from "components";
+import {
+  DatePicker,
+  FormContent,
+  Loader,
+  ApiErrorForm,
+  Paragraph,
+} from "components";
 import { DevisDto, SubServiceDto } from "types";
 import { CustomFileInput } from "./CustomFileInput";
 
@@ -46,11 +52,11 @@ const DevisContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormContent>
-        <p>
+        <Paragraph>
           Formulaire de demande de devis
           <br />
           Combien coûte la correction de votre texte ? Écrivez-moi !
-        </p>
+        </Paragraph>
 
         <Input required flex {...register("name")} label="Nom" />
         <Input

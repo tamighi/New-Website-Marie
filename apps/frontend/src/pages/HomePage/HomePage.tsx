@@ -8,7 +8,11 @@ const HomePage = () => {
   return (
     <BasePage>
       <Grid container>
-        <Grid xs={12} md={6}>
+        <Grid
+          xs={12}
+          md={6}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
           <HomeImage />
         </Grid>
         <Grid xs={12} md={6}>

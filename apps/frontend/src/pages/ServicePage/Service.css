@@ -16,7 +16,3 @@
 .ServiceCard:hover {
   transform: scale(102%);
 }
-
-.ServiceDescription {
-  white-space: break-spaces;
-}
